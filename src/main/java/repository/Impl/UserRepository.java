@@ -1,6 +1,6 @@
-package Repository.Impl;
+package repository.Impl;
 
-import Repository.GenericRepository;
+import repository.GenericRepository;
 import model.entity.User;
 
 public class UserRepository implements GenericRepository<User, Long> {
