@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import models.enums.UserRole;
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor
@@ -41,6 +41,10 @@ public class User {
     @Setter
     @Column(nullable = false , unique = true)
     private String email;
+
+    @Setter
+    @Column(nullable = false)
+    private String salt;
 
     @Setter
     @Column(nullable = false)

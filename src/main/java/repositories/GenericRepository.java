@@ -2,83 +2,100 @@ package repositories;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import persistence.manager.DatabaseSingleton;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-public abstract class GenericRepository <T, ID>{
+public abstract class GenericRepository<T, ID> {
 
     protected EntityTransaction transaction;
 
     public boolean create(T t) {
-        EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager();
-        transaction = entityManager.getTransaction();
-        transaction.begin();
-        try {
+        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
             entityManager.persist(t);
-            if (transaction.isActive()) {
-                transaction.commit();
-            } else {
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-        } finally {
-            DatabaseSingleton.getInstance().closeEntityManager();
+            throw e;
         }
-        return true;
     }
 
     public Optional<T> read(ID id) {
-        EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager();
-        transaction = entityManager.getTransaction();
-        transaction.begin();
-        Optional<T> result;
-        T t = null;
-        try {
-            t = entityManager.find((Class<T>) this.getClass(), id);
-            result = Optional.of(t);
-            if (transaction.isActive()) {
-                transaction.commit();
-            } else {
+        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            T t = entityManager.find((Class<T>) this.getClass(), id);
+            transaction.commit();
+            return Optional.of(t);
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-        } finally {
-            DatabaseSingleton.getInstance().closeEntityManager();
+            throw e;
         }
-        return result;
+    }
+
+    public List<T> readAll() {
+        List<T> resultList = new ArrayList<>();
+        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
+            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+            CriteriaQuery<T> cq = cb.createQuery((Class<T>) this.getClass());
+            Root<T> rootEntry = cq.from((Class<T>) this.getClass());
+            CriteriaQuery<T> all = cq.select(rootEntry);
+            TypedQuery<T> allQuery = entityManager.createQuery(all);
+            resultList = allQuery.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            // Log the exception
+            System.err.println("An error occurred during readAll operation: " + e.getMessage());
+        }
+        return resultList;
     }
 
     public boolean update(T t) {
-        EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager();
-        transaction = entityManager.getTransaction();
-        transaction.begin();
-        try {
+        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
             entityManager.merge(t);
-            if (transaction.isActive()) {
-                transaction.commit();
-            } else {
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-        } finally {
-            DatabaseSingleton.getInstance().closeEntityManager();
+            throw e;
         }
-        return true;
     }
 
     public void delete(ID id) {
-        EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager();
-        transaction = entityManager.getTransaction();
-        transaction.begin();
-        try {
+        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            transaction = entityManager.getTransaction();
+            transaction.begin();
             T t = entityManager.find((Class<T>) this.getClass(), id);
             entityManager.remove(t);
-            if (transaction.isActive()) {
-                transaction.commit();
-            } else {
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-        } finally {
-            DatabaseSingleton.getInstance().closeEntityManager();
+            throw e;
         }
     }
-
 }
