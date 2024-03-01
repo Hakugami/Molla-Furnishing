@@ -1,4 +1,4 @@
-package controller.filter;
+package controllers.filters;
 
 import jakarta.servlet.*;
 

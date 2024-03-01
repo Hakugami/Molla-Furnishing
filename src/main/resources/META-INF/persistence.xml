@@ -3,7 +3,22 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-    <persistence-unit name="default">
+    <persistence-unit name="molla" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>models.entity.User</class>
+        <class>models.entity.Address</class>
+        <class>models.entity.ShoppingCart</class>
+        <class>models.entity.Product</class>
+        <class>models.entity.DiscountedProduct</class>
+        <class>models.entity.Order</class>
+        <class>models.entity.Rating</class>
+        <class>models.entity.Category</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
 
     </persistence-unit>
 </persistence>

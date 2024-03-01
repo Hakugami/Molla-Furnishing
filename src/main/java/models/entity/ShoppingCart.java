@@ -1,4 +1,4 @@
-package model.entity;
+package models.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,12 +8,13 @@ import lombok.Setter;
 
 import java.sql.Date;
 import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "shopping_carts")
+public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -25,18 +26,12 @@ public class Order {
 
     @Setter
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "order_id"),
+    @JoinTable(name = "shopping_cart_products",
+            joinColumns = @JoinColumn(name = "shopping_cart_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
-    @Setter
     @Column(nullable = false)
-    private double totalAmount;
-
-    @Setter
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date orderDate;
+    private Date lastUpdate;
 
 }

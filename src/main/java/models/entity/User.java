@@ -1,11 +1,11 @@
-package model.entity;
+package models.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.enums.UserRole;
+import models.enums.UserRole;
 import java.sql.Date;
 
 @Getter

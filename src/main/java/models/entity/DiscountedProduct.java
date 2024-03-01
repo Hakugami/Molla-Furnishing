@@ -1,12 +1,12 @@
-package model.entity;
+package models.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
+import lombok.Getter;
 
 import java.sql.Date;
 
-@Data
+@Getter
 @Entity
 @Table(name = "discounted_products")
 public class DiscountedProduct extends Product {
