@@ -51,9 +51,8 @@ public class User {
     @Column(nullable = false)
     private double creditLimit;
 
-
     @Setter
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Address> addresses;
 
     @Setter
