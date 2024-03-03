@@ -10,9 +10,11 @@ import java.io.Serializable;
  */
 @Value
 public class AddressDto implements Serializable {
+    long id;
     String street;
     String city;
     String state;
     String country;
     String zipCode;
+    UserDto user;
 }

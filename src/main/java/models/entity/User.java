@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import models.enums.UserRole;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -50,9 +51,10 @@ public class User {
     @Column(nullable = false)
     private double creditLimit;
 
+
     @Setter
-    @Embedded
-    private Address address;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Address> addresses;
 
     @Setter
     @Enumerated(EnumType.ORDINAL)

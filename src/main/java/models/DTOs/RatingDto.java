@@ -1,7 +1,6 @@
 package models.DTOs;
 
 import lombok.Value;
-import models.DTOs.UserDto;
 import models.entity.Rating;
 
 import java.io.Serializable;

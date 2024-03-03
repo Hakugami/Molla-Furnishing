@@ -1,9 +1,9 @@
 package services;
 
 import mappers.UserMapper;
-import models.DTOs.UserDto;
 import models.entity.User;
 import repositories.impl.UserRepository;
+import models.DTOs.UserDto;
 
 public class AuthenticationService {
     private final UserRepository repository;

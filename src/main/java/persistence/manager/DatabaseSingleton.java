@@ -1,21 +1,19 @@
 package persistence.manager;
 
 
-import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import utils.DataSourceConfig;
 
-import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DatabaseSingleton {
     private static volatile DatabaseSingleton instance = null;
     private static volatile EntityManagerFactory entityManagerFactory = null;
-    private static final ThreadLocal<EntityManager> threadLocalSession = new ThreadLocal<>();
+    private static final ThreadLocal<EntityManager> ENTITY_MANAGER_THREAD_LOCAL = new ThreadLocal<>();
 
     private DatabaseSingleton() {
         HikariDataSource dataSource = DataSourceConfig.getHikariDataSource();
@@ -36,19 +34,19 @@ public class DatabaseSingleton {
 
 
     public EntityManager getEntityManager() {
-        EntityManager entityManager = threadLocalSession.get();
+        EntityManager entityManager = ENTITY_MANAGER_THREAD_LOCAL.get();
         if (entityManager == null) {
             entityManager = entityManagerFactory.createEntityManager();
-            threadLocalSession.set(entityManager);
+            ENTITY_MANAGER_THREAD_LOCAL.set(entityManager);
         }
         return entityManager;
     }
 
     public void closeEntityManager() {
-        EntityManager entityManager = threadLocalSession.get();
+        EntityManager entityManager = ENTITY_MANAGER_THREAD_LOCAL.get();
         if (entityManager != null) {
             entityManager.close();
-            threadLocalSession.remove();
+            ENTITY_MANAGER_THREAD_LOCAL.remove();
         }
     }
 

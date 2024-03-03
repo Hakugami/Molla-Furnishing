@@ -6,6 +6,7 @@ import models.enums.UserRole;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * DTO for {@link User}
@@ -21,6 +22,6 @@ public class UserDto implements Serializable {
     String email;
     String salt;
     double creditLimit;
-    AddressDto address;
+    List<AddressDto> addresses;
     UserRole role;
 }

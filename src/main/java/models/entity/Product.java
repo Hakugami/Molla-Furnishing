@@ -17,7 +17,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private long productId;
 
     @Setter
     @Column(nullable = false)
@@ -50,23 +50,13 @@ public class Product {
     private List<String> images;
 
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "discounted_product_id", referencedColumnName = "id")
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
     private DiscountedProduct discountedProduct;
 
     public double getRating() {
         return ratings.stream().mapToDouble(Rating::getValue).average().orElse(0.0);
     }
 
-    @PreUpdate
-    @PrePersist
-    public void updateDiscountedProduct() {
-        if (discountedProduct != null) {
-            discountedProduct.setName(this.name);
-            discountedProduct.setCategory(this.category);
-            discountedProduct.setPrice(this.price);
-            discountedProduct.setQuantity(this.quantity);
-        }
-    }
+
 
 }
