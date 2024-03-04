@@ -52,7 +52,7 @@ public class User {
     private double creditLimit;
 
     @Setter
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER , orphanRemoval = true)
     private List<Address> addresses;
 
     @Setter

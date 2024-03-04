@@ -1,10 +1,17 @@
 package controllers.commands;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CommandFactory {
 
     private static volatile CommandFactory instance = null;
-
+    private final Map<String, FrontCommand> commandMap ;
     private CommandFactory() {
+        commandMap = new HashMap<>();
+        commandMap.put("login", new LoginCommand());
+
+
     }
 
     public static CommandFactory getInstance() {
@@ -19,13 +26,6 @@ public class CommandFactory {
     }
 
     public FrontCommand getCommand(String command) {
-        FrontCommand frontCommand = null;
-        try {
-            Class<?> type = Class.forName(String.format("controllers.commands.%sCommand", command));
-            frontCommand = (FrontCommand) type.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return frontCommand;
+        return commandMap.getOrDefault(command, new UnknownCommand());
     }
 }
