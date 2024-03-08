@@ -3,7 +3,10 @@ package repositories.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import models.entity.User;
+import persistence.AutoCloseableEntityManager;
 import persistence.manager.DatabaseSingleton;
 import repositories.GenericRepository;
 
@@ -17,11 +20,14 @@ public class UserRepository extends GenericRepository<User, Long> {
 
     public Optional<User> findByEmail(String email) {
         Optional<User> result = Optional.empty();
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
-            TypedQuery<User> query = entityManager.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class);
-            query.setParameter("email", email);
+            CriteriaQuery<User> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(User.class);
+            Root<User> root = criteriaQuery.from(User.class);
+            criteriaQuery.select(root).where(entityManager.getCriteriaBuilder().equal(root.get("email"), email));
+            TypedQuery<User> query = entityManager.createQuery(criteriaQuery);
             User user = query.getSingleResult();
             result = Optional.of(user);
             if (transaction.isActive()) {
@@ -33,6 +39,7 @@ public class UserRepository extends GenericRepository<User, Long> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
+            logger.severe("An error occurred during findByEmail operation: " + e.getMessage());
         }
         return result;
     }

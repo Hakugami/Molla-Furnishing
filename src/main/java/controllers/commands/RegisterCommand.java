@@ -6,12 +6,13 @@ import jakarta.servlet.ServletException;
 
 import java.io.IOException;
 
-public class LoginCommand extends FrontCommand{
+public class RegisterCommand extends FrontCommand {
+
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("LoginCommand: processing request");
+        System.out.println("RegisterCommand: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher("loginServlet");
+        RequestDispatcher rd = context.getNamedDispatcher("registerServlet");
         rd.forward(request, response);
     }
 }

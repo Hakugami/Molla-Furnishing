@@ -2,23 +2,27 @@ package repositories;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import persistence.AutoCloseableEntityManager;
 import persistence.manager.DatabaseSingleton;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 public abstract class GenericRepository<T, ID> {
 
     protected EntityTransaction transaction;
+    protected Logger logger = Logger.getLogger(GenericRepository.class.getName());
 
     public boolean create(T t) {
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
+
             transaction = entityManager.getTransaction();
             transaction.begin();
             entityManager.persist(t);
@@ -28,12 +32,14 @@ public abstract class GenericRepository<T, ID> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            logger.severe("An error occurred during create operation: " + e.getMessage());
+            return false;
         }
     }
 
     public Optional<T> read(ID id) {
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
             T t = entityManager.find((Class<T>) this.getClass(), id);
@@ -43,13 +49,15 @@ public abstract class GenericRepository<T, ID> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            logger.severe("An error occurred during read operation: " + e.getMessage());
+            return Optional.empty();
         }
     }
 
     public List<T> readAll() {
         List<T> resultList = new ArrayList<>();
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
             CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -63,14 +71,14 @@ public abstract class GenericRepository<T, ID> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            // Log the exception
-            System.err.println("An error occurred during readAll operation: " + e.getMessage());
+            logger.severe("An error occurred during readAll operation: " + e.getMessage());
         }
         return resultList;
     }
 
     public boolean update(T t) {
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
             entityManager.merge(t);
@@ -80,12 +88,14 @@ public abstract class GenericRepository<T, ID> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            logger.severe("An error occurred during update operation: " + e.getMessage());
+            return false;
         }
     }
 
     public void delete(ID id) {
-        try (EntityManager entityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+        try (AutoCloseableEntityManager autoCloseableEntityManager = DatabaseSingleton.getInstance().getEntityManager()) {
+            EntityManager entityManager = autoCloseableEntityManager.getEntityManager();
             transaction = entityManager.getTransaction();
             transaction.begin();
             T t = entityManager.find((Class<T>) this.getClass(), id);
@@ -95,7 +105,7 @@ public abstract class GenericRepository<T, ID> {
             if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            throw e;
+            logger.severe("An error occurred during delete operation: " + e.getMessage());
         }
     }
 }

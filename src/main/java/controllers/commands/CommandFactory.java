@@ -10,6 +10,7 @@ public class CommandFactory {
     private CommandFactory() {
         commandMap = new HashMap<>();
         commandMap.put("login", new LoginCommand());
+        commandMap.put("register", new RegisterCommand());
 
 
     }

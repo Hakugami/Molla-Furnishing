@@ -4,6 +4,25 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>controllers.servlets.FrontController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/view/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controllers.servlets.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>controllers.servlets.RegisterServlet</servlet-class>
+    </servlet>
+
     
     <welcome-file-list>
         <welcome-file>index-3.html</welcome-file>

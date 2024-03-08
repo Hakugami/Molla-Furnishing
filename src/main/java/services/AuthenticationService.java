@@ -1,9 +1,11 @@
 package services;
 
 import mappers.UserMapper;
+import mappers.UserMapperImpl;
 import models.entity.User;
 import repositories.impl.UserRepository;
 import models.DTOs.UserDto;
+import utils.KeyGenerator;
 
 public class AuthenticationService {
     private final UserRepository repository;
@@ -12,7 +14,7 @@ public class AuthenticationService {
 
     public AuthenticationService() {
         this.repository = new UserRepository();
-        this.userMapper = UserMapper.getInstance();
+        this.userMapper = new UserMapperImpl();
         this.hashService = HashService.getInstance();
     }
 
@@ -29,10 +31,20 @@ public class AuthenticationService {
         if (repository.findByEmail(userDto.getEmail()).isPresent()) {
             return false;
         }
-        User user = userMapper.toEntity(userDto);
+        User user = userMapper.userDtoToUser(userDto);
         String salt = hashService.generateSalt();
         user.setSalt(salt);
         user.setPassword(hashService.hashPasswordWithSalt(user.getPassword(), salt));
-        return repository.create(user);
+        boolean created = repository.create(user);
+        if (created) {
+            try {
+                KeyGenerator.getInstance().generateKeyPairForUser(String.valueOf(user.getId()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return created;
+
     }
 }

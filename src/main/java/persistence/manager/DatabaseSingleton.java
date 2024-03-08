@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import persistence.AutoCloseableEntityManager;
 import utils.DataSourceConfig;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class DatabaseSingleton {
         properties.put("jakarta.persistence.nonJtaDataSource", dataSource);
         entityManagerFactory = Persistence.createEntityManagerFactory("molla", properties);
     }
+
     public static DatabaseSingleton getInstance() {
         if (instance == null) {
             synchronized (DatabaseSingleton.class) {
@@ -33,13 +35,13 @@ public class DatabaseSingleton {
     }
 
 
-    public EntityManager getEntityManager() {
+    public AutoCloseableEntityManager getEntityManager() {
         EntityManager entityManager = ENTITY_MANAGER_THREAD_LOCAL.get();
         if (entityManager == null) {
             entityManager = entityManagerFactory.createEntityManager();
             ENTITY_MANAGER_THREAD_LOCAL.set(entityManager);
         }
-        return entityManager;
+        return new AutoCloseableEntityManager(this, entityManager);
     }
 
     public void closeEntityManager() {
