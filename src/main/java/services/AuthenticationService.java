@@ -1,38 +1,65 @@
 package services;
 
 import mappers.UserMapper;
+import mappers.UserMapperImpl;
 import models.entity.User;
-import repositories.impl.UserRepository;
+import models.enums.UserRole;
+import persistence.repositories.impl.UserRepository;
 import models.DTOs.UserDto;
+import utils.KeyGenerator;
+
+import java.util.Optional;
+import java.util.logging.Logger;
 
 public class AuthenticationService {
     private final UserRepository repository;
     private final UserMapper userMapper;
     private final HashService hashService;
+    private final Logger logger = Logger.getLogger(AuthenticationService.class.getName());
 
     public AuthenticationService() {
         this.repository = new UserRepository();
-        this.userMapper = UserMapper.getInstance();
+        this.userMapper = new UserMapperImpl();
         this.hashService = HashService.getInstance();
     }
 
     public boolean login(String email, String password) {
-        User user = repository.findByEmail(email).orElse(null);
-        if (user == null) {
+       Optional <User> user = repository.findByEmail(email);
+        if (user.isEmpty()) {
+            System.out.println("User not found");
             return false;
         }
-        String hashedPassword = hashService.hashPasswordWithSalt(password, user.getSalt());
-        return user.getPassword().equals(hashedPassword);
+        User user1 = user.get();
+        String hashedPassword = hashService.hashPasswordWithSalt(password, user1.getSalt());
+        if (user1.getPassword().equals(hashedPassword)){
+            System.out.println("Password matches!");
+            return true;
+        }
+        else {
+            System.out.println("Password does not match!");
+            return false;
+        }
     }
 
     public boolean register(UserDto userDto) {
         if (repository.findByEmail(userDto.getEmail()).isPresent()) {
             return false;
         }
-        User user = userMapper.toEntity(userDto);
+        User user = userMapper.userDtoToUser(userDto);
         String salt = hashService.generateSalt();
         user.setSalt(salt);
+        user.setRole(UserRole.USER);
         user.setPassword(hashService.hashPasswordWithSalt(user.getPassword(), salt));
-        return repository.create(user);
+        boolean created = repository.create(user);
+        if (created) {
+            try {
+                KeyGenerator.getInstance().generateKeyPairForUser(String.valueOf(user.getId()));
+            } catch (Exception e) {
+                logger.severe("An error occurred during key generation: " + e.getMessage());
+                return false;
+            }
+        }
+        return created;
+
     }
 }

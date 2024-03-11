@@ -1,6 +1,6 @@
 package models.DTOs;
 
-import lombok.Value;
+import lombok.*;
 import models.entity.User;
 import models.enums.UserRole;
 
@@ -11,7 +11,10 @@ import java.util.List;
 /**
  * DTO for {@link User}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class UserDto implements Serializable {
     long id;
     String name;

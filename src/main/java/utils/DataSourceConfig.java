@@ -11,23 +11,34 @@ import java.util.Properties;
 
 public class DataSourceConfig {
     private static HikariDataSource dataSource = null;
+    private static final Properties props = new Properties();
+    private static final int processors;
+    private static final double systemLoadAverage;
+    private static boolean isDataSourceCreated = false;
+
+    static {
+        try (InputStream input = DataSourceConfig.class.getClassLoader().getResourceAsStream("db.properties")) {
+            props.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
+        processors = Runtime.getRuntime().availableProcessors();
+        systemLoadAverage = osBean.getSystemLoadAverage();
+    }
 
     public static HikariDataSource getHikariDataSource() {
+        if (isDataSourceCreated) {
+            throw new IllegalStateException("HikariDataSource has already been created");
+        }
         if (dataSource == null) {
             HikariConfig hikariConfig = new HikariConfig();
 
-            Properties props = new Properties();
-            try (InputStream input = DataSourceConfig.class.getClassLoader().getResourceAsStream("db.properties")) {
-                props.load(input);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-            OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
-            int processors = Runtime.getRuntime().availableProcessors();
-            double systemLoadAverage = osBean.getSystemLoadAverage();
-            int calculatedPoolSize = (int) Math.max(1, Math.ceil(processors * systemLoadAverage));
+            int calculatedPoolSize = calculatePoolSize();
+            int minimumIdle = calculateMinimumIdle(calculatedPoolSize);
+
             hikariConfig.setMaximumPoolSize(calculatedPoolSize);
-            hikariConfig.setMinimumIdle(Math.max(1, calculatedPoolSize / 2));
+            hikariConfig.setMinimumIdle(minimumIdle);
             hikariConfig.setDriverClassName(props.getProperty("driverClassName"));
             hikariConfig.setJdbcUrl(props.getProperty("jdbcUrl"));
             hikariConfig.setUsername(props.getProperty("username"));
@@ -37,7 +48,24 @@ public class DataSourceConfig {
             hikariConfig.setMaxLifetime(Long.parseLong(props.getProperty("maxLifetime")));
 
             dataSource = new HikariDataSource(hikariConfig);
+            isDataSourceCreated = true;
         }
         return dataSource;
+    }
+
+    private static int calculatePoolSize() {
+        if (systemLoadAverage == -1.0) {
+            return processors;
+        } else {
+            return (int) Math.max(1, Math.ceil(processors * systemLoadAverage));
+        }
+    }
+
+    private static int calculateMinimumIdle(int calculatedPoolSize) {
+        int minimumIdle = Math.max(1, calculatedPoolSize / 2);
+        if (minimumIdle == calculatedPoolSize) {
+            minimumIdle--;
+        }
+        return minimumIdle;
     }
 }

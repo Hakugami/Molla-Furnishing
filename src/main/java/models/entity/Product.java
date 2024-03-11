@@ -50,7 +50,7 @@ public class Product {
     private List<String> images;
 
     @Setter
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL , orphanRemoval = true)
     private DiscountedProduct discountedProduct;
 
     public double getRating() {
