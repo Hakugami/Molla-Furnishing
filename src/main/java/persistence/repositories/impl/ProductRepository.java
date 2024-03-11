@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductRepository extends GenericRepository<Product, Long> {
 
     public ProductRepository() {
-
+        super(Product.class);
     }
 
     public List<Product> retrieveProducts(int page, int size) {

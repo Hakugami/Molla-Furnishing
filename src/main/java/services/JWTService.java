@@ -1,29 +1,39 @@
 package services;
 
-import com.nimbusds.jose.*;
-import com.nimbusds.jose.crypto.RSASSASigner;
-import com.nimbusds.jose.crypto.RSASSAVerifier;
-import com.nimbusds.jwt.JWTClaimsSet;
-import com.nimbusds.jwt.SignedJWT;
+import org.jose4j.jwa.AlgorithmConstraints;
+import org.jose4j.jwk.RsaJsonWebKey;
+import org.jose4j.jwk.RsaJwkGenerator;
+import org.jose4j.jws.AlgorithmIdentifiers;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.consumer.InvalidJwtException;
+import org.jose4j.jwt.consumer.JwtConsumer;
+import org.jose4j.jwt.consumer.JwtConsumerBuilder;
+import org.jose4j.lang.JoseException;
 import utils.KeyGenerator;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.security.KeyPair;
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-import java.text.ParseException;
-import java.util.Map;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Logger;
 
 public class JWTService {
 
     private static volatile JWTService instance;
+    private RsaJsonWebKey rsaJsonWebKey;
+    private Logger logger = Logger.getLogger(getClass().getName());
 
-    private JWTService() throws Exception {
+
+    private JWTService() {
+        try {
+            rsaJsonWebKey = generateRSAJsonWebKey();
+        } catch (JoseException | IOException e) {
+            logger.severe("Error generating RSAJsonWebKey: " + e.getMessage());
+        }
+
     }
 
-    public static JWTService getInstance() throws Exception {
+    public static JWTService getInstance() {
         if (instance == null) {
             synchronized (JWTService.class) {
                 if (instance == null) {
@@ -34,37 +44,41 @@ public class JWTService {
         return instance;
     }
 
-    public String createJWT(Map<String, Object> claims, String userId) throws JOSEException, Exception {
-        KeyPair keyPair = KeyGenerator.getInstance().generateKeyPairForUser(userId);
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-
-        JWSSigner signer = new RSASSASigner(privateKey);
-
-        JWTClaimsSet.Builder claimSetBuilder = new JWTClaimsSet.Builder();
-        for (Map.Entry<String, Object> claim : claims.entrySet()) {
-            claimSetBuilder.claim(claim.getKey(), claim.getValue());
-        }
-
-        SignedJWT signedJWT = new SignedJWT(
-                new JWSHeader.Builder(JWSAlgorithm.RS256).keyID("RSAJSONWEBKEY").build(),
-                claimSetBuilder.build());
-
-        signedJWT.sign(signer);
-
-        return signedJWT.serialize();
+    public void init() {
     }
 
-    public boolean validateJWT(String token, String userId) throws JOSEException, ParseException, Exception {
-    KeyPair keyPair = KeyGenerator.getInstance().generateKeyPairForUser(userId);
-    RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+    public JsonWebSignature getNewSignedToken() {
+        JsonWebSignature jws = new JsonWebSignature();
 
-    // URL decode the token
-    String decodedToken = URLDecoder.decode(token, StandardCharsets.UTF_8.toString());
+        jws.setKey(rsaJsonWebKey.getPrivateKey());
+        jws.setKeyIdHeaderValue(rsaJsonWebKey.getKeyId());
+        jws.setAlgorithmHeaderValue(AlgorithmIdentifiers.RSA_PSS_USING_SHA512);
 
-    SignedJWT signedJWT = SignedJWT.parse(decodedToken);
+        return jws;
+    }
 
-    JWSVerifier verifier = new RSASSAVerifier(publicKey);
+    public JwtClaims validateToken(String token, String audience) throws InvalidJwtException, UnknownHostException {
+        JwtConsumer jwtConsumer = new JwtConsumerBuilder()
+                .setRequireExpirationTime()
+                .setAllowedClockSkewInSeconds(30)
+                .setExpectedIssuer("http://" + InetAddress.getLocalHost().getHostAddress() + ":4545/molla/api")
+                .setRequireSubject()
+                .setExpectedAudience(audience)
+                .setEnableRequireIntegrity()
+                .setVerificationKey(rsaJsonWebKey.getKey())
+                .setJwsAlgorithmConstraints(
+                        AlgorithmConstraints.ConstraintType.PERMIT, AlgorithmIdentifiers.RSA_PSS_USING_SHA512)
+                .build();
+        return jwtConsumer.processToClaims(token);
+    }
 
-    return signedJWT.verify(verifier);
-}
+    private RsaJsonWebKey generateRSAJsonWebKey() throws JoseException, IOException {
+        RsaJsonWebKey rsaJsonWebKey = RsaJwkGenerator.generateJwk(2048);
+        rsaJsonWebKey.setKeyId("RSAJSONWEBKEY");
+        KeyGenerator.getInstance().createPrivateKeyFile(rsaJsonWebKey);
+        KeyGenerator.getInstance().createPublicKeyFile(rsaJsonWebKey);
+        return rsaJsonWebKey;
+    }
+
+
 }

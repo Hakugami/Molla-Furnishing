@@ -29,7 +29,7 @@
     </filter>
     <filter-mapping>
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
-        <url-pattern>/profile/edit</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
@@ -60,6 +60,11 @@
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>controllers.servlets.HomeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.ProfileServlet</servlet-class>
     </servlet>
 
 

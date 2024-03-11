@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserRepository extends GenericRepository<User, Long> {
 
     public UserRepository() {
-
+        super(User.class);
     }
 
     public Optional<User> findByEmail(String email) {

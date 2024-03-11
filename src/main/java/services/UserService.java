@@ -17,4 +17,8 @@ public class UserService {
     public UserDto getUserByEmail(String email) {
         return userMapper.userToUserDto(repository.findByEmail(email).orElse(null));
     }
+
+    public UserDto getUserById(Long id) {
+        return userMapper.userToUserDto(repository.read(id).orElse(null));
+    }
 }
