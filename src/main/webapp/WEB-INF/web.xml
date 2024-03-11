@@ -4,6 +4,35 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
 
+
+    <filter>
+        <filter-name>EmptyUrlFilter</filter-name>
+        <filter-class>controllers.filters.EmptyURLFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EmptyUrlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>StaticResourceFilter</filter-name>
+        <filter-class>controllers.filters.StaticResourceFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>StaticResourceFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>JWTFilter</filter-name>
+        <filter-class>controllers.filters.JWTFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>JWTFilter</filter-name> <!-- placeholder-->
+        <url-pattern>/profile/edit</url-pattern> <!-- placeholder-->
+        <url-pattern>/checkout</url-pattern> <!-- placeholder-->
+    </filter-mapping>
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.servlets.FrontController</servlet-class>
@@ -23,9 +52,16 @@
         <servlet-class>controllers.servlets.RegisterServlet</servlet-class>
     </servlet>
 
-    
-    <welcome-file-list>
-        <welcome-file>index-3.html</welcome-file>
-    </welcome-file-list>
+    <servlet>
+        <servlet-name>RetrieveProducts</servlet-name>
+        <servlet-class>controllers.servlets.RetrieveProductsServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controllers.servlets.HomeServlet</servlet-class>
+    </servlet>
+
+
 
 </web-app>

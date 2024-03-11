@@ -12,7 +12,7 @@ public class RegisterCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("RegisterCommand: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher("registerServlet");
+        RequestDispatcher rd = context.getNamedDispatcher("RegisterServlet");
         rd.forward(request, response);
     }
 }

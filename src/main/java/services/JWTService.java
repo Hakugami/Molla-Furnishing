@@ -7,6 +7,9 @@ import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import utils.KeyGenerator;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyPair;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -52,13 +55,16 @@ public class JWTService {
     }
 
     public boolean validateJWT(String token, String userId) throws JOSEException, ParseException, Exception {
-        KeyPair keyPair = KeyGenerator.getInstance().generateKeyPairForUser(userId);
-        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+    KeyPair keyPair = KeyGenerator.getInstance().generateKeyPairForUser(userId);
+    RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 
-        SignedJWT signedJWT = SignedJWT.parse(token);
+    // URL decode the token
+    String decodedToken = URLDecoder.decode(token, StandardCharsets.UTF_8.toString());
 
-        JWSVerifier verifier = new RSASSAVerifier(publicKey);
+    SignedJWT signedJWT = SignedJWT.parse(decodedToken);
 
-        return signedJWT.verify(verifier);
-    }
+    JWSVerifier verifier = new RSASSAVerifier(publicKey);
+
+    return signedJWT.verify(verifier);
+}
 }

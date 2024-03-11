@@ -3,7 +3,7 @@ package services;
 import mappers.UserMapper;
 import mappers.UserMapperImpl;
 import models.DTOs.UserDto;
-import repositories.impl.UserRepository;
+import persistence.repositories.impl.UserRepository;
 
 public class UserService {
     private final UserRepository repository;

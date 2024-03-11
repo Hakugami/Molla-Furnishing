@@ -1,5 +1,7 @@
 package utils;
 
+import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
+import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.openssl.PEMKeyPair;
 import org.bouncycastle.openssl.PEMParser;
@@ -35,24 +37,37 @@ public class KeyGenerator {
         return instance;
     }
 
-    public KeyPair generateKeyPairForUser(String userId) throws NoSuchAlgorithmException, NoSuchProviderException, IOException, InvalidKeySpecException {
-        KeyPair keyPair;
+    public KeyPair generateKeyPairForUser(String userId) throws NoSuchAlgorithmException, IOException, InvalidKeySpecException, NoSuchProviderException {
+        KeyPair keyPair = null;
 
         Path privateKeyPath = Paths.get(userId + "_private.pem");
         Path publicKeyPath = Paths.get(userId + "_public.pem");
         if (Files.exists(privateKeyPath) && Files.exists(publicKeyPath)) {
-            // Read the keys from the files
             PEMParser pemParser = new PEMParser(new FileReader(privateKeyPath.toString()));
-            PEMKeyPair pemKeyPair = (PEMKeyPair) pemParser.readObject();
+            Object object = pemParser.readObject();
             JcaPEMKeyConverter converter = new JcaPEMKeyConverter().setProvider("BC");
-            KeyPair privateKeyPair = converter.getKeyPair(pemKeyPair);
-
-            pemParser = new PEMParser(new FileReader(publicKeyPath.toString()));
-            pemKeyPair = (PEMKeyPair) pemParser.readObject();
-            KeyPair publicKeyPair = converter.getKeyPair(pemKeyPair);
-
-            keyPair = new KeyPair(publicKeyPair.getPublic(), privateKeyPair.getPrivate());
+            PrivateKey privateKey;
+            PublicKey publicKey;
+            if (object instanceof PEMKeyPair) {
+                PEMKeyPair pemKeyPair = (PEMKeyPair) object;
+                keyPair = converter.getKeyPair(pemKeyPair);
+                publicKey = keyPair.getPublic();
+            } else if (object instanceof PrivateKeyInfo) {
+                privateKey = converter.getPrivateKey((PrivateKeyInfo) object);
+                // Read the public key from the file
+                pemParser = new PEMParser(new FileReader(publicKeyPath.toString()));
+                object = pemParser.readObject();
+                if (object instanceof SubjectPublicKeyInfo) {
+                    publicKey = converter.getPublicKey((SubjectPublicKeyInfo) object);
+                } else {
+                    throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
+                }
+                keyPair = new KeyPair(publicKey, privateKey);
+            } else {
+                throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
+            }
         } else {
+            System.out.println("Generating new keys");
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA", "BC");
             keyPairGenerator.initialize(2048);
             keyPair = keyPairGenerator.generateKeyPair();
