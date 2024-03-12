@@ -29,7 +29,7 @@
     </filter>
     <filter-mapping>
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
-        <url-pattern>/profile/edit</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
@@ -62,6 +62,25 @@
         <servlet-class>controllers.servlets.HomeServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.ProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ProductsServlet</servlet-name>
+        <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
+    </servlet>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/404.html</location>
+    </error-page>
 
 
 </web-app>

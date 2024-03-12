@@ -17,10 +17,14 @@ $(document).ready(function() {
             success: function(data) {
                 // handle success
                 console.log(data);
+                window.location.href = 'home';
+
             },
             error: function(error) {
                 // handle error
                 console.log(error);
+                $('#login-error').text('Failed to login. Please check your email and password.');
+
             }
         });
     });

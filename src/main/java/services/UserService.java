@@ -11,10 +11,14 @@ public class UserService {
 
     public UserService() {
         this.repository = new UserRepository();
-        this.userMapper = new UserMapperImpl();
+        this.userMapper = UserMapper.INSTANCE;
     }
 
     public UserDto getUserByEmail(String email) {
         return userMapper.userToUserDto(repository.findByEmail(email).orElse(null));
+    }
+
+    public UserDto getUserById(Long id) {
+        return userMapper.userToUserDto(repository.read(id).orElse(null));
     }
 }

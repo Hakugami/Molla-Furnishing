@@ -5,12 +5,14 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 import persistence.manager.DatabaseSingleton;
+import services.JWTService;
 
 @WebListener
 public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        DatabaseSingleton.getInstance();
+        DatabaseSingleton.getInstance().init();
+        JWTService.getInstance().init();
     }
 
     @Override

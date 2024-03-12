@@ -13,7 +13,13 @@ import java.util.logging.Logger;
 
 public abstract class GenericRepository<T, ID> {
 
+    private final Class<T> entityClass;
+
     protected Logger logger = Logger.getLogger(GenericRepository.class.getName());
+
+    public GenericRepository(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
 
     public boolean create(T t) {
         try {
@@ -30,7 +36,7 @@ public abstract class GenericRepository<T, ID> {
     public Optional<T> read(ID id) {
         try {
             return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
-                T t = entityManager.find((Class<T>) this.getClass(), id);
+                T t = entityManager.find(entityClass, id);
                 return Optional.of(t);
             });
         } catch (Exception e) {
@@ -43,8 +49,8 @@ public abstract class GenericRepository<T, ID> {
         try {
             return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
                 CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-                CriteriaQuery<T> cq = cb.createQuery((Class<T>) this.getClass());
-                Root<T> rootEntry = cq.from((Class<T>) this.getClass());
+                CriteriaQuery<T> cq = cb.createQuery(entityClass);
+                Root<T> rootEntry = cq.from(entityClass);
                 CriteriaQuery<T> all = cq.select(rootEntry);
                 TypedQuery<T> allQuery = entityManager.createQuery(all);
                 return allQuery.getResultList();
@@ -70,7 +76,7 @@ public abstract class GenericRepository<T, ID> {
     public void delete(ID id) {
         try {
             DatabaseSingleton.getInstance().doTransaction(entityManager -> {
-                T t = entityManager.find((Class<T>) this.getClass(), id);
+                T t = entityManager.find(entityClass, id);
                 entityManager.remove(t);
             });
         } catch (Exception e) {
