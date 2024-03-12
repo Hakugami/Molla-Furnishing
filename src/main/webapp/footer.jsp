@@ -9,13 +9,13 @@
                                 <span class="outer-footer__content-title">Contact Us</span>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
 
-                                    <span>4247 Ashford Drive Virginia VA-20006 USA</span></div>
+                                    <span>Smart Village building B148</span></div>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
-                                    <span>(+0) 900 901 904</span></div>
+                                    <span>+20-2-353-55656</span></div>
                                 <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
 
-                                    <span>contact@domain.com</span></div>
+                                    <span>molla@iti.gov.eg</span></div>
                                 <div class="outer-footer__social">
                                     <ul>
                                         <li>
@@ -30,9 +30,7 @@
                                         <li>
 
                                             <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li>
 
-                                            <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -51,12 +49,13 @@
                                                 <li>
 
                                                     <a href="dashboard.html">Account</a></li>
-                                                <li>
 
-                                                    <a href="shop-side-version-2.html">Manufacturer</a></li>
                                                 <li>
 
                                                     <a href="dash-payment-option.html">Finance</a></li>
+                                                <li>
+
+                                                    <a href="dash-my-order.html">Delivery</a></li>
                                                 <li>
 
                                                     <a href="shop-side-version-2.html">Shop</a></li>
@@ -76,15 +75,6 @@
                                                 <li>
 
                                                     <a href="contact.html">Contact Us</a></li>
-                                                <li>
-
-                                                    <a href="index.html">Sitemap</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">Delivery</a></li>
-                                                <li>
-
-                                                    <a href="shop-side-version-2.html">Store</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -134,9 +124,9 @@
                             <div class="lower-footer__content">
                                 <div class="lower-footer__copyright">
 
-                                    <span>Copyright © 2018</span>
+                                    <span>Copyright 2024</span>
 
-                                    <a href="index.html">Reshop</a>
+                                    <a href="index.html">Molla</a>
 
                                     <span>All Right Reserved</span></div>
                                 <div class="lower-footer__payment">

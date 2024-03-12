@@ -75,7 +75,7 @@
 
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Account">
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Nofal">
 
                                         <a><i class="far fa-user-circle"></i></a>
 
@@ -83,22 +83,20 @@
 
                                         <span class="js-menu-toggle"></span>
                                         <ul style="width:120px">
+                                            <li>
+
+                                                <a href="dashboard.html"><i class="fas fa-user-circle u-s-m-r-6"></i>
+
+                                                    <span>Account</span></a></li>
 
                                             <li>
 
-                                                <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                                <a href="signup.html"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
-                                                    <span>Signup</span></a></li>
-                                            <li>
-
-                                                <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
-
-                                                    <span>Signin</span></a></li>
-
+                                                    <span>Signout</span></a></li>
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
-
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
