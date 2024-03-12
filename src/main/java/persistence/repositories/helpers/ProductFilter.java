@@ -9,16 +9,18 @@ import models.entity.Product;
 public class ProductFilter {
     private String category;
     private String brand;
+    private String name;
     private Double minPrice;
     private Double maxPrice;
+    private double minRating;
+    private double maxRating;
 
-    // Add getters and setters for each field
 
     public Predicate toPredicate(CriteriaBuilder criteriaBuilder, Root<Product> root) {
         Predicate predicate = criteriaBuilder.conjunction();
 
         if (category != null) {
-            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("category"), category));
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("category").get("name"), "%" + category + "%"));
         }
 
         if (brand != null) {
@@ -31,6 +33,18 @@ public class ProductFilter {
 
         if (maxPrice != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice));
+        }
+
+        if (name != null) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("name"), "%" + name + "%"));
+        }
+
+        if (minRating != 0) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("rating"), minRating));
+        }
+
+        if (maxRating != 0) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("rating"), maxRating));
         }
 
         return predicate;

@@ -62,4 +62,21 @@ public class ProductRepository extends GenericRepository<Product, Long> {
                     .getResultList();
         });
     }
+
+ public void batchUpdate(List<Product> products) {
+    DatabaseSingleton.getInstance().doTransaction(entityManager -> {
+        try {
+            products.forEach(entityManager::merge);
+        } catch (Exception e) {
+            System.out.println("An error occurred while updating products: " + e.getMessage());
+            logger.severe("An error occurred while updating products: " + e.getMessage());
+            throw e;
+        }
+    });
+}
+    public void batchInsert(List<Product> products) {
+        DatabaseSingleton.getInstance().doTransaction(entityManager -> {
+            products.forEach(entityManager::persist);
+        });
+    }
 }

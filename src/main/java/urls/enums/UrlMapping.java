@@ -7,7 +7,7 @@ public enum UrlMapping {
     CONTEXT_DEFAULT("", "/view", "FrontController",""),
     LOGIN("login", "/login", "LoginServlet","/signin.html"),
     REGISTER("register", "/register", "RegisterServlet","/signup.html"),
-    RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProductsServlet",""),
+    RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts",""),
     HOME("home", "/home", "HomeServlet","/index-3.html"),
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),;
 
