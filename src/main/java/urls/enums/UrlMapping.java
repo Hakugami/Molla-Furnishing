@@ -9,8 +9,8 @@ public enum UrlMapping {
     REGISTER("register", "/register", "RegisterServlet","/signup.html"),
     RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts",""),
     HOME("home", "/home", "HomeServlet","/index-3.html"),
-    PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),;
-
+    PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
+    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),;
 
     private final String command;
     private final String url;

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -41,7 +42,12 @@ public class Product {
     private int quantity;
 
     @Setter
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateAdded;
+
+    @Setter
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
     @ElementCollection(fetch = FetchType.EAGER)
@@ -50,7 +56,7 @@ public class Product {
     private List<String> images;
 
     @Setter
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL , orphanRemoval = true , fetch = FetchType.EAGER)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private DiscountedProduct discountedProduct;
 
     @Setter
@@ -70,7 +76,6 @@ public class Product {
     public double getRating() {
         return ratings.stream().mapToDouble(Rating::getValue).average().orElse(0.0);
     }
-
 
 
 }

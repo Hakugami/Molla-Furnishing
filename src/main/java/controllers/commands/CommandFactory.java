@@ -19,6 +19,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.RETRIEVE_PRODUCTS.getCommand(), RetrieveProductsCommand::new);
         commandMap.put(UrlMapping.HOME.getCommand(), HomeCommand::new);
         commandMap.put(UrlMapping.PROFILE.getCommand(), ProfileCommand::new);
+        commandMap.put(UrlMapping.PRODUCTS.getCommand(), ProductsCommand::new);
     }
 
     public static CommandFactory getInstance() {

@@ -4,6 +4,7 @@ import lombok.*;
 import models.entity.Product;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,4 +26,5 @@ public class ProductDto implements Serializable {
     double rating;
     DiscountedProductDto discountedProduct;
 
+    private Date dateAdded;
 }

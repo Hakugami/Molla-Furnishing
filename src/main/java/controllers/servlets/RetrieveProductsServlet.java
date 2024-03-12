@@ -32,6 +32,8 @@ public class RetrieveProductsServlet extends HttpServlet {
         String maxRating = req.getParameter("maxRating");
         String page = req.getParameter("page");
         String limit = req.getParameter("limit");
+        String sortBy = req.getParameter("sortBy");
+        String sortOrder = req.getParameter("sortOrder");
 
 
         // Create a ProductFilter object
@@ -59,6 +61,12 @@ public class RetrieveProductsServlet extends HttpServlet {
         }
         if (maxRating != null) {
             filter.setMaxRating(Double.parseDouble(maxRating));
+        }
+        if (sortBy != null) {
+            filter.setSortBy(sortBy);
+        }
+        if (sortOrder != null) {
+            filter.setSortOrder(sortOrder);
         }
 
         int pageInt = page != null ? Integer.parseInt(page) : 1;
