@@ -18,38 +18,34 @@ $(document).ready(function () {
         date: date
     };
 
+
+
+
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
         loadProducts();
     }
 
-    function updateLimit(limit) {
-        filter.limit = limit;
+    function updateLimit(newLimit) {
+        filter.limit = newLimit;
         loadProducts();
     }
 
     $('#price-filter').on('submit', function (event) {
-        // Prevent the form from submitting normally
         event.preventDefault();
 
-        // Get the values of the min and max price inputs
         let minPrice = $('#price-min').val();
         let maxPrice = $('#price-max').val();
 
-        // Update the filter object with the new min and max prices
         filter.minPrice = minPrice;
         filter.maxPrice = maxPrice;
 
-        // Refresh the products list
         loadProducts();
     });
 
-    // Add an event listener to the select box
     $('#sort-strategy').on('change', function () {
-        // Get the selected option
         const selectedOption = $(this).val();
 
-        // Determine the sortBy and sortOrder based on the selected option
         switch (selectedOption) {
             case 'Sort By: Newest Items':
                 filter.sortBy = 'dateAdded';
@@ -77,84 +73,40 @@ $(document).ready(function () {
                 break;
         }
 
-        // Reload the products with the new sorting order
         loadProducts();
     });
 
 
-    // Attach click event handlers to the page links
-    $('.shop-p__pagination a').on('click', function (event) {
+
+
+    $('#show-more-btn').on('click', function (event) {
         event.preventDefault();
 
-        // Get the page number from the link text
-        const pageNumber = $(this).text();
-
-        // Update the current page
-        updateCurrentPage(pageNumber);
-
-        // Remove the 'is-active' class from all page links
-        $('.shop-p__pagination li').removeClass('is-active');
-
-        // Add the 'is-active' class to the clicked page link
-        $(this).parent().addClass('is-active');
+        // Increment the page number for "Show More"
+        filter.page++;
+        loadProducts(true);
     });
 
-    $('#products-amount').on('change', function () {
-        // Get the selected number
-        var number = $(this).val().split(': ')[1];
-
-        // Update the number of products per page
-        updateLimit(number);
-    });
-
-
-    function loadProducts() {
+    function loadProducts(showMore=false) {
         $.ajax({
-            url: 'RetrieveProducts', // URL of your servlet
+            url: 'RetrieveProducts',
             type: 'GET',
             dataType: 'json',
             data: filter,
             success: function (data) {
-                // Clear the existing products
-                $('.product-m').remove();
-                const container = document.querySelector('.shop-p__collection .row');
-                container.innerHTML = '';
+                if (showMore) {
+                    $.each(data, function (i, product) {
+                        displayProduct(i, product);
+                    });
+                }
+                else {
+                    const container = document.querySelector('.shop-p__collection .row');
+                    container.innerHTML = '';
+                    $.each(data, function (i, product) {
+                        displayProduct(i, product);
 
-                // Loop through each product in the data
-                $.each(data, function (i, product) {
-                    // Create the product element
-                    var productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
-                        '<div class="product-m">' +
-                        '<div class="product-m__thumb">' +
-                        '<a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">' +
-                        '<img class="aspect__img" src="' + product.image + '" alt=""></a>' +
-                        '<div class="product-m__quick-look">' +
-                        '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
-                        '<div class="product-m__add-cart">' +
-                        '<a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>' +
-                        '</div>' +
-                        '<div class="product-m__content">' +
-                        '<div class="product-m__category">' +
-                        '<a href="shop-side-version-2.html">' + product.category + '</a></div>' +
-                        '<div class="product-m__name">' +
-                        '<a href="product-detail.html">' + product.name + '</a></div>' +
-                        '<div class="product-m__rating gl-rating-style">' + product.rating +
-                        '<span class="product-m__review">(23)</span></div>' +
-                        '<div class="product-m__price">$' + product.price + '</div>' +
-                        '<div class="product-m__hover">' +
-                        '<div class="product-m__preview-description">' +
-                        '<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>' +
-                        '<div class="product-m__wishlist">' +
-                        '<a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
-
-                    // Append the product element to the products container
-                    $('.shop-p__collection .row').append(productElement);
-                });
-
-
+                    });
+                }
             },
             error: function () {
                 console.log('Error retrieving products.');
@@ -162,6 +114,35 @@ $(document).ready(function () {
         });
     }
 
-    // Call the function to load the products
+    function displayProduct(i, product) {
+        var productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
+            '<div class="product-m">' +
+            '<div class="product-m__thumb">' +
+            '<a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">' +
+            '<img class="aspect__img" src="' + product.image + '" alt=""></a>' +
+            '<div class="product-m__quick-look">' +
+            '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
+            '<div class="product-m__add-cart">' +
+            '<a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>' +
+            '</div>' +
+            '<div class="product-m__content">' +
+            '<div class="product-m__category">' +
+            '<a href="shop-side-version-2.html">' + product.category + '</a></div>' +
+            '<div class="product-m__name">' +
+            '<a href="product-detail.html">' + product.name + '</a></div>' +
+            '<div class="product-m__rating gl-rating-style">' + product.rating +
+            '<span class="product-m__review">(23)</span></div>' +
+            '<div class="product-m__price">$' + product.price + '</div>' +
+            '<div class="product-m__hover">' +
+            '<div class="product-m__preview-description">' +
+            '<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>' +
+            '<div class="product-m__wishlist">' +
+            '<a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
+        $('.shop-p__collection .row').append(productElement);
+    }
+
     loadProducts();
 });

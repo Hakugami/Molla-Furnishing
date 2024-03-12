@@ -7,9 +7,14 @@ import models.entity.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface ProductMapper {
+
+    //instance of the mapper
+    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
+
     @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductDtoToDiscountedProduct")
     Product productDtoToProduct(ProductDto productDto);
 

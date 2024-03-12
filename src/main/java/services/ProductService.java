@@ -16,7 +16,7 @@ public class ProductService {
 
     private ProductService() {
         productRepository = new ProductRepository();
-        productMapper = new ProductMapperImpl();
+        productMapper = ProductMapper.INSTANCE;
     }
 
     public static ProductService getInstance() {
@@ -35,6 +35,7 @@ public class ProductService {
         List<ProductDto> productDtos = products.stream().map(productMapper::productToProductDto).toList();
         return productDtos;
     }
+
 
     public long countProducts() {
         return productRepository.countProducts();

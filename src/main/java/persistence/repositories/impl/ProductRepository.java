@@ -62,6 +62,8 @@ public class ProductRepository extends GenericRepository<Product, Long> {
         });
     }
 
+
+
  public void batchUpdate(List<Product> products) {
     DatabaseSingleton.getInstance().doTransaction(entityManager -> {
         try {

@@ -25,7 +25,7 @@ public class AuthenticationService {
 
     public AuthenticationService() {
         this.repository = new UserRepository();
-        this.userMapper = new UserMapperImpl();
+        this.userMapper = UserMapper.INSTANCE;
         this.hashService = HashService.getInstance();
     }
 
