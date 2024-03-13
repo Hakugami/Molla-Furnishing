@@ -114,6 +114,12 @@ $(document).ready(function () {
         });
     }
 
+    $('.main-form').on('submit', function (event) {
+        event.preventDefault();
+        filter.name = $('#main-search').val();
+        loadProducts();
+    });
+
     function displayProduct(i, product) {
         var productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
             '<div class="product-m">' +
