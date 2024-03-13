@@ -64,9 +64,21 @@ public class ProductDataInserter {
         productRepository.batchUpdate(products);
     }
 
+    public void addImagesToProducts() {
+        // Retrieve all the products
+        List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
+        products.forEach(product -> {
+            product.getImages().add("images/product/electronic/product1.jpg");
+        });
+
+        // Update the products in the database
+        productRepository.batchUpdate(products);
+    }
+
     public static void main(String[] args) {
         ProductDataInserter productDataInserter = new ProductDataInserter();
-        productDataInserter.insertProducts();
-        productDataInserter.updateProductCategories();
+//        productDataInserter.insertProducts();
+//        productDataInserter.updateProductCategories();
+        productDataInserter.addImagesToProducts();
     }
 }
