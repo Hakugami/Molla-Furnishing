@@ -1,38 +1,98 @@
 package services;
 
 import mappers.UserMapper;
+import mappers.UserMapperImpl;
 import models.entity.User;
-import repositories.impl.UserRepository;
+import models.enums.UserRole;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.NumericDate;
+import persistence.repositories.impl.UserRepository;
 import models.DTOs.UserDto;
+import utils.KeyGenerator;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 public class AuthenticationService {
     private final UserRepository repository;
     private final UserMapper userMapper;
     private final HashService hashService;
+    private final Logger logger = Logger.getLogger(AuthenticationService.class.getName());
 
     public AuthenticationService() {
         this.repository = new UserRepository();
-        this.userMapper = UserMapper.getInstance();
+        this.userMapper = UserMapper.INSTANCE;
         this.hashService = HashService.getInstance();
     }
 
-    public boolean login(String email, String password) {
-        User user = repository.findByEmail(email).orElse(null);
-        if (user == null) {
+    private boolean login(String email, String password) {
+       Optional <User> user = repository.findByEmail(email);
+        if (user.isEmpty()) {
+            System.out.println("User not found");
             return false;
         }
-        String hashedPassword = hashService.hashPasswordWithSalt(password, user.getSalt());
-        return user.getPassword().equals(hashedPassword);
+        User user1 = user.get();
+        String hashedPassword = hashService.hashPasswordWithSalt(password, user1.getSalt());
+        if (user1.getPassword().equals(hashedPassword)){
+            System.out.println("Password matches!");
+            return true;
+        }
+        else {
+            System.out.println("Password does not match!");
+            return false;
+        }
     }
 
     public boolean register(UserDto userDto) {
         if (repository.findByEmail(userDto.getEmail()).isPresent()) {
             return false;
         }
-        User user = userMapper.toEntity(userDto);
+        User user = userMapper.userDtoToUser(userDto);
         String salt = hashService.generateSalt();
         user.setSalt(salt);
+        user.setRole(UserRole.USER);
         user.setPassword(hashService.hashPasswordWithSalt(user.getPassword(), salt));
         return repository.create(user);
+
     }
+
+    public String loginAndReturnToken(String email, String password , String audience) {
+        if (login(email, password)) {
+            Optional<User> user = repository.findByEmail(email);
+            if (user.isPresent()) {
+                String result = null;
+                User user1 = user.get();
+                JsonWebSignature jws = JWTService.getInstance().getNewSignedToken();
+                Date now = new Date();
+                JwtClaims claims = new JwtClaims();
+                try {
+                    claims.setIssuer("http://" + InetAddress.getLocalHost().getHostAddress() + ":4545/molla/api");
+                } catch (UnknownHostException e) {
+                    logger.severe("Error getting host address: " + e.getMessage());
+                }
+                claims.setAudience(audience);
+                claims.setSubject(String.valueOf(user1.getId()));
+                claims.setIssuedAtToNow();
+                claims.setExpirationTime(NumericDate.fromMilliseconds(now.getTime() + 86400000));
+                claims.setClaim("name", user1.getName());
+                claims.setClaim("email", user1.getEmail());
+                claims.setClaim("role", user1.getRole().toString());
+                claims.setClaim("date of birth", user1.getBirthday().toString());
+                jws.setPayload(claims.toJson());
+                try {
+                     result = jws.getCompactSerialization();
+                } catch (Exception e) {
+                    logger.severe("Error creating JWT: " + e.getMessage());
+                }
+                return result;
+            }
+        }
+        return null;
+    }
+
+
 }

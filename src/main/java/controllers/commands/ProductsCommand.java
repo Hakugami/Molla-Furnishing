@@ -7,12 +7,12 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class LoginCommand extends FrontCommand{
+public class ProductsCommand extends FrontCommand{
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("LoginCommand: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.LOGIN.getServletName());
-        rd.forward(request, response);
+        RequestDispatcher requestDispatcher = context.getNamedDispatcher(UrlMapping.PRODUCTS.getServletName());
+        requestDispatcher.forward(request, response);
+
     }
 }

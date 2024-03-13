@@ -1,15 +1,19 @@
 package models.DTOs;
 
-import lombok.Value;
+import lombok.*;
 import models.entity.Product;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
  * DTO for {@link Product}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class ProductDto implements Serializable {
     long id;
     String name;
@@ -18,6 +22,9 @@ public class ProductDto implements Serializable {
     int quantity;
     List<String> images;
     List<RatingDto> ratings;
-    CategoryDto category;
+    String categoryName;
+    double rating;
     DiscountedProductDto discountedProduct;
+
+    private Date dateAdded;
 }
