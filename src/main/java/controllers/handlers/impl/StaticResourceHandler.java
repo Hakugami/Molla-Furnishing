@@ -16,18 +16,10 @@ public class StaticResourceHandler implements ResourceHandler {
     @Override
     public boolean handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getPathInfo();
-        System.out.println("StaticResourceHandler: processing request");
-        System.out.println("PathInfo: " + path);
 
-        if (path != null) {
-            String modifiedPath = path.replace("/ProductPage", "");
-            System.out.println("Modified PathInfo: " + modifiedPath);
-
-
-            if ((STATIC_RESOURCE_PREFIXES.stream().anyMatch(modifiedPath::startsWith) || path.endsWith(STATIC_RESOURCE_SUFFIX))) {
-                request.getServletContext().getRequestDispatcher(modifiedPath).forward(request, response);
-                return true;
-            }
+        if (path != null && (STATIC_RESOURCE_PREFIXES.stream().anyMatch(path::startsWith) || path.endsWith(STATIC_RESOURCE_SUFFIX))) {
+            request.getServletContext().getRequestDispatcher(path).forward(request, response);
+            return true;
         }
 
 

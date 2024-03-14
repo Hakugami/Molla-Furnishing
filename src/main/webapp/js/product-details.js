@@ -1,7 +1,4 @@
 $(document).ready(function () {
-    let product = sessionStorage.getItem('product');
-    product = JSON.parse(product);
-
     // function updateMainImage(selectedIndex) {
     //     const image = product.images[selectedIndex];
     //     // $('#pd-o-initiate .slick-slide').remove();
@@ -53,27 +50,46 @@ $(document).ready(function () {
     //     });
     // }
 
-    $("#img-1-wrap").attr("data-src", product.images[0]);
-    $("#img-1").attr("src", product.images[0]).attr("data-zoom-image", product.images[0]);
-    $('#thumb-1').attr("src", product.images[0]);
 
-    $("#img-2-wrap").attr("data-src", product.images[1]);
-    $("#img-2").attr("src", product.images[1]).attr("data-zoom-image", product.images[1]);
-    $('#thumb-2').attr("src", product.images[1]);
+    let params = new URLSearchParams(window.location.search);
+    let name = params.get('name'); // replace 'name' with your actual parameter name
 
-    $('.pd-detail__name').text(product.name);
-    $('.pd-detail__price').text('$' + product.price);
-    $('.product-m__category a').text(product.category);
-    $('.pd-tab__desc p').text(product.description);
-    $('.pd-detail__stock').text(product.quantity + ' in stock');
-    $('.pd-detail__discount').text('(69% OFF)');
-    $('.pd-detail__del').text('$' + (product.price * 2));
-    $('.pd-detail__rating').html(generateRatingStars(product.rating));
-    $('.pd-detail__review').text('(' + product.ratings.length + ')');
-    $('#product-material').text(product.productDetails.material);
-    $('#product-color').text(product.productDetails.color);
-    $('#product-dimensions').text(product.productDetails.dimensions);
-    $('#product-weight').text(product.productDetails.weight);
+    $.ajax({
+        url: 'RetrieveProducts/',
+        type: 'GET',
+        dataType: 'json',
+        data: { name: name },
+        success: function (data) {
+            let product = data[0];
+            console.log(product);
+            $("#img-1-wrap").attr("data-src", product.images[0]);
+            $("#img-1").attr("src", product.images[0]).attr("data-zoom-image", product.images[0]);
+            $('#thumb-1').attr("src", product.images[0]);
+
+            $("#img-2-wrap").attr("data-src", product.images[1]);
+            $("#img-2").attr("src", product.images[1]).attr("data-zoom-image", product.images[1]);
+            $('#thumb-2').attr("src", product.images[1]);
+
+            $('.pd-detail__name').text(product.name);
+            $('.pd-detail__price').text('$' + product.price);
+            $('.product-m__category a').text(product.category);
+            $('.pd-tab__desc p').text(product.description);
+            $('.pd-detail__stock').text(product.quantity + ' in stock');
+            $('.pd-detail__discount').text('(69% OFF)');
+            $('.pd-detail__del').text('$' + (product.price * 2));
+            $('.pd-detail__rating').html(generateRatingStars(product.rating));
+            $('.pd-detail__review').text('(' + product.ratings.length + ')');
+            $('#product-material').text(product.productDetails.material);
+            $('#product-color').text(product.productDetails.color);
+            $('#product-dimensions').text(product.productDetails.dimensions);
+            $('#product-weight').text(product.productDetails.weight);
+        },
+        error: function () {
+            console.log('Error retrieving product.');
+        }
+    });
+
+
 });
 
 function generateRatingStars(rating) {

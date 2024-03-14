@@ -23,6 +23,8 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+
+
     <filter>
         <filter-name>JWTFilter</filter-name>
         <filter-class>controllers.filters.JWTFilter</filter-class>
@@ -91,6 +93,8 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/404.html</location>
     </error-page>
+
+
 
 
 </web-app>
