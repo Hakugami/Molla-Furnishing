@@ -44,7 +44,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(userDto),
             success: function() {
-                window.location.href = 'home';
+                window.location.href = 'login';
             },
             error: function() {
                 alert('Registration failed. Please try again.');
