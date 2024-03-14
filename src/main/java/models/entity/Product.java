@@ -60,6 +60,10 @@ public class Product {
     private DiscountedProduct discountedProduct;
 
     @Setter
+    @Embedded
+    private ProductDetails productDetails;
+
+    @Setter
     @Transient
     private double rating;
 

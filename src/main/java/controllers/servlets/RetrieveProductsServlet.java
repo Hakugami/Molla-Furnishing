@@ -24,6 +24,18 @@ public class RetrieveProductsServlet extends HttpServlet {
             return;
         }
 
+        List<ProductDto> products = getProductDTO(req);
+
+        // Convert the list of ProductDto objects to JSON
+        String json = new Gson().toJson(products);
+
+        // Write the JSON to the response
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(json);
+    }
+
+    private List<ProductDto> getProductDTO(HttpServletRequest req) {
         String name = req.getParameter("name");
         String category = req.getParameter("category");
         String minPrice = req.getParameter("minPrice");
@@ -74,13 +86,6 @@ public class RetrieveProductsServlet extends HttpServlet {
         // Call the getProductByFilter method from the ProductService class
         ProductService productService = ProductService.getInstance();
         List<ProductDto> products = productService.getProductByFilter(pageInt, limitInt, filter);
-
-        // Convert the list of ProductDto objects to JSON
-        String json = new Gson().toJson(products);
-
-        // Write the JSON to the response
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);
+        return products;
     }
 }

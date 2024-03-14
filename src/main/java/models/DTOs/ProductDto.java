@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class ProductDto implements Serializable {
-    long id;
+    long productId;
     String name;
     String description;
     double price;
@@ -27,4 +27,5 @@ public class ProductDto implements Serializable {
     DiscountedProductDto discountedProduct;
 
     private Date dateAdded;
+    private ProductDetailsDto productDetails;
 }

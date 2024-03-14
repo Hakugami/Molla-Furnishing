@@ -5,7 +5,8 @@ $(document).ready(function () {
     let maxPrice = 1000;
     let category = '';
     let rating = 0;
-    let date = new Date();
+    let date = '';
+    let products = [];
 
 
     let filter = {
@@ -19,8 +20,6 @@ $(document).ready(function () {
     };
 
 
-
-
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
         loadProducts();
@@ -30,6 +29,8 @@ $(document).ready(function () {
         filter.limit = newLimit;
         loadProducts();
     }
+
+    $()
 
     $('#price-filter').on('submit', function (event) {
         event.preventDefault();
@@ -76,8 +77,12 @@ $(document).ready(function () {
         loadProducts();
     });
 
-
-
+    $('#products-amount').on('change', function () {
+        const newLimit = $(this).val();
+        //so the string is show: 8, we need to parse it to get the number
+        const parsedLimit = parseInt(newLimit.split(' ')[1]);
+        updateLimit(parsedLimit);
+    });
 
     $('#show-more-btn').on('click', function (event) {
         event.preventDefault();
@@ -87,7 +92,7 @@ $(document).ready(function () {
         loadProducts(true);
     });
 
-    function loadProducts(showMore=false) {
+    function loadProducts(showMore = false) {
         $.ajax({
             url: 'RetrieveProducts',
             type: 'GET',
@@ -96,15 +101,15 @@ $(document).ready(function () {
             success: function (data) {
                 if (showMore) {
                     $.each(data, function (i, product) {
+                        products.push(product); // Add products to array
                         displayProduct(i, product);
                     });
-                }
-                else {
+                } else {
+                    products = data; // Reset products array
                     const container = document.querySelector('.shop-p__collection .row');
                     container.innerHTML = '';
                     $.each(data, function (i, product) {
                         displayProduct(i, product);
-
                     });
                 }
             },
@@ -121,10 +126,10 @@ $(document).ready(function () {
     });
 
     function displayProduct(i, product) {
-        var productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
+        const productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
             '<div class="product-m">' +
             '<div class="product-m__thumb">' +
-            '<a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">' +
+            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage/' + product.name + '">' +
             '<img class="aspect__img" src="' + product.images[0] + '" alt=""></a>' +
             '<div class="product-m__quick-look">' +
             '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
@@ -148,7 +153,19 @@ $(document).ready(function () {
             '</div>' +
             '</div>';
         $('.shop-p__collection .row').append(productElement);
+
     }
+
+    $(document).on('click', '.product-m__thumb .product-link', function (event) {
+        event.preventDefault();
+        // Find the parent product element
+        let productIndex = $(this).closest('.col-lg-3').index();
+        // Retrieve the product associated with that index
+        let product = products[productIndex];
+        sessionStorage.setItem('product', JSON.stringify(product));
+        window.location.href = 'ProductPage/' + product.name;
+
+    });
 
     loadProducts();
 });
