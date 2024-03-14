@@ -10,6 +10,7 @@ import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.JWTService;
 import services.UserService;
+import urls.enums.UrlMapping;
 import utils.CookiesUtil;
 
 import java.io.IOException;
@@ -45,12 +46,15 @@ public class JWTFilter implements Filter {
                 httpRequest.setAttribute("user", userDto);
                 chain.doFilter(request, response);
             } catch (InvalidJwtException | UnknownHostException e) {
-                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
+//                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
+                httpResponse.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(((HttpServletRequest) request).getContextPath()));
             } catch (MalformedClaimException e) {
-                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Malformed token");
+                httpResponse.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(((HttpServletRequest) request).getContextPath()));
+//                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Malformed token");
             }
         } else {
-            httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No token found");
+            httpResponse.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(((HttpServletRequest) request).getContextPath()));
+//            httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No token found");
         }
     }
 

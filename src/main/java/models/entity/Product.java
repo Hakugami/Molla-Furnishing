@@ -60,6 +60,10 @@ public class Product {
     private DiscountedProduct discountedProduct;
 
     @Setter
+    @Embedded
+    private ProductDetails productDetails;
+
+    @Setter
     @Transient
     private double rating;
 
@@ -70,7 +74,9 @@ public class Product {
     @PostLoad
     public void postLoad() {
         this.rating = getRating();
-        this.categoryName = category.getName();
+        if(category != null) {
+            this.categoryName = category.getName();
+        }
     }
 
     public double getRating() {
