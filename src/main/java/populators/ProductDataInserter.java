@@ -114,10 +114,10 @@ public class ProductDataInserter {
 
     public static void main(String[] args) {
         ProductDataInserter productDataInserter = new ProductDataInserter();
-//        productDataInserter.insertProducts();
-//        productDataInserter.updateProductCategories();
-//        productDataInserter.addImagesToProducts();
-//        productDataInserter.addProductDetailsToProducts();
+        productDataInserter.insertProducts();
+        productDataInserter.updateProductCategories();
+        productDataInserter.addImagesToProducts();
+        productDataInserter.addProductDetailsToProducts();
         productDataInserter.updateProductNames();
     }
 }

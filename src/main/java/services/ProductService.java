@@ -4,6 +4,7 @@ import mappers.ProductMapper;
 import mappers.ProductMapperImpl;
 import models.DTOs.ProductDto;
 import models.entity.Product;
+import persistence.repositories.GenericRepository;
 import persistence.repositories.helpers.ProductFilter;
 import persistence.repositories.impl.ProductRepository;
 

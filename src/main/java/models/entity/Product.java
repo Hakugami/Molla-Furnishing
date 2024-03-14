@@ -34,6 +34,11 @@ public class Product {
     private Category category;
 
     @Setter
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sub_category_id")
+    private SubCategory subCategory;
+
+    @Setter
     @Column(nullable = false)
     private double price;
 
