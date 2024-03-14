@@ -2,6 +2,7 @@ package populators;
 
 import models.entity.Category;
 import models.entity.Product;
+import models.entity.ProductDetails;
 import persistence.repositories.impl.CategoriesRepository;
 import persistence.repositories.impl.ProductRepository;
 
@@ -18,7 +19,7 @@ public class ProductDataInserter {
     }
 
     //insert like 10 products
-    public void insertProducts(){
+    public void insertProducts() {
         for (int i = 0; i < 10; i++) {
             Product product = new Product();
             product.setName("Product " + i);
@@ -30,6 +31,24 @@ public class ProductDataInserter {
             productRepository.create(product);
         }
 
+    }
+
+    public void addProductDetailsToProducts() {
+        // Create a ProductDetails object
+        ProductDetails productDetails = new ProductDetails();
+        productDetails.setMaterial("Wood");
+        productDetails.setDimensions("200x200x200");
+        productDetails.setColor("Brown");
+        productDetails.setWeight("20kg");
+
+        // Retrieve all the products
+        List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
+
+        // For each product, set the ProductDetails and update the product in the database
+        for (Product product : products) {
+            product.setProductDetails(productDetails);
+        }
+        productRepository.batchUpdate(products);
     }
 
     public void updateProductCategories() {
@@ -68,7 +87,8 @@ public class ProductDataInserter {
         // Retrieve all the products
         List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
         products.forEach(product -> {
-            product.getImages().add("images/product/electronic/product1.jpg");
+            product.getImages().add("images/product/electronic/product2.jpg");
+            product.getImages().add("images/product/product-d-1.jpg");
         });
 
         // Update the products in the database
@@ -77,8 +97,9 @@ public class ProductDataInserter {
 
     public static void main(String[] args) {
         ProductDataInserter productDataInserter = new ProductDataInserter();
-//        productDataInserter.insertProducts();
-//        productDataInserter.updateProductCategories();
+        productDataInserter.insertProducts();
+        productDataInserter.updateProductCategories();
         productDataInserter.addImagesToProducts();
+        productDataInserter.addProductDetailsToProducts();
     }
 }
