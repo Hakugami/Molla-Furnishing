@@ -72,6 +72,16 @@
         <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>ProductPageServlet</servlet-name>
+        <servlet-class>controllers.servlets.ProductPageServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ReviewServlet</servlet-name>
+        <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>

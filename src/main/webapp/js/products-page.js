@@ -129,7 +129,7 @@ $(document).ready(function () {
         const productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
             '<div class="product-m">' +
             '<div class="product-m__thumb">' +
-            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">' +
+            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage/' + product.name + '">' +
             '<img class="aspect__img" src="' + product.images[0] + '" alt=""></a>' +
             '<div class="product-m__quick-look">' +
             '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
@@ -163,7 +163,8 @@ $(document).ready(function () {
         // Retrieve the product associated with that index
         let product = products[productIndex];
         sessionStorage.setItem('product', JSON.stringify(product));
-        window.location.href = 'product-detail.html';
+        window.location.href = 'ProductPage/' + product.name;
+
     });
 
     loadProducts();

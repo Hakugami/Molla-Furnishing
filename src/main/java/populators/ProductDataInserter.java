@@ -95,11 +95,29 @@ public class ProductDataInserter {
         productRepository.batchUpdate(products);
     }
 
+    public void updateProductNames() {
+    // Retrieve all the products
+    List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
+
+    // For each product, check if its name contains a space
+    for (Product product : products) {
+        String name = product.getName();
+        if (name.contains(" ")) {
+            // If it does, replace all spaces with dashes
+            product.setName(name.replace(" ", "-"));
+        }
+    }
+
+    // Update the products in the database
+    productRepository.batchUpdate(products);
+}
+
     public static void main(String[] args) {
         ProductDataInserter productDataInserter = new ProductDataInserter();
-        productDataInserter.insertProducts();
-        productDataInserter.updateProductCategories();
-        productDataInserter.addImagesToProducts();
-        productDataInserter.addProductDetailsToProducts();
+//        productDataInserter.insertProducts();
+//        productDataInserter.updateProductCategories();
+//        productDataInserter.addImagesToProducts();
+//        productDataInserter.addProductDetailsToProducts();
+        productDataInserter.updateProductNames();
     }
 }
