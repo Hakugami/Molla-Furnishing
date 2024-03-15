@@ -1,6 +1,6 @@
 package models.DTOs;
 
-import lombok.Value;
+import lombok.*;
 import models.DTOs.ProductDto;
 import models.entity.Category;
 
@@ -10,7 +10,10 @@ import java.util.List;
 /**
  * DTO for {@link Category}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class CategoryDto implements Serializable {
     long id;
     String name;

@@ -7,12 +7,13 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class HomeCommand extends FrontCommand{
+public class ProfileCommand extends FrontCommand{
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("HomeCommand: processing request");
+        System.out.println("ProfileCommand: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.HOME.getServletName());
-        rd.forward(request, response);
+        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.PROFILE.getServletName());
+        dispatcher.forward(request, response);
+
     }
 }

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class DataSourceConfig {
     private static HikariDataSource dataSource = null;
@@ -16,11 +17,12 @@ public class DataSourceConfig {
     private static final double systemLoadAverage;
     private static boolean isDataSourceCreated = false;
 
+
     static {
         try (InputStream input = DataSourceConfig.class.getClassLoader().getResourceAsStream("db.properties")) {
             props.load(input);
         } catch (IOException ex) {
-            ex.printStackTrace();
+            Logger.getGlobal().severe("Error loading db.properties file"+ ex.getMessage());
         }
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
         processors = Runtime.getRuntime().availableProcessors();

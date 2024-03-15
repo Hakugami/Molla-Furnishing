@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
         }
 
         // Use a regular expression to extract the command key
-        Pattern pattern = Pattern.compile(".*/([a-zA-Z]+)$");
+        Pattern pattern = Pattern.compile(".*/([a-zA-Z]+)/?.*");
         Matcher matcher = pattern.matcher(pathInfo);
         if (matcher.find()) {
             String commandKey = matcher.group(1);

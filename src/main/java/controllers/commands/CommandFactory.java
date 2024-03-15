@@ -1,5 +1,8 @@
 package controllers.commands;
 
+import org.bouncycastle.oer.its.etsi102941.Url;
+import urls.enums.UrlMapping;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -11,10 +14,12 @@ public class CommandFactory {
 
     private CommandFactory() {
         commandMap = new HashMap<>();
-        commandMap.put("login", LoginCommand::new);
-        commandMap.put("register", RegisterCommand::new);
-        commandMap.put("RetrieveProducts", RetrieveProductsCommand::new);
-        commandMap.put("home", HomeCommand::new);
+        commandMap.put(UrlMapping.LOGIN.getCommand(), LoginCommand::new);
+        commandMap.put(UrlMapping.REGISTER.getCommand(), RegisterCommand::new);
+        commandMap.put(UrlMapping.RETRIEVE_PRODUCTS.getCommand(), RetrieveProductsCommand::new);
+        commandMap.put(UrlMapping.HOME.getCommand(), HomeCommand::new);
+        commandMap.put(UrlMapping.PROFILE.getCommand(), ProfileCommand::new);
+        commandMap.put(UrlMapping.PRODUCTS.getCommand(), ProductsCommand::new);
     }
 
     public static CommandFactory getInstance() {

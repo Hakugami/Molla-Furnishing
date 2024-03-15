@@ -3,10 +3,25 @@ $(document).ready(function() {
     console.log('Document ready!');
     generateDateOptions();
 
+    $('#reg-password, #reg-confirm-password').on('keyup', function() {
+        if ($('#reg-password').val() !== $('#reg-confirm-password').val()) {
+            // Passwords do not match
+            $('#password-error').text('Passwords do not match');
+        } else {
+            // Passwords match
+            $('#password-error').text('');
+        }
+    });
+
     // Handle the form submission
     $(document).on('submit', '#signup-form', function(event) {
         event.preventDefault();
         console.log('Form submitted!');
+
+        // Validate the form
+        if (!validateForm()) {
+            return;
+        }
 
         // Create a UserDto object from the form data
         var userDto = {
@@ -29,7 +44,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(userDto),
             success: function() {
-                alert('Registration successful!');
+                window.location.href = 'home';
             },
             error: function() {
                 alert('Registration failed. Please try again.');
@@ -37,6 +52,31 @@ $(document).ready(function() {
         });
     });
 });
+
+function validateForm() {
+    var fname = $('#reg-fname').val();
+    var lname = $('#reg-lname').val();
+    var email = $('#reg-email').val();
+    var password = $('#reg-password').val();
+    var job = $('#reg-job').val();
+    var interest = $('#reg-interests').val();
+    var creditLimit = $('#reg-credit-limit').val();
+    var gender = $('input[name="gender"]:checked').val();
+    var year = $('#year').val();
+    var month = $('#month').val();
+    var day = $('#day').val();
+
+    if (!fname || !lname || !email || !password || !job || !interest || !creditLimit || !gender || !year || !month || !day) {
+        alert('All fields are required.');
+        return false;
+    }
+
+    // Add more specific validation for each field as needed
+    // For example, you can check if the email is in the correct format, if the password meets certain criteria, etc.
+
+    return true;
+}
+
 
 function generateDateOptions() {
     console.log('Generating date options...');

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -41,22 +42,40 @@ public class Product {
     private int quantity;
 
     @Setter
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateAdded;
+
+    @Setter
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Rating> ratings;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
     @Column(name = "image_url")
     private List<String> images;
 
     @Setter
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL , orphanRemoval = true)
+    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private DiscountedProduct discountedProduct;
+
+    @Setter
+    @Transient
+    private double rating;
+
+    @Setter
+    @Transient
+    private String categoryName;
+
+    @PostLoad
+    public void postLoad() {
+        this.rating = getRating();
+        this.categoryName = category.getName();
+    }
 
     public double getRating() {
         return ratings.stream().mapToDouble(Rating::getValue).average().orElse(0.0);
     }
-
 
 
 }

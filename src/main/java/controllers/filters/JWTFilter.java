@@ -5,11 +5,15 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.UserDto;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.MalformedClaimException;
+import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.JWTService;
 import services.UserService;
 import utils.CookiesUtil;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 public class JWTFilter implements Filter {
     private JWTService jwtService;
@@ -30,25 +34,24 @@ public class JWTFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        Cookie cookie = CookiesUtil.getCookie(httpRequest.getCookies(), "Authorization");
-        String jwt = cookie != null ? cookie.getValue().startsWith("Bearer ") ? cookie.getValue().substring(7) : null : null;
-
-        if (jwt != null) {
-            String email =  httpRequest.getParameter("email");
-            UserDto user = userService.getUserByEmail(email);
-            Long userId = user.getId();
+        Cookie jwtCookie = CookiesUtil.getCookie(httpRequest.getCookies(), "Authorization");
+        if (jwtCookie != null) {
+            String token = jwtCookie.getValue();
             try {
-                if (jwtService.validateJWT(jwt, String.valueOf(userId))) {
-                    httpRequest.setAttribute("user", user);
-                    chain.doFilter(request, response);
-                } else {
-                    httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                }
-            } catch (Exception e) {
-                throw new ServletException(e);
+                JwtClaims claims = jwtService.validateToken(token, httpRequest.getRemoteAddr());
+                System.out.println("Claims: " + Long.valueOf(claims.getSubject()));
+                UserDto userDto = userService.getUserById(Long.valueOf(claims.getSubject()));
+                userDto.setPassword(null);
+                httpRequest.setAttribute("user", userDto);
+                chain.doFilter(request, response);
+            } catch (InvalidJwtException | UnknownHostException e) {
+                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
+            } catch (MalformedClaimException e) {
+                httpResponse.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Malformed token");
             }
         } else {
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No token found");
         }
     }
+
 }

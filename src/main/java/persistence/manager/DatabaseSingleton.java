@@ -38,6 +38,8 @@ public class DatabaseSingleton {
         return instance;
     }
 
+    public void init(){}
+
 
     public AutoCloseableEntityManager getAutoClosableEntityManager() {
         EntityManager entityManager = ENTITY_MANAGER_THREAD_LOCAL.get();
