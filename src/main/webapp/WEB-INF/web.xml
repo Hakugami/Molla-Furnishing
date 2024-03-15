@@ -5,6 +5,8 @@
          version="6.0">
 
 
+
+
     <filter>
         <filter-name>EmptyUrlFilter</filter-name>
         <filter-class>controllers.filters.EmptyURLFilter</filter-class>
@@ -70,6 +72,14 @@
     <servlet>
         <servlet-name>ProductsServlet</servlet-name>
         <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
+    </servlet>
+
+    <!--Admin Servlets-->
+
+    <!--Admin Dashboard-->
+    <servlet>
+        <servlet-name>AdminPanelServlet</servlet-name>
+        <servlet-class>controllers.servlets.AdminPanelServlet</servlet-class>
     </servlet>
 
     <error-page>
