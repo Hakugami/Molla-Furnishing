@@ -12,7 +12,9 @@ public enum UrlMapping {
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
     PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
     PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
-    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),;
+    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
+    EDITPROFILE("editProfile","/editProfile","EditProfileServlet","/dash-edit-profile.html"),
+    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),;
 
     private final String command;
     private final String url;

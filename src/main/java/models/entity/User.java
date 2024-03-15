@@ -45,6 +45,14 @@ public class User {
 
     @Setter
     @Column(nullable = false)
+    private String phone;
+
+    @Setter
+    @Column(nullable = false)
+    private String gender;
+
+    @Setter
+    @Column(nullable = false)
     private String salt;
 
     @Setter
