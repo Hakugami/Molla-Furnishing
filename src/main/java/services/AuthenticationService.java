@@ -1,7 +1,7 @@
 package services;
 
 import mappers.UserMapper;
-import mappers.UserMapperImpl;
+import mappers.*;
 import models.entity.User;
 import models.enums.UserRole;
 import org.jose4j.jws.JsonWebSignature;

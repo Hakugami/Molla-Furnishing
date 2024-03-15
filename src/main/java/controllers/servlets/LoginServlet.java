@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
                 System.out.println("LoginServlet: creating JWT");
                 resp.setContentType("application/json");
                 Cookie jwtCookie = new Cookie("Authorization", jwt);
+                Cookie nameCookie = new Cookie("name", email);
 
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.addCookie(jwtCookie);

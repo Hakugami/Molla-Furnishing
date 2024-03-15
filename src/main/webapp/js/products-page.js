@@ -5,7 +5,8 @@ $(document).ready(function () {
     let maxPrice = 1000;
     let category = '';
     let rating = 0;
-    let date = new Date();
+    let date = '';
+    let products = [];
 
 
     let filter = {
@@ -19,8 +20,6 @@ $(document).ready(function () {
     };
 
 
-
-
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
         loadProducts();
@@ -31,8 +30,12 @@ $(document).ready(function () {
         loadProducts();
     }
 
+    $()
+
     $('#price-filter').on('submit', function (event) {
         event.preventDefault();
+        filter.page = 1;
+
 
         let minPrice = $('#price-min').val();
         let maxPrice = $('#price-max').val();
@@ -45,6 +48,7 @@ $(document).ready(function () {
 
     $('#sort-strategy').on('change', function () {
         const selectedOption = $(this).val();
+        filter.page = 1;
 
         switch (selectedOption) {
             case 'Sort By: Newest Items':
@@ -76,8 +80,12 @@ $(document).ready(function () {
         loadProducts();
     });
 
-
-
+    $('#products-amount').on('change', function () {
+        const newLimit = $(this).val();
+        //so the string is show: 8, we need to parse it to get the number
+        const parsedLimit = parseInt(newLimit.split(' ')[1]);
+        updateLimit(parsedLimit);
+    });
 
     $('#show-more-btn').on('click', function (event) {
         event.preventDefault();
@@ -87,7 +95,7 @@ $(document).ready(function () {
         loadProducts(true);
     });
 
-    function loadProducts(showMore=false) {
+    function loadProducts(showMore = false) {
         $.ajax({
             url: 'RetrieveProducts',
             type: 'GET',
@@ -96,15 +104,15 @@ $(document).ready(function () {
             success: function (data) {
                 if (showMore) {
                     $.each(data, function (i, product) {
+                        products.push(product); // Add products to array
                         displayProduct(i, product);
                     });
-                }
-                else {
+                } else {
+                    products = data; // Reset products array
                     const container = document.querySelector('.shop-p__collection .row');
                     container.innerHTML = '';
                     $.each(data, function (i, product) {
                         displayProduct(i, product);
-
                     });
                 }
             },
@@ -121,10 +129,10 @@ $(document).ready(function () {
     });
 
     function displayProduct(i, product) {
-        var productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
+        const productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
             '<div class="product-m">' +
             '<div class="product-m__thumb">' +
-            '<a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">' +
+            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage/' + product.name + '">' +
             '<img class="aspect__img" src="' + product.images[0] + '" alt=""></a>' +
             '<div class="product-m__quick-look">' +
             '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
@@ -135,20 +143,32 @@ $(document).ready(function () {
             '<div class="product-m__category">' +
             '<a href="shop-side-version-2.html">' + product.category + '</a></div>' +
             '<div class="product-m__name">' +
-            '<a href="product-detail.html">' + product.name + '</a></div>' +
+            '<a href="ProductPage/' + product.name + '">' + product.name + '</a></div>' +
             '<div class="product-m__rating gl-rating-style">' + product.rating +
             '<span class="product-m__review">(23)</span></div>' +
             '<div class="product-m__price">$' + product.price + '</div>' +
             '<div class="product-m__hover">' +
             '<div class="product-m__preview-description">' +
-            '<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</span></div>' +
+            '<span>'+product.description+'</span></div>' +
             '<div class="product-m__wishlist">' +
             '<a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>' +
             '</div>' +
             '</div>' +
             '</div>';
         $('.shop-p__collection .row').append(productElement);
+
     }
+
+    $(document).on('click', '.product-m__thumb .product-link', function (event) {
+        event.preventDefault();
+        // Find the parent product element
+        let productIndex = $(this).closest('.col-lg-3').index();
+        // Retrieve the product associated with that index
+        let product = products[productIndex];
+        sessionStorage.setItem('product', JSON.stringify(product));
+        window.location.href = 'ProductPage?name=' + product.name;
+
+    });
 
     loadProducts();
 });

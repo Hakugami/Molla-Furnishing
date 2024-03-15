@@ -10,7 +10,9 @@ public enum UrlMapping {
     RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts",""),
     HOME("home", "/home", "HomeServlet","/index-3.html"),
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
-    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),;
+    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
+    PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
+    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),;
 
     private final String command;
     private final String url;

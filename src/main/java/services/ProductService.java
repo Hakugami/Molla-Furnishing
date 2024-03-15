@@ -4,10 +4,12 @@ import mappers.ProductMapper;
 import mappers.ProductMapperImpl;
 import models.DTOs.ProductDto;
 import models.entity.Product;
+import persistence.repositories.GenericRepository;
 import persistence.repositories.helpers.ProductFilter;
 import persistence.repositories.impl.ProductRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ProductService {
     private static volatile ProductService instance = null;
@@ -34,6 +36,11 @@ public class ProductService {
         List<Product> products = productRepository.filterProducts(page, size, filter);
         List<ProductDto> productDtos = products.stream().map(productMapper::productToProductDto).toList();
         return productDtos;
+    }
+
+    public ProductDto getProductById(long productId) {
+        Optional<Product> product = productRepository.read(productId);
+        return productMapper.productToProductDto(product.orElseGet(Product::new));
     }
 
 
