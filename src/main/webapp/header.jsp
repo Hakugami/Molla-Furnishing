@@ -72,12 +72,15 @@
                             <div class="ah-lg-mode">
 
                                 <span class="ah-close">✕ Close</span>
+                <c:choose>
+                    <c:when test="${not empty user}">
 
-                                <!--====== List ======-->
+                                <!--====== List (Logged-in User) ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Account">
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="${user.name}">
 
                                         <a><i class="far fa-user-circle"></i></a>
+
 
                                         <!--====== Dropdown ======-->
 
@@ -86,21 +89,59 @@
 
                                             <li>
 
-                                                <a href="signup.html"><i class="fas fa-user-plus u-s-m-r-6"></i>
+                                                <a href="profile"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
-                                                    <span>Signup</span></a></li>
+                                                    <span>Account</span></a></li>
+
                                             <li>
 
-                                                <a href="signin.html"><i class="fas fa-lock u-s-m-r-6"></i>
+                                                <a href="register"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
-                                                    <span>Signin</span></a></li>
+                                                    <span>Signout</span></a></li>
+                                        </ul>
+                                        <!--====== End - Dropdown ======-->
+                                    </li>
+
+                                </ul>
+                                <!--====== End - List (Logged-in User) ======-->
+
+                    </c:when>
+
+                    <c:otherwise>
+
+                                <!--====== List (Non-Logged-in User) ======-->
+                                <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" >
+
+                                        <a><i class="far fa-user-circle"></i></a>
+
+
+                                        <!--====== Dropdown ======-->
+
+                                        <span class="js-menu-toggle"></span>
+                                        <ul style="width:120px">
+
+                                                <li>
+
+                                                      <a href="register"><i class="fas fa-user-plus u-s-m-r-6"></i>
+
+                                                          <span>Signup</span></a></li>
+                                                <li>
+
+                                                      <a href="login"><i class="fas fa-lock u-s-m-r-6"></i>
+
+                                                          <span>Signin</span></a></li>
 
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
 
                                 </ul>
-                                <!--====== End - List ======-->
+                                <!--====== End - List( Non-Logged-in User) ======-->
+
+                    </c:otherwise>
+                </c:choose>
+
                             </div>
                             <!--====== End - Menu ======-->
                         </div>

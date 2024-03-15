@@ -33,6 +33,15 @@
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
+    <filter>
+        <filter-name>HeaderFilter</filter-name>
+        <filter-class>controllers.filters.HeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HeaderFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.servlets.FrontController</servlet-class>

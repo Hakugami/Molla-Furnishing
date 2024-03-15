@@ -8,7 +8,7 @@ public enum UrlMapping {
     LOGIN("login", "/login", "LoginServlet","/signin.html"),
     REGISTER("register", "/register", "RegisterServlet","/signup.html"),
     RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProductsServlet",""),
-    HOME("home", "/home", "HomeServlet","/index-3.html"),
+    HOME("home", "/home", "HomeServlet","/index-3.jsp"),
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),;
 
 
