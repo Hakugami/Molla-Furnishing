@@ -1,4 +1,4 @@
-<jsp:include page="/userHeader.jsp" />
+<jsp:include page="/header.jsp" />
 
         <!--====== App Content ======-->
         <div class="app-content">
