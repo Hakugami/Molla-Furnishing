@@ -61,12 +61,25 @@ function validateForm() {
     var job = $('#reg-job').val();
     var interest = $('#reg-interests').val();
     var creditLimit = $('#reg-credit-limit').val();
-    var gender = $('input[name="gender"]:checked').val();
+    var gender = $('#gender').val()
     var year = $('#year').val();
     var month = $('#month').val();
     var day = $('#day').val();
 
-    if (!fname || !lname || !email || !password || !job || !interest || !creditLimit || !gender || !year || !month || !day) {
+    console.log("fname: "+fname+" lname: "+lname+" email: "+email+" password: "+password+" job: "+job+" interest: "+interest+" creditLimit: "+creditLimit +
+    "gender"+ gender + "year: "+year+" month: "+month+" day: "+day);
+
+    if (fname === undefined || fname === null || fname === "" ||
+        lname === undefined || lname === null || lname === "" ||
+        email === undefined || email === null || email === "" ||
+        password === undefined || password === null || password === "" ||
+        job === undefined || job === null || job === "" ||
+        interest === undefined || interest === null || interest === "" ||
+        creditLimit === undefined || creditLimit === null || creditLimit === "" ||
+        gender === undefined || gender === null || gender === "" ||
+        year === undefined || year === null || year === "" ||
+        month === undefined || month === null || month === "" ||
+        day === undefined || day === null || day === "") {
         alert('All fields are required.');
         return false;
     }

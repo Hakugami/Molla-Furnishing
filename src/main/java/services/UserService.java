@@ -11,7 +11,7 @@ public class UserService {
 
     public UserService() {
         this.repository = new UserRepository();
-        this.userMapper = new UserMapperImpl();
+        this.userMapper = UserMapper.INSTANCE;
     }
 
     public UserDto getUserByEmail(String email) {

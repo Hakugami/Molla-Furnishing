@@ -1,9 +1,6 @@
 package persistence.repositories.impl;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import models.entity.Product;
 import persistence.manager.DatabaseSingleton;
 import persistence.repositories.GenericRepository;
@@ -56,10 +53,31 @@ public class ProductRepository extends GenericRepository<Product, Long> {
             CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
             Root<Product> root = criteriaQuery.from(Product.class);
             Predicate predicate = filter.toPredicate(criteriaBuilder, root);
-            return entityManager.createQuery(criteriaQuery.where(predicate))
+            Order order = filter.toOrder(criteriaBuilder, root);
+            criteriaQuery.select(root).where(predicate).orderBy(order);
+            return entityManager.createQuery(criteriaQuery)
                     .setFirstResult((page - 1) * size)
                     .setMaxResults(size)
                     .getResultList();
+        });
+    }
+
+
+
+ public void batchUpdate(List<Product> products) {
+    DatabaseSingleton.getInstance().doTransaction(entityManager -> {
+        try {
+            products.forEach(entityManager::merge);
+        } catch (Exception e) {
+            System.out.println("An error occurred while updating products: " + e.getMessage());
+            logger.severe("An error occurred while updating products: " + e.getMessage());
+            throw e;
+        }
+    });
+}
+    public void batchInsert(List<Product> products) {
+        DatabaseSingleton.getInstance().doTransaction(entityManager -> {
+            products.forEach(entityManager::persist);
         });
     }
 }

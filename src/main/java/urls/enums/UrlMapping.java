@@ -7,10 +7,12 @@ public enum UrlMapping {
     CONTEXT_DEFAULT("", "/view", "FrontController",""),
     LOGIN("login", "/login", "LoginServlet","/signin.html"),
     REGISTER("register", "/register", "RegisterServlet","/signup.html"),
-    RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProductsServlet",""),
+    RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts",""),
     HOME("home", "/home", "HomeServlet","/index-3.jsp"),
-    PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),;
-
+    PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
+    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
+    PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
+    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),;
 
     private final String command;
     private final String url;
