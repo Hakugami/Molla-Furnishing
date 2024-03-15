@@ -1,15 +1,14 @@
 package services;
 
 import mappers.UserMapper;
-import mappers.*;
+import models.DTOs.UserDto;
 import models.entity.User;
 import models.enums.UserRole;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.NumericDate;
 import persistence.repositories.impl.UserRepository;
-import models.DTOs.UserDto;
-import utils.KeyGenerator;
+import utils.ValidationUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -30,25 +29,25 @@ public class AuthenticationService {
     }
 
     private boolean login(String email, String password) {
-       Optional <User> user = repository.findByEmail(email);
+        Optional<User> user = repository.findByEmail(email);
         if (user.isEmpty()) {
             System.out.println("User not found");
             return false;
         }
         User user1 = user.get();
         String hashedPassword = hashService.hashPasswordWithSalt(password, user1.getSalt());
-        if (user1.getPassword().equals(hashedPassword)){
+        if (user1.getPassword().equals(hashedPassword)) {
             System.out.println("Password matches!");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Password does not match!");
             return false;
         }
     }
 
     public boolean register(UserDto userDto) {
-        if (repository.findByEmail(userDto.getEmail()).isPresent()) {
+        if (repository.findByEmail(userDto.getEmail()).isPresent() || !ValidationUtil.isValidEmailFormat(userDto.getEmail())
+                || ValidationUtil.validatePassword(userDto.getPassword())!=null ){
             return false;
         }
         User user = userMapper.userDtoToUser(userDto);
@@ -60,7 +59,7 @@ public class AuthenticationService {
 
     }
 
-    public String loginAndReturnToken(String email, String password , String audience) {
+    public String loginAndReturnToken(String email, String password, String audience) {
         if (login(email, password)) {
             Optional<User> user = repository.findByEmail(email);
             if (user.isPresent()) {
@@ -84,7 +83,7 @@ public class AuthenticationService {
                 claims.setClaim("date of birth", user1.getBirthday().toString());
                 jws.setPayload(claims.toJson());
                 try {
-                     result = jws.getCompactSerialization();
+                    result = jws.getCompactSerialization();
                 } catch (Exception e) {
                     logger.severe("Error creating JWT: " + e.getMessage());
                 }

@@ -14,7 +14,8 @@ public enum UrlMapping {
     PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
     REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
     EDITPROFILE("editProfile","/editProfile","EditProfileServlet","/dash-edit-profile.html"),
-    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),;
+    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),
+    PASSWORDVALIDATION("passwordValidation","/passwordValidation","PasswordValidationServlet",""),;
 
     private final String command;
     private final String url;

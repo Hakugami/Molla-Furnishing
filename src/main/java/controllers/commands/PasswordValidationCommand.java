@@ -7,12 +7,13 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class EmailValidationCommand extends FrontCommand{
+public class PasswordValidationCommand  extends FrontCommand{
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("EmailValidationCommand");
+        System.out.println("PasswordValidationCommand");
         ServletContext context = request.getServletContext();
-        RequestDispatcher requestDispatcher = context.getNamedDispatcher(UrlMapping.EMAILVALIDATION.getServletName());
+        RequestDispatcher requestDispatcher = context.getNamedDispatcher(UrlMapping.PASSWORDVALIDATION.getServletName());
         requestDispatcher.forward(request, response);
+
     }
 }

@@ -23,6 +23,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.REVIEW.getCommand(), ReviewCommand::new);
         commandMap.put(UrlMapping.EDITPROFILE.getCommand(), EditProfileCommand::new);
         commandMap.put(UrlMapping.EMAILVALIDATION.getCommand(), EmailValidationCommand::new);
+        commandMap.put(UrlMapping.PASSWORDVALIDATION.getCommand(), PasswordValidationCommand::new);
     }
 
     public static CommandFactory getInstance() {
