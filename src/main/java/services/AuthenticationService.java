@@ -47,7 +47,7 @@ public class AuthenticationService {
 
     public boolean register(UserDto userDto) {
         if (repository.findByEmail(userDto.getEmail()).isPresent() || !ValidationUtil.isValidEmailFormat(userDto.getEmail())
-                || ValidationUtil.validatePassword(userDto.getPassword())!=null ){
+                || ValidationUtil.validatePassword(userDto.getPassword())!=null || ValidationUtil.validatePhoneNumber(userDto.getPhone())!=null){
             return false;
         }
         User user = userMapper.userDtoToUser(userDto);

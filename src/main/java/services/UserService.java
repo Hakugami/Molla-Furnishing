@@ -21,4 +21,8 @@ public class UserService {
     public UserDto getUserById(Long id) {
         return userMapper.userToUserDto(repository.read(id).orElse(null));
     }
+
+    public UserDto getUserByPhoneNumber(String phoneNumber) {
+        return userMapper.userToUserDto(repository.findByPhoneNumber(phoneNumber).orElse(null));
+    }
 }

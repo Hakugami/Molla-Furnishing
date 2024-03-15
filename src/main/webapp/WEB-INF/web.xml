@@ -99,6 +99,11 @@
         <servlet-class>controllers.servlets.PasswordValidationServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>PhoneNumberValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>

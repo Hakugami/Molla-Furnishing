@@ -7,11 +7,11 @@ $(document).ready(function() {
         if ($('#reg-password').val() !== $('#reg-confirm-password').val()) {
             // Passwords do not match
             // $('#signup-form button[type="submit"]').prop('disabled', false);
-            $('#password-error').text('Passwords do not match');
+            $('#confirm-password-error').text('Passwords do not match');
         } else {
             // Passwords match
             // $('#signup-form button[type="submit"]').prop('disabled', true);
-            $('#password-error').text('');
+            $('#confirm-password-error').text('');
         }
     });
 
@@ -40,6 +40,21 @@ $(document).ready(function() {
             } else {
                 // If the password is not valid, show an error message
                 $('#password-error').text(message);
+            }
+            checkValidationStatus();
+        });
+    });
+
+    $('#reg-phone').on('blur', function() {
+        var phoneNumber = $('#reg-phone').val();
+        $.post('phoneValidation', { phoneNumber: phoneNumber }, function(response) {
+            var message = response.message;
+            if (message === "Phone number is valid") {
+                // If the phone number is valid, clear the error message
+                $('#phone-error').text('');
+            } else {
+                // If the phone number is not valid, show an error message
+                $('#phone-error').text(message);
             }
             checkValidationStatus();
         });
@@ -124,8 +139,9 @@ function validatePassword(password) {
 function checkValidationStatus() {
     var emailError = $('#email-error').text();
     var passwordError = $('#password-error').text();
+    var phoneError = $('#phone-error').text();
 
-    if (emailError === '' && passwordError === '') {
+    if (emailError === '' && passwordError === '' && phoneError === '') {
         // If there are no error messages, enable the submit button
         $('#signup-form button[type="submit"]').prop('disabled', false);
     } else {
@@ -146,8 +162,6 @@ function validateForm() {
     var month = $('#month').val();
     var day = $('#day').val();
 
-    console.log("fname: "+fname+" email: "+email+" password: "+password+" job: "+job+" interest: "+interest+" creditLimit: "+creditLimit +
-    "gender"+ gender + "year: "+year+" month: "+month+" day: "+day + "phone: "+phone);
 
     if (fname === undefined || fname === null || fname === "" ||
         email === undefined || email === null || email === "" ||

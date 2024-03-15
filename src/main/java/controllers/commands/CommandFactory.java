@@ -24,6 +24,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.EDITPROFILE.getCommand(), EditProfileCommand::new);
         commandMap.put(UrlMapping.EMAILVALIDATION.getCommand(), EmailValidationCommand::new);
         commandMap.put(UrlMapping.PASSWORDVALIDATION.getCommand(), PasswordValidationCommand::new);
+        commandMap.put(UrlMapping.PHONEVALIDATION.getCommand(), PhoneNumberValidationCommand::new);
     }
 
     public static CommandFactory getInstance() {

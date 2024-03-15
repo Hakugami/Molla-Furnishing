@@ -21,6 +21,43 @@ public class ValidationUtil {
         return user != null;
     }
 
+    public static boolean phoneNumberInUse(String phoneNumber) {
+        UserService userService = new UserService();
+        UserDto user = userService.getUserByPhoneNumber(phoneNumber);
+        return user != null;
+    }
+
+    public static String validatePhoneNumber(String phoneNumber) {
+        // Check the length of the phone number
+        if (phoneNumber.length() != 11) {
+            return "Phone number must be 11 digits long";
+        }
+
+        // Check if the phone number contains only digits
+        if (!phoneNumber.matches("\\d+")) {
+            return "Phone number must contain only digits";
+        }
+
+        // Check if the phone number is already in use
+        if (phoneNumberInUse(phoneNumber)) {
+            return "Phone number is already in use";
+        }
+
+        // check if valid format
+        if (!hasValidFormat(phoneNumber)) {
+            return "Invalid phone number format";
+        }
+
+        // If all checks pass, return null
+        return null;
+    }
+
+    private static boolean hasValidFormat(String phoneNumber) {
+        String regex = "^01[0125][0-9]{8}$";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(phoneNumber).matches();
+    }
+
 
     public static String validatePassword(String password) {
         // Check the length of the password
