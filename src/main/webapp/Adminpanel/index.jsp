@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!doctype html>
 <html lang="en">
 
@@ -7,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin Dashboard</title>
-  <link rel="shortcut icon" type="image/png" href="Adminpanel/assets/images/logos/favicon.png" />
-  <link rel="stylesheet" href="Adminpanel/assets/css/styles.min.css" />
+  <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="assets/css/styles.min.css" />
 </head>
 
 <body>
@@ -16,11 +14,11 @@
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
      <!-- Include the sidebar -->
-    <c:import url="sidebar.jsp" />
+         <jsp:include page="sidebar.jsp" />
     <!--  Main wrapper -->
     <div class="body-wrapper">
          <!-- Include the header -->
-         <c:import url="header.jsp" />
+         <jsp:include page="header.jsp" />
       <div class="container-fluid">
         <!--  Row 1 -->
         <div class="row">
@@ -290,13 +288,13 @@
       </div>
     </div>
   </div>
-  <script src="Adminpanel/assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="Adminpanel/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="Adminpanel/assets/js/sidebarmenu.js"></script>
-  <script src="Adminpanel/assets/js/app.min.js"></script>
-  <script src="Adminpanel/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="Adminpanel/assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="Adminpanel/assets/js/dashboard.js"></script>
+  <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/sidebarmenu.js"></script>
+  <script src="assets/js/app.min.js"></script>
+  <script src="assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="assets/js/dashboard.js"></script>
 </body>
 
 </html>

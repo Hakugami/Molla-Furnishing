@@ -189,7 +189,7 @@
                 <configuration>
                     <username>admin</username>
                     <password>admin</password>
-                    <url>http://localhost:8282/manager/text</url>
+                    <url>http://localhost:8181/manager/text</url>
                     <path>/molla</path>
                 </configuration>
             </plugin>
