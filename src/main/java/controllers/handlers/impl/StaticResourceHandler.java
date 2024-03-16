@@ -12,7 +12,7 @@ import java.util.List;
 public class StaticResourceHandler implements ResourceHandler {
     private static final List<String> STATIC_RESOURCE_PREFIXES = Arrays.asList("/css/", "/js/", "/images/", "/audio/", "/video/", "/webfonts/," +
             "/assets/");
-    private static final List<String> STATIC_RESOURCE_SUFFIX = Arrays.asList(".html",".js",".css",".scss",".jpg",".png");
+    private static final List<String> STATIC_RESOURCE_SUFFIX = Arrays.asList(".html",".js",".css",".scss",".jpg",".png",".jpeg",".gif",".svg",".mp3",".mp4",".webm",".woff",".woff2",".ttf",".eot");
 
     @Override
     public boolean handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
