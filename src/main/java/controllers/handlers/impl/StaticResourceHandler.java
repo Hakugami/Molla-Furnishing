@@ -19,6 +19,9 @@ public class StaticResourceHandler implements ResourceHandler {
         String path = request.getPathInfo();
 
         if (path != null && (STATIC_RESOURCE_PREFIXES.stream().anyMatch(path::startsWith) || (STATIC_RESOURCE_SUFFIX.stream().anyMatch(path::endsWith)))) {
+            if(path.startsWith("/assets/")){
+                path = "/Adminpanel" + path;
+            }
             request.getServletContext().getRequestDispatcher(path).forward(request, response);
             return true;
         }
