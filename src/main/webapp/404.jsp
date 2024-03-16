@@ -1,3 +1,4 @@
+<%@page session="false" contentType="text/html" pageEncoding="utf-8"%>
 <jsp:include page="/header.jsp" />
 
         <!--====== App Content ======-->
