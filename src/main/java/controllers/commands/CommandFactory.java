@@ -1,5 +1,6 @@
 package controllers.commands;
 
+import org.bouncycastle.oer.its.etsi102941.Url;
 import urls.enums.UrlMapping;
 
 import java.util.HashMap;
@@ -25,6 +26,9 @@ public class CommandFactory {
         commandMap.put(UrlMapping.EMAILVALIDATION.getCommand(), EmailValidationCommand::new);
         commandMap.put(UrlMapping.PASSWORDVALIDATION.getCommand(), PasswordValidationCommand::new);
         commandMap.put(UrlMapping.PHONEVALIDATION.getCommand(), PhoneNumberValidationCommand::new);
+        commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
+        commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
+        commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
     }
 
     public static CommandFactory getInstance() {
