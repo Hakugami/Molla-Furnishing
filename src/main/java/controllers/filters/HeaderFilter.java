@@ -48,7 +48,8 @@ public class HeaderFilter implements Filter {
 
                 httpRequest.setAttribute("user", userDto);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
+                System.out.println("No user found.");
             }
         } else {
             System.out.println("No user found.");
