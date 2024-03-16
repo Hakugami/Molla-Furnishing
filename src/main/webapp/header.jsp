@@ -48,7 +48,7 @@
 
                         <a class="main-logo" href="index.html">
 
-                            <img src="images/logo/logo-1.png" alt=""></a>
+                            <img src="images/logo/logo-3.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
 
 

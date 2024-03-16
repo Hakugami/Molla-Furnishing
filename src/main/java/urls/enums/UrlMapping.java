@@ -13,8 +13,8 @@ public enum UrlMapping {
     PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.jsp"),
     PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
     REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
-    ABOUT("about", "/about", "AboutServlet", "/about.html"),
-    WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.html"),
+    ABOUT("about", "/about", "AboutServlet", "/about.jsp"),
+    WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.jsp"),
     CART("cart", "/cart", "CartServlet", "/cart.html");
 
 
