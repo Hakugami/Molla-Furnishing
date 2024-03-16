@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,4 +35,10 @@ public class ShoppingCart {
     @Column(nullable = false)
     private Date lastUpdate;
 
+    public void addItem(Product product) {
+        products.add(product);
+    }
+    public void removeItem(Product product) {
+        products.remove(product);
+    }
 }
