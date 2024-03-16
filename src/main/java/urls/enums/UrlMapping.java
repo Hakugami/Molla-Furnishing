@@ -11,7 +11,7 @@ public enum UrlMapping {
     HOME("home", "/home", "HomeServlet","/index-3.html"),
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
     PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
-    ADMIN("admin","/admin","AdminPanelServlet","/Adminpanel/index.html");
+    ADMIN("admin","/admin","AdminPanelServlet","/Adminpanel/index.jsp");
 
     private final String command;
     private final String url;
