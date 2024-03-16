@@ -4,10 +4,12 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import models.entity.ShoppingCart;
 import models.entity.User;
 import persistence.manager.DatabaseSingleton;
 import persistence.repositories.GenericRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +17,16 @@ public class UserRepository extends GenericRepository<User, Long> {
 
     public UserRepository() {
         super(User.class);
+    }
+
+
+    @Override
+    public boolean create(User user) {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        shoppingCart.setLastUpdate(new Date());
+        user.setCart(shoppingCart);
+        return super.create(user);
     }
 
     public Optional<User> findByEmail(String email) {

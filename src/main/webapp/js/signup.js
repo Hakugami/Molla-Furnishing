@@ -177,6 +177,22 @@ function validateForm() {
         alert('All fields are required.');
         return false;
     }
+    if(gender === 'select'){
+        alert('Please fill the gender box ');
+        return false;
+    }
+    if(creditLimit < 0){
+        alert('Please fill the credit limit box ');
+        return false;
+    }
+    if(phone.length < 11){
+        alert('Please fill the phone box ');
+        return false;
+    }
+    if(month ==='Month' || day ==='Day' || year ==='Year'){
+        alert('Please fill the birthday box ');
+        return false;
+    }
 
     // Add more specific validation for each field as needed
     // For example, you can check if the email is in the correct format, if the password meets certain criteria, etc.

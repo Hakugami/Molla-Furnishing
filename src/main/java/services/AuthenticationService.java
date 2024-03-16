@@ -73,6 +73,8 @@ public class AuthenticationService {
                 } catch (UnknownHostException e) {
                     logger.severe("Error getting host address: " + e.getMessage());
                 }
+                user1.setPassword(null);
+
                 claims.setAudience(audience);
                 claims.setSubject(String.valueOf(user1.getId()));
                 claims.setIssuedAtToNow();
@@ -81,6 +83,8 @@ public class AuthenticationService {
                 claims.setClaim("email", user1.getEmail());
                 claims.setClaim("role", user1.getRole().toString());
                 claims.setClaim("date of birth", user1.getBirthday().toString());
+                claims.setClaim("user", UserMapper.INSTANCE.userToUserDto(user1));
+
                 jws.setPayload(claims.toJson());
                 try {
                     result = jws.getCompactSerialization();

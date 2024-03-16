@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import models.enums.UserRole;
+
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class User {
     private String interest;
 
     @Setter
-    @Column(nullable = false , unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Setter
@@ -60,13 +61,18 @@ public class User {
     private double creditLimit;
 
     @Setter
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.EAGER , orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     private List<Address> addresses;
 
     @Setter
     @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private UserRole role;
+
+    @Setter
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private ShoppingCart cart;
 
 
 }

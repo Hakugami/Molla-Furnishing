@@ -104,6 +104,11 @@
         <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>LoadProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
