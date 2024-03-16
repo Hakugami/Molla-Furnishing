@@ -22,6 +22,9 @@ public class CommandFactory {
         commandMap.put(UrlMapping.PRODUCTS.getCommand(), ProductsCommand::new);
         commandMap.put(UrlMapping.PRODUCTPAGE.getCommand(), ProductPageCommand::new);
         commandMap.put(UrlMapping.REVIEW.getCommand(), ReviewCommand::new);
+        commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
+        commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
+        commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
     }
 
     public static CommandFactory getInstance() {

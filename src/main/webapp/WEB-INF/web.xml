@@ -35,6 +35,15 @@
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
+    <filter>
+        <filter-name>HeaderFilter</filter-name>
+        <filter-class>controllers.filters.HeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HeaderFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.servlets.FrontController</servlet-class>
@@ -82,6 +91,21 @@
     <servlet>
         <servlet-name>ReviewServlet</servlet-name>
         <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AboutServlet</servlet-name>
+        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controllers.servlets.CartServlet</servlet-class>
     </servlet>
 
     <error-page>
