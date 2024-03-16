@@ -6,11 +6,58 @@ $(document).ready(function() {
     $('#reg-password, #reg-confirm-password').on('keyup', function() {
         if ($('#reg-password').val() !== $('#reg-confirm-password').val()) {
             // Passwords do not match
-            $('#password-error').text('Passwords do not match');
+            // $('#signup-form button[type="submit"]').prop('disabled', false);
+            $('#confirm-password-error').text('Passwords do not match');
         } else {
             // Passwords match
-            $('#password-error').text('');
+            // $('#signup-form button[type="submit"]').prop('disabled', true);
+            $('#confirm-password-error').text('');
         }
+    });
+
+    $('#reg-email').on('blur', function() {
+        var email = $('#reg-email').val();
+        $.post('emailValidation', { email: email }, function(response) {
+            var message = response.message;
+            if (message === "Email is valid") {
+                // If the email is valid, enable the submit button
+                $('#email-error').text('');
+            } else {
+                // If the email is not valid, disable the submit button and show an error message
+                $('#email-error').text(message);
+            }
+            checkValidationStatus();
+        });
+    });
+
+    $('#reg-password').on('blur', function() {
+        var password = $('#reg-password').val();
+        $.post('passwordValidation', { password: password }, function(response) {
+            var message = response.message;
+            if (message === "Password is valid") {
+                // If the password is valid, clear the error message
+                $('#password-error').text('');
+            } else {
+                // If the password is not valid, show an error message
+                $('#password-error').text(message);
+            }
+            checkValidationStatus();
+        });
+    });
+
+    $('#reg-phone').on('blur', function() {
+        var phoneNumber = $('#reg-phone').val();
+        $.post('phoneValidation', { phoneNumber: phoneNumber }, function(response) {
+            var message = response.message;
+            if (message === "Phone number is valid") {
+                // If the phone number is valid, clear the error message
+                $('#phone-error').text('');
+            } else {
+                // If the phone number is not valid, show an error message
+                $('#phone-error').text(message);
+            }
+            checkValidationStatus();
+        });
     });
 
     // Handle the form submission
@@ -23,17 +70,23 @@ $(document).ready(function() {
             return;
         }
 
+        var password = $('#reg-password').val();
+        var passwordError = validatePassword(password);
+        if (passwordError) {
+            $('#password-error').text(passwordError);
+            return;
+        }
+
         // Create a UserDto object from the form data
         var userDto = {
-            // firstName: $('#reg-fname').val(),
-            // lastName: $('#reg-lname').val(),
-            name: $('#reg-fname').val()+" "+$('#reg-lname').val(),
+            name: $('#reg-fname').val(),
             email: $('#reg-email').val(),
             password: $('#reg-password').val(),
+            phone: $('#reg-phone').val(),
             job: $('#reg-job').val(),
             interest: $('#reg-interests').val(),
             creditLimit: $('#reg-credit-limit').val(),
-            gender: $('input[name="gender"]:checked').val(),
+            gender: $('#gender').val(),
             birthday: $('#year').val() + '-' + $('#month').val() + '-' + $('#day').val()
         };
 
@@ -53,11 +106,54 @@ $(document).ready(function() {
     });
 });
 
+function validatePassword(password) {
+    // Check the length of the password
+    if (password.length < 8) {
+        return 'Password must be at least 8 characters long';
+    }
+
+    // Check for uppercase letters
+    if (!/[A-Z]/.test(password)) {
+        return 'Password must contain at least one uppercase letter';
+    }
+
+    // Check for lowercase letters
+    if (!/[a-z]/.test(password)) {
+        return 'Password must contain at least one lowercase letter';
+    }
+
+    // Check for numbers
+    if (!/[0-9]/.test(password)) {
+        return 'Password must contain at least one number';
+    }
+
+    // Check for special characters
+    if (!/[!@#$%^&*]/.test(password)) {
+        return 'Password must contain at least one special character (!@#$%^&*)';
+    }
+
+    // If all checks pass, return null
+    return null;
+}
+
+function checkValidationStatus() {
+    var emailError = $('#email-error').text();
+    var passwordError = $('#password-error').text();
+    var phoneError = $('#phone-error').text();
+
+    if (emailError === '' && passwordError === '' && phoneError === '') {
+        // If there are no error messages, enable the submit button
+        $('#signup-form button[type="submit"]').prop('disabled', false);
+    } else {
+        // If there are error messages, disable the submit button
+        $('#signup-form button[type="submit"]').prop('disabled', true);
+    }
+}
 function validateForm() {
     var fname = $('#reg-fname').val();
-    var lname = $('#reg-lname').val();
     var email = $('#reg-email').val();
     var password = $('#reg-password').val();
+    var phone = $('#reg-phone').val();
     var job = $('#reg-job').val();
     var interest = $('#reg-interests').val();
     var creditLimit = $('#reg-credit-limit').val();
@@ -66,11 +162,8 @@ function validateForm() {
     var month = $('#month').val();
     var day = $('#day').val();
 
-    console.log("fname: "+fname+" lname: "+lname+" email: "+email+" password: "+password+" job: "+job+" interest: "+interest+" creditLimit: "+creditLimit +
-    "gender"+ gender + "year: "+year+" month: "+month+" day: "+day);
 
     if (fname === undefined || fname === null || fname === "" ||
-        lname === undefined || lname === null || lname === "" ||
         email === undefined || email === null || email === "" ||
         password === undefined || password === null || password === "" ||
         job === undefined || job === null || job === "" ||
@@ -79,8 +172,25 @@ function validateForm() {
         gender === undefined || gender === null || gender === "" ||
         year === undefined || year === null || year === "" ||
         month === undefined || month === null || month === "" ||
+        phone === undefined || phone === null || phone === "" ||
         day === undefined || day === null || day === "") {
         alert('All fields are required.');
+        return false;
+    }
+    if(gender === 'select'){
+        alert('Please fill the gender box ');
+        return false;
+    }
+    if(creditLimit < 0){
+        alert('Please fill the credit limit box ');
+        return false;
+    }
+    if(phone.length < 11){
+        alert('Please fill the phone box ');
+        return false;
+    }
+    if(month ==='Month' || day ==='Day' || year ==='Year'){
+        alert('Please fill the birthday box ');
         return false;
     }
 

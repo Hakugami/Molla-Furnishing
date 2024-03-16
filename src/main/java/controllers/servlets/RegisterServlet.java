@@ -45,6 +45,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if (authService.register(userDto)) {
+            resp.setStatus(HttpServletResponse.SC_CREATED);
             resp.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(req.getContextPath()));
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);

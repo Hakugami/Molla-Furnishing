@@ -21,24 +21,16 @@ public class ShoppingCart {
     private Long id;
 
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "cart")
     private User user;
 
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "shopping_cart_products",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CartItem> cartItems;
 
+    @Setter
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
 
-    public void addItem(Product product) {
-        products.add(product);
-    }
-    public void removeItem(Product product) {
-        products.remove(product);
-    }
 }
