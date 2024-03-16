@@ -23,8 +23,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-
     <filter>
         <filter-name>JWTFilter</filter-name>
         <filter-class>controllers.filters.JWTFilter</filter-class>
@@ -33,6 +31,15 @@
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
         <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
+    </filter-mapping>
+
+    <filter>
+        <filter-name>HeaderFilter</filter-name>
+        <filter-class>controllers.filters.HeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HeaderFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
     </filter-mapping>
 
     <servlet>
@@ -85,6 +92,21 @@
     </servlet>
 
     <servlet>
+        <servlet-name>AboutServlet</servlet-name>
+        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controllers.servlets.CartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>controllers.servlets.EditProfileServlet</servlet-class>
     </servlet>
@@ -118,8 +140,6 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/404.html</location>
     </error-page>
-
-
 
 
 </web-app>
