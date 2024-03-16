@@ -84,6 +84,31 @@
         <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.EditProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EmailValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.EmailValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PasswordValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.PasswordValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PhoneNumberValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LoadProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>
