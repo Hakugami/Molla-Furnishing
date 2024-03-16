@@ -1,4 +1,4 @@
-package utils;
+package populators;
 
 import models.DTOs.UserDto;
 import services.AuthenticationService;
@@ -21,19 +21,6 @@ public class UserAdder {
         userDto.setInterest("molla");
         userDto.setCreditLimit(10000);
         authService.register(userDto);
-
-//        try {
-//
-//            ObjectMapper mapper = new ObjectMapper();
-//
-//            mapper.setDateFormat(new SimpleDateFormat("yyyy-MMMM-dd")); // Add this line
-//            // Read the request body and convert it into a UserDto object
-//            userDto = mapper.readValue(req.getReader(), UserDto.class);
-//
-//        } catch (Exception e) {
-//            logger.severe("Error reading user data: " + e.getMessage());
-//            throw new ServletException(e);
-//        }
 
         authService.register(userDto);
 

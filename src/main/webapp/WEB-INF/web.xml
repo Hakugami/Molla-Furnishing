@@ -91,6 +91,21 @@
         <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AboutServlet</servlet-name>
+        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controllers.servlets.CartServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.html</location>

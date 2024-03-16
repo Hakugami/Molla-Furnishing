@@ -30,7 +30,7 @@ public class HeaderFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("HeaderFilter: processing request");
+        System.out.println("<--HeaderFilter: processing request");
         System.out.println("path: " + ((HttpServletRequest) request).getRequestURI());
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
@@ -54,6 +54,7 @@ public class HeaderFilter implements Filter {
             System.out.println("No user found.");
         }
 
+        System.out.println("--/HeaderFilter>");
         chain.doFilter(request, response);
     }
 
