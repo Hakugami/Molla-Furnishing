@@ -15,7 +15,7 @@ public enum UrlMapping {
     REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
     ABOUT("about", "/about", "AboutServlet", "/about.jsp"),
     WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.jsp"),
-    CART("cart", "/cart", "CartServlet", "/cart.html");
+    CART("cart", "/cart", "CartServlet", "/cart.jsp");
 
 
     private final String command;
