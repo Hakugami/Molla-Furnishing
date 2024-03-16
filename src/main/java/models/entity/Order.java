@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,11 +25,8 @@ public class Order {
     private User user;
 
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "order_products",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<OrderItem> orderItems;
 
     @Setter
     @Column(nullable = false)
@@ -38,5 +36,4 @@ public class Order {
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date orderDate;
-
 }
