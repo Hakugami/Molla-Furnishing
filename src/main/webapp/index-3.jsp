@@ -96,7 +96,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-4.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="product">Women's Clothing</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Women's Clothing</a></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -106,7 +106,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-5.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="product">Fashion Accessories</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 2">Fashion Accessories</a></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -116,7 +116,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-6.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="product">Men's Clothing</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Men's Clothing</a></div>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,6 @@
                 <!--====== End - Section Content ======-->
             </div>
             <!--====== End - Section 1 ======-->
-
 
                <!--====== Section 3 ======-->
                <div class="u-s-p-b-60">
@@ -151,7 +150,7 @@
                    <div class="section__content">
                        <div class="container">
                            <div class="row">
-               <c:forEach items="${products}" var="product">
+               <c:forEach items="${recentProducts}" var="product">
 
                                <div class="col-lg-3 col-md-4 col-sm-6 u-s-m-b-30">
                                    <div class="product-r u-h-100">
@@ -173,7 +172,7 @@
 
                                            <span class="product-r__category">
 
-                                               <a href="shop-side-version-2.html">${product.categoryName}</a></span>
+                                               <a href="product?category=${product.categoryName}">${product.categoryName}</a></span>
                                            <div class="product-r__n-p-wrap">
 
                                                <span class="product-r__name">
@@ -195,7 +194,73 @@
                </div>
                <!--====== End - Section 3 ======-->
 
+<c:if test="${not empty personalizedProducts}">
+               <!--====== Section 4 ======-->
+               <div class="u-s-p-b-60">
 
+                   <!--====== Section Intro ======-->
+                   <div class="section__intro u-s-m-b-46">
+                       <div class="container">
+                           <div class="row">
+                               <div class="col-lg-12">
+                                   <div class="section__text-wrap">
+                                       <h1 class="section__heading u-c-secondary u-s-m-b-12">JUST FOR YOU</h1>
+
+                                       <span class="section__span u-c-silver">DISCOVER WHAT IS PERFECT FOR YOU</span>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <!--====== End - Section Intro ======-->
+
+
+                   <!--====== Section Content ======-->
+                   <div class="section__content">
+                       <div class="container">
+                           <div class="slider-fouc">
+                               <div class="owl-carousel product-slider" data-item="4">
+   <c:forEach items="${personalizedProducts}" var="product">
+                                   <div class="u-s-m-b-30">
+                                       <div class="product-o product-o--hover-on">
+                                           <div class="product-o__wrap">
+
+                                               <a class="aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage?name=${product.name}">
+
+                                                   <img class="aspect__img" src="${product.images[0]}" alt=""></a>
+                                               <div class="product-o__action-wrap">
+                                                   <ul class="product-o__action-list">
+                                                       <li>
+
+                                                           <a data-modal="modal" data-modal-id="#add-to-cart" data-tooltip="tooltip" data-placement="top"
+                                                              title="Add to Cart"><i class="fas fa-plus-circle"></i></a></li>
+                                                       </ul>
+                                               </div>
+                                           </div>
+
+                                           <span class="product-o__category">
+
+                                               <a href="product?category=${product.categoryName}">${product.categoryName}</a></span>
+
+                                           <span class="product-o__name">
+
+                                               <a href="ProductPage?name=${product.name}">${product.name}</a></span>
+                                           <div class="product-o__rating gl-rating-style">
+
+                                               </div>
+
+                                           <span class="product-o__price">${product.price}</span>
+                                       </div>
+                                   </div>
+   </c:forEach>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <!--====== End - Section Content ======-->
+               </div>
+               <!--====== End - Section 4 ======-->
+</c:if>
 
 
 <jsp:include page="/footer.jsp" />
