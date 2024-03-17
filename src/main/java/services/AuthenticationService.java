@@ -1,15 +1,15 @@
 package services;
 
+import jakarta.servlet.http.HttpServletResponse;
 import mappers.UserMapper;
-import mappers.UserMapperImpl;
+import models.DTOs.UserDto;
 import models.entity.User;
 import models.enums.UserRole;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.NumericDate;
 import persistence.repositories.impl.UserRepository;
-import models.DTOs.UserDto;
-import utils.KeyGenerator;
+import utils.ValidationUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -30,25 +30,25 @@ public class AuthenticationService {
     }
 
     private boolean login(String email, String password) {
-       Optional <User> user = repository.findByEmail(email);
+        Optional<User> user = repository.findByEmail(email);
         if (user.isEmpty()) {
             System.out.println("User not found");
             return false;
         }
         User user1 = user.get();
         String hashedPassword = hashService.hashPasswordWithSalt(password, user1.getSalt());
-        if (user1.getPassword().equals(hashedPassword)){
+        if (user1.getPassword().equals(hashedPassword)) {
             System.out.println("Password matches!");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Password does not match!");
             return false;
         }
     }
 
     public boolean register(UserDto userDto) {
-        if (repository.findByEmail(userDto.getEmail()).isPresent()) {
+        if (repository.findByEmail(userDto.getEmail()).isPresent() || !ValidationUtil.isValidEmailFormat(userDto.getEmail())
+                || ValidationUtil.validatePassword(userDto.getPassword()) != null || ValidationUtil.validatePhoneNumber(userDto.getPhone()) != null) {
             return false;
         }
         User user = userMapper.userDtoToUser(userDto);
@@ -60,7 +60,7 @@ public class AuthenticationService {
 
     }
 
-    public String loginAndReturnToken(String email, String password , String audience) {
+    public String loginAndReturnToken(String email, String password, String audience, HttpServletResponse response) {
         if (login(email, password)) {
             Optional<User> user = repository.findByEmail(email);
             if (user.isPresent()) {
@@ -74,6 +74,8 @@ public class AuthenticationService {
                 } catch (UnknownHostException e) {
                     logger.severe("Error getting host address: " + e.getMessage());
                 }
+                user1.setPassword(null);
+
                 claims.setAudience(audience);
                 claims.setSubject(String.valueOf(user1.getId()));
                 claims.setIssuedAtToNow();
@@ -82,9 +84,15 @@ public class AuthenticationService {
                 claims.setClaim("email", user1.getEmail());
                 claims.setClaim("role", user1.getRole().toString());
                 claims.setClaim("date of birth", user1.getBirthday().toString());
+                claims.setClaim("interest", user1.getInterest());
+                claims.setClaim("phone", user1.getPhone());
+                claims.setClaim("gender", user1.getGender().toString());
+
+
                 jws.setPayload(claims.toJson());
+
                 try {
-                     result = jws.getCompactSerialization();
+                    result = jws.getCompactSerialization();
                 } catch (Exception e) {
                     logger.severe("Error creating JWT: " + e.getMessage());
                 }

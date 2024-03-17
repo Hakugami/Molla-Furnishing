@@ -1,6 +1,6 @@
 package models.DTOs;
 
-import lombok.Value;
+import lombok.*;
 import models.entity.Address;
 
 import java.io.Serializable;
@@ -8,7 +8,10 @@ import java.io.Serializable;
 /**
  * DTO for {@link Address}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class AddressDto implements Serializable {
     long id;
     String street;
@@ -16,5 +19,4 @@ public class AddressDto implements Serializable {
     String state;
     String country;
     String zipCode;
-    UserDto user;
 }

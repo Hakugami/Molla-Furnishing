@@ -26,6 +26,7 @@ public class StaticResourceHandler implements ResourceHandler {
             return true;
         }
 
+
         return false;
     }
 }

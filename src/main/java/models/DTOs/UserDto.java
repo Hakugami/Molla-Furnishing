@@ -27,4 +27,6 @@ public class UserDto implements Serializable {
     double creditLimit;
     List<AddressDto> addresses;
     UserRole role;
+    private String gender;
+    private String phone;
 }

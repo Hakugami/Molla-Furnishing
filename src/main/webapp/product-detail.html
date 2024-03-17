@@ -958,7 +958,7 @@
                                                         <a href="index-2.html">Home 2</a></li>
                                                     <li>
 
-                                                        <a href="index-3.html">Home 3</a></li>
+                                                        <a href="index-3.jsp">Home 3</a></li>
                                                 </ul>
                                                 <!--====== End - Dropdown ======-->
                                             </li>
@@ -1151,7 +1151,7 @@
                                                 <a href="contact.html">Contact</a></li>
                                             <li>
 
-                                                <a href="404.html">404</a></li>
+                                                <a href="404.jsp">404</a></li>
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
@@ -1408,21 +1408,21 @@
                             <div class="pd u-s-m-b-30">
                                 <div class="slider-fouc pd-wrap">
                                     <div id="pd-o-initiate">
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
+                                        <div id="img-1-wrap" class="main-image pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
+                                            <img id="img-1" class="sec-image u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
+                                        <div id="img-2-wrap" class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
 
-                                            <img class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">
+                                            <img id="img-2" class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
+<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">-->
 
-                                            <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">
+<!--                                            <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>-->
+<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">-->
 
-                                            <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt=""></div>
-                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">
+<!--                                            <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt=""></div>-->
+<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">-->
 
-                                            <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt=""></div>
+<!--                                            <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt=""></div>-->
                                     </div>
 
                                     <span class="pd-text">Click for larger zoom</span>
@@ -1432,10 +1432,10 @@
                                         <div id="pd-o-thumbnail">
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                                <img id="thumb-1" class="thumb-image u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                                <img id="thumb-2" class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
                                             <div>
 
                                                 <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
@@ -1591,7 +1591,7 @@
                                             <div class="u-s-m-b-15">
                                                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                                             </div>
-                                            <div class="u-s-m-b-30"><iframe src="https://www.youtube.com/embed/qKqSBm07KZk" allowfullscreen></iframe></div>
+                                            <div class="u-s-m-b-30"><iframe src="" allowfullscreen></iframe></div>
                                             <div class="u-s-m-b-30">
                                                 <ul>
                                                     <li><i class="fas fa-check u-s-m-r-8"></i>
@@ -1614,39 +1614,19 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>Main Material</td>
-                                                                <td>Cotton</td>
+                                                                <td id="product-material"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Color</td>
-                                                                <td>Green, Blue, Red</td>
+                                                                <td id="product-color">/td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Sleeves</td>
-                                                                <td>Long Sleeve</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Top Fit</td>
-                                                                <td>Regular</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Print</td>
-                                                                <td>Not Printed</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Neck</td>
-                                                                <td>Round Neck</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Pieces Count</td>
-                                                                <td>1 Piece</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Occasion</td>
-                                                                <td>Casual</td>
+                                                                <td>Dimension</td>
+                                                                <td id="product-dimensions"></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Shipping Weight (kg)</td>
-                                                                <td>0.5</td>
+                                                                <td id="product-weight">0.5</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -2644,6 +2624,9 @@
 
     <!--====== App ======-->
     <script src="js/app.js"></script>
+
+    <!--====== Custom js ======-->
+    <script src="js/product-details.js"></script>
 
     <!--====== Noscript ======-->
     <noscript>

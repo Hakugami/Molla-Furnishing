@@ -5,8 +5,6 @@
          version="6.0">
 
 
-
-
     <filter>
         <filter-name>EmptyUrlFilter</filter-name>
         <filter-class>controllers.filters.EmptyURLFilter</filter-class>
@@ -33,6 +31,15 @@
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
         <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
         <url-pattern>/checkout</url-pattern> <!-- placeholder-->
+    </filter-mapping>
+
+    <filter>
+        <filter-name>HeaderFilter</filter-name>
+        <filter-class>controllers.filters.HeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HeaderFilter</filter-name>
+        <url-pattern>/view/*</url-pattern>
     </filter-mapping>
 
     <servlet>
@@ -74,8 +81,67 @@
         <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
     </servlet>
 
-    <!--Admin Servlets-->
+    <servlet>
+        <servlet-name>ProductPageServlet</servlet-name>
+        <servlet-class>controllers.servlets.ProductPageServlet</servlet-class>
+    </servlet>
 
+    <servlet>
+        <servlet-name>ReviewServlet</servlet-name>
+        <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AboutServlet</servlet-name>
+        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>WishlistServlet</servlet-name>
+        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controllers.servlets.CartServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.EditProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>EmailValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.EmailValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PasswordValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.PasswordValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>PhoneNumberValidationServlet</servlet-name>
+        <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LoadProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controllers.servlets.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MyProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.MyProfileServlet</servlet-class>
+    </servlet>
+
+    <!--Admin Servlets-->
     <!--Admin Dashboard-->
     <servlet>
         <servlet-name>AdminPanelServlet</servlet-name>
@@ -84,12 +150,12 @@
 
 <!--    <error-page>-->
 <!--        <error-code>404</error-code>-->
-<!--        <location>/404.html</location>-->
+<!--        <location>/404.jsp</location>-->
 <!--    </error-page>-->
 
 <!--    <error-page>-->
 <!--        <exception-type>java.lang.Exception</exception-type>-->
-<!--        <location>/404.html</location>-->
+<!--        <location>/404.jsp</location>-->
 <!--    </error-page>-->
 
 

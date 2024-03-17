@@ -19,6 +19,18 @@ public class CommandFactory {
         commandMap.put(UrlMapping.HOME.getCommand(), HomeCommand::new);
         commandMap.put(UrlMapping.PROFILE.getCommand(), ProfileCommand::new);
         commandMap.put(UrlMapping.PRODUCTS.getCommand(), ProductsCommand::new);
+        commandMap.put(UrlMapping.PRODUCTPAGE.getCommand(), ProductPageCommand::new);
+        commandMap.put(UrlMapping.REVIEW.getCommand(), ReviewCommand::new);
+        commandMap.put(UrlMapping.EDITPROFILE.getCommand(), EditProfileCommand::new);
+        commandMap.put(UrlMapping.EMAILVALIDATION.getCommand(), EmailValidationCommand::new);
+        commandMap.put(UrlMapping.PASSWORDVALIDATION.getCommand(), PasswordValidationCommand::new);
+        commandMap.put(UrlMapping.PHONEVALIDATION.getCommand(), PhoneNumberValidationCommand::new);
+        commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
+        commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
+        commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
+        commandMap.put(UrlMapping.LOADPROFILE.getCommand(), LoadProfileCommand::new);
+        commandMap.put(UrlMapping.LOGOUT.getCommand(), LogoutCommand::new);
+        commandMap.put(UrlMapping.MYPROFILE.getCommand(), MyProfileCommand::new);
         //Admin Commands
         commandMap.put(UrlMapping.ADMIN.getCommand(),AdminCommand::new);
     }

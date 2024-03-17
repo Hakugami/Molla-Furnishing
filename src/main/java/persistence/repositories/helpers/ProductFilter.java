@@ -19,8 +19,14 @@ public class ProductFilter {
     private double minRating;
     private double maxRating;
 
+    //search fields disjunctions
+    private String searchCategory;
+    private String searchName;
+    private double searchMinPrice;
+    private double searchMaxPrice;
 
-    public Predicate toPredicate(CriteriaBuilder criteriaBuilder, Root<Product> root) {
+
+    public Predicate toPredicateConjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
         Predicate predicate = criteriaBuilder.conjunction();
 
         if (category != null) {
@@ -54,6 +60,29 @@ public class ProductFilter {
 
         return predicate;
     }
+
+    public  Predicate toPredicateDisjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
+        Predicate predicate = criteriaBuilder.disjunction();
+
+        if (searchCategory != null) {
+            predicate = criteriaBuilder.or(predicate, criteriaBuilder.like(root.get("category").get("name"), "%" + searchCategory + "%"));
+        }
+
+        if (searchName != null) {
+            predicate = criteriaBuilder.or(predicate, criteriaBuilder.like(root.get("name"), "%" + searchName + "%"));
+        }
+
+        if (searchMinPrice != 0) {
+            predicate = criteriaBuilder.or(predicate, criteriaBuilder.greaterThanOrEqualTo(root.get("price"), searchMinPrice));
+        }
+
+        if (searchMaxPrice != 0) {
+            predicate = criteriaBuilder.or(predicate, criteriaBuilder.lessThanOrEqualTo(root.get("price"), searchMaxPrice));
+        }
+
+        return predicate;
+    }
+
 
     public Order toOrder(CriteriaBuilder criteriaBuilder, Root<Product> root) {
         if (sortBy == null) {
