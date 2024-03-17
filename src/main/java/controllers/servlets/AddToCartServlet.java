@@ -9,7 +9,6 @@ import models.DTOs.ProductDto;
 import models.entity.Product;
 import models.entity.ShoppingCart;
 import services.ProductService;
-import services.ShoppingCartService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,9 +26,6 @@ public class AddToCartServlet extends HttpServlet {
             cart = new ShoppingCart();
             request.getSession().setAttribute("cart", cart);
         }
-
-        cart.addItem(product);
-
         response.sendRedirect("index.html");
     }
 }

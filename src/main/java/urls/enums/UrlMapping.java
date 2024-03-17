@@ -4,6 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum UrlMapping {
+    EDITPROFILE("editProfile","/editProfile","EditProfileServlet","/dash-edit-profile.html"),
+    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),
+    PASSWORDVALIDATION("passwordValidation","/passwordValidation","PasswordValidationServlet",""),
+    PHONEVALIDATION("phoneValidation","/phoneValidation","PhoneNumberValidationServlet",""),
     CONTEXT_DEFAULT("", "/view", "FrontController",""),
     LOGIN("login", "/login", "LoginServlet","/signin.jsp"),
     REGISTER("register", "/register", "RegisterServlet","/signup.jsp"),
