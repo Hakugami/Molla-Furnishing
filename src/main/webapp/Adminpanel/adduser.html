@@ -193,18 +193,26 @@
                     <!-- Interests -->
                     <div class="mb-3">
                       <label for="interests" class="form-label">Interests</label>
-                      <input type="text" class="form-control" id="interests" aria-describedby="interestsHelp">
-                      <div id="interestsHelp" class="form-text">Interests</div>
+                      <select class="form-select" id="interests" multiple>
+                        <option>Seating</option>
+                        <option>Tables</option>
+                        <option>Storage</option>
+                        <option>Beds</option>
+                        <option>Desks & Workstations</option>
+                        <option>Dining Room</option>
+                        <option>Children's Furniture</option>
+                      </select>
+                      <div id="interestsHelp" class="form-text">Select one or more</div>
                     </div>
 
                     <!-- Credit Limit -->
                     <div class="mb-3">
                       <label for="creditLimit" class="form-label">Credit Limit</label>
-                      <input type="number" class="form-control" id="creditLimit" aria-describedby="creditLimitHelp">
+                      <input type="number" class="form-control" id="creditLimit" aria-describedby="creditLimitHelp" required>
                       <div id="creditLimitHelp" class="form-text">CreditLimit</div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Create User</button>
                   </form>
                 </div>
               </div>
