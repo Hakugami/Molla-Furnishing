@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="utf-8"%>
+<%@page session="false" contentType="text/html" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 
@@ -95,7 +95,7 @@
 
                                             <li>
 
-                                                <a href="register"><i class="fas fa-lock-open u-s-m-r-6"></i>
+                                                <a href="logout"><i class="fas fa-lock-open u-s-m-r-6"></i>
 
                                                     <span>Signout</span></a></li>
                                         </ul>

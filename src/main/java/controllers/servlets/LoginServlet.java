@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         Gson gson = new Gson();
-        String jwt = authService.loginAndReturnToken(email, password, req.getRemoteAddr());
+        String jwt = authService.loginAndReturnToken(email, password, req.getRemoteAddr(), resp);
         if (jwt != null) {
             try {
                 System.out.println("LoginServlet: creating JWT");
