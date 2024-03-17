@@ -19,7 +19,10 @@ public enum UrlMapping {
     PHONEVALIDATION("phoneValidation","/phoneValidation","PhoneNumberValidationServlet",""),
     ABOUT("about", "/about", "AboutServlet", "/about.jsp"),
     WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.jsp"),
-    CART("cart", "/cart", "CartServlet", "/cart.jsp");
+    CART("cart", "/cart", "CartServlet", "/cart.jsp"),
+    LOGOUT("logout", "/logout", "LogoutServlet","" ),
+    LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),;
 
 
     private final String command;

@@ -4,6 +4,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
+import models.entity.Address;
 import models.entity.ShoppingCart;
 import models.entity.User;
 import persistence.manager.DatabaseSingleton;
@@ -60,6 +61,27 @@ public class UserRepository extends GenericRepository<User, Long> {
                 return Optional.empty();
             }
             return Optional.of(resultList.getFirst());
+        });
+    }
+
+    public boolean addAddress(Long id, Address address) {
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            User user = entityManager.find(User.class, id);
+            user.getAddresses().add(address);
+            address.setUser(user);
+            entityManager.persist(address);
+            return true;
+        });
+    }
+
+    public boolean removeAddress(Long id, Address address) {
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            User user = entityManager.find(User.class, id);
+            user.getAddresses().stream().filter(a -> a.getId() == address.getId()).findFirst().ifPresent(a -> {
+                user.getAddresses().remove(a);
+                entityManager.remove(a);
+            });
+            return true;
         });
     }
 }

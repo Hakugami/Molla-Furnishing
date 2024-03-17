@@ -52,7 +52,7 @@ public class UserService {
             updateField(req, "interest", user::setInterest);
             updateField(req, "job", user::setJob);
             updateDateField(req, "DOB", user::setBirthday);
-            addAddress(req, user);
+            updateAddress(req, user);
 
             return repository.update(user);
         }
@@ -81,7 +81,7 @@ public class UserService {
         }
     }
 
-    private void addAddress(HttpServletRequest req, User user) {
+    private void updateAddress(HttpServletRequest req, User user) {
         String street = req.getParameter("street");
         String city = req.getParameter("city");
         String state = req.getParameter("state");
@@ -105,5 +105,12 @@ public class UserService {
         }
     }
 
+    public boolean addAddress(Long id , Address address){
+        return repository.addAddress(id, address);
+    }
 
+
+    public void removeAddress(Long l, Address address) {
+        repository.removeAddress(l, address);
+    }
 }
