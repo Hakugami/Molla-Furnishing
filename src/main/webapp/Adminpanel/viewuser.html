@@ -142,23 +142,26 @@
 
                         <form class="row">
 
-                            <fieldset disabled class="col-md-4">
-                                <h2 class=" fw-semibold mb-4">View User</h2>
+                            <fieldset disabled class="col-md-3">
+                                <h2 class=" fw-semibold mb-4">User Details</h2>
                                 <div class="card">
                                     <img src="assets/images/profile/user-1.jpg" class="rounded-circle"  alt="...">
 
                                 </div>
                             </fieldset>
 
-                            <fieldset disabled class="col-md-4">
-                                <h2 class=" fw-semibold mt-1">User Info</h2>
-                                <label for="nameInput" class="form-label mt-3 card-title">UserName</label>
+                            <fieldset disabled class="col-md-3">
+                                <h5 class="card-title mt-5">User ID</h5>
+                                <p class="card-text mt-1">1</p>
+
+                                <label for="nameInput" class="form-label card-title">UserName</label>
                                 <input type="text " class="form-control" id="nameInput" aria-describedby="nameHelp"
-                                       value="Hamada">
-                                <h5 class="card-title mt-3">Interests</h5>
-                                <span class="badge bg-dark rounded-3 fw-semibold m-1">Chairs</span>
-                                <span class="badge bg-success rounded-3 fw-semibold m-1">Tables</span>
-                                <span class="badge bg-info rounded-3 fw-semibold m-1">Beds</span>
+                                value="Hamada">
+
+                                <label for="creditInput" class="form-label card-title">Credit Limit</label>
+                                <input type="text " class="form-control" id="creditInput" aria-describedby="creditHelp"
+                                value="1000">
+
 
                                 <h5 class="card-title mt-3">Birthday</h5>
                                 <input class="form-control" type="date" id="date" name="date">
@@ -168,16 +171,64 @@
                                        value="HamadaJob">
 
                             </fieldset>
-                            <fieldset disabled class="col-md-4">
+                            <fieldset disabled class="col-md-6">
                                 <div class="card mt-5">
                                     <div class="card-body">
-                                        <label for="creditInput" class="form-label card-title">Credit Limit</label>
-                                        <input type="text " class="form-control" id="creditInput" aria-describedby="creditHelp"
-                                               value="1000">
-                                        <h5 class="card-title mt-3">User ID</h5>
-                                        <p class="card-text mt-1">1</p>
+                                        <h5 class="card-title mt-3">Interests</h5>
+                                        <span class="badge bg-dark rounded-3 fw-semibold m-1">Chairs</span>
+                                        <span class="badge bg-success rounded-3 fw-semibold m-1">Tables</span>
+                                        <span class="badge bg-info rounded-3 fw-semibold m-1">Beds</span>
+
+                                        <h5 class="card-title fw-semibold mt-4">Addresses</h5>
+                                            <table class="table text-nowrap mb-0 align-middle">
+                                                <thead class="text-dark fs-4">
+                                                <tr>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">#</h6>
+                                                    </th>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">Street</h6>
+                                                    </th>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">City</h6>
+                                                    </th>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">State</h6>
+                                                    </th>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">Country</h6>
+                                                    </th>
+                                                    <th class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-0">Zipcode</h6>
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">1</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">HamadaStreet</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">Rehab</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">Rehab</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">Egypt</h6>
+                                                    </td>
+                                                    <td class="border-bottom-0">
+                                                        <h6 class="fw-semibold mb-1">12345</h6>
+                                                    </td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
-                                </div>
 
                             </fieldset>
                             <fieldset disabled class="col-md-4">
@@ -187,59 +238,48 @@
                         </form>
                         <button type="submit" class="btn btn-dark m-4">Edit User</button>
                         <hr>
-                        <h2 class=" fw-semibold mb-4">User Orders</h2>
+                        <h2 class=" fw-semibold mb-4">Order History</h2>
                         <hr>
                         <div class="card-body p-4">
                             <ul class="timeline-widget mb-0 position-relative mb-n5">
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span class="timeline-badge border-2 border border-primary flex-shrink-0 my-8"></span>
-                                        <span class="timeline-badge-border d-block flex-shrink-0"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment received from John Doe of $385.90</div>
-                                </li>
                                 <li class="timeline-item d-flex position-relative overflow-hidden">
                                     <div class="timeline-time text-dark flex-shrink-0 text-end">10:00 am</div>
                                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout1</a>
                                     </div>
                                 </li>
+
                                 <li class="timeline-item d-flex position-relative overflow-hidden">
                                     <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
                                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
+                                        <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment was made of $64.95 to Michael</div>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout2</a>
+                                    </div>
                                 </li>
+
                                 <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
+                                    <div class="timeline-time text-dark flex-shrink-0 text-end">1:00 pm</div>
                                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span class="timeline-badge border-2 border border-warning flex-shrink-0 my-8"></span>
+                                        <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New sale recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">#ML-3467</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout3</a>
                                     </div>
                                 </li>
+
                                 <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">09:30 am</div>
+                                    <div class="timeline-time text-dark flex-shrink-0 text-end">2:00 pm</div>
                                     <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span class="timeline-badge border-2 border border-danger flex-shrink-0 my-8"></span>
+                                        <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New arrival recorded
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout4</a>
                                     </div>
-                                </li>
-                                <li class="timeline-item d-flex position-relative overflow-hidden">
-                                    <div class="timeline-time text-dark flex-shrink-0 text-end">12:00 am</div>
-                                    <div class="timeline-badge-wrap d-flex flex-column align-items-center">
-                                        <span class="timeline-badge border-2 border border-success flex-shrink-0 my-8"></span>
-                                    </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1">Payment Done</div>
                                 </li>
                             </ul>
                         </div>
