@@ -9,6 +9,4 @@ public class CartRepository extends GenericRepository<CartItem ,Long>{
     {
         super(CartItem.class);
     }
-
-
 }
