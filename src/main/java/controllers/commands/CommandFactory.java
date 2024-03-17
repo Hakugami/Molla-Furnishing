@@ -29,6 +29,9 @@ public class CommandFactory {
         commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
         commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
         commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
+        commandMap.put(UrlMapping.LOADPROFILE.getCommand(), LoadProfileCommand::new);
+        commandMap.put(UrlMapping.LOGOUT.getCommand(), LogoutCommand::new);
+        commandMap.put(UrlMapping.MYPROFILE.getCommand(), MyProfileCommand::new);
     }
 
     public static CommandFactory getInstance() {

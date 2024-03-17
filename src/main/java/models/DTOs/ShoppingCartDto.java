@@ -1,10 +1,12 @@
 package models.DTOs;
 
 import lombok.Value;
+import models.DTOs.CartItemDto;
+import models.DTOs.UserDto;
 import models.entity.ShoppingCart;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +16,6 @@ import java.util.List;
 public class ShoppingCartDto implements Serializable {
     Long id;
     UserDto user;
-    List<ProductDto> products;
+    List<CartItemDto> cartItems;
     Date lastUpdate;
 }

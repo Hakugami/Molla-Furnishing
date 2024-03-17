@@ -18,4 +18,5 @@ public class CategoryDto implements Serializable {
     long id;
     String name;
     List<ProductDto> products;
+    private List<SubCategoryDto> subCategories;
 }
