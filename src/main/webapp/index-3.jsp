@@ -95,7 +95,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-4.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Women's Clothing</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product">Women's Clothing</a></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -105,7 +105,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-5.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Fashion Accessories</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product">Fashion Accessories</a></div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -115,7 +115,7 @@
                                         <img class="aspect__img" src="images/promo/promo-img-6.jpg" alt=""></div>
                                     <div class="promotion-o__content">
 
-                                        <a class="promotion-o__link btn--e-white-brand" href="shop-side-version-2.html">Men's Clothing</a></div>
+                                        <a class="promotion-o__link btn--e-white-brand" href="product">Men's Clothing</a></div>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,7 @@
                                    <div class="product-r u-h-100">
                                        <div class="product-r__container">
 
-                                           <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                                           <a class="aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage?name=${product.name}">
 
                                                <img class="aspect__img" src="${product.images[0]}" alt=""></a>
                                            <div class="product-r__action-wrap">
@@ -177,7 +177,7 @@
 
                                                <span class="product-r__name">
 
-                                                   <a href="product-detail.html">${product.name}</a></span>
+                                                   <a href="ProductPage?name=${product.name}">${product.name}</a></span>
 
                                                <span class="product-r__price">${product.price}</span></div>
 
