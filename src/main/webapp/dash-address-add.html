@@ -1487,23 +1487,6 @@
                                                 <div class="gl-inline">
                                                     <div class="u-s-m-b-30">
 
-                                                        <label class="gl-label" for="address-fname">FIRST NAME *</label>
-
-                                                        <input class="input-text input-text--primary-style" type="text" id="address-fname" placeholder="First Name"></div>
-                                                    <div class="u-s-m-b-30">
-
-                                                        <label class="gl-label" for="address-lname">LAST NAME *</label>
-
-                                                        <input class="input-text input-text--primary-style" type="text" id="address-lname" placeholder="Last Name"></div>
-                                                </div>
-                                                <div class="gl-inline">
-                                                    <div class="u-s-m-b-30">
-
-                                                        <label class="gl-label" for="address-phone">PHONE *</label>
-
-                                                        <input class="input-text input-text--primary-style" type="text" id="address-phone"></div>
-                                                    <div class="u-s-m-b-30">
-
                                                         <label class="gl-label" for="address-street">STREET ADDRESS *</label>
 
                                                         <input class="input-text input-text--primary-style" type="text" id="address-street" placeholder="House Name and Street"></div>
@@ -1513,11 +1496,10 @@
 
                                                         <!--====== Select Box ======-->
 
-                                                        <label class="gl-label" for="address-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="address-country">
+                                                        <label class="gl-label" for="country">COUNTRY *</label>
+                                                        <select class="select-box select-box--primary-style" onchange="print_state('state',this.selectedIndex);" id="country" name ="country">
                                                             <option selected value="">Choose Country</option>
-                                                            <option value="uae">United Arab Emirate (UAE)</option>
-                                                            <option value="uk">United Kingdom (UK)</option>
-                                                            <option value="us">United States (US)</option>
+
                                                         </select>
                                                         <!--====== End - Select Box ======-->
                                                     </div>
@@ -1525,11 +1507,10 @@
 
                                                         <!--====== Select Box ======-->
 
-                                                        <label class="gl-label" for="address-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="address-state">
+                                                        <label class="gl-label" for="state">STATE/PROVINCE *</label>
+                                                        <select class="select-box select-box--primary-style" name ="state" id ="state">
                                                             <option selected value="">Choose State/Province</option>
-                                                            <option value="al">Alabama</option>
-                                                            <option value="al">Alaska</option>
-                                                            <option value="ny">New York</option>
+
                                                         </select>
                                                         <!--====== End - Select Box ======-->
                                                     </div>
@@ -1744,6 +1725,13 @@
 
     <!--====== App ======-->
     <script src="js/app.js"></script>
+    <script src="js/variousCountryListFormats.js"></script>
+    <script type= "text/javascript" src = "js/countries.js"></script>
+    <script src="js/add-address.js"></script>
+
+    <script language="javascript">print_country("country");</script>
+
+
 
     <!--====== Noscript ======-->
     <noscript>

@@ -6,7 +6,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.DTOs.AddressDto;
 import models.DTOs.UserDto;
+import models.entity.Address;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
@@ -17,6 +19,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class LoadProfileServlet extends HttpServlet {
@@ -26,6 +29,7 @@ public class LoadProfileServlet extends HttpServlet {
     public static final String CLAIM_KEY_PHONE = "phone";
     public static final String CLAIM_KEY_BIRTHDATE = "date of birth";
     public static final String CLAIM_KEY_GENDER = "gender";
+    public static final String CLAIM_KEY_ADDRESSES = "addresses";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,9 +45,11 @@ public class LoadProfileServlet extends HttpServlet {
             String phone = claims.getClaimValue(CLAIM_KEY_PHONE, String.class);
             String birthDate = claims.getClaimValue(CLAIM_KEY_BIRTHDATE, String.class);
             String gender = claims.getClaimValue(CLAIM_KEY_GENDER, String.class);
+            List<AddressDto> addresses = claims.getClaimValue(CLAIM_KEY_ADDRESSES, List.class);
             userDto.setEmail(email);
             userDto.setName(name);
             userDto.setPhone(phone);
+            userDto.setAddresses(addresses);
             try {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date date = sdf.parse(birthDate);

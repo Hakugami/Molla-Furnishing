@@ -18,8 +18,11 @@ import utils.CookiesUtil;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class HomeServlet extends HttpServlet {
+
+    Logger logger = Logger.getLogger(HomeServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("HomeServlet: processing request");
@@ -46,8 +49,11 @@ public class HomeServlet extends HttpServlet {
             }
             String interests = null;
             try {
-                interests = claims.getClaimValue("interest", String.class);
+                if (claims != null) {
+                    interests = claims.getClaimValue("interest", String.class);
+                }
             } catch (MalformedClaimException e) {
+                logger.severe("Error getting interests from token: " + e.getMessage());
             }
             filter.setCategory(interests);
         }

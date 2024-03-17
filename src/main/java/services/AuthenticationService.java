@@ -75,7 +75,8 @@ public class AuthenticationService {
                     logger.severe("Error getting host address: " + e.getMessage());
                 }
                 user1.setPassword(null);
-
+                user1.setSalt(null);
+                UserDto userDto = userMapper.userToUserDto(user1);
                 claims.setAudience(audience);
                 claims.setSubject(String.valueOf(user1.getId()));
                 claims.setIssuedAtToNow();
@@ -86,7 +87,8 @@ public class AuthenticationService {
                 claims.setClaim("date of birth", user1.getBirthday().toString());
                 claims.setClaim("interest", user1.getInterest());
                 claims.setClaim("phone", user1.getPhone());
-                claims.setClaim("gender", user1.getGender().toString());
+                claims.setClaim("gender", user1.getGender());
+                claims.setClaim("addresses", userDto.getAddresses());
 
 
                 jws.setPayload(claims.toJson());
