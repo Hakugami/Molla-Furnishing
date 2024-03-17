@@ -20,6 +20,13 @@ $(document).ready(function () {
         date: date
     };
 
+    let params = new URLSearchParams(window.location.search);
+    let category1 = params.get('category');
+
+    if(category1 != null){
+        filter.category = category1;
+    }
+
 
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
@@ -140,7 +147,7 @@ $(document).ready(function () {
             '</div>' +
             '<div class="product-m__content">' +
             '<div class="product-m__category">' +
-            '<a href="shop-side-version-2.html">' + product.category + '</a></div>' +
+            '<a href="product?category=' + product.categoryName +'">' + product.categoryName + '</a></div>' +
             '<div class="product-m__name">' +
             '<a href="ProductPage/' + product.name + '">' + product.name + '</a></div>' +
             '<div class="product-m__rating gl-rating-style">' + product.rating +
@@ -148,7 +155,7 @@ $(document).ready(function () {
             '<div class="product-m__price">$' + product.price + '</div>' +
             '<div class="product-m__hover">' +
             '<div class="product-m__preview-description">' +
-            '<span>'+product.description+'</span></div>' +
+            '<span>' + product.description + '</span></div>' +
             '<div class="product-m__wishlist">' +
             '<a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>' +
             '</div>' +

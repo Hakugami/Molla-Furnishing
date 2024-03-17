@@ -1,3 +1,4 @@
+<%@page session="false" contentType="text/html" pageEncoding="utf-8"%>
 <!--====== Main Footer ======-->
         <footer>
             <div class="outer-footer">

@@ -72,7 +72,7 @@ $(document).ready(function () {
 
             $('.pd-detail__name').text(product.name);
             $('.pd-detail__price').text('$' + product.price);
-            $('.product-m__category a').text(product.category);
+            $('.product-m__category a').text(product.categoryName);
             $('.pd-tab__desc p').text(product.description);
             $('.pd-detail__stock').text(product.quantity + ' in stock');
             $('.pd-detail__discount').text('(69% OFF)');

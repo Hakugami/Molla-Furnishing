@@ -23,8 +23,6 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
-
     <filter>
         <filter-name>JWTFilter</filter-name>
         <filter-class>controllers.filters.JWTFilter</filter-class>
@@ -133,17 +131,25 @@
         <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controllers.servlets.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>MyProfileServlet</servlet-name>
+        <servlet-class>controllers.servlets.MyProfileServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
-        <location>/404.html</location>
+        <location>/404.jsp</location>
     </error-page>
 
     <error-page>
         <exception-type>java.lang.Exception</exception-type>
-        <location>/404.html</location>
+        <location>/404.jsp</location>
     </error-page>
-
-
 
 
 </web-app>

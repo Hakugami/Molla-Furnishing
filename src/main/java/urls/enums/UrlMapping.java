@@ -17,9 +17,17 @@ public enum UrlMapping {
     PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.jsp"),
     PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
     REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
+    EDITPROFILE("editProfile","/editProfile","EditProfileServlet","/dash-edit-profile.html"),
+    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),
+    PASSWORDVALIDATION("passwordValidation","/passwordValidation","PasswordValidationServlet",""),
+    PHONEVALIDATION("phoneValidation","/phoneValidation","PhoneNumberValidationServlet",""),
     ABOUT("about", "/about", "AboutServlet", "/about.jsp"),
     WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.jsp"),
-    CART("cart", "/cart", "CartServlet", "/cart.jsp");
+    CART("cart", "/cart", "CartServlet", "/cart.jsp"),
+    LOGOUT("logout", "/logout", "LogoutServlet","" ),
+    LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
+
 
 
     private final String command;
