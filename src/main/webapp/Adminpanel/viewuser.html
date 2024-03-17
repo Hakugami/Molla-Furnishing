@@ -203,40 +203,43 @@
                                                     </th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="addressTableBody">
                                                 <tr>
                                                     <td class="border-bottom-0">
                                                         <h6 class="fw-semibold mb-1">1</h6>
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">HamadaStreet</h6>
+                                                        <input type="text" class="form-control form-control-sm" value="HamadaStreet" name="street[]">
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">Rehab</h6>
+                                                        <input type="text" class="form-control form-control-sm" value="HamadaCity" name="city[]">
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">Rehab</h6>
+                                                        <input type="text" class="form-control form-control-sm" value="HamdaState" name="state[]">
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">Egypt</h6>
+                                                        <input type="text" class="form-control form-control-sm" value="Egypt" name="country[]">
                                                     </td>
                                                     <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">12345</h6>
+                                                        <input type="text" class="form-control form-control-sm" value="1234" name="zipcode[]">
                                                     </td>
-
                                                 </tr>
+
                                                 </tbody>
+
                                             </table>
+                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add Address</button>
+                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove Address</button>
                                         </div>
                                     </div>
 
                             </fieldset>
                             <fieldset disabled class="col-md-4">
                             <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>
-                                <input type="submit" class="btn btn-warning" value="Reset"/>
+                                <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>
                             </fieldset>
                         </form>
-                        <button type="submit" class="btn btn-dark m-4">Edit User</button>
+                        <button type="button" id="editUserButton" class="btn btn-dark m-4">Edit User</button>
                         <hr>
                         <h2 class=" fw-semibold mb-4">Order History</h2>
                         <hr>
@@ -291,6 +294,7 @@
         </div>
     </div>
 </div>
+<script src="assets/js/viewuser.js"></script>
 <script src="assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/sidebarmenu.js"></script>

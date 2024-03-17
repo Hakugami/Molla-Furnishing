@@ -18,6 +18,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 
+// Function to remove an address row
+function removeAddressRow() {
+    // Get the parent address row
+    let addressRow = this.closest('.address-row');
+
+    // Remove the address row
+    addressRow.remove();
+}
+
+// Add event listener for all existing "Remove" buttons
+document.querySelectorAll('.remove-address-btn').forEach(button => {
+    button.addEventListener('click', removeAddressRow);
+});
+
+// Event listener for dynamically added "Remove" buttons
+document.getElementById('addAddress').addEventListener('click', function() {
+    // Your code to add a new address field here
+
+    // After adding, attach event listener to new "Remove" button
+    let removeButtons = document.querySelectorAll('.remove-address-btn');
+    removeButtons[removeButtons.length - 1].addEventListener('click', removeAddressRow);
+});
+
+
 //Image Preview
 function previewImage(event) {
     var input = event.target;
