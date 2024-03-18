@@ -22,17 +22,26 @@ import java.util.logging.Logger;
 
 public class HomeServlet extends HttpServlet {
 
+    private JwtClaims claims;
+
+
     Logger logger = Logger.getLogger(HomeServlet.class.getName());
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("HomeServlet: processing request");
-        List<ProductDto> products = getProductsDTO(req);
-        req.setAttribute("products", products);
-        System.out.println(products);
+
+        List<ProductDto> recentProducts = getRecentProductsDTO(req);
+        req.setAttribute("recentProducts", recentProducts);
+
+        if (isUserLoggedIn(req)) {
+            List<ProductDto> personalizedProducts = getPersonalizedProductsDTO();
+            req.setAttribute("personalizedProducts", personalizedProducts);
+        }
+
         req.getRequestDispatcher(UrlMapping.HOME.getPageName()).forward(req, resp);
     }
 
-    private List<ProductDto> getProductsDTO(HttpServletRequest req) {
+    private List<ProductDto> getRecentProductsDTO(HttpServletRequest req) {
 
         // Create a ProductFilter object
         ProductFilter filter = new ProductFilter();
@@ -49,11 +58,8 @@ public class HomeServlet extends HttpServlet {
             }
             String interests = null;
             try {
-                if (claims != null) {
-                    interests = claims.getClaimValue("interest", String.class);
-                }
+                interests = claims.getClaimValue("interest", String.class);
             } catch (MalformedClaimException e) {
-                logger.severe("Error getting interests from token: " + e.getMessage());
             }
             filter.setCategory(interests);
         }
@@ -65,4 +71,41 @@ public class HomeServlet extends HttpServlet {
 
         return productService.getProductByFilter(pageInt, limitInt, filter);
     }
+
+    public boolean isUserLoggedIn(HttpServletRequest request) {
+        Cookie authorizationCookie = CookiesUtil.getCookie(request.getCookies(), "Authorization");
+        if (authorizationCookie != null) {
+            try {
+                claims = JWTService.getInstance().validateToken(authorizationCookie.getValue(), request.getRemoteAddr());
+                return true;
+            } catch (InvalidJwtException | UnknownHostException e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    private List<ProductDto> getPersonalizedProductsDTO() {
+        try {
+
+            // Get user's interests from JWT claims
+            var interests = claims.getClaimValue("interest", String.class);
+
+            // Set up product filter based on user's interests
+            ProductFilter filter = new ProductFilter();
+            filter.setCategory(interests);
+
+            int page = 1;
+            int limit = 8;
+
+            ProductService productService = ProductService.getInstance();
+            return productService.getProductByFilter(page, limit, filter);
+
+        } catch (MalformedClaimException e) {
+            return null;
+        }
+    }
+
+
 }
