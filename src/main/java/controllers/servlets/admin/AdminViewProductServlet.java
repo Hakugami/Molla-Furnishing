@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,10 +8,9 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class AdminPanelServlet extends HttpServlet {
-
+public class AdminViewProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(UrlMapping.ADMIN.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMINVIEWPRODUCT.getPageName()).forward(req, resp);
     }
 }

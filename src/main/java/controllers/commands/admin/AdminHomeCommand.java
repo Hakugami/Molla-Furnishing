@@ -1,5 +1,6 @@
-package controllers.commands;
+package controllers.commands.admin;
 
+import controllers.commands.FrontCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -7,7 +8,7 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class AdminCommand extends FrontCommand {
+public class AdminHomeCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
         System.out.println("Admin Dashboard Command: processing request");

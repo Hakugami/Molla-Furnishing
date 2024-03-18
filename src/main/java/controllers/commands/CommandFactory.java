@@ -1,5 +1,6 @@
 package controllers.commands;
 
+import controllers.commands.admin.*;
 import urls.enums.UrlMapping;
 
 import java.util.HashMap;
@@ -32,7 +33,14 @@ public class CommandFactory {
         commandMap.put(UrlMapping.LOGOUT.getCommand(), LogoutCommand::new);
         commandMap.put(UrlMapping.MYPROFILE.getCommand(), MyProfileCommand::new);
         //Admin Commands
-        commandMap.put(UrlMapping.ADMIN.getCommand(),AdminCommand::new);
+        commandMap.put(UrlMapping.ADMINHOME.getCommand(), AdminHomeCommand::new);
+        commandMap.put(UrlMapping.ADMINLOGIN.getCommand(), AdminLoginCommand::new);
+        commandMap.put(UrlMapping.ADMINVIEWUSER.getCommand(), AdminViewUserCommand::new);
+        commandMap.put(UrlMapping.ADMINADDUSER.getCommand(), AdminAddUserCommand::new);
+        commandMap.put(UrlMapping.ADMINALLUSERS.getCommand(), AdminAllUsersCommand::new);
+        commandMap.put(UrlMapping.ADMINVIEWPRODUCT.getCommand(), AdminViewProductCommand::new);
+        commandMap.put(UrlMapping.ADMINALLPRODUCTS.getCommand(), AdminAllProductsCommand::new);
+        commandMap.put(UrlMapping.ADMINADDPRODUCT.getCommand(), AdminAddProductCommand::new);
     }
 
     public static CommandFactory getInstance() {

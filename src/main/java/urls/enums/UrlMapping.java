@@ -22,10 +22,16 @@ public enum UrlMapping {
     CART("cart", "/cart", "CartServlet", "/cart.jsp"),
     LOGOUT("logout", "/logout", "LogoutServlet","" ),
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
-    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),;
-
-    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
-    ADMIN("admin","/admin","AdminPanelServlet","/Adminpanel/index.jsp");
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
+    //Admin pages
+    ADMINHOME("adminhome","/adminhome","AdminHomeServlet","/Adminpanel/index.html"),
+    ADMINLOGIN("adminlogin","/adminlogin","AdminLoginServlet","/Adminpanel/adminlogin.html"),
+    ADMINALLPRODUCTS("adminallproducts","/adminallproducts","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
+    ADMINVIEWPRODUCT("adminviewproduct","/adminviewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
+    ADMINALLUSERS("adminallusers","/adminallusers","AdminAllUsersServlet","/Adminpanel/allusers.html"),
+    ADMINVIEWUSER("adminviewuser","/adminviewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
+    ADMINADDUSER("adminadduser","/adminadduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
+    ADMINADDPRODUCT("adminaddproduct","/adminaddproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
 
     private final String command;
     private final String url;

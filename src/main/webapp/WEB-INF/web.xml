@@ -142,10 +142,52 @@
     </servlet>
 
     <!--Admin Servlets-->
-    <!--Admin Dashboard-->
+    <!--Admin Login Page-->
     <servlet>
-        <servlet-name>AdminPanelServlet</servlet-name>
-        <servlet-class>controllers.servlets.AdminPanelServlet</servlet-class>
+        <servlet-name>AdminLoginServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminLoginServlet</servlet-class>
+    </servlet>
+
+    <!--Admin Dashboard Page-->
+    <servlet>
+        <servlet-name>AdminHomeServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminHomeServlet</servlet-class>
+    </servlet>
+
+    <!--Admin All Products Page-->
+    <servlet>
+        <servlet-name>AdminAllProductsServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAllProductsServlet</servlet-class>
+    </servlet>
+
+    <!--Admin View/Edit Product Page-->
+    <servlet>
+        <servlet-name>AdminViewProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminViewProductServlet</servlet-class>
+    </servlet>
+
+    <!--Admin Add Product Page-->
+    <servlet>
+        <servlet-name>AdminAddProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
+    </servlet>
+
+    <!--Admin All Users Page-->
+    <servlet>
+        <servlet-name>AdminAllUsersServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAllUsersServlet</servlet-class>
+    </servlet>
+
+    <!--Admin View User Page-->
+    <servlet>
+        <servlet-name>AdminViewUserServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminViewUserServlet</servlet-class>
+    </servlet>
+
+    <!--Admin Add User Page-->
+    <servlet>
+        <servlet-name>AdminAddUserServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAddUserServlet</servlet-class>
     </servlet>
 
 <!--    <error-page>-->
