@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -28,9 +29,38 @@ public class ShoppingCart {
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
+//    @Setter
+//    @Column(nullable = false)
+//    private Double totalAmount;
+
     @Setter
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+
+
+    public void addCartItem(Product product, int quantity) {
+        {
+            if (cartItems == null) {
+                cartItems = new ArrayList<>();
+            }
+            CartItem cartItem = new CartItem(product, quantity, this);
+            cartItems.add(cartItem);
+        }
+
+    }
+
+
+    public void removeProduct(Product product) {
+        for(Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext();) {
+            CartItem cartItem = iterator.next();
+            if(cartItem.getProduct().equals(product) && cartItem.getShoppingCart().equals(this)) {
+                iterator.remove();
+                cartItem.setShoppingCart(null);
+                cartItem.setProduct(null);
+            }
+        }
+    }
+
 
 }
