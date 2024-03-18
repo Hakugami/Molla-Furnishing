@@ -8,12 +8,14 @@ import models.enums.UserRole;
 import org.jose4j.jws.JsonWebSignature;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.NumericDate;
+import org.jose4j.jwt.consumer.InvalidJwtException;
 import persistence.repositories.impl.UserRepository;
 import utils.ValidationUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -104,5 +106,46 @@ public class AuthenticationService {
         return null;
     }
 
+
+    public String updateTokenClaims(String oldToken, Map<String, String> newClaims, String audience, HttpServletResponse response) {
+        logger.info("updateTokenClaims called with oldToken: " + oldToken + ", newClaims: " + newClaims + ", audience: " + audience);
+
+        // Decode the old token to get the old claims
+        JwtClaims oldClaims = null;
+        try {
+            oldClaims = JWTService.getInstance().validateToken(oldToken, audience);
+            logger.info("Old claims: " + oldClaims);
+        } catch (InvalidJwtException | UnknownHostException e) {
+            logger.severe("Error validating old token: " + e.getMessage());
+            return null;
+        }
+
+        // Create a new JwtClaims object and copy all the old claims to the new claims
+        JwtClaims newClaimsObj = new JwtClaims();
+        for (String claimName : oldClaims.getClaimNames()) {
+            newClaimsObj.setClaim(claimName, oldClaims.getClaimValue(claimName));
+        }
+
+        // Update the new claims with the new values from the map
+        for (Map.Entry<String, String> entry : newClaims.entrySet()) {
+            newClaimsObj.setStringClaim(entry.getKey(), entry.getValue());
+        }
+
+        logger.info("New claims after update: " + newClaimsObj);
+
+        // Generate a new token with the updated claims
+        JsonWebSignature jws = JWTService.getInstance().getNewSignedToken();
+        jws.setPayload(newClaimsObj.toJson());
+        String newToken = null;
+        try {
+            newToken = jws.getCompactSerialization();
+            logger.info("New token: " + newToken);
+        } catch (Exception e) {
+            logger.severe("Error creating new token: " + e.getMessage());
+        }
+
+        // Return the new token
+        return newToken;
+    }
 
 }

@@ -1,31 +1,31 @@
-$(document).ready(function () {
+$(document).ready(function() {
+    $('.dash-address-manipulation').on('submit', function(event) {
+        event.preventDefault();
 
-    // Get all countries
-    let countries= co
-
-    // Populate the country dropdown
-    $.each(countries, function (index, country) {
-        $('#address-country').append($('<option>', {
-            value: country.isoCode,
-            text: country.name
+        // Set operation value
+        const operation = 'add';
+        $(this).append($('<input>').attr({
+            type: 'hidden',
+            name: 'operation',
+            value: operation
         }));
-    });
 
-    // Update the state dropdown when a country is selected
-    $('#address-country').change(function () {
-        // Clear the state dropdown
-        $('#address-state').empty();
+        const formData = $(this).serialize();
 
-        // Get states of the selected country
-        let states = window.csc.getStatesOfCountry(this.value);
-
-        // Populate the state dropdown
-        $.each(states, function (index, state) {
-            $('#address-state').append($('<option>', {
-                value: state.isoCode,
-                text: state.name
-            }));
+        $.ajax({
+            type: 'POST',
+            url: 'addressOperation',
+            data: formData,
+            success: function(response) {
+                // handle success
+                console.log(response);
+                // Redirect to address page
+                window.location.href = 'profile';
+            },
+            error: function(error) {
+                // handle error
+                console.error(error);
+            }
         });
     });
-
 });

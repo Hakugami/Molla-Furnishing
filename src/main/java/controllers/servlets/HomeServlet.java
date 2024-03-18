@@ -26,11 +26,12 @@ public class HomeServlet extends HttpServlet {
 
 
     Logger logger = Logger.getLogger(HomeServlet.class.getName());
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("HomeServlet: processing request");
 
-        List<ProductDto> recentProducts = getRecentProductsDTO(req);
+        List<ProductDto> recentProducts = getRecentProductsDTO();
         req.setAttribute("recentProducts", recentProducts);
 
         if (isUserLoggedIn(req)) {
@@ -41,7 +42,7 @@ public class HomeServlet extends HttpServlet {
         req.getRequestDispatcher(UrlMapping.HOME.getPageName()).forward(req, resp);
     }
 
-    private List<ProductDto> getRecentProductsDTO(HttpServletRequest req) {
+    private List<ProductDto> getRecentProductsDTO() {
 
         // Create a ProductFilter object
         ProductFilter filter = new ProductFilter();
@@ -49,21 +50,6 @@ public class HomeServlet extends HttpServlet {
         // Set Filters
         filter.setSortBy("dateAdded");
         filter.setSortOrder("desc");
-        Cookie cookie = CookiesUtil.getCookie(req.getCookies(), "Authorization");
-        if (cookie != null) {
-            JwtClaims claims = null;
-            try {
-                claims = JWTService.getInstance().validateToken(cookie.getValue(), req.getRemoteAddr());
-            } catch (InvalidJwtException | UnknownHostException e) {
-            }
-            String interests = null;
-            try {
-                interests = claims.getClaimValue("interest", String.class);
-            } catch (MalformedClaimException e) {
-            }
-            filter.setCategory(interests);
-        }
-
         int pageInt = 1;
         int limitInt = 8;
         // Call the getProductByFilter method from the ProductService class

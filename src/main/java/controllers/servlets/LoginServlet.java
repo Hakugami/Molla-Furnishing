@@ -36,6 +36,7 @@ public class LoginServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 Cookie jwtCookie = new Cookie("Authorization", jwt);
 
+
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.addCookie(jwtCookie);
                 JsonObject responseBody = new JsonObject();
