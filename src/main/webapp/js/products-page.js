@@ -8,7 +8,7 @@ $(document).ready(function () {
     let date = '';
     let products = [];
     let shopping_products = [];
-
+    let productCounts = JSON.parse(sessionStorage.getItem('productCounts')) || {};
 
     let filter = {
         page: pageNumber,
@@ -27,7 +27,6 @@ $(document).ready(function () {
         filter.category = category1;
     }
 
-
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
         loadProducts();
@@ -38,12 +37,9 @@ $(document).ready(function () {
         loadProducts();
     }
 
-    $()
-
     $('#price-filter').on('submit', function (event) {
         event.preventDefault();
         filter.page = 1;
-
 
         let minPrice = $('#price-min').val();
         let maxPrice = $('#price-max').val();
@@ -110,11 +106,11 @@ $(document).ready(function () {
             success: function (data) {
                 if (showMore) {
                     $.each(data, function (i, product) {
-                        products.push(product); 
+                        products.push(product);
                         displayProduct(i, product);
                     });
                 } else {
-                    products = data; 
+                    products = data;
                     const container = document.querySelector('.shop-p__collection .row');
                     container.innerHTML = '';
                     $.each(data, function (i, product) {
@@ -164,15 +160,33 @@ $(document).ready(function () {
         $('.shop-p__collection .row').append(productElement);
 
     }
+
     $(document).on('click', '.add-to-cart-btn', function (event) {
         event.preventDefault();
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
-        shopping_products.push(product);
-        sessionStorage.setItem('shopping_products', JSON.stringify(shopping_products));
+    
+        let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+    
+        if (!productAlreadyInCart) {
+            shopping_products.push(product);
+        }
+    
+        productCounts[product.name] = (productCounts[product.name] || 0) + 1;
+    
+        // Store updated product counts and shopping products in sessionStorage
+        let shoppingData = {
+            products: shopping_products,
+            productCounts: productCounts
+        };
+    
+        sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
+        console.log('Product Counts:', productCounts);
     });
+    
+    
 
     $(document).on('click', '.product-m__thumb .product-link', function (event) {
         event.preventDefault();
@@ -181,5 +195,6 @@ $(document).ready(function () {
         sessionStorage.setItem('product', JSON.stringify(product));
         window.location.href = 'ProductPage?name=' + product.name;
     });
+
     loadProducts();
 });

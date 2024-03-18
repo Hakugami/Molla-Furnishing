@@ -61,16 +61,11 @@
 
                                             <script type="text/javascript">
                                                 $(document).ready(function () {
-                                                    // Function to load products from session storage
                                                     function loadProductsFromSessionStorage() {
-                                                        // Retrieve shopping products from session storage
-                                                        let shoppingProducts = JSON.parse(sessionStorage.getItem('shopping_products'));
-                                        
-                                                        // Check if there are products in the shopping cart
-                                                        if (shoppingProducts && shoppingProducts.length > 0) {
-                                                            // Loop through each product and create HTML elements to display them
-                                                            shoppingProducts.forEach(function (product) {
-                                                                // Create HTML elements for each product
+                                                        let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
+                                                        if (shoppingData && shoppingData.products && shoppingData.products.length > 0) {
+                                                            shoppingData.products.forEach(function (product) {
+                                                                let count = shoppingData.productCounts[product.name] || 1;
                                                                 let productElement = '<tr>' +
                                                                                         '<td>' +
                                                                                             '<div class="table-p__box">' +
@@ -102,32 +97,81 @@
                                                                                             '<div class="table-p__input-counter-wrap">' +
                                                                                                 '<div class="input-counter">' +
                                                                                                     '<span class="input-counter__minus fas fa-minus"></span>' +
-                                                                                                    '<input class="input-counter__text input-counter--text-primary-style" type="text" value="' + product.quantity + '" data-min="1" data-max="1000">' +
+                                                                                                    '<input class="input-counter__text input-counter--text-primary-style" type="text" value="' + count + '" data-min="1" data-max="1000">' +
                                                                                                     '<span class="input-counter__plus fas fa-plus"></span>' +
                                                                                                 '</div>' +
                                                                                             '</div>' +
                                                                                         '</td>' +
                                                                                         '<td>' +
                                                                                             '<div class="table-p__del-wrap">' +
-                                                                                                '<a class="far fa-trash-alt table-p__delete-link" href="#"></a>' +
+                                                                                                '<a class="far fa-trash-alt table-p__delete-link"></a>' +
                                                                                             '</div>' +
                                                                                         '</td>' +
                                                                                     '</tr>';
                                         
-                                                                // Append the product element to the table
                                                                 $('.table-p tbody').append(productElement);
                                                             });
                                                         } else {
-                                                            // If there are no products in the shopping cart, display a message or hide the table
-                                                            // For example:
-                                                            // $('.table-p').hide(); // Hide the table
-                                                            // $('.table-p tbody').append('<tr><td colspan="4">No products in the shopping cart</td></tr>'); // Display a message
                                                         }
                                                     }
-                                        
-                                                    // Call the function to load products from session storage
                                                     loadProductsFromSessionStorage();
                                                 });
+
+                                                $(document).on('click', '.input-counter__minus', function () {
+                                                    let input = $(this).siblings('.input-counter__text');
+                                                    let count = parseInt(input.val());
+                                                    let min = parseInt(input.attr('data-min'));
+
+                                                    if (count > min) {
+                                                        count--;
+                                                        input.val(count);
+                                                        updateProductCount(input, count);
+                                                        updateTotalSum();
+                                                    }
+                                                });
+
+                                                $(document).on('click', '.input-counter__plus', function () {
+                                                    let input = $(this).siblings('.input-counter__text');
+                                                    let count = parseInt(input.val());
+                                                    let max = parseInt(input.attr('data-max'));
+
+                                                    count++;
+                                                    input.val(count);
+                                                    updateProductCount(input, count);
+                                                    updateTotalSum();
+                                                });
+                                                
+                                                $(document).on('click', '.table-p__delete-link', function() {
+                                                    let productName = $(this).closest('tr').find('.table-p__name a').text();
+                                                    
+                                                    // Remove the product from the shopping cart
+                                                    shopping_products = shopping_products.filter(product => product.name !== productName);
+                                                    
+                                                    // Update the shopping data in session storage
+                                                    let shoppingData = {
+                                                        products: shopping_products,
+                                                        productCounts: productCounts
+                                                    };
+                                                    sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+                                                    
+                                                    // Remove the table row from the HTML
+                                                    $(this).closest('tr').remove();
+                                                    
+                                                    // Update the total sum
+                                                    updateTotalSum();
+                                                });
+
+
+                                                function updateProductCount(input, count) {
+                                                    let productName = input.closest('tr').find('.table-p__name a').text();
+                                                    let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
+                                                    if (shoppingData) {
+                                                        shoppingData.productCounts[productName] = count;
+                                                        sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+                                                        console.log('Product Counts:', shoppingData.productCounts);
+                                                    }
+                                                }
+
                                             </script>
                                         </tbody>
                                     </table>
@@ -146,9 +190,6 @@
 
                                             <span>CLEAR CART</span></a>
 
-                                        <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>
-
-                                            <span>UPDATE CART</span></a></div>
                                 </div>
                             </div>
                         </div>
@@ -171,75 +212,12 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                             <div class="f-cart__pad-box">
-                                                <h1 class="gl-h1">ESTIMATE SHIPPING AND TAXES</h1>
-
-                                                <span class="gl-text u-s-m-b-30">Enter your destination to get a shipping estimate.</span>
-                                                <div class="u-s-m-b-30">
-
-                                                    <!--====== Select Box ======-->
-
-                                                    <label class="gl-label" for="shipping-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="shipping-country">
-                                                        <option selected value="">Choose Country</option>
-                                                        <option value="uae">United Arab Emirate (UAE)</option>
-                                                        <option value="uk">United Kingdom (UK)</option>
-                                                        <option value="us">United States (US)</option>
-                                                    </select>
-                                                    <!--====== End - Select Box ======-->
-                                                </div>
-                                                <div class="u-s-m-b-30">
-
-                                                    <!--====== Select Box ======-->
-
-                                                    <label class="gl-label" for="shipping-state">STATE/PROVINCE *</label><select class="select-box select-box--primary-style" id="shipping-state">
-                                                        <option selected value="">Choose State/Province</option>
-                                                        <option value="al">Alabama</option>
-                                                        <option value="al">Alaska</option>
-                                                        <option value="ny">New York</option>
-                                                    </select>
-                                                    <!--====== End - Select Box ======-->
-                                                </div>
-                                                <div class="u-s-m-b-30">
-
-                                                    <label class="gl-label" for="shipping-zip">ZIP/POSTAL CODE *</label>
-
-                                                    <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Zip/Postal Code"></div>
-                                                <div class="u-s-m-b-30">
-
-                                                    <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">CALCULATE SHIPPING</a></div>
-
-                                                <span class="gl-text">Note: There are some countries where free shipping is available otherwise our flat rate charges or country delivery charges will be apply.</span>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                            <div class="f-cart__pad-box">
-                                                <h1 class="gl-h1">NOTE</h1>
-
-                                                <span class="gl-text u-s-m-b-30">Add Special Note About Your Product</span>
-                                                <div>
-
-                                                    <label for="f-cart-note"></label><textarea class="text-area text-area--primary-style" id="f-cart-note"></textarea></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                            <div class="f-cart__pad-box">
                                                 <div class="u-s-m-b-30">
                                                     <table class="f-cart__table">
                                                         <tbody>
                                                             <tr>
-                                                                <td>SHIPPING</td>
-                                                                <td>$4.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>TAX</td>
-                                                                <td>$0.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>SUBTOTAL</td>
-                                                                <td>$379.00</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>GRAND TOTAL</td>
-                                                                <td>$379.00</td>
+                                                                <td>TOTAL</td>
+                                                                <td id="total">$379.00</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -263,12 +241,48 @@
 
 
         <!--====== Main Footer ======-->
-<jsp:include page="/footer.jsp" />
+    <jsp:include page="/footer.jsp" />
     </div>
+
     <!--====== End - Main App ======-->
 
+    <script>
+        function updateTotalSum() {
+            let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
+            let shoppingProducts = shoppingData.products;
+            let productCounts = shoppingData.productCounts;
+            let totalSum = 0;
 
-    <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
+            if (shoppingProducts && shoppingProducts.length > 0) {
+                shoppingProducts.forEach(function(product) {
+                    let count = productCounts[product.name] || 1; 
+                    totalSum += product.price * count;
+                });
+            }
+            let subtotal = totalSum;
+            document.getElementById("total").innerText = "$" + subtotal.toFixed(2);
+            sessionStorage.setItem('total', subtotal.toFixed(2));
+        }
+
+        updateTotalSum();
+
+        function clearShoppingCart() {
+            shopping_products = []; 
+            productCounts = {}; 
+            sessionStorage.removeItem('shoppingData');
+
+            $('.table-p tbody').empty(); 
+        }
+
+        $(document).on('click', '.route-box__link', function (event) {
+            event.preventDefault();
+            if ($(this).text().trim() === 'CLEAR CART') {
+                clearShoppingCart();
+            }
+        });
+    </script>
+    <!--====== End - Main App ======-->
+
     <script>
         window.ga = function() {
             ga.q.push(arguments)
@@ -288,9 +302,6 @@
 
     <!--====== App ======-->
     <script src="js/app.js"></script>
-
-    <!--====== Custom js ======-->
-    <script src="js/Product-Cart.js"></script>
 
     <!--====== Noscript ======-->
     <noscript>
