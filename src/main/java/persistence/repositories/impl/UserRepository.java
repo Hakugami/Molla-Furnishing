@@ -1,5 +1,6 @@
 package persistence.repositories.impl;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -20,6 +21,11 @@ public class UserRepository extends GenericRepository<User, Long> {
         super(User.class);
     }
 
+
+
+    public Optional<User> read(Long id , EntityManager entityManager) {
+        return Optional.of(entityManager.find(User.class, id));
+    }
 
     @Override
     public boolean create(User user) {

@@ -2,12 +2,14 @@ package services;
 
 import jakarta.servlet.http.HttpServletRequest;
 import mappers.UserMapper;
+import models.DTOs.AddressDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
 import models.entity.User;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
+import persistence.manager.DatabaseSingleton;
 import persistence.repositories.impl.UserRepository;
 
 import java.net.UnknownHostException;
@@ -38,24 +40,38 @@ public class UserService {
     }
 
     public boolean updateUser(HttpServletRequest req, String jwt) throws InvalidJwtException, UnknownHostException, MalformedClaimException {
-        System.out.println("EditProfileServlet: updateUser");
-        JWTService jwtService = JWTService.getInstance();
-        JwtClaims claims = jwtService.validateToken(jwt, req.getRemoteAddr());
-        User user = repository.read(Long.valueOf(claims.getSubject())).orElse(null);
-        if (user != null) {
-            System.out.println("EditProfileServlet: updateUser: user: " + user);
+        DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            System.out.println("EditProfileServlet: updateUser: doTransaction");
+            System.out.println("EditProfileServlet: updateUser");
+            JWTService jwtService = JWTService.getInstance();
+            JwtClaims claims = null;
+            try {
+                claims = jwtService.validateToken(jwt, req.getRemoteAddr());
+            } catch (InvalidJwtException | UnknownHostException e) {
+                throw new RuntimeException(e);
+            }
+            User user = null;
+            try {
+                user = repository.read(Long.valueOf(claims.getSubject()), entityManager).orElse(null);
+            } catch (MalformedClaimException e) {
+                throw new RuntimeException(e);
+            }
+            if (user != null) {
+                System.out.println("EditProfileServlet: updateUser: user: " + user);
 
-            updateField(req, "name", user::setName);
-            updateField(req, "email", user::setEmail);
-            updateField(req, "phone", user::setPhone);
-            updateField(req, "gender", user::setGender);
-            updateField(req, "interest", user::setInterest);
-            updateField(req, "job", user::setJob);
-            updateDateField(req, "DOB", user::setBirthday);
-            updateAddress(req, user);
+                updateField(req, "name", user::setName);
+                updateField(req, "email", user::setEmail);
+                updateField(req, "phone", user::setPhone);
+                updateField(req, "gender", user::setGender);
+                updateField(req, "interest", user::setInterest);
+                updateField(req, "job", user::setJob);
+                updateDateField(req, "DOB", user::setBirthday);
 
-            return repository.update(user);
-        }
+                return repository.update(user, entityManager);
+            }
+            return false;
+        });
+
         System.out.println("EditProfileServlet: updateUser: user is null");
         return false;
     }
@@ -81,36 +97,43 @@ public class UserService {
         }
     }
 
-    private void updateAddress(HttpServletRequest req, User user) {
-        String street = req.getParameter("street");
-        String city = req.getParameter("city");
-        String state = req.getParameter("state");
-        String country = req.getParameter("country");
-        String zipCode = req.getParameter("zipCode");
 
-        // Check if any of the address fields are null or empty
-        if (street != null && !street.isEmpty() &&
-                city != null && !city.isEmpty() &&
-                state != null && !state.isEmpty() &&
-                country != null && !country.isEmpty() &&
-                zipCode != null && !zipCode.isEmpty()) {
-
-            Address address = new Address();
-            address.setStreet(street);
-            address.setCity(city);
-            address.setState(state);
-            address.setCountry(country);
-            address.setZipCode(zipCode);
-            user.getAddresses().add(address);
+    public boolean addAddress(Long id, AddressDto newAddress) {
+        // Validate the input
+        if (newAddress.getStreet() == null || newAddress.getStreet().isEmpty() ||
+                newAddress.getCity() == null || newAddress.getCity().isEmpty() ||
+                newAddress.getState() == null || newAddress.getState().isEmpty() ||
+                newAddress.getCountry() == null || newAddress.getCountry().isEmpty() ||
+                newAddress.getZipCode() == null || newAddress.getZipCode().isEmpty()) {
+            throw new IllegalArgumentException("All address fields must be provided");
         }
+
+        // Retrieve the user
+        User user = repository.read(id).orElse(null);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+        // Check for duplicates
+        for (Address existingAddress : user.getAddresses()) {
+            if (existingAddress.getStreet().equals(newAddress.getStreet()) &&
+                    existingAddress.getCity().equals(newAddress.getCity()) &&
+                    existingAddress.getState().equals(newAddress.getState()) &&
+                    existingAddress.getCountry().equals(newAddress.getCountry()) &&
+                    existingAddress.getZipCode().equals(newAddress.getZipCode())) {
+                throw new IllegalArgumentException("Duplicate address");
+            }
+        }
+
+        // Add the address
+
+
+        // Save the changes
+        return repository.addAddress(id, userMapper.addressDtoToAddress(newAddress));
     }
 
-    public boolean addAddress(Long id , Address address){
-        return repository.addAddress(id, address);
-    }
 
-
-    public void removeAddress(Long l, Address address) {
-        repository.removeAddress(l, address);
+    public void removeAddress(Long l, AddressDto addressDto) {
+        repository.removeAddress(l, userMapper.addressDtoToAddress(addressDto));
     }
 }
