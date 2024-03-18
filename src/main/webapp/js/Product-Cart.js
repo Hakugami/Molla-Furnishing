@@ -111,20 +111,27 @@ function updateProductCount(input, count) {
 
 function updateTotalSum() {
     let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
-    let shoppingProducts = shoppingData.products;
-    let productCounts = shoppingData.productCounts;
-    let totalSum = 0;
+    if (shoppingData && shoppingData.products) {
+        let shoppingProducts = shoppingData.products;
+        let productCounts = shoppingData.productCounts;
+        let totalSum = 0;
 
-    if (shoppingProducts && shoppingProducts.length > 0) {
-        shoppingProducts.forEach(function (product) {
-            let count = productCounts[product.name] || 1;
-            totalSum += product.price * count;
-        });
+        if (shoppingProducts.length > 0) {
+            shoppingProducts.forEach(function (product) {
+                let count = productCounts[product.name] || 1;
+                totalSum += product.price * count;
+            });
+        }
+        let subtotal = totalSum;
+        document.getElementById("total").innerText = "$" + subtotal.toFixed(2);
+        sessionStorage.setItem('total', subtotal.toFixed(2));
+    } else {
+        // Handle the case when there are no products in the shopping cart
+        document.getElementById("total").innerText = "$0.00";
+        sessionStorage.setItem('total', "0.00");
     }
-    let subtotal = totalSum;
-    document.getElementById("total").innerText = "$" + subtotal.toFixed(2);
-    sessionStorage.setItem('total', subtotal.toFixed(2));
 }
+
 
 updateTotalSum();
 
@@ -134,7 +141,11 @@ function clearShoppingCart() {
     sessionStorage.removeItem('shoppingData');
 
     $('.table-p tbody').empty();
+
+    // Update total sum to reflect the changes
+    updateTotalSum();
 }
+
 
 $(document).on('click', '.route-box__link', function (event) {
     event.preventDefault();
