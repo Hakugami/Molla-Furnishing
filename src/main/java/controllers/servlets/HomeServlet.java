@@ -18,16 +18,20 @@ import utils.CookiesUtil;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class HomeServlet extends HttpServlet {
 
     private JwtClaims claims;
 
+
+    Logger logger = Logger.getLogger(HomeServlet.class.getName());
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("HomeServlet: processing request");
 
-        List<ProductDto> recentProducts = getRecentProductsDTO(req);
+        List<ProductDto> recentProducts = getRecentProductsDTO();
         req.setAttribute("recentProducts", recentProducts);
 
         if (isUserLoggedIn(req)) {
@@ -38,7 +42,7 @@ public class HomeServlet extends HttpServlet {
         req.getRequestDispatcher(UrlMapping.HOME.getPageName()).forward(req, resp);
     }
 
-    private List<ProductDto> getRecentProductsDTO(HttpServletRequest req) {
+    private List<ProductDto> getRecentProductsDTO() {
 
         // Create a ProductFilter object
         ProductFilter filter = new ProductFilter();
@@ -46,7 +50,6 @@ public class HomeServlet extends HttpServlet {
         // Set Filters
         filter.setSortBy("dateAdded");
         filter.setSortOrder("desc");
-
         int pageInt = 1;
         int limitInt = 8;
         // Call the getProductByFilter method from the ProductService class

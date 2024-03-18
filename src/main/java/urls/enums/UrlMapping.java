@@ -22,7 +22,8 @@ public enum UrlMapping {
     CART("cart", "/cart", "CartServlet", "/cart.jsp"),
     LOGOUT("logout", "/logout", "LogoutServlet","" ),
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
-    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),;
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
+    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),;
 
 
     private final String command;

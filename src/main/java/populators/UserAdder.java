@@ -1,5 +1,6 @@
 package populators;
 
+import models.DTOs.AddressDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
 import models.entity.User;
@@ -18,12 +19,12 @@ public class UserAdder {
 
     public static void addUserAddressTest(){
         userService = new UserService();
-        Address address = new Address();
-        address.setCity("Giza");
-        address.setCountry("Egypt");
-        address.setState("El-Haram");
-        address.setStreet("El-Molla St.");
-        address.setZipCode("12345");
+        AddressDto address = new AddressDto();
+        address.setCity("Gizaaaaaaaaaaa");
+        address.setCountry("Egyptaaaaaaa");
+        address.setState("El-Haramaaaaaaaaaaaaa");
+        address.setStreet("El-Mollas St.aaaaaaaaaaaa");
+        address.setZipCode("12345aaaaaaaaaaaaaaaaaaa");
         userService.addAddress(1L, address);
     }
 
@@ -39,8 +40,8 @@ public class UserAdder {
 
     public static void removeUserAddressTest(){
         userService = new UserService();
-        Address address = new Address();
-        address.setId(52L);
+        AddressDto address = new AddressDto();
+        address.setId(1L);
         address.setCity("Giza");
         address.setCountry("Egypt");
         address.setState("El-Haram");
