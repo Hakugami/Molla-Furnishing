@@ -29,7 +29,7 @@ public class CartService {
             } else {
 
                 Product product = entityManager.find(Product.class, productId);
-                user.getCart().addCartItem(product, quantity);
+                user.getCart().addCartItem(product, quantity , product.getPrice()*quantity);
             }
             userRepository.update(user, entityManager);
             return true;
@@ -63,6 +63,7 @@ public class CartService {
             if (cartItem.isPresent()) {
                 CartItem item = cartItem.get();
                 item.setQuantity(item.getQuantity() - 1);
+                user.getCart().setTotalAmount(user.getCart().getTotalAmount() - item.getProduct().getPrice());
                 if (item.getQuantity() == 0) {
                     user.getCart().getCartItems().remove(item);
                 }
@@ -88,7 +89,7 @@ public class CartService {
                     cartItem.get().setQuantity(cartItem.get().getQuantity() + quantity);
                 } else {
                     Product product = entityManager.find(Product.class, productId);
-                    user.getCart().addCartItem(product, quantity);
+                    user.getCart().addCartItem(product, quantity, product.getPrice()*quantity);
                 }
             }
             userRepository.update(user, entityManager);

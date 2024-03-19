@@ -29,9 +29,9 @@ public class ShoppingCart {
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
-//    @Setter
-//    @Column(nullable = false)
-//    private Double totalAmount;
+    @Setter
+    @Column(name = "total_amount")
+    private Double totalAmount;
 
     @Setter
     @Column(nullable = false)
@@ -39,15 +39,23 @@ public class ShoppingCart {
     private Date lastUpdate;
 
 
-    public void addCartItem(Product product, int quantity) {
+    public void addCartItem(Product product, int quantity ,Double totalAmount) {
         {
             if (cartItems == null) {
                 cartItems = new ArrayList<>();
             }
             CartItem cartItem = new CartItem(product, quantity, this);
             cartItems.add(cartItem);
+            this.totalAmount = totalAmount;
         }
 
+    }
+
+    @PostPersist
+    @PostUpdate
+    @PostRemove
+    public void updateLastUpdate() {
+        lastUpdate = new Date();
     }
 
 
