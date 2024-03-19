@@ -11,21 +11,20 @@ import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.JWTService;
+import services.UserService;
 import utils.CookiesUtil;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Logger;
 
 public class LoadProfileServlet extends HttpServlet {
+    private UserService userService;
     private Logger logger = Logger.getLogger(getClass().getName());
-    public static final String CLAIM_KEY_EMAIL = "email";
-    public static final String CLAIM_KEY_NAME = "name";
-    public static final String CLAIM_KEY_PHONE = "phone";
-    public static final String CLAIM_KEY_BIRTHDATE = "date of birth";
-    public static final String CLAIM_KEY_GENDER = "gender";
+
+    @Override
+    public void init() throws ServletException {
+        userService = new UserService();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,23 +34,11 @@ public class LoadProfileServlet extends HttpServlet {
         try {
             JwtClaims claims = JWTService.getInstance().validateToken(cookie.getValue(), req.getRemoteAddr());
 
-            UserDto userDto = new UserDto();
-            String email = claims.getClaimValue(CLAIM_KEY_EMAIL, String.class);
-            String name = claims.getClaimValue(CLAIM_KEY_NAME, String.class);
-            String phone = claims.getClaimValue(CLAIM_KEY_PHONE, String.class);
-            String birthDate = claims.getClaimValue(CLAIM_KEY_BIRTHDATE, String.class);
-            String gender = claims.getClaimValue(CLAIM_KEY_GENDER, String.class);
-            userDto.setEmail(email);
-            userDto.setName(name);
-            userDto.setPhone(phone);
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date = sdf.parse(birthDate);
-                userDto.setBirthday(date);
-            } catch (ParseException e) {
-                logger.severe("Error parsing date: " + e.getMessage());
-            }
-            userDto.setGender(gender);
+            // Extract the user's ID from the JWT claims
+            Long userId = Long.parseLong(claims.getSubject());
+
+            // Retrieve the user from the database
+            UserDto userDto = userService.getUserById(userId);
 
             resp.setContentType("application/json");
             resp.setCharacterEncoding("UTF-8");

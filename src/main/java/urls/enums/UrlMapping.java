@@ -23,7 +23,8 @@ public enum UrlMapping {
     LOGOUT("logout", "/logout", "LogoutServlet","" ),
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
     MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
-    //Admin pages
+    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
+    //Admin page
     ADMINHOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
     ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
     ADMINALLPRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),

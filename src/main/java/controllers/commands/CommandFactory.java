@@ -1,5 +1,6 @@
 package controllers.commands;
 
+import org.bouncycastle.oer.its.etsi102941.Url;
 import controllers.commands.admin.*;
 import urls.enums.UrlMapping;
 
@@ -32,6 +33,10 @@ public class CommandFactory {
         commandMap.put(UrlMapping.LOADPROFILE.getCommand(), LoadProfileCommand::new);
         commandMap.put(UrlMapping.LOGOUT.getCommand(), LogoutCommand::new);
         commandMap.put(UrlMapping.MYPROFILE.getCommand(), MyProfileCommand::new);
+        commandMap.put(UrlMapping.ADDRESSOPERATION.getCommand(), AddressCommand::new);
+        commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
+        commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
+        commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
         //Admin Commands
         commandMap.put(UrlMapping.ADMINHOME.getCommand(), AdminHomeCommand::new);
         commandMap.put(UrlMapping.ADMINLOGIN.getCommand(), AdminLoginCommand::new);
