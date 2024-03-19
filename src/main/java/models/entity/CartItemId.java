@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Setter
 @Getter
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Embeddable
 public class CartItemId implements Serializable {
@@ -21,6 +21,11 @@ public class CartItemId implements Serializable {
 
     @Column(name = "shopping_cart_id")
     private Long shoppingCartId;
+
+    public CartItemId(Long productId, Long shoppingCartId) {
+        this.productId = productId;
+        this.shoppingCartId = shoppingCartId;
+    }
 
     @Override
     public boolean equals(Object o) {

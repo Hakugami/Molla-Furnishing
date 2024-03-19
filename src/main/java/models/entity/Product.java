@@ -17,7 +17,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long productId;
+    private Long productId;
 
     @Setter
     @Column(nullable = false)
