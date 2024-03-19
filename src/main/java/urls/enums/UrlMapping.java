@@ -24,14 +24,14 @@ public enum UrlMapping {
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
     MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
     //Admin pages
-    ADMINHOME("adminhome","/adminhome","AdminHomeServlet","/Adminpanel/index.html"),
-    ADMINLOGIN("adminlogin","/adminlogin","AdminLoginServlet","/Adminpanel/adminlogin.html"),
-    ADMINALLPRODUCTS("adminallproducts","/adminallproducts","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
-    ADMINVIEWPRODUCT("adminviewproduct","/adminviewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
-    ADMINALLUSERS("adminallusers","/adminallusers","AdminAllUsersServlet","/Adminpanel/allusers.html"),
-    ADMINVIEWUSER("adminviewuser","/adminviewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
+    ADMINHOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
+    ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
+    ADMINALLPRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
+    ADMINVIEWPRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
+    ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.html"),
+    ADMINVIEWUSER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
     ADMINADDUSER("adminadduser","/adminadduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
-    ADMINADDPRODUCT("adminaddproduct","/adminaddproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
+    ADMINADDPRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
 
     private final String command;
     private final String url;

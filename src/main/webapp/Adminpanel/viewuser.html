@@ -18,7 +18,7 @@
         <!-- Sidebar scroll-->
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
-                <a class="text-nowrap logo-img" href="index.jsp">
+                <a class="text-nowrap logo-img" href="/molla/view/admin/home">
                     <img alt="" src="assets/images/logos/mollalogotransparent.png" width="180"/>
                 </a>
                 <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -33,7 +33,7 @@
                         <span class="hide-menu">Home</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="index.jsp">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/home">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -45,19 +45,19 @@
                         <span class="hide-menu">Users</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="./authentication-login.html">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allusers">
                 <span>
-                  <i class="ti ti-login"></i>
+                  <i class="ti ti-user"></i>
                 </span>
                             <span class="hide-menu">View All Users</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="./authentication-register.html">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/adduser">
                 <span>
                   <i class="ti ti-user-plus"></i>
                 </span>
-                            <span class="hide-menu">Add</span>
+                            <span class="hide-menu">Add new</span>
                         </a>
                     </li>
                     <li class="nav-small-cap">
@@ -65,17 +65,17 @@
                         <span class="hide-menu">Products</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="./icon-tabler.html">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allproducts">
                 <span>
-                  <i class="ti ti-mood-happy"></i>
+                  <i class="ti ti-package"></i>
                 </span>
                             <span class="hide-menu">View All</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="./sample-page.html">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproduct">
                 <span>
-                  <i class="ti ti-aperture"></i>
+                  <i class="ti ti-plus"></i>
                 </span>
                             <span class="hide-menu">Add Product</span>
                         </a>
@@ -145,7 +145,7 @@
                             <fieldset disabled class="col-md-3">
                                 <h2 class=" fw-semibold mb-4">User Details</h2>
                                 <div class="card">
-                                    <img src="assets/images/profile/user-1.jpg" class="rounded-circle"  alt="...">
+                                    <img src="assets/images/profile/user-1.jpg" class="rounded-circle" alt="...">
 
                                 </div>
                             </fieldset>
@@ -156,11 +156,11 @@
 
                                 <label for="nameInput" class="form-label card-title">UserName</label>
                                 <input type="text " class="form-control" id="nameInput" aria-describedby="nameHelp"
-                                value="Hamada">
+                                       value="Hamada">
 
                                 <label for="creditInput" class="form-label card-title">Credit Limit</label>
                                 <input type="text " class="form-control" id="creditInput" aria-describedby="creditHelp"
-                                value="1000">
+                                       value="1000">
 
 
                                 <h5 class="card-title mt-3">Birthday</h5>
@@ -180,62 +180,71 @@
                                         <span class="badge bg-info rounded-3 fw-semibold m-1">Beds</span>
 
                                         <h5 class="card-title fw-semibold mt-4">Addresses</h5>
-                                            <table class="table text-nowrap mb-0 align-middle">
-                                                <thead class="text-dark fs-4">
-                                                <tr>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">#</h6>
-                                                    </th>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">Street</h6>
-                                                    </th>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">City</h6>
-                                                    </th>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">State</h6>
-                                                    </th>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">Country</h6>
-                                                    </th>
-                                                    <th class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-0">Zipcode</h6>
-                                                    </th>
-                                                </tr>
-                                                </thead>
-                                                <tbody id="addressTableBody">
-                                                <tr>
-                                                    <td class="border-bottom-0">
-                                                        <h6 class="fw-semibold mb-1">1</h6>
-                                                    </td>
-                                                    <td class="border-bottom-0">
-                                                        <input type="text" class="form-control form-control-sm" value="HamadaStreet" name="street[]">
-                                                    </td>
-                                                    <td class="border-bottom-0">
-                                                        <input type="text" class="form-control form-control-sm" value="HamadaCity" name="city[]">
-                                                    </td>
-                                                    <td class="border-bottom-0">
-                                                        <input type="text" class="form-control form-control-sm" value="HamdaState" name="state[]">
-                                                    </td>
-                                                    <td class="border-bottom-0">
-                                                        <input type="text" class="form-control form-control-sm" value="Egypt" name="country[]">
-                                                    </td>
-                                                    <td class="border-bottom-0">
-                                                        <input type="text" class="form-control form-control-sm" value="1234" name="zipcode[]">
-                                                    </td>
-                                                </tr>
+                                        <table class="table text-nowrap mb-0 align-middle">
+                                            <thead class="text-dark fs-4">
+                                            <tr>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">#</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Street</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">City</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">State</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Country</h6>
+                                                </th>
+                                                <th class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-0">Zipcode</h6>
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="addressTableBody">
+                                            <tr>
+                                                <td class="border-bottom-0">
+                                                    <h6 class="fw-semibold mb-1">1</h6>
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <input type="text" class="form-control form-control-sm"
+                                                           value="HamadaStreet" name="street[]">
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <input type="text" class="form-control form-control-sm"
+                                                           value="HamadaCity" name="city[]">
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <input type="text" class="form-control form-control-sm"
+                                                           value="HamdaState" name="state[]">
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <input type="text" class="form-control form-control-sm"
+                                                           value="Egypt" name="country[]">
+                                                </td>
+                                                <td class="border-bottom-0">
+                                                    <input type="text" class="form-control form-control-sm" value="1234"
+                                                           name="zipcode[]">
+                                                </td>
+                                            </tr>
 
-                                                </tbody>
+                                            </tbody>
 
-                                            </table>
-                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add Address</button>
-                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove Address</button>
-                                        </div>
+                                        </table>
+                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add
+                                            Address
+                                        </button>
+                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove
+                                            Address
+                                        </button>
                                     </div>
+                                </div>
 
                             </fieldset>
                             <fieldset disabled class="col-md-4">
-                            <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>
+                                <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>
                                 <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>
                             </fieldset>
                         </form>
@@ -251,7 +260,9 @@
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout1</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a
+                                            href="javascript:void(0)"
+                                            class="text-primary d-block fw-normal">Checkout1</a>
                                     </div>
                                 </li>
 
@@ -261,7 +272,9 @@
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout2</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a
+                                            href="javascript:void(0)"
+                                            class="text-primary d-block fw-normal">Checkout2</a>
                                     </div>
                                 </li>
 
@@ -271,7 +284,9 @@
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout3</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a
+                                            href="javascript:void(0)"
+                                            class="text-primary d-block fw-normal">Checkout3</a>
                                     </div>
                                 </li>
 
@@ -281,7 +296,9 @@
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a href="javascript:void(0)" class="text-primary d-block fw-normal">Checkout4</a>
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded <a
+                                            href="javascript:void(0)"
+                                            class="text-primary d-block fw-normal">Checkout4</a>
                                     </div>
                                 </li>
                             </ul>
