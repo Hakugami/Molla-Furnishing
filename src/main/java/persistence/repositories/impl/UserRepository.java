@@ -1,6 +1,7 @@
 package persistence.repositories.impl;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -89,5 +90,9 @@ public class UserRepository extends GenericRepository<User, Long> {
             });
             return true;
         });
+    }
+
+    public Optional<User> read(Long id, EntityManager entityManager, LockModeType lockModeType) {
+        return Optional.of(entityManager.find(User.class, id, lockModeType));
     }
 }

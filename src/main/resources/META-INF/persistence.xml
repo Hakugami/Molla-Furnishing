@@ -13,6 +13,9 @@
         <class>models.entity.Order</class>
         <class>models.entity.Rating</class>
         <class>models.entity.Category</class>
+        <class>models.entity.CartItem</class>
+        <class>models.entity.OrderItem</class>
+        <class>models.entity.SubCategory</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>

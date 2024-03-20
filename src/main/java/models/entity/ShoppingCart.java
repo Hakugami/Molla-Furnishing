@@ -39,7 +39,7 @@ public class ShoppingCart {
     private Date lastUpdate;
 
 
-    public void addCartItem(Product product, int quantity ,Double totalAmount) {
+    public void addCartItem(Product product, int quantity, Double totalAmount) {
         {
             if (cartItems == null) {
                 cartItems = new ArrayList<>();
@@ -60,15 +60,20 @@ public class ShoppingCart {
 
 
     public void removeProduct(Product product) {
-        for(Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext();) {
+        for (Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext(); ) {
             CartItem cartItem = iterator.next();
-            if(cartItem.getProduct().equals(product) && cartItem.getShoppingCart().equals(this)) {
-                iterator.remove();
+            if (cartItem.getProduct().equals(product) && cartItem.getShoppingCart().equals(this)) {
                 cartItem.setShoppingCart(null);
                 cartItem.setProduct(null);
+                iterator.remove();
             }
         }
     }
+    public void removeAllProducts() {
+        this.cartItems.clear();
+        totalAmount = 0.0;
+    }
+
 
 
 }
