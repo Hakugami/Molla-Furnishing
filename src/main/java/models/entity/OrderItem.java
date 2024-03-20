@@ -19,7 +19,7 @@ public class OrderItem {
     private OrderItemId id;
 
     @MapsId("productId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "product_id")
     private Product product;
 
@@ -27,7 +27,7 @@ public class OrderItem {
     private int quantity;
 
     @MapsId("orderId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
@@ -41,7 +41,7 @@ public class OrderItem {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o==null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         OrderItem that = (OrderItem) o;
         return Objects.equals(order, that.order) && Objects.equals(product, that.product);

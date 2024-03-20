@@ -84,7 +84,7 @@ public class User {
     private UserRole role;
 
     @Setter
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER , orphanRemoval = true)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private ShoppingCart cart;
 

@@ -74,6 +74,18 @@ public class CartService {
         });
     }
 
+    public boolean clearCart(Long id) {
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            User user = userRepository.read(id, entityManager).orElse(null);
+            if (user == null) {
+                return false;
+            }
+            user.getCart().removeAllProducts();
+            userRepository.update(user, entityManager);
+            return true;
+        });
+    }
+
     public boolean addProductsToCart(Long id, Map<Long, Integer> products) {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager).orElse(null);
