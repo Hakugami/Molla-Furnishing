@@ -5,14 +5,26 @@ import lombok.Getter;
 @Getter
 public enum UrlMapping {
     CONTEXT_DEFAULT("", "/view", "FrontController",""),
-    LOGIN("login", "/login", "LoginServlet","/signin.html"),
-    REGISTER("register", "/register", "RegisterServlet","/signup.html"),
+    LOGIN("login", "/login", "LoginServlet","/signin.jsp"),
+    REGISTER("register", "/register", "RegisterServlet","/signup.jsp"),
     RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts",""),
-    HOME("home", "/home", "HomeServlet","/index-3.html"),
+    HOME("home", "/home", "HomeServlet","/index-3.jsp"),
     PROFILE("profile","/profile","ProfileServlet","/dashboard.html"),
-    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.html"),
+    PRODUCTS("product","/product","ProductsServlet","/shop-grid-full.jsp"),
     PRODUCTPAGE("ProductPage","/ProductPage","ProductPageServlet","/product-detail.html"),
-    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),;
+    REVIEW("Review","/Review","ReviewServlet","/product-detail.html"),
+    EDITPROFILE("editProfile","/editProfile","EditProfileServlet","/dash-edit-profile.html"),
+    EMAILVALIDATION("emailValidation","/emailValidation","EmailValidationServlet",""),
+    PASSWORDVALIDATION("passwordValidation","/passwordValidation","PasswordValidationServlet",""),
+    PHONEVALIDATION("phoneValidation","/phoneValidation","PhoneNumberValidationServlet",""),
+    ABOUT("about", "/about", "AboutServlet", "/about.jsp"),
+    WISHLIST("wishlist", "/wishlist", "WishlistServlet", "/wishlist.jsp"),
+    CART("cart", "/cart", "CartServlet", "/cart.jsp"),
+    LOGOUT("logout", "/logout", "LogoutServlet","" ),
+    LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
+    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),;
+
 
     private final String command;
     private final String url;

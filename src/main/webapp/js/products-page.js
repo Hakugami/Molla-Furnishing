@@ -7,7 +7,8 @@ $(document).ready(function () {
     let rating = 0;
     let date = '';
     let products = [];
-
+    let shopping_products = [];
+    let productCounts = JSON.parse(sessionStorage.getItem('productCounts')) || {};
 
     let filter = {
         page: pageNumber,
@@ -19,6 +20,12 @@ $(document).ready(function () {
         date: date
     };
 
+    let params = new URLSearchParams(window.location.search);
+    let category1 = params.get('category');
+
+    if(category1 != null){
+        filter.category = category1;
+    }
 
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
@@ -30,12 +37,9 @@ $(document).ready(function () {
         loadProducts();
     }
 
-    $()
-
     $('#price-filter').on('submit', function (event) {
         event.preventDefault();
         filter.page = 1;
-
 
         let minPrice = $('#price-min').val();
         let maxPrice = $('#price-max').val();
@@ -82,7 +86,6 @@ $(document).ready(function () {
 
     $('#products-amount').on('change', function () {
         const newLimit = $(this).val();
-        //so the string is show: 8, we need to parse it to get the number
         const parsedLimit = parseInt(newLimit.split(' ')[1]);
         updateLimit(parsedLimit);
     });
@@ -90,7 +93,6 @@ $(document).ready(function () {
     $('#show-more-btn').on('click', function (event) {
         event.preventDefault();
 
-        // Increment the page number for "Show More"
         filter.page++;
         loadProducts(true);
     });
@@ -104,11 +106,11 @@ $(document).ready(function () {
             success: function (data) {
                 if (showMore) {
                     $.each(data, function (i, product) {
-                        products.push(product); // Add products to array
+                        products.push(product);
                         displayProduct(i, product);
                     });
                 } else {
-                    products = data; // Reset products array
+                    products = data;
                     const container = document.querySelector('.shop-p__collection .row');
                     container.innerHTML = '';
                     $.each(data, function (i, product) {
@@ -137,11 +139,11 @@ $(document).ready(function () {
             '<div class="product-m__quick-look">' +
             '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
             '<div class="product-m__add-cart">' +
-            '<a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>' +
+            '<a class="btn--e-brand add-to-cart-btn" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>' +
             '</div>' +
             '<div class="product-m__content">' +
             '<div class="product-m__category">' +
-            '<a href="shop-side-version-2.html">' + product.category + '</a></div>' +
+            '<a href="product?category=' + product.categoryName +'">' + product.categoryName + '</a></div>' +
             '<div class="product-m__name">' +
             '<a href="ProductPage/' + product.name + '">' + product.name + '</a></div>' +
             '<div class="product-m__rating gl-rating-style">' + product.rating +
@@ -149,7 +151,7 @@ $(document).ready(function () {
             '<div class="product-m__price">$' + product.price + '</div>' +
             '<div class="product-m__hover">' +
             '<div class="product-m__preview-description">' +
-            '<span>'+product.description+'</span></div>' +
+            '<span>' + product.description + '</span></div>' +
             '<div class="product-m__wishlist">' +
             '<a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>' +
             '</div>' +
@@ -159,15 +161,39 @@ $(document).ready(function () {
 
     }
 
+    $(document).on('click', '.add-to-cart-btn', function (event) {
+        event.preventDefault();
+        let productIndex = $(this).closest('.col-lg-3').index();
+        let product = products[productIndex];
+    
+        let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+    
+        if (!productAlreadyInCart) {
+            shopping_products.push(product);
+        }
+    
+        productCounts[product.name] = (productCounts[product.name] || 0) + 1;
+    
+        // Store updated product counts and shopping products in sessionStorage
+        let shoppingData = {
+            products: shopping_products,
+            productCounts: productCounts
+        };
+    
+        sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+        console.log('Shopping Products:', shopping_products);
+        console.log('Product added to cart:', product);
+        console.log('Product Counts:', productCounts);
+    });
+    
+    
+
     $(document).on('click', '.product-m__thumb .product-link', function (event) {
         event.preventDefault();
-        // Find the parent product element
         let productIndex = $(this).closest('.col-lg-3').index();
-        // Retrieve the product associated with that index
         let product = products[productIndex];
         sessionStorage.setItem('product', JSON.stringify(product));
         window.location.href = 'ProductPage?name=' + product.name;
-
     });
 
     loadProducts();

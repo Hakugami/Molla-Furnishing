@@ -36,14 +36,12 @@ public class JWTFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         Cookie jwtCookie = CookiesUtil.getCookie(httpRequest.getCookies(), "Authorization");
+        httpRequest.setAttribute("user", null);
         if (jwtCookie != null) {
             String token = jwtCookie.getValue();
             try {
                 JwtClaims claims = jwtService.validateToken(token, httpRequest.getRemoteAddr());
-                System.out.println("Claims: " + Long.valueOf(claims.getSubject()));
-                UserDto userDto = userService.getUserById(Long.valueOf(claims.getSubject()));
-                userDto.setPassword(null);
-                httpRequest.setAttribute("user", userDto);
+                System.out.println("Claims--------------: " + Long.valueOf(claims.getSubject()));
                 chain.doFilter(request, response);
             } catch (InvalidJwtException | UnknownHostException e) {
 //                httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");

@@ -1,5 +1,6 @@
 package persistence.repositories;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -61,11 +62,9 @@ public abstract class GenericRepository<T, ID> {
         }
     }
 
-    public boolean update(T t) {
+    public boolean update(T t , EntityManager entityManager) {
         try {
-            DatabaseSingleton.getInstance().doTransaction(entityManager -> {
-                entityManager.merge(t);
-            });
+            entityManager.merge(t);
             return true;
         } catch (Exception e) {
             logger.severe("An error occurred during update operation: " + e.getMessage());

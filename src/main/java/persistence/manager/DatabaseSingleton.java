@@ -56,8 +56,6 @@ public class DatabaseSingleton {
             entityManager.getTransaction().begin();
             consumer.accept(entityManager);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            logger.severe("An error occurred during transaction: " + e.getMessage());
         }
     }
 
@@ -68,8 +66,6 @@ public class DatabaseSingleton {
             entityManager.getTransaction().begin();
             result = consumer.apply(entityManager);
             entityManager.getTransaction().commit();
-        } catch (Exception e) {
-            logger.severe("An error occurred during transaction: " + e.getMessage());
         }
         return result;
     }

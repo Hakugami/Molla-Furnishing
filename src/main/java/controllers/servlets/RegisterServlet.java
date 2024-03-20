@@ -45,6 +45,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         if (authService.register(userDto)) {
+            resp.setStatus(HttpServletResponse.SC_CREATED);
             resp.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(req.getContextPath()));
         } else {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -54,6 +55,6 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("RegisterServlet: processing request");
-        req.getRequestDispatcher("/signup.html").forward(req, resp);
+        req.getRequestDispatcher("/signup.jsp").forward(req, resp);
     }
 }

@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -20,18 +22,58 @@ public class ShoppingCart {
     private Long id;
 
     @Setter
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "cart")
     private User user;
 
     @Setter
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "shopping_cart_products",
-            joinColumns = @JoinColumn(name = "shopping_cart_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
+    @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CartItem> cartItems;
 
+    @Setter
+    @Column(name = "total_amount")
+    private Double totalAmount;
+
+    @Setter
     @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date lastUpdate;
+
+
+    public void addCartItem(Product product, int quantity, Double totalAmount) {
+        {
+            if (cartItems == null) {
+                cartItems = new ArrayList<>();
+            }
+            CartItem cartItem = new CartItem(product, quantity, this);
+            cartItems.add(cartItem);
+            this.totalAmount = totalAmount;
+        }
+
+    }
+
+    @PostPersist
+    @PostUpdate
+    @PostRemove
+    public void updateLastUpdate() {
+        lastUpdate = new Date();
+    }
+
+
+    public void removeProduct(Product product) {
+        for (Iterator<CartItem> iterator = cartItems.iterator(); iterator.hasNext(); ) {
+            CartItem cartItem = iterator.next();
+            if (cartItem.getProduct().equals(product) && cartItem.getShoppingCart().equals(this)) {
+                cartItem.setShoppingCart(null);
+                cartItem.setProduct(null);
+                iterator.remove();
+            }
+        }
+    }
+    public void removeAllProducts() {
+        this.cartItems.clear();
+        totalAmount = 0.0;
+    }
+
+
 
 }

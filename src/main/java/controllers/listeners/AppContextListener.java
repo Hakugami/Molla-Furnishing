@@ -12,7 +12,6 @@ public class AppContextListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         DatabaseSingleton.getInstance().init();
-        JWTService.getInstance().init();
     }
 
     @Override

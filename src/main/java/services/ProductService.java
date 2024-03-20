@@ -1,9 +1,10 @@
 package services;
 
 import mappers.ProductMapper;
-import mappers.ProductMapperImpl;
+//import mappers.ProductMapperImpl;
 import models.DTOs.ProductDto;
 import models.entity.Product;
+import persistence.repositories.GenericRepository;
 import persistence.repositories.helpers.ProductFilter;
 import persistence.repositories.impl.ProductRepository;
 
@@ -15,7 +16,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
-    private ProductService() {
+    public ProductService() {
         productRepository = new ProductRepository();
         productMapper = ProductMapper.INSTANCE;
     }
