@@ -23,13 +23,21 @@ public class CartService {
             if (user == null) {
                 return false;
             }
+            Product product = entityManager.find(Product.class, productId);
+            if (product == null) {
+                return false; // Invalid product ID
+            }
             Optional<CartItem> cartItem = user.getCart().getCartItems().stream().filter(item -> Objects.equals(item.getProduct().getProductId(), productId)).findFirst();
             if (cartItem.isPresent()) {
+                if (product.getQuantity() < cartItem.get().getQuantity() + quantity) {
+                    return false; // Not enough quantity in stock
+                }
                 cartItem.get().setQuantity(cartItem.get().getQuantity() + quantity);
             } else {
-
-                Product product = entityManager.find(Product.class, productId);
-                user.getCart().addCartItem(product, quantity , product.getPrice()*quantity);
+                if (product.getQuantity() < quantity) {
+                    return false; // Not enough quantity in stock
+                }
+                user.getCart().addCartItem(product, quantity, product.getPrice() * quantity);
             }
             userRepository.update(user, entityManager);
             return true;
@@ -74,6 +82,18 @@ public class CartService {
         });
     }
 
+    public boolean clearCart(Long id) {
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            User user = userRepository.read(id, entityManager).orElse(null);
+            if (user == null) {
+                return false;
+            }
+            user.getCart().removeAllProducts();
+            userRepository.update(user, entityManager);
+            return true;
+        });
+    }
+
     public boolean addProductsToCart(Long id, Map<Long, Integer> products) {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager).orElse(null);
@@ -89,7 +109,7 @@ public class CartService {
                     cartItem.get().setQuantity(cartItem.get().getQuantity() + quantity);
                 } else {
                     Product product = entityManager.find(Product.class, productId);
-                    user.getCart().addCartItem(product, quantity, product.getPrice()*quantity);
+                    user.getCart().addCartItem(product, quantity, product.getPrice() * quantity);
                 }
             }
             userRepository.update(user, entityManager);
