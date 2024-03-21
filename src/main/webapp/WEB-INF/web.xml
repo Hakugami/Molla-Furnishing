@@ -146,6 +146,20 @@
         <servlet-class>controllers.servlets.AddressServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>SendResetPasswordServlet</servlet-name>
+        <servlet-class>controllers.servlets.SendResetPasswordServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ResetPasswordChangeServlet</servlet-name>
+        <servlet-class>controllers.servlets.ResetPasswordChangeServlet</servlet-class>
+    </servlet>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.jsp</location>
+    </error-page>
     <!--Admin Servlets-->
     <!--Admin Login Page-->
     <servlet>

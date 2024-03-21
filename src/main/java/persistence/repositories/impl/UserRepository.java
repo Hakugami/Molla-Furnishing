@@ -1,6 +1,7 @@
 package persistence.repositories.impl;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -22,8 +23,7 @@ public class UserRepository extends GenericRepository<User, Long> {
     }
 
 
-
-    public Optional<User> read(Long id , EntityManager entityManager) {
+    public Optional<User> read(Long id, EntityManager entityManager) {
         return Optional.of(entityManager.find(User.class, id));
     }
 
@@ -37,20 +37,26 @@ public class UserRepository extends GenericRepository<User, Long> {
     }
 
     public Optional<User> findByEmail(String email) {
-        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
-            CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-            CriteriaQuery<User> cq = cb.createQuery(User.class);
-            Root<User> root = cq.from(User.class);
-            cq.select(root).where(cb.equal(root.get("email"), email));
-            TypedQuery<User> query = entityManager.createQuery(cq);
-            List<User> resultList = query.getResultList();
-            System.out.println("UserRepository: findByEmail: email: " + email);
-            System.out.println("UserRepository: findByEmail: resultList: " + resultList.size());
-            if (resultList.isEmpty()) {
-                return Optional.empty();
-            }
-            return Optional.of(resultList.getFirst());
-        });
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> getUser(email, entityManager));
+    }
+
+    public Optional<User> findByEmail(String email, EntityManager entityManager) {
+        return getUser(email, entityManager);
+    }
+
+    private Optional<User> getUser(String email, EntityManager entityManager) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        cq.select(root).where(cb.equal(root.get("email"), email));
+        TypedQuery<User> query = entityManager.createQuery(cq);
+        List<User> resultList = query.getResultList();
+        System.out.println("UserRepository: findByEmail: email: " + email);
+        System.out.println("UserRepository: findByEmail: resultList: " + resultList.size());
+        if (resultList.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(resultList.getFirst());
     }
 
     public Optional<User> findByPhoneNumber(String phoneNumber) {
@@ -89,5 +95,9 @@ public class UserRepository extends GenericRepository<User, Long> {
             });
             return true;
         });
+    }
+
+    public Optional<User> read(Long id, EntityManager entityManager, LockModeType lockModeType) {
+        return Optional.of(entityManager.find(User.class, id, lockModeType));
     }
 }

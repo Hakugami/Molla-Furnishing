@@ -1,7 +1,8 @@
-package controllers.commands;
+package controllers.commands.factory;
 
 import org.bouncycastle.oer.its.etsi102941.Url;
 import controllers.commands.admin.*;
+import controllers.commands.*;
 import urls.enums.UrlMapping;
 
 import java.util.HashMap;
@@ -37,6 +38,8 @@ public class CommandFactory {
         commandMap.put(UrlMapping.ABOUT.getCommand(), AboutCommand::new);
         commandMap.put(UrlMapping.WISHLIST.getCommand(), WishlistCommand::new);
         commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
+        commandMap.put(UrlMapping.RESETPASSWORD.getCommand(), ResetPasswordCommand::new);
+        commandMap.put(UrlMapping.RESETPASSWORDCHANGE.getCommand(), ResetPasswordChangeCommand::new);
         //Admin Commands
         commandMap.put(UrlMapping.ADMINHOME.getCommand(), AdminHomeCommand::new);
         commandMap.put(UrlMapping.ADMINLOGIN.getCommand(), AdminLoginCommand::new);
