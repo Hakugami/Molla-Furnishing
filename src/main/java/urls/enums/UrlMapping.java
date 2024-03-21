@@ -27,7 +27,6 @@ public enum UrlMapping {
     ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.html"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.html"),
-    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
     //Admin page
     ADMINHOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
     ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
