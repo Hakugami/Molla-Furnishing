@@ -6,7 +6,7 @@ public class CartInserter {
     public CartService cartService;
     public void insertCart() {
         cartService = new CartService();
-        cartService.addProductToCart(1L, 10L, 2);
+        cartService.addProductToCart(1L, 10L, 50);
     }
 
     public void removeProductFromCart() {
@@ -21,8 +21,8 @@ public class CartInserter {
 
     public static void main(String[] args) {
         CartInserter cartInserter = new CartInserter();
-//        cartInserter.insertCart();
-        cartInserter.removeProductFromCart();
+        cartInserter.insertCart();
+//        cartInserter.removeProductFromCart();
 //        cartInserter.decrementProductQuantity();
     }
 

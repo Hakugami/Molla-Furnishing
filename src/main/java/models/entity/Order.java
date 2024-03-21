@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +38,22 @@ public class Order {
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
     private Date orderDate;
+
+    public void addOrderItems(Product product, int quantity, double totalAmount) {
+        if (orderItems == null) {
+            orderItems = new ArrayList<>();
+        }
+        OrderItem orderItem = new OrderItem(product, quantity, this);
+        orderItems.add(orderItem);
+        this.totalAmount = totalAmount;
+    }
+
+    @PrePersist
+    @PreUpdate
+    @PreRemove
+    public void updateOrderDate() {
+        orderDate = new Date();
+    }
 
     @Override
     public boolean equals(Object o) {
