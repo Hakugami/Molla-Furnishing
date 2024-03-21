@@ -16,10 +16,10 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="home">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="signin.html">Signin</a></li>
+                                <a href="login">Signin</a></li>
                         </ul>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                                         </div>
                                         <div class="u-s-m-b-30">
 
-                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                            <a class="gl-link" href="sendResetPassword">Lost Your Password?</a></div>
                                     </div>
                                     <div class="u-s-m-b-30">
 

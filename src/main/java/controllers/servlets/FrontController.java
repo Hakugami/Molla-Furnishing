@@ -1,6 +1,6 @@
 package controllers.servlets;
 
-import controllers.commands.CommandFactory;
+import controllers.commands.factory.CommandFactory;
 import controllers.commands.FrontCommand;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
