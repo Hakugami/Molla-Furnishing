@@ -22,6 +22,8 @@ public class StaticResourceHandler implements ResourceHandler {
             if(path.startsWith("/admin/assets/")){
 
                 path = path.replaceFirst("/admin", "/Adminpanel");
+            }else if(path.startsWith("/admin/images/")){
+                path = path.replaceFirst("/admin","");
             }
             request.getServletContext().getRequestDispatcher(path).forward(request, response);
             return true;
