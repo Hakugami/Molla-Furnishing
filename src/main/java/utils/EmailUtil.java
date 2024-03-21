@@ -22,7 +22,7 @@ public class EmailUtil {
         return email;
     }
 
-    public static void sendUserRegistrationEmail(String email, String name) {
+    public static void sendUserRegistrationEmail(String email, String name) throws RuntimeException {
         new Thread(() -> {
             HtmlEmail htmlEmail = getEmail();
             try {
@@ -130,15 +130,24 @@ public class EmailUtil {
             HtmlEmail htmlEmail = getEmail();
             try {
                 htmlEmail.setSubject("Reset Password");
-                htmlEmail.setHtmlMsg("<h1>Reset Password</h1><p>Dear " + name + ",</p><p>You have requested to reset your password. Please click the link below to reset your password.</p><a href='http://localhost:4545/molla/view/reset-password?token=" + token + "'>Reset Password</a>");
+                String htmlMsg = String.format("""
+                        <h1>Reset Password</h1>
+                        <p>Dear %s,</p>
+                        <p>You have requested to reset your password. Here's your unique reset token:</p>
+                        <p style="font-weight: bold; font-size: 18px; text-align: center;">%s</p>
+                        <p>Please copy and paste this token into the designated field on the password reset page.</p>
+                        <p>Thank you for using Molla Furnishing.</p>
+                        """, name, token);
+                htmlEmail.setHtmlMsg(htmlMsg);
                 htmlEmail.addTo(email);
                 htmlEmail.send();
             } catch (EmailException e) {
                 e.printStackTrace();
-                throw new RuntimeException("Error sending email: " + e.getMessage());
+                throw new RuntimeException("Error sending email: + e.getMessage()");
             }
         }).start();
     }
+
 
     public static void main(String[] args) {
         sendUserRegistrationEmail("islam.ahmed.dev@gmail.com", "Islam Ahmed");
