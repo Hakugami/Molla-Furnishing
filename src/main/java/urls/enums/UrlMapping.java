@@ -33,7 +33,7 @@ public enum UrlMapping {
     ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
     ADMINALLPRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
     ADMINVIEWPRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
-    ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.html"),
+    ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.jsp"),
     ADMINVIEWUSER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
     ADMINADDUSER("adminadduser","/admin/adduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
     ADMINADDPRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
