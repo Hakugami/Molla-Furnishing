@@ -227,12 +227,12 @@
             <http-method>TRACE</http-method>
         </web-resource-collection>
         <auth-constraint>
-            <role-name>manager</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
     </security-constraint>
 
     <security-role>
-        <role-name>manager</role-name>
+        <role-name>admin</role-name>
     </security-role>
 
     <login-config>
