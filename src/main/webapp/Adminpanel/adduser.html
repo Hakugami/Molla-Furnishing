@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add new User</title>
+    <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon.png"/>
+    <link rel="stylesheet" href="assets/css/styles.min.css"/>
+</head>
+
+<body>
+<!--  Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed">
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div>
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+                <a class="text-nowrap logo-img" href="/molla/view/admin/home">
+                    <img alt="" src="assets/images/logos/mollalogotransparent.png" width="180" />
+                </a>
+                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                    <i class="ti ti-x fs-8"></i>
+                </div>
+            </div>
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Home</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/home">
+                <span>
+                  <i class="ti ti-layout-dashboard"></i>
+                </span>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Users</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allusers">
+                <span>
+                  <i class="ti ti-user"></i>
+                </span>
+                            <span class="hide-menu">View All Users</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/adduser">
+                <span>
+                  <i class="ti ti-user-plus"></i>
+                </span>
+                            <span class="hide-menu">Add new</span>
+                        </a>
+                    </li>
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Products</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allproducts">
+                <span>
+                  <i class="ti ti-package"></i>
+                </span>
+                            <span class="hide-menu">View All</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproduct">
+                <span>
+                  <i class="ti ti-plus"></i>
+                </span>
+                            <span class="hide-menu">Add Product</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+        <!--  Header Start -->
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+
+                </ul>
+                <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+                    <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                        <span>Welcome Hamada </span>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="assets/images/profile/user-1.jpg" alt="" width="35" height="35"
+                                     class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                 aria-labelledby="drop2">
+                                <div class="message-body">
+                                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-user fs-6"></i>
+                                        <p class="mb-0 fs-3">My Profile</p>
+                                    </a>
+                                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-mail fs-6"></i>
+                                        <p class="mb-0 fs-3">My Account</p>
+                                    </a>
+                                    <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                        <i class="ti ti-list-check fs-6"></i>
+                                        <p class="mb-0 fs-3">My Task</p>
+                                    </a>
+                                    <a href="./authentication-login.html"
+                                       class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!--  Header End -->
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Add New User</h2>
+                    <div class="row">
+                        <form class="row g-3">
+                            <div class="col-md-6">
+                                <!-- First Name -->
+                                <div class="mb-3">
+                                    <label for="fname" class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="fname" aria-describedby="fnameHelp">
+                                    <div id="fnameHelp" class="form-text">FirstName</div>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div class="mb-3">
+                                    <label for="lname" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" aria-describedby="lnameHelp">
+                                    <div id="lnameHelp" class="form-text">LastName</div>
+                                </div>
+
+                                <!-- Birthday -->
+                                <div class="mb-3">
+                                    <label for="birthday" class="form-label">Birthday</label>
+                                    <input type="date" class="form-control" id="birthday"
+                                           aria-describedby="birthdayHelp">
+                                    <div id="birthdayHelp" class="form-text">BirthDay</div>
+                                </div>
+
+                                <!-- Gender -->
+                                <div class="mb-3">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select class="form-select" id="gender" aria-describedby="genderHelp">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                    <div id="genderHelp" class="form-text">Gender</div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                    <div id="emailHelp" class="form-text">Email</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="password"
+                                           aria-describedby="passwordHelp">
+                                    <div id="passwordHelp" class="form-text">Password</div>
+                                </div>
+
+                                <!-- Job -->
+                                <div class="mb-3">
+                                    <label for="job" class="form-label">Job</label>
+                                    <input type="text" class="form-control" id="job" aria-describedby="jobHelp">
+                                    <div id="jobHelp" class="form-text">Job</div>
+                                </div>
+
+                                <!-- Interests -->
+                                <div class="mb-3">
+                                    <label for="interests" class="form-label">Interests</label>
+                                    <select class="form-select" id="interests" multiple>
+                                        <option>Seating</option>
+                                        <option>Tables</option>
+                                        <option>Storage</option>
+                                        <option>Beds</option>
+                                        <option>Desks & Workstations</option>
+                                        <option>Dining Room</option>
+                                        <option>Children's Furniture</option>
+                                    </select>
+                                    <div id="interestsHelp" class="form-text">Select one or more</div>
+                                </div>
+
+                                <!-- Credit Limit -->
+                                <div class="mb-3">
+                                    <label for="creditLimit" class="form-label">Credit Limit</label>
+                                    <input type="number" class="form-control" id="creditLimit"
+                                           aria-describedby="creditLimitHelp" required>
+                                    <div id="creditLimitHelp" class="form-text">CreditLimit</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image</label>
+                                <input type="file" class="form-control" id="image" accept="image/*" onchange="previewImage(event)">
+                                <div id="imagePreview" class="mt-2"></div>
+                            </div>
+
+                            <!-- Address -->
+                            <!-- Address -->
+                            <div class="mb-3 address-fields">
+                                <div class="mb-3 row address-row">
+                                    <label class="form-label">Address</label>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="Street" name="street[]">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="City" name="city[]">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="State" name="state[]">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="Country" name="country[]">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" placeholder="Zipcode" name="zipcode[]">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-danger remove-address-btn">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary mt-2" id="addAddress">Add Another Address</button>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="btn btn-primary">Create User</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Page Scripts -->
+<script src="assets/js/adduser.js"></script>
+<!--Page Scripts --------------------------->
+<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/sidebarmenu.js"></script>
+<script src="assets/js/app.min.js"></script>
+<script src="assets/libs/simplebar/dist/simplebar.js"></script>
+</body>
+
+</html>
