@@ -23,9 +23,72 @@ $(document).ready(function () {
     let params = new URLSearchParams(window.location.search);
     let category1 = params.get('category');
 
-    if(category1 != null){
+    if (category1 != null) {
         filter.category = category1;
     }
+
+    $('.shop-p__collection .row').on('click', '[data-modal="modal"]', function () {
+        const modalId = $(this).data('modal-id');
+        const productIndex = $(this).closest('.col-lg-3').index();
+        const product = products[productIndex]; // Assuming 'products' is the array containing all products
+        populateAddToCartModal(product);
+
+        $(modalId).modal('show');
+    });
+
+
+    function populateAddToCartModal(product) {
+        // Update product name
+        $('.success__name').text(product.name);
+
+        // Update product quantity
+        $('.success__quantity').text('Quantity: ' + product.quantity);
+
+        // Update product price
+        $('.success__price').text('$' + product.price);
+
+        // Update this according to the number of items in the cart dynamically
+        $('.s-option__text').text('1 item added to cart');
+
+
+        // Update product image
+        // You can update the image source here if needed
+    }
+
+    // function populateQuickLookModal(product) {
+    //     $('#quick-look .pd-detail__name').text(product.name);
+    //     $('#quick-look .pd-detail__price').text('$' + product.price);
+    //     $('#quick-look .pd-detail__category').text(product.categoryName);
+    //     $('#quick-look .pd-detail__description').text(product.description);
+    //     $('#quick-look .pd-detail__image').attr('src', product.images[0]);
+    //     $('#quick-look .pd-detail__stock').text(product.quantity + ' in stock');
+    //
+    //
+    //
+    //     $('#quick-look .pd-detail__add-cart').on('click', function () {
+    //         const productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+    //
+    //         if (!productAlreadyInCart) {
+    //             shopping_products.push(product);
+    //         }
+    //
+    //         productCounts[product.name] = (productCounts[product.name] || 0) + 1;
+    //
+    //         // Store updated product counts and shopping products in sessionStorage
+    //         let shoppingData = {
+    //             products: shopping_products,
+    //             productCounts: productCounts
+    //         };
+    //
+    //         sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+    //         console.log('Shopping Products:', shopping_products);
+    //         console.log('Product added to cart:', product);
+    //         console.log('Product Counts:', productCounts);
+    //     });
+    //
+    //
+    // }
+
 
     function updateCurrentPage(pageNo) {
         filter.page = pageNo;
@@ -134,16 +197,14 @@ $(document).ready(function () {
         const productElement = '<div class="col-lg-3 col-md-4 col-sm-6">' +
             '<div class="product-m">' +
             '<div class="product-m__thumb">' +
-            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage/' + product.name + '">' +
+            '<a class="product-link aspect aspect--bg-grey aspect--square u-d-block" href="ProductPage?name=' + product.name + '">' +
             '<img class="aspect__img" src="' + product.images[0] + '" alt=""></a>' +
-            '<div class="product-m__quick-look">' +
-            '<a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>' +
             '<div class="product-m__add-cart">' +
             '<a class="btn--e-brand add-to-cart-btn" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>' +
             '</div>' +
             '<div class="product-m__content">' +
             '<div class="product-m__category">' +
-            '<a href="product?category=' + product.categoryName +'">' + product.categoryName + '</a></div>' +
+            '<a href="product?category=' + product.categoryName + '">' + product.categoryName + '</a></div>' +
             '<div class="product-m__name">' +
             '<a href="ProductPage/' + product.name + '">' + product.name + '</a></div>' +
             '<div class="product-m__rating gl-rating-style">' + product.rating +
@@ -165,28 +226,27 @@ $(document).ready(function () {
         event.preventDefault();
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
-    
+
         let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
-    
+
         if (!productAlreadyInCart) {
             shopping_products.push(product);
         }
-    
+
         productCounts[product.name] = (productCounts[product.name] || 0) + 1;
-    
+
         // Store updated product counts and shopping products in sessionStorage
         let shoppingData = {
             products: shopping_products,
             productCounts: productCounts
         };
-    
+
         sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
         console.log('Product Counts:', productCounts);
     });
-    
-    
+
 
     $(document).on('click', '.product-m__thumb .product-link', function (event) {
         event.preventDefault();
