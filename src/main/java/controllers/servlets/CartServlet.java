@@ -10,6 +10,7 @@ import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.CartService;
 import services.JWTService;
+import urls.enums.UrlMapping;
 import utils.CookiesUtil;
 
 import java.io.IOException;
@@ -23,6 +24,10 @@ public class CartServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         cartService = new CartService();
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher(UrlMapping.CART.getPageName()).forward(request, response);
     }
 
     @Override
