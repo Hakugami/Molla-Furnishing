@@ -70,7 +70,7 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>TOTAL</td>
-                                                                <td id="total">$379.00</td>
+                                                                <td id="total">$0.00</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
