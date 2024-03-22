@@ -22,9 +22,14 @@ $(document).ready(function () {
 
     let params = new URLSearchParams(window.location.search);
     let category1 = params.get('category');
+    let search = params.get('search');
 
     if (category1 != null) {
         filter.category = category1;
+    }
+
+    if (search != null) {
+        filter.name = search;
     }
 
     $('.shop-p__collection .row').on('click', '[data-modal="modal"]', function () {
@@ -206,7 +211,7 @@ $(document).ready(function () {
             '<div class="product-m__category">' +
             '<a href="product?category=' + product.categoryName + '">' + product.categoryName + '</a></div>' +
             '<div class="product-m__name">' +
-            '<a href="ProductPage/' + product.name + '">' + product.name + '</a></div>' +
+            '<a href="ProductPage?name=' + product.name + '">' + product.name + '</a></div>' +
             '<div class="product-m__rating gl-rating-style">' + product.rating +
             '<span class="product-m__review">(23)</span></div>' +
             '<div class="product-m__price">$' + product.price + '</div>' +
