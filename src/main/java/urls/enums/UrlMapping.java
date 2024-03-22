@@ -34,7 +34,7 @@ public enum UrlMapping {
     ADMINVIEWPRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
     ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.html"),
     ADMINVIEWUSER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
-    ADMINADDUSER("adminadduser","/adminadduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
+    ADMINADDUSER("adminadduser","/admin/adduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
     ADMINADDPRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
 
     private final String command;

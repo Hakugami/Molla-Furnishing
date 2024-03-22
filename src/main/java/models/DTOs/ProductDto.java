@@ -23,6 +23,7 @@ public class ProductDto implements Serializable {
     List<String> images;
     List<RatingDto> ratings;
     String categoryName;
+    String subCategoryName;
     double rating;
     DiscountedProductDto discountedProduct;
 

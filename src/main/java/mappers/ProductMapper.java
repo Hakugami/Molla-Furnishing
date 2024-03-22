@@ -19,7 +19,7 @@ public interface ProductMapper {
     Product productDtoToProduct(ProductDto productDto);
 
     @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductToDiscountedProductDto")
-     ProductDto productToProductDto(Product product);
+    ProductDto productToProductDto(Product product);
 
     @Named("discountedProductDtoToDiscountedProduct")
     DiscountedProduct discountedProductDtoToDiscountedProduct(DiscountedProductDto discountedProductDto);

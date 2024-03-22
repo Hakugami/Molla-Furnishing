@@ -93,3 +93,6 @@ document.getElementById('imageInput').addEventListener('change', previewImages);
     // Attach event listeners to edit product and reset buttons
     document.getElementById('editProductButton').addEventListener('click', editProduct);
     document.getElementById('resetButton').addEventListener('click', resetForm);
+
+
+    //--------------------------------------------------------Ajax
