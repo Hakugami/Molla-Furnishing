@@ -1,11 +1,16 @@
 package controllers.servlets;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jose4j.jwt.JwtClaims;
+import org.jose4j.jwt.MalformedClaimException;
+import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.CartService;
 import services.JWTService;
+import utils.CookiesUtil;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,13 +27,16 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
-        Long userId = null;
-        boolean result = false;
+        try {
+            Cookie cookie = CookiesUtil.getCookie(request.getCookies(), "Authorization");
 
-        if (JWTService.isUserLoggedIn(token)) {
-            userId = JWTService.getUserIdFromToken(token);
-
+            if (cookie == null) {
+                response.getWriter().write("User not logged in");
+                return;
+            }
+            JwtClaims claims = JWTService.getInstance().validateToken(cookie.getValue(), request.getRemoteAddr());
+            Long userId = Long.parseLong(claims.getSubject());
+            boolean result = false;
             String action = request.getParameter("action");
             switch (action) {
                 case "addProduct":
@@ -55,9 +63,11 @@ public class CartServlet extends HttpServlet {
                     result = false;
                     break;
             }
-        }
 
         response.getWriter().println(result ? "Success" : "Failed");
+        } catch (InvalidJwtException | MalformedClaimException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private boolean handleAddProductsToCartRequest(Long userId, HttpServletRequest request) {

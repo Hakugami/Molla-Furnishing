@@ -1,10 +1,5 @@
 package services;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
-import jakarta.servlet.http.HttpServletRequest;
 import org.jose4j.jwa.AlgorithmConstraints;
 import org.jose4j.jwk.RsaJsonWebKey;
 import org.jose4j.jwk.RsaJwkGenerator;
@@ -17,7 +12,6 @@ import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 import org.jose4j.lang.JoseException;
 import utils.KeyGenerator;
 
-import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -28,10 +22,6 @@ public class JWTService {
     private static volatile JWTService instance;
     private RsaJsonWebKey rsaJsonWebKey;
     private Logger logger = Logger.getLogger(getClass().getName());
-
-    private static final SecretKey secretKey = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
-
-
 
     private JWTService() {
         try {
@@ -87,27 +77,5 @@ public class JWTService {
         KeyGenerator.getInstance().createPrivateKeyFile(rsaJsonWebKey);
         KeyGenerator.getInstance().createPublicKeyFile(rsaJsonWebKey);
         return rsaJsonWebKey;
-    }
-
-    public static boolean isUserLoggedIn(String token) {
-        return getUserIdFromToken(token) != null;
-    }
-
-    public static Long getUserIdFromToken(String token) {
-        try {
-            Jws<Claims> claimsJws = Jwts.parserBuilder()
-                    .setSigningKey(secretKey)
-                    .build()
-                    .parseClaimsJws(token);
-
-            String subject = claimsJws.getBody().getSubject();
-            return Long.valueOf(subject);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static String getTokenFromRequest(HttpServletRequest request) {
-        return request.getHeader("Authorization");
     }
 }

@@ -176,12 +176,6 @@
             <artifactId>commons-email</artifactId>
             <version>1.6.0</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt-api</artifactId>
-            <version>0.11.2</version> <!-- Use the latest version -->
-        </dependency>
     </dependencies>
 
     <build>
