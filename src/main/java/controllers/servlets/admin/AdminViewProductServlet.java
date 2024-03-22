@@ -13,12 +13,8 @@ import java.io.IOException;
 public class AdminViewProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        long productId = Long.parseLong(req.getParameter("action"));
-        ProductService productService = ProductService.getInstance();
-        ProductDto product = productService.getProductById(productId);
-
-
+        String productId = req.getParameter("productId");
+        System.out.println("Servlet Product ID = "+productId);
         req.getRequestDispatcher(UrlMapping.ADMINVIEWPRODUCT.getPageName()).forward(req, resp);
     }
 }

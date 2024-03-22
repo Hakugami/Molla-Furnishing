@@ -145,23 +145,23 @@
                             <fieldset disabled class="col-md-4">
                                 <h2 class="fw-semibold mb-4">View Product</h2>
                                 <div id="bigImagePreviewContainer">
-                                    <img id="bigImagePreview" src="assets/images/products/s4.jpg" class="card-img-top" alt="Big Image Preview">
+                                    <img id="bigImagePreview" src="" class="card-img-top" alt="Big Image Preview">
                                 </div>
                                 <label for="imageInput" class="form-label card-title mt-4">Select Images</label>
                                 <input type="file" class="form-control" id="imageInput" accept="image/*" multiple>
                                 <div id="smallImagePreviews" class="mt-2"></div>
-
                             </fieldset>
-                            <fieldset disabled class="col-md-4 mt-2">
-                                <label for="productName2" class="form-label card-title mt-5">Product name</label>
-                                <input type="text" class="form-control card-title" id="productName2"
-                                       aria-describedby="productName2Help"
-                                       value="Hamada Chair">
+                            <fieldset disabled class="col-md-4">
+                                <label for="productId" class="form-label mt-5">Product ID</label>
+                                <p class="card-text" id="productId"></p>
+                                <label for="productName2" class="form-label ">Product name</label>
+                                <input type="text" class="form-control " id="productName2"
+                                       aria-describedby="productName2Help">
                                 <div class="mb-3">
-                                    <label for="categorySelect" class="form-label card-title">Category</label>
+                                    <label for="categorySelect" class="form-label ">Category</label>
                                     <select class="form-select mt-2" id="categorySelect"
                                             aria-describedby="categorySelectHelp">
-                                        <option selected>Chairs</option>
+                                        <option>Chairs</option>
                                         <option>Tables</option>
                                         <option>Storage</option>
                                         <option>Beds</option>
@@ -170,31 +170,44 @@
                                         <option>Children's Furniture</option>
                                     </select>
                                 </div>
-                                <label for="priceInput" class="form-label card-title">Price</label>
+                                <label for="subcategorySelect" class="form-label">Subcategory</label>
+                                <select class="form-select mt-2" id="subcategorySelect"
+                                        aria-describedby="subcategorySelectHelp">
+                                </select>
+                                <label for="priceInput" class="form-label ">Price</label>
                                 <input type="text" class="form-control" id="priceInput"
-                                       aria-describedby="priceInputHelp"
-                                       value="200$">
-                                <label for="stockInput" class="form-label card-title">Stock</label>
+                                       aria-describedby="priceInputHelp">
+                                <label for="stockInput" class="form-label ">Stock</label>
                                 <input type="text" class="form-control" id="stockInput"
-                                       aria-describedby="stockInputHelp"
-                                       value="400">
-                                <label for="descriptionInput" class="form-label card-title">Product Description</label>
+                                       aria-describedby="stockInputHelp">
+                                <label for="descriptionInput" class="form-label ">Product Description</label>
                                 <input type="text" class="form-control" id="descriptionInput"
-                                       aria-describedby="descriptionInputHelp"
-                                       value="This is a hamada chair- The most Hamada chair ever">
-
+                                       aria-describedby="descriptionInputHelp">
                             </fieldset>
-                            <div class="col-md-4">
+                            <fieldset disabled class="col-md-4 mt-2">
                                 <div class="card mt-5">
                                     <div class="card-body">
-                                        <h5 class="card-title">Date Added</h5>
+                                        <h5 class="">Date Added</h5>
                                         <p class="card-text">10/10/1890</p>
-                                        <h5 class="card-title">Rating</h5>
+                                        <h5 class="">Rating</h5>
                                         <p class="card-text">4/5</p>
+                                        <h5 class="card-title form-label">Product Details</h5>
+                                        <label for="materialInput" class="form-label">Material</label>
+                                        <input type="text" class="form-control" id="materialInput"
+                                               aria-describedby="materialInputHelp">
+                                        <label for="dimensionsInput" class="form-label">Dimensions</label>
+                                        <input type="text" class="form-control" id="dimensionsInput"
+                                               aria-describedby="dimensionsInputHelp">
+                                        <label for="colorInput" class="form-label">Color</label>
+                                        <input type="text" class="form-control" id="colorInput"
+                                               aria-describedby="colorInputHelp">
+                                        <label for="weightInput" class="form-label">Weight</label>
+                                        <input type="text" class="form-control" id="weightInput"
+                                               aria-describedby="weightInputHelp">
                                     </div>
                                 </div>
-                            </div>
-                            <fieldset disabled class="col-md-4">
+                            </fieldset>
+                            <fieldset disabled class="col-md-12">
                                 <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>
                                 <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>
                             </fieldset>
@@ -202,14 +215,15 @@
                     </div>
                     <div>
                         <input type="button" id="editProductButton" class="btn btn-primary" value="Edit Product"/>
+                        <input type="button" id="deleteProductButton" class="btn btn-danger m-3" value="Delete Product"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script src="assets/js/viewproduct.js"></script>
 <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="assets/js/viewproduct.js"></script>
 <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/sidebarmenu.js"></script>
 <script src="assets/js/app.min.js"></script>
