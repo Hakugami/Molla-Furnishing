@@ -73,11 +73,11 @@
 
                                 <span class="ah-close">✕ Close</span>
                 <c:choose>
-                    <c:when test="${not empty user}">
+                    <c:when test="${not empty name}">
 
                                 <!--====== List (Logged-in User) ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="${user.name}">
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="${name}">
 
                                         <a><i class="far fa-user-circle"></i></a>
 

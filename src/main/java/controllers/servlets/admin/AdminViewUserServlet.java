@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.OrderDto;
 import models.DTOs.UserDto;
+import services.OrderService;
 import services.UserService;
 import urls.enums.UrlMapping;
 
@@ -20,17 +21,13 @@ public class AdminViewUserServlet extends HttpServlet {
         UserDto user = getUserDto(req);
         req.setAttribute("user", user);
 
-//        OrderDto orders = getOrdersDto(user);
-//        req.setAttribute("orders", orders);
+        if (user != null) {
+            List<OrderDto> orders = getOrdersDto(user.getId());
+            req.setAttribute("orders", orders);
+        }
 
         req.getRequestDispatcher(UrlMapping.ADMIN_VIEW_USER.getPageName()).forward(req, resp);
     }
-
-//    private OrderDto getOrdersDto(UserDto user) {
-//        OrderService orderService = new OrderService();
-//        orderService.getOrdersByUser(user);
-//
-//    }
 
     private UserDto getUserDto(HttpServletRequest req) {
         String stringId = req.getParameter("id");
@@ -44,5 +41,12 @@ public class AdminViewUserServlet extends HttpServlet {
         }
 
         return null;
+    }
+
+    private List<OrderDto> getOrdersDto(Long userId) {
+        OrderService orderService = new OrderService();
+        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
+        orders.forEach(order -> order.getUser().setPassword(null));
+        return orders;
     }
 }
