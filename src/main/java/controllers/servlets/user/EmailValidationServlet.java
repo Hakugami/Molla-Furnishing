@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.user;
 
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;

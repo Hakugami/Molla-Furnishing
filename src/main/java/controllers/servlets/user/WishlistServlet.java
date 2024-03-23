@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,9 +8,10 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class ProductsServlet extends HttpServlet {
+public class WishlistServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(UrlMapping.PRODUCTS.getPageName()).forward(req, resp);
+        System.out.println("WishlistServlet: processing request");
+        req.getRequestDispatcher(UrlMapping.WISHLIST.getPageName()).forward(req, resp);
     }
 }

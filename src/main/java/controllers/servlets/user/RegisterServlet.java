@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.RequestDispatcher;

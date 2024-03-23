@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,10 +8,10 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class CartServlet extends HttpServlet {
+public class AboutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("CartServlet: processing request");
-        req.getRequestDispatcher(UrlMapping.CART.getPageName()).forward(req, resp);
+        System.out.println("AboutServlet: processing request");
+        req.getRequestDispatcher(UrlMapping.ABOUT.getPageName()).forward(req, resp);
     }
 }

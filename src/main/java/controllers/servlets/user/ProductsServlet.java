@@ -1,4 +1,4 @@
-package controllers.servlets;
+package controllers.servlets.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -8,10 +8,9 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class ProfileServlet extends HttpServlet {
+public class ProductsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("ProfileServlet: processing request");
-        req.getRequestDispatcher(UrlMapping.PROFILE.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.PRODUCTS.getPageName()).forward(req, resp);
     }
 }
