@@ -12,6 +12,6 @@ public class AdminHomeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(UrlMapping.ADMINHOME.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMIN_HOME.getPageName()).forward(req, resp);
     }
 }

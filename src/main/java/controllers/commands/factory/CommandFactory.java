@@ -1,6 +1,5 @@
 package controllers.commands.factory;
 
-import org.bouncycastle.oer.its.etsi102941.Url;
 import controllers.commands.admin.*;
 import controllers.commands.*;
 import urls.enums.UrlMapping;
@@ -42,14 +41,14 @@ public class CommandFactory {
         commandMap.put(UrlMapping.RESETPASSWORD.getCommand(), ResetPasswordCommand::new);
         commandMap.put(UrlMapping.RESETPASSWORDCHANGE.getCommand(), ResetPasswordChangeCommand::new);
         //Admin Commands
-        commandMap.put(UrlMapping.ADMINHOME.getCommand(), AdminHomeCommand::new);
-        commandMap.put(UrlMapping.ADMINLOGIN.getCommand(), AdminLoginCommand::new);
-        commandMap.put(UrlMapping.ADMINVIEWUSER.getCommand(), AdminViewUserCommand::new);
-        commandMap.put(UrlMapping.ADMINADDUSER.getCommand(), AdminAddUserCommand::new);
-        commandMap.put(UrlMapping.ADMINALLUSERS.getCommand(), AdminAllUsersCommand::new);
-        commandMap.put(UrlMapping.ADMINVIEWPRODUCT.getCommand(), AdminViewProductCommand::new);
-        commandMap.put(UrlMapping.ADMINALLPRODUCTS.getCommand(), AdminAllProductsCommand::new);
-        commandMap.put(UrlMapping.ADMINADDPRODUCT.getCommand(), AdminAddProductCommand::new);
+        commandMap.put(UrlMapping.ADMIN_HOME.getCommand(), AdminHomeCommand::new);
+        commandMap.put(UrlMapping.ADMIN_LOGIN.getCommand(), AdminLoginCommand::new);
+        commandMap.put(UrlMapping.ADMIN_VIEW_USER.getCommand(), AdminViewUserCommand::new);
+        commandMap.put(UrlMapping.ADMIN_ADD_USER.getCommand(), AdminAddUserCommand::new);
+        commandMap.put(UrlMapping.ADMIN_ALL_USERS.getCommand(), AdminAllUsersCommand::new);
+        commandMap.put(UrlMapping.ADMIN_VIEW_PRODUCT.getCommand(), AdminViewProductCommand::new);
+        commandMap.put(UrlMapping.ADMIN_ALL_PRODUCTS.getCommand(), AdminAllProductsCommand::new);
+        commandMap.put(UrlMapping.ADMIN_ADD_PRODUCT.getCommand(), AdminAddProductCommand::new);
     }
 
     public static CommandFactory getInstance() {

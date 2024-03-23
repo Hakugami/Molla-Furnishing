@@ -13,7 +13,7 @@ public class AdminAddUserCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("Admin Add User Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMINADDUSER.getServletName());
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_ADD_USER.getServletName());
         System.out.println("Forwarding Request to Add User Page...");
         rd.forward(request, response);
     }

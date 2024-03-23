@@ -11,6 +11,6 @@ import java.io.IOException;
 public class AdminViewProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(UrlMapping.ADMINVIEWPRODUCT.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMIN_VIEW_PRODUCT.getPageName()).forward(req, resp);
     }
 }
