@@ -32,16 +32,11 @@ public class CartServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Cookie cookie = CookiesUtil.getCookie(request.getCookies(), "Authorization");
         try {
-            Cookie cookie = CookiesUtil.getCookie(request.getCookies(), "Authorization");
-
-            if (cookie == null) {
-                response.getWriter().write("User not logged in");
-                return;
-            }
             JwtClaims claims = JWTService.getInstance().validateToken(cookie.getValue(), request.getRemoteAddr());
             Long userId = Long.parseLong(claims.getSubject());
-            boolean result = false;
+            boolean result;
             String action = request.getParameter("action");
             switch (action) {
                 case "addProduct":
@@ -64,12 +59,12 @@ public class CartServlet extends HttpServlet {
                     result = handleAddProductsToCartRequest(userId, request);
                     break;
                 default:
-                    // Unknown action
                     result = false;
                     break;
             }
-
-        response.getWriter().println(result ? "Success" : "Failed");
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(String.valueOf(result));
         } catch (InvalidJwtException | MalformedClaimException e) {
             throw new RuntimeException(e);
         }
