@@ -52,22 +52,25 @@ public class UserAdder {
 
     public static void main(String[] args)  {
         // Create an ObjectMapper instance
-//        authService = new AuthenticationService();
-//        UserDto userDto = new UserDto();
-//        userDto.setName("Mohamed Nofal");
-//        userDto.setBirthday(new Date());
-//        userDto.setEmail("nofal@gmail.com");
-//        userDto.setPassword("12345678");
-//        userDto.setJob("SE");
-//        userDto.setInterest("molla");
-//        userDto.setCreditLimit(10000);
-//        authService.register(userDto);
-//
-//        authService.register(userDto);
+        for (int i = 0; i < 20; i++) {
+//            authService = new AuthenticationService();
+//            UserDto userDto = new UserDto();
+//            userDto.setName("Mohamed Nofal" + i);
+//            userDto.setBirthday(new Date());
+//            userDto.setEmail("nofal" + i + "@gmail.com");
+//            userDto.setGender("Male");
+//            userDto.setPhone("1234654894894165");
+//            userDto.setPassword("12345678");
+//            userDto.setJob("SE");
+//            userDto.setInterest("molla");
+//            userDto.setCreditLimit(10000);
+//            authService.register(userDto);
 
-        addUserAddressTest();
-        removeUserAddressTest();
-        printUserAddresses();
+        }
+
+//        addUserAddressTest();
+//        removeUserAddressTest();
+//        printUserAddresses();
 
     }
 }

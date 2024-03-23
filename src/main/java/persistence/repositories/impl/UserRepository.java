@@ -3,9 +3,7 @@ package persistence.repositories.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import models.entity.Address;
 import models.entity.ShoppingCart;
 import models.entity.User;
@@ -99,5 +97,21 @@ public class UserRepository extends GenericRepository<User, Long> {
 
     public Optional<User> read(Long id, EntityManager entityManager, LockModeType lockModeType) {
         return Optional.of(entityManager.find(User.class, id, lockModeType));
+    }
+
+    public List<User> getUsers(int page, int size) {
+        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+            CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+            Root<User> root = criteriaQuery.from(User.class);
+            Order order = criteriaBuilder.desc(root.get("id"));
+
+            criteriaQuery.select(root).orderBy(order);
+
+            return entityManager.createQuery(criteriaQuery)
+                    .setFirstResult((page - 1) * size)
+                    .setMaxResults(size)
+                    .getResultList();
+        });
     }
 }
