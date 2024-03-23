@@ -70,7 +70,7 @@ $(document).on('click', '.input-counter__minus', function () {
         updateTotalSum();
 
         $.ajax({
-            url: '/cart',
+            url: 'cart',
             type: 'POST',
             data: {
                 action: 'decrementProductQuantity',
@@ -105,7 +105,7 @@ $(document).on('click', '.input-counter__plus', function () {
         updateTotalSum();
 
         $.ajax({
-            url: '/cart',
+            url: 'cart',
             type: 'POST',
             data: {
                 action: 'incrementProductQuantity',
@@ -134,7 +134,7 @@ $(document).on('click', '.table-p__delete-link', function () {
     let productName = productRow.find('.table-p__name a').text();
 
     $.ajax({
-        url: '/cart',
+        url: 'cart',
         type: 'POST',
         data: {
             action: 'removeProduct',
