@@ -194,21 +194,31 @@ function updateTotalSum() {
 
 updateTotalSum();
 
-function clearShoppingCart() {
-    shopping_products = [];
-    productCounts = {};
-    sessionStorage.removeItem('shoppingData');
-
-    $('.table-p tbody').empty();
-
-    // Update total sum to reflect the changes
-    updateTotalSum();
-}
-
-
 $(document).on('click', '.route-box__link', function (event) {
     event.preventDefault();
     if ($(this).text().trim() === 'CLEAR CART') {
         clearShoppingCart();
     }
 });
+
+function clearShoppingCart() {
+    $.ajax({
+        url: 'cart',
+        type: 'POST',
+        data: {
+            action: 'clearCart'
+        },
+        success: function(response) {
+            if (response === 'true') {
+                alert('Shopping cart cleared successfully!');
+                $('.table-p tbody').empty();
+                updateTotalSum();
+            } else {
+                alert('Failed to clear shopping cart.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+}
