@@ -1,5 +1,6 @@
-package controllers.commands;
+package controllers.commands.user;
 
+import controllers.commands.FrontCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -7,12 +8,12 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class CartCommand extends FrontCommand{
+public class PhoneNumberValidationCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("AboutCommand: processing request");
+        System.out.println("Phone Number Validation Command");
         ServletContext context = request.getServletContext();
-        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.CART.getServletName());
+        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.PHONEVALIDATION.getServletName());
         dispatcher.forward(request, response);
     }
 }

@@ -1,5 +1,6 @@
-package controllers.commands;
+package controllers.commands.user;
 
+import controllers.commands.FrontCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;

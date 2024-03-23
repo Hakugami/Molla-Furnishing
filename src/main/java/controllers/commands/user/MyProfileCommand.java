@@ -1,5 +1,6 @@
-package controllers.commands;
+package controllers.commands.user;
 
+import controllers.commands.FrontCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -7,13 +8,11 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class PasswordValidationCommand  extends FrontCommand{
+public class MyProfileCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("PasswordValidationCommand");
         ServletContext context = request.getServletContext();
-        RequestDispatcher requestDispatcher = context.getNamedDispatcher(UrlMapping.PASSWORDVALIDATION.getServletName());
-        requestDispatcher.forward(request, response);
-
+        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.MYPROFILE.getServletName());
+        dispatcher.forward(request, response);
     }
 }

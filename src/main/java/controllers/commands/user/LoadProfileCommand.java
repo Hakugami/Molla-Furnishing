@@ -1,5 +1,6 @@
-package controllers.commands;
+package controllers.commands.user;
 
+import controllers.commands.FrontCommand;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -7,12 +8,11 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class ResetPasswordCommand extends FrontCommand{
+public class LoadProfileCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("ResetPasswordCommand: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.RESETPASSWORD.getServletName());
+        RequestDispatcher dispatcher = context.getNamedDispatcher(UrlMapping.LOADPROFILE.getServletName());
         dispatcher.forward(request, response);
     }
 }

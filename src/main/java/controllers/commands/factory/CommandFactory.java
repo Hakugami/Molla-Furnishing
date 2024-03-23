@@ -2,6 +2,7 @@ package controllers.commands.factory;
 
 import controllers.commands.admin.*;
 import controllers.commands.*;
+import controllers.commands.user.*;
 import urls.enums.UrlMapping;
 
 import java.util.HashMap;
