@@ -1,6 +1,7 @@
 package models.DTOs;
 
 import lombok.*;
+import models.entity.Order;
 import models.entity.User;
 import models.enums.UserRole;
 
@@ -19,7 +20,6 @@ public class UserDto implements Serializable {
     long id;
     String name;
     Date birthday;
-    String password;
     String job;
     String interest;
     String email;

@@ -13,7 +13,7 @@ public class AdminAddProductCommand  extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("Admin Add Product Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMINADDPRODUCT.getServletName());
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_ADD_PRODUCT_PAGE.getServletName());
         System.out.println("Forwarding Request to Add Product Page...");
         rd.forward(request, response);
     }

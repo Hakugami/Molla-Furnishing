@@ -46,7 +46,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="index.html">
+                        <a class="main-logo" href="home">
 
                             <img src="images/logo/logo-3.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
@@ -73,11 +73,11 @@
 
                                 <span class="ah-close">✕ Close</span>
                 <c:choose>
-                    <c:when test="${not empty user}">
+                    <c:when test="${not empty name}">
 
                                 <!--====== List (Logged-in User) ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="${user.name}">
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="${name}">
 
                                         <a><i class="far fa-user-circle"></i></a>
 
@@ -192,7 +192,7 @@
                                                             <span class="js-menu-toggle js-toggle-mark"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                            <a href="home"><i class="fas fa-couch u-s-m-r-6"></i>
 
                                                                 <span>Furniture 2 & Decor 2</span></a>
 
@@ -349,14 +349,6 @@
             <!--====== End - Nav 2 ======-->
         </header>
         <!--====== End - Main Header ======-->
-        <!--====== Vendor Js ======-->
-        <script src="js/vendor.js"></script>
-
-        <!--====== jQuery Shopnav plugin ======-->
-        <script src="js/jquery.shopnav.js"></script>
-
-        <!--====== App ======-->
-        <script src="js/app.js"></script>
 
         <!--====== Custom js ======-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

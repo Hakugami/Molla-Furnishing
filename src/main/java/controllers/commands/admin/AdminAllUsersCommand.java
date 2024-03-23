@@ -13,7 +13,7 @@ public class AdminAllUsersCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("Admin All Users Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMINALLUSERS.getServletName());
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_ALL_USERS.getServletName());
         System.out.println("Forwarding Request to All Users Page...");
         rd.forward(request, response);
     }

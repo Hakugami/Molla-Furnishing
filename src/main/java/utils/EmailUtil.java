@@ -4,9 +4,12 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
+import java.util.logging.Logger;
+
 public class EmailUtil {
     private static final String SITE_EMAIL = "mollafurniturestore@gmail.com";
     private static final String SITE_EMAIL_PASSWORD = "ybpp dpbu dnhy fuyz";
+    private static final Logger logger = Logger.getLogger(EmailUtil.class.getName());
 
     private static HtmlEmail getEmail() {
         HtmlEmail email = new HtmlEmail();
@@ -104,7 +107,7 @@ public class EmailUtil {
                 htmlEmail.addTo(email);
                 htmlEmail.send();
             } catch (EmailException e) {
-                e.printStackTrace();
+                logger.severe("Error sending email: " + e.getMessage());
                 throw new RuntimeException("Error sending email: " + e.getMessage());
             }
         }).start();
