@@ -49,7 +49,7 @@
                                                     <a href="cart.html">Cart</a></li>
                                                 <li>
 
-                                                    <a href="dashboard.html">Account</a></li>
+                                                    <a href="profile">Account</a></li>
 
                                                 <li>
 
@@ -127,7 +127,7 @@
 
                                     <span>Copyright 2024</span>
 
-                                    <a href="index.html">Molla</a>
+                                    <a href="home">Molla</a>
 
                                     <span>All Right Reserved</span></div>
                                 <div class="lower-footer__payment">

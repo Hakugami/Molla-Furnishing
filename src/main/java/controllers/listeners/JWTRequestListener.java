@@ -33,7 +33,6 @@ public class JWTRequestListener implements ServletRequestListener {
 
                 System.out.println("Claims-----------------------: " + Long.valueOf(claims.getSubject()));
                 UserDto user = userService.getUserById(Long.valueOf(claims.getSubject()));
-                user.setPassword(null);
                 httpServletRequest.setAttribute("user", user);
                 System.out.println("User: " + user);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {

@@ -160,6 +160,11 @@
         <servlet-class>controllers.servlets.ResetPasswordChangeServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>AddressBookServlet</servlet-name>
+        <servlet-class>controllers.servlets.AddressBookServlet</servlet-class>
+    </servlet>
+
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
