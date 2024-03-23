@@ -25,8 +25,7 @@ $(document).ready(function() {
                         '<td><h6 class="fw-semibold mb-1">' + product.dateAdded + '</h6></td>' +
                         '<td><h6 class="fw-semibold mb-1">' + product.rating + '</h6></td>' +
                         '<td><h6 class="fw-semibold mb-1">' + product.quantity + '</h6></td>' +
-                        '<td><button type="button" class="btn btn-outline-secondary m-1">View</button></td>' +
-                        '</tr>';
+                        '<td><a href="/molla/view/admin/viewproduct?productId=' + product.productId + '" class="btn btn-outline-secondary m-1">View</a></td>' +   '</tr>';
                     $('#productTable tbody').append(row);
                 });
 

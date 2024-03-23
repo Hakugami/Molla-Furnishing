@@ -87,13 +87,23 @@ public class Product {
     @Transient
     private String categoryName;
 
+    @Setter
+    @Transient
+    private String subCategoryName;
+
+
     @PostLoad
     public void postLoad() {
         this.rating = getRating();
         if(category != null) {
             this.categoryName = category.getName();
         }
+        if(subCategory!=null){
+            this.subCategoryName= subCategory.getName();
+        }
     }
+
+
 
     public double getRating() {
         return ratings.stream().mapToDouble(Rating::getValue).average().orElse(0.0);

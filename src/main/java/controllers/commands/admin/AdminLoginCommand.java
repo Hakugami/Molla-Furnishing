@@ -13,7 +13,7 @@ public class AdminLoginCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("Admin Login Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMINLOGIN.getServletName());
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_LOGIN.getServletName());
         System.out.println("Forwarding Request to Admin Login Page...");
         rd.forward(request, response);
     }
