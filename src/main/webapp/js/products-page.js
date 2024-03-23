@@ -167,6 +167,8 @@ $(document).ready(function () {
         let product = products[productIndex];
     
         let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+
+        let productId = product.productId;
     
         if (!productAlreadyInCart) {
             shopping_products.push(product);
@@ -184,6 +186,25 @@ $(document).ready(function () {
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
         console.log('Product Counts:', productCounts);
+        $.ajax({
+            url: 'cart',
+            type: 'POST',
+            data: {
+                action: 'addProduct',
+                productId: productId,
+                quantity: 1
+            },
+            success: function(response) {
+                if (response === 'true') {
+                    alert('Product quantity incremented successfully!');
+                } else {
+                    alert('Failed to increment product quantity.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
     });
     
     
