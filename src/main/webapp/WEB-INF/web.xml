@@ -80,9 +80,15 @@
         <servlet-name>ProductsServlet</servlet-name>
         <servlet-class>controllers.servlets.user.ProductsServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>RetrieveProductCountServlet</servlet-name>
         <servlet-class>controllers.servlets.user.RetrieveProductCountServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RetrieveProductByIdServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.RetrieveProductById</servlet-class>
     </servlet>
 
     <servlet>

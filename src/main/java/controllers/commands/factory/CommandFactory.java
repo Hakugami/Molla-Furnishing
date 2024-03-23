@@ -20,6 +20,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.REGISTER.getCommand(), RegisterCommand::new);
         commandMap.put(UrlMapping.RETRIEVE_PRODUCTS.getCommand(), RetrieveProductsCommand::new);
         commandMap.put(UrlMapping.RETRIEVE_PRODUCT_COUNT.getCommand(), RetrieveProductCountCommand::new);
+        commandMap.put(UrlMapping.RETRIEVE_PRODUCT_BY_ID.getCommand(), RetrieveProductByIDCommand::new);
         commandMap.put(UrlMapping.HOME.getCommand(), HomeCommand::new);
         commandMap.put(UrlMapping.PROFILE.getCommand(), ProfileCommand::new);
         commandMap.put(UrlMapping.PRODUCTS.getCommand(), ProductsCommand::new);
