@@ -133,16 +133,26 @@ $(document).on('click', '.table-p__delete-link', function () {
     let productRow = $(this).closest('tr');
     let productName = productRow.find('.table-p__name a').text();
 
-    // Remove the product from shoppingData.products array
-    let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
-    let updatedProducts = shoppingData.products.filter(product => product.name !== productName);
-    shoppingData.products = updatedProducts;
-    sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
-
-    // Remove the product from the table
-    productRow.remove();
-
-    updateTotalSum();
+    $.ajax({
+        url: '/cart',
+        type: 'POST',
+        data: {
+            action: 'removeProduct',
+            productName: productName
+        },
+        success: function(response) {
+            if (response === 'true') {
+                alert('Product removed from the cart!');
+                productRow.remove();
+                updateTotalSum();
+            } else {
+                alert('Failed to remove product from the cart.');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
 });
 
 
