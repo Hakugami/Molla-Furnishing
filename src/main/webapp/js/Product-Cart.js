@@ -108,7 +108,7 @@ $(document).on('click', '.input-counter__plus', function () {
             url: 'cart',
             type: 'POST',
             data: {
-                action: 'incrementProductQuantity',
+                action: 'addProduct',
                 productId: productId
             },
             success: function(response) {
