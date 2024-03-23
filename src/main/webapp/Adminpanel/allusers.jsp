@@ -175,17 +175,17 @@
   <c:forEach items="${users}" var="user">
 
                       <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">${user.id}</h6></td>
+                        <td ><h6 class="fw-semibold mb-0">${user.id}</h6></td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.name}</h6>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.birthday}</h6>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                             <div class="d-flex align-items-center gap-2">
         <c:choose>
             <c:when test="${user.gender == 'Male'}">
@@ -198,23 +198,24 @@
                             </div>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.email}</h6>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.job}</h6>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.interest}</h6>
                         </td>
 
-                        <td class="border-bottom-0">
+                        <td >
                           <h6 class="fw-semibold mb-1">${user.creditLimit}</h6>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-outline-secondary m-1">View</button>
+                          <a href="viewuser?id=${user.id}">
+                                <button type="button" class="btn btn-outline-secondary m-1">View</button></a>
                         </td>
 
                       </tr>
@@ -224,7 +225,9 @@
                   </tbody>
                 </table>
 
-                <button id="show-more-btn" type="button" class="btn btn-outline-secondary m-1">Show More</button>
+                <div class="text-center">
+                    <button id="show-more-btn" type="button" class="btn btn-outline-secondary m-1">Show More</button>
+                </div>
 
               </div>
           </div>

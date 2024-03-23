@@ -13,7 +13,7 @@ public class AdminHomeCommand extends FrontCommand {
     public void process() throws ServletException, IOException {
         System.out.println("Admin Dashboard Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMINHOME.getServletName());
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_HOME.getServletName());
         System.out.println("Forwarding Request to Admin Page...");
         rd.forward(request, response);
     }

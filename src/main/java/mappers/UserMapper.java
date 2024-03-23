@@ -1,8 +1,12 @@
 package mappers;
 
 import models.DTOs.AddressDto;
+import models.DTOs.OrderDto;
+import models.DTOs.OrderItemDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
+import models.entity.Order;
+import models.entity.OrderItem;
 import models.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

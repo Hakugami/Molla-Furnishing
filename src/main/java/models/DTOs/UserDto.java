@@ -1,6 +1,7 @@
 package models.DTOs;
 
 import lombok.*;
+import models.entity.Order;
 import models.entity.User;
 import models.enums.UserRole;
 
