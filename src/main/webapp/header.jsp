@@ -349,3 +349,23 @@
             <!--====== End - Nav 2 ======-->
         </header>
         <!--====== End - Main Header ======-->
+        <!--====== Vendor Js ======-->
+        <script src="js/vendor.js"></script>
+
+        <!--====== jQuery Shopnav plugin ======-->
+        <script src="js/jquery.shopnav.js"></script>
+
+        <!--====== App ======-->
+        <script src="js/app.js"></script>
+
+        <!--====== Custom js ======-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.main-form').submit(function(e){
+                    e.preventDefault();
+                    const search = $('#main-search').val();
+                    window.location.href = 'product?search='+search;
+                });
+            });
+        </script>
