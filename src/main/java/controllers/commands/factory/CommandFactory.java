@@ -1,7 +1,5 @@
 package controllers.commands.factory;
 
-import controllers.servlets.RetrieveProductById;
-import org.bouncycastle.oer.its.etsi102941.Url;
 import controllers.commands.admin.*;
 import controllers.commands.*;
 import urls.enums.UrlMapping;
@@ -51,7 +49,8 @@ public class CommandFactory {
         commandMap.put(UrlMapping.ADMINALLUSERS.getCommand(), AdminAllUsersCommand::new);
         commandMap.put(UrlMapping.ADMINVIEWPRODUCT.getCommand(), AdminViewProductCommand::new);
         commandMap.put(UrlMapping.ADMINALLPRODUCTS.getCommand(), AdminAllProductsCommand::new);
-        commandMap.put(UrlMapping.ADMINADDPRODUCT.getCommand(), AdminAddProductCommand::new);
+        commandMap.put(UrlMapping.ADMINADDPRODUCTPAGE.getCommand(), AdminAddProductCommand::new);
+        commandMap.put(UrlMapping.ADMINUPDATEPRODUCT.getCommand(), AdminUpdateProductCommand::new);
     }
 
     public static CommandFactory getInstance() {

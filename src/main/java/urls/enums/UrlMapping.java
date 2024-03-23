@@ -28,7 +28,7 @@ public enum UrlMapping {
     ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.html"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.html"),
-    //Admin page
+    //Admin pages
     ADMINHOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
     ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
     ADMINALLPRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
@@ -36,7 +36,9 @@ public enum UrlMapping {
     ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.jsp"),
     ADMINVIEWUSER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
     ADMINADDUSER("adminadduser","/admin/adduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
-    ADMINADDPRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
+    ADMINADDPRODUCTPAGE("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html"),
+    //Admin Operations
+    ADMINUPDATEPRODUCT("adminupdateproduct","/admin/updateproduct","AdminUpdateProductServlet",""),;
 
     private final String command;
     private final String url;
