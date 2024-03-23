@@ -44,7 +44,6 @@ public class HeaderFilter implements Filter {
                 System.out.println("User found.");
 
                 UserDto userDto = userService.getUserById(Long.valueOf(claims.getSubject()));
-                userDto.setPassword(null);
 
                 httpRequest.setAttribute("user", userDto);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {
