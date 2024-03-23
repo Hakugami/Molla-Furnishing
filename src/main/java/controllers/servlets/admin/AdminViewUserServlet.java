@@ -36,7 +36,7 @@ public class AdminViewUserServlet extends HttpServlet {
         if (id != -1) {
             UserService userService = new UserService();
             UserDto user = userService.getUserById(id);
-            user.setPassword(null);
+//            user.setPassword(null);
             return user;
         }
 
@@ -46,7 +46,7 @@ public class AdminViewUserServlet extends HttpServlet {
     private List<OrderDto> getOrdersDto(Long userId) {
         OrderService orderService = new OrderService();
         List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
-        orders.forEach(order -> order.getUser().setPassword(null));
+//        orders.forEach(order -> order.getUser().setPassword(null));
         return orders;
     }
 }

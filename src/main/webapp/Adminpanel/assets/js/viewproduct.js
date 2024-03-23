@@ -115,7 +115,7 @@ $(document).ready(function() {
                 $('#rating').text(product.rating);
                 $('#dateAdded').text(product.dateAdded);
 
-                const selectedCategory = product.categoryName.toLowerCase();
+                const selectedCategory = product.categoryName;
                 populateSubcategories(selectedCategory);
 
                 if (product.productDetails) {

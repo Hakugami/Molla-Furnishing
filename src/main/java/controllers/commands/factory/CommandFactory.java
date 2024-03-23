@@ -1,5 +1,6 @@
 package controllers.commands.factory;
 
+import controllers.commands.AddressBookCommand;
 import controllers.commands.FrontCommand;
 import controllers.commands.admin.*;
 import controllers.commands.user.*;
@@ -51,7 +52,8 @@ public class CommandFactory {
         commandMap.put(UrlMapping.ADMIN_ALL_USERS.getCommand(), AdminAllUsersCommand::new);
         commandMap.put(UrlMapping.ADMIN_VIEW_PRODUCT.getCommand(), AdminViewProductCommand::new);
         commandMap.put(UrlMapping.ADMIN_ALL_PRODUCTS.getCommand(), AdminAllProductsCommand::new);
-        commandMap.put(UrlMapping.ADMIN_ADD_PRODUCT.getCommand(), AdminAddProductCommand::new);
+        commandMap.put(UrlMapping.ADMIN_ADD_PRODUCT_PAGE.getCommand(), AdminAddProductCommand::new);
+        commandMap.put(UrlMapping.ADMINUPDATEPRODUCT.getCommand(), AdminUpdateProductCommand::new);
     }
 
     public static CommandFactory getInstance() {

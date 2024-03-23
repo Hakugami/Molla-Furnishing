@@ -22,13 +22,13 @@ public class CategoryDataInserter {
 
     public void insertCategoriesAndSubCategories() {
         Map<String, List<String>> categoriesAndSubCategories = new HashMap<>();
-        categoriesAndSubCategories.put("chairs", Arrays.asList("Armchairs", "Sofas", "Benches", "Stools"));
-        categoriesAndSubCategories.put("tables", Arrays.asList("Dining Tables", "Coffee Tables", "Side Tables", "Bedside Tables"));
-        categoriesAndSubCategories.put("storage", Arrays.asList("Wardrobes", "Cabinets", "Dressers", "Bookcases", "Shelving Units"));
-        categoriesAndSubCategories.put("beds", Arrays.asList("Bed Frames", "Mattresses", "Nightstands", "Bunk Beds"));
-        categoriesAndSubCategories.put("desks", Arrays.asList("Writing Desks", "Computer Desks", "Office Chairs", "Filing Cabinets"));
-        categoriesAndSubCategories.put("dining", Arrays.asList("Dining Sets", "Buffets"));
-        categoriesAndSubCategories.put("children", Arrays.asList("Cribs", "Kid Beds", "Study Desks"));
+        categoriesAndSubCategories.put("Chairs", Arrays.asList("Armchairs", "Sofas", "Benches", "Stools"));
+        categoriesAndSubCategories.put("Tables", Arrays.asList("Dining Tables", "Coffee Tables", "Side Tables", "Bedside Tables"));
+        categoriesAndSubCategories.put("Storage", Arrays.asList("Wardrobes", "Cabinets", "Dressers", "Bookcases", "Shelving Units"));
+        categoriesAndSubCategories.put("Beds", Arrays.asList("Bed Frames", "Mattresses", "Nightstands", "Bunk Beds"));
+        categoriesAndSubCategories.put("Desks", Arrays.asList("Writing Desks", "Computer Desks", "Office Chairs", "Filing Cabinets"));
+        categoriesAndSubCategories.put("Dining", Arrays.asList("Dining Sets", "Buffets"));
+        categoriesAndSubCategories.put("Children", Arrays.asList("Cribs", "Kid Beds", "Study Desks"));
         DatabaseSingleton.getInstance().doTransaction(entityManager -> {
             for (Map.Entry<String, List<String>> entry : categoriesAndSubCategories.entrySet()) {
                 Category category = new Category();

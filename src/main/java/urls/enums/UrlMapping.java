@@ -37,7 +37,7 @@ public enum UrlMapping {
     ADMIN_ALL_USERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.jsp"),
     ADMIN_VIEW_USER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.jsp"),
     ADMIN_ADD_USER("adminadduser","/admin/adduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
-    ADMIN_ADD_PRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html"),
+    ADMIN_ADD_PRODUCT_PAGE("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html"),
     //Admin Operations
     ADMINUPDATEPRODUCT("adminupdateproduct","/admin/updateproduct","AdminUpdateProductServlet",""),;
 
