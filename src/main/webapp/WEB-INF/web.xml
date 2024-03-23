@@ -53,117 +53,117 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controllers.servlets.LoginServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LoginServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controllers.servlets.RegisterServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RegisterServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RetrieveProducts</servlet-name>
-        <servlet-class>controllers.servlets.RetrieveProductsServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RetrieveProductsServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>controllers.servlets.HomeServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.HomeServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProductsServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProductsServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RetrieveProductCountServlet</servlet-name>
-        <servlet-class>controllers.servlets.RetrieveProductCountServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RetrieveProductCountServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RetrieveProductByIdServlet</servlet-name>
-        <servlet-class>controllers.servlets.RetrieveProductById</servlet-class>
+        <servlet-class>controllers.servlets.user.RetrieveProductById</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProductPageServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProductPageServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProductPageServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ReviewServlet</servlet-name>
-        <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ReviewServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AboutServlet</servlet-name>
-        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.AboutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>WishlistServlet</servlet-name>
-        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.WishlistServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>CartServlet</servlet-name>
-        <servlet-class>controllers.servlets.CartServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.CartServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.EditProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.EditProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>EmailValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.EmailValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.EmailValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PasswordValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.PasswordValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.PasswordValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PhoneNumberValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.PhoneNumberValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LoadProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LoadProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controllers.servlets.LogoutServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LogoutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>MyProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.MyProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.MyProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddressServlet</servlet-name>
-        <servlet-class>controllers.servlets.AddressServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.AddressServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>SendResetPasswordServlet</servlet-name>
-        <servlet-class>controllers.servlets.SendResetPasswordServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.SendResetPasswordServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ResetPasswordChangeServlet</servlet-name>
-        <servlet-class>controllers.servlets.ResetPasswordChangeServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ResetPasswordChangeServlet</servlet-class>
     </servlet>
 
     <error-page>

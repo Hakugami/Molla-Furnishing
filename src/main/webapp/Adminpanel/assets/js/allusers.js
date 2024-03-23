@@ -38,7 +38,7 @@ $(document).ready(function() {
             '<td><h6 class="fw-semibold mb-0">' + user.job + '</h6></td>' +
             '<td><h6 class="fw-semibold mb-0">' + user.interest + '</h6></td>' +
             '<td><h6 class="fw-semibold mb-0">' + user.creditLimit + '</h6></td>' +
-            '<td><button type="button" class="btn btn-outline-secondary m-1">View</button></td>' +
+            '<td><a href="viewuser?id=' + user.id + '"><button type="button" class="btn btn-outline-secondary m-1">View</button></a></td>' +
             '</tr>';
 
         $('#usersTable tbody').append(row);

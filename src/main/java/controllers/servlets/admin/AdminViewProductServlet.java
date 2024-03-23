@@ -15,6 +15,6 @@ public class AdminViewProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String productId = req.getParameter("productId");
         System.out.println("Servlet Product ID = "+productId);
-        req.getRequestDispatcher(UrlMapping.ADMINVIEWPRODUCT.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMIN_VIEW_PRODUCT.getPageName()).forward(req, resp);
     }
 }
