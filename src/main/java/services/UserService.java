@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class UserService {
@@ -135,5 +136,10 @@ public class UserService {
 
     public void removeAddress(Long l, AddressDto addressDto) {
         repository.removeAddress(l, userMapper.addressDtoToAddress(addressDto));
+    }
+
+    public List<UserDto> getUsers(int page, int size) {
+        List<User> users = repository.getUsers(page, size);
+        return users.stream().map(userMapper::userToUserDto).toList();
     }
 }

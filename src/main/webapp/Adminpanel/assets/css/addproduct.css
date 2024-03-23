@@ -1,0 +1,22 @@
+.small-image-preview {
+    display: inline-block; /* Align images horizontally */
+    width: 100px;
+    height: 100px;
+    margin:10px
+    cursor: pointer;
+}
+
+.preview-container {
+    display: inline-block; /* Ensure previews are aligned horizontally */
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: -5px;
+    right: -0px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
