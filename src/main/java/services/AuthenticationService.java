@@ -49,19 +49,19 @@ public class AuthenticationService {
         }
     }
 
-    public boolean register(UserDto userDto) {
+    public boolean register(UserDto userDto , String password) {
         if (repository.findByEmail(userDto.getEmail()).isPresent() || !ValidationUtil.isValidEmailFormat(userDto.getEmail())
-                || ValidationUtil.validatePassword(userDto.getPassword()) != null || ValidationUtil.validatePhoneNumber(userDto.getPhone()) != null) {
+                || ValidationUtil.validatePassword(password) != null || ValidationUtil.validatePhoneNumber(userDto.getPhone()) != null) {
             return false;
         }
         User user = userMapper.userDtoToUser(userDto);
         String salt = hashService.generateSalt();
         user.setSalt(salt);
         user.setRole(UserRole.USER);
-        user.setPassword(hashService.hashPasswordWithSalt(user.getPassword(), salt));
+        user.setPassword(hashService.hashPasswordWithSalt(password, salt));
         try {
             EmailUtil.sendUserRegistrationEmail(user.getEmail(), user.getName());
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             return false;
         }
         return repository.create(user);

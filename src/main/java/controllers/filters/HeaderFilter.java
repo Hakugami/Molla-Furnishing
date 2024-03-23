@@ -40,11 +40,12 @@ public class HeaderFilter implements Filter {
             String token = jwtCookie.getValue();
             try {
                 JwtClaims claims = jwtService.validateToken(token, httpRequest.getRemoteAddr());
+
                 System.out.println("User found.");
 
-                String name = claims.getClaimValue("name", String.class);
+                UserDto userDto = userService.getUserById(Long.valueOf(claims.getSubject()));
 
-                httpRequest.setAttribute("name", name);
+                httpRequest.setAttribute("user", userDto);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {
 //                e.printStackTrace();
                 System.out.println("No user found.");

@@ -25,7 +25,8 @@ public enum UrlMapping {
     LOGOUT("logout", "/logout", "LogoutServlet", ""),
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
     MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
-    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
+    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", "/dash-address-add.html"),
+    ADDRESS("address", "/address", "AddressBookServlet", "/dash-address-book.html"),
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.html"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.html"),
     //Admin page

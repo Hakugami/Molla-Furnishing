@@ -20,7 +20,6 @@ public class UserDto implements Serializable {
     long id;
     String name;
     Date birthday;
-    String password;
     String job;
     String interest;
     String email;

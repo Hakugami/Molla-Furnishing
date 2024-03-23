@@ -7,7 +7,7 @@ I've developed another open-source eCommerce template that may work for you. [De
 ## Real use case:
 This template has also been used in a famous Codecanyon script named DOKANS [Demo link](https://bit.ly/3rTQIqp) which has ~300+ sales.
 
-[Live Preview](https://d2r00w08fz6ft0.cloudfront.net/ludus-demo/index.html)
+[Live Preview](https://d2r00w08fz6ft0.cloudfront.net/ludus-demo/home)
 
 ![snap1](/ludus/doc-img/01_preview.png)
 

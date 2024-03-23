@@ -42,6 +42,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
         commandMap.put(UrlMapping.RESETPASSWORD.getCommand(), ResetPasswordCommand::new);
         commandMap.put(UrlMapping.RESETPASSWORDCHANGE.getCommand(), ResetPasswordChangeCommand::new);
+        commandMap.put(UrlMapping.ADDRESS.getCommand(), AddressBookCommand::new);
         //Admin Commands
         commandMap.put(UrlMapping.ADMIN_HOME.getCommand(), AdminHomeCommand::new);
         commandMap.put(UrlMapping.ADMIN_LOGIN.getCommand(), AdminLoginCommand::new);
