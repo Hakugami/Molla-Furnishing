@@ -40,12 +40,12 @@ public class CategoriesRepository extends GenericRepository<Category, Long> {
     }
 
     public Optional<Category> getCategoryByName(String key, EntityManager entityManager) {
-            CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-            CriteriaQuery<Category> criteriaQuery = criteriaBuilder.createQuery(Category.class);
-            Root<Category> root = criteriaQuery.from(Category.class);
-            criteriaQuery.select(root);
-            criteriaQuery.where(criteriaBuilder.equal(root.get("name"), key));
-            return Optional.of(entityManager.createQuery(criteriaQuery).getSingleResult());
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Category> criteriaQuery = criteriaBuilder.createQuery(Category.class);
+        Root<Category> root = criteriaQuery.from(Category.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(criteriaBuilder.equal(root.get("name"), key));
+        return Optional.of(entityManager.createQuery(criteriaQuery).getSingleResult());
     }
 
     public List<Category> retrieveCategories(int i, int maxValue) {

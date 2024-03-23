@@ -38,6 +38,7 @@ public class CommandFactory {
         commandMap.put(UrlMapping.CART.getCommand(), CartCommand::new);
         commandMap.put(UrlMapping.RESETPASSWORD.getCommand(), ResetPasswordCommand::new);
         commandMap.put(UrlMapping.RESETPASSWORDCHANGE.getCommand(), ResetPasswordChangeCommand::new);
+        commandMap.put(UrlMapping.ADDRESS.getCommand(), AddressBookCommand::new);
     }
 
     public static CommandFactory getInstance() {
