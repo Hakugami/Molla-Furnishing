@@ -24,7 +24,7 @@ public class OrderItemId implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o==null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         OrderItemId that = (OrderItemId) o;
         return Objects.equals(orderId, that.orderId) && Objects.equals(productId, that.productId);

@@ -18,5 +18,5 @@ public abstract class FrontCommand {
         this.context = context;
     }
 
-    public abstract void process() throws ServletException, IOException;
+    public abstract void process(String viewName) throws ServletException, IOException;
 }

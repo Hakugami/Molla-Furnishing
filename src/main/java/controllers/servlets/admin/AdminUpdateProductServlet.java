@@ -6,12 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.ProductDto;
-import models.DTOs.UserDto;
 import services.ProductService;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
 
 public class AdminUpdateProductServlet extends HttpServlet {
     @Override

@@ -35,7 +35,7 @@ public class RetrieveProductById extends HttpServlet {
             resp.setCharacterEncoding("UTF-8");
             resp.getWriter().write(json);
 
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             System.out.println("Number format exception when parsing productID parameter in RetrieveProductbyID Servlet");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Product ID parameter is missing");
         }

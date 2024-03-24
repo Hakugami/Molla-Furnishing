@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 
 public class LoginServlet extends HttpServlet {
 
-    private AuthenticationService authService;
     private final Logger logger = Logger.getLogger(getClass().getName());
+    private AuthenticationService authService;
 
     @Override
     public void init() throws ServletException {

@@ -41,7 +41,7 @@ public class CartItem {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(o==null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         CartItem that = (CartItem) o;
         return Objects.equals(product, that.product) && Objects.equals(shoppingCart, that.shoppingCart);

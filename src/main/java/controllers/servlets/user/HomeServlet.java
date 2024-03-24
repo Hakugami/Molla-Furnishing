@@ -22,10 +22,8 @@ import java.util.logging.Logger;
 
 public class HomeServlet extends HttpServlet {
 
-    private JwtClaims claims;
-
-
     Logger logger = Logger.getLogger(HomeServlet.class.getName());
+    private JwtClaims claims;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

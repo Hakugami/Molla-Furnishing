@@ -11,10 +11,10 @@ import java.util.Properties;
 import java.util.logging.Logger;
 
 public class DataSourceConfig {
-    private static HikariDataSource dataSource = null;
     private static final Properties props = new Properties();
     private static final int processors;
     private static final double systemLoadAverage;
+    private static HikariDataSource dataSource = null;
     private static boolean isDataSourceCreated = false;
 
 
@@ -22,7 +22,7 @@ public class DataSourceConfig {
         try (InputStream input = DataSourceConfig.class.getClassLoader().getResourceAsStream("db.properties")) {
             props.load(input);
         } catch (IOException ex) {
-            Logger.getGlobal().severe("Error loading db.properties file"+ ex.getMessage());
+            Logger.getGlobal().severe("Error loading db.properties file" + ex.getMessage());
         }
         OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
         processors = Runtime.getRuntime().availableProcessors();
