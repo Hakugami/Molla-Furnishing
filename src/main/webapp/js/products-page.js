@@ -231,27 +231,50 @@ $(document).ready(function () {
         event.preventDefault();
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
-
+    
         let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+
+        let productId = product.productId;
+
 
         if (!productAlreadyInCart) {
             shopping_products.push(product);
         }
-
+    
         productCounts[product.name] = (productCounts[product.name] || 0) + 1;
-
+    
         // Store updated product counts and shopping products in sessionStorage
         let shoppingData = {
             products: shopping_products,
             productCounts: productCounts
         };
-
+    
         sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
         console.log('Product Counts:', productCounts);
+        $.ajax({
+            url: 'cart',
+            type: 'POST',
+            data: {
+                action: 'addProduct',
+                productId: productId,
+                quantity: 1
+            },
+            success: function(response) {
+                if (response === 'true') {
+                    alert('Product quantity incremented successfully!');
+                } else {
+                    alert('Failed to increment product quantity.');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
     });
-
+    
+    
 
     $(document).on('click', '.product-m__thumb .product-link', function (event) {
         event.preventDefault();

@@ -23,7 +23,6 @@ public class JWTService {
     private final Logger logger = Logger.getLogger(getClass().getName());
     private RsaJsonWebKey rsaJsonWebKey;
 
-
     private JWTService() {
         try {
             rsaJsonWebKey = generateRSAJsonWebKey();
@@ -79,6 +78,4 @@ public class JWTService {
         KeyGenerator.getInstance().createPublicKeyFile(rsaJsonWebKey);
         return rsaJsonWebKey;
     }
-
-
 }
