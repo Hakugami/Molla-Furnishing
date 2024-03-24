@@ -58,5 +58,14 @@ public enum UrlMapping {
         return contextPath +CONTEXT_DEFAULT.getUrl() + url;
     }
 
+    public static String getServletNameForCommand(String commandName) {
+        for (UrlMapping mapping : UrlMapping.values()) {
+            if (mapping.getCommand().equals(commandName)) {
+                return mapping.getServletName();
+            }
+        }
+        throw new IllegalArgumentException("No mapping found for command: " + commandName);
+    }
+
 
 }

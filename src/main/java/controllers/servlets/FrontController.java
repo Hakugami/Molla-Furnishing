@@ -1,6 +1,6 @@
 package controllers.servlets;
 
-import controllers.commands.factory.CommandFactory;
+import controllers.commands.ViewCommand;
 import controllers.commands.FrontCommand;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class FrontController extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -25,46 +25,33 @@ public class FrontController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("FrontController: processing request");
-        String pathInfo = req.getPathInfo(); // /{value}/test
-        System.out.println("PathInfo: " + pathInfo);
+        String pathInfo = req.getPathInfo();
 
-        //Redirects home if path is empty "/"
         if ("/".equals(pathInfo)) {
             pathInfo = UrlMapping.HOME.getUrl();
         }
 
         if (pathInfo.startsWith("/admin")) {
-
-            // Use a regular expression to extract the command key
-            Pattern pattern = Pattern.compile(".*/([a-zA-Z]+)/?.*");
-            Matcher matcher = pattern.matcher(pathInfo);
-            if (matcher.find()) {
-
-                System.out.println("Matcher "+matcher.group(1));
-                FrontCommand commandInstance = CommandFactory.getInstance().getCommand("admin" + matcher.group(1));
-                commandInstance.init(getServletContext(), req, resp);
-                commandInstance.process();
-            } else {
-                // Handle the case where the pathInfo does not match the expected format
-                System.out.println("Invalid pathInfo format: " + pathInfo);
-            }
-
+            processPathInfo(pathInfo, "admin", req, resp);
         } else {
-
-            // Use a regular expression to extract the command key
-            Pattern pattern = Pattern.compile(".*/([a-zA-Z]+)/?.*");
-            Matcher matcher = pattern.matcher(pathInfo);
-            if (matcher.find()) {
-                String commandKey = matcher.group(1);
-
-                FrontCommand commandInstance = CommandFactory.getInstance().getCommand(commandKey);
-                commandInstance.init(getServletContext(), req, resp);
-                commandInstance.process();
-            } else {
-                // Handle the case where the pathInfo does not match the expected format
-                System.out.println("Invalid pathInfo format: " + pathInfo);
-            }
+            processPathInfo(pathInfo, "", req, resp);
         }
+    }
+
+    private void processPathInfo(String pathInfo, String prefix, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Pattern pattern = Pattern.compile(".*/([a-zA-Z]+)/?.*");
+        Matcher matcher = pattern.matcher(pathInfo);
+        if (matcher.find()) {
+            String commandKey = matcher.group(1);
+            FrontCommand commandInstance = createCommandInstance();
+            commandInstance.init(getServletContext(), req, resp);
+            commandInstance.process(String.format("%s%s", prefix, commandKey));
+        } else {
+            System.out.println("Invalid pathInfo format: " + pathInfo);
+        }
+    }
+
+    private FrontCommand createCommandInstance() {
+        return new ViewCommand();
     }
 }

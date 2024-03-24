@@ -45,6 +45,7 @@
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.servlets.FrontController</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -168,7 +169,7 @@
 
     <servlet>
         <servlet-name>AddressBookServlet</servlet-name>
-        <servlet-class>controllers.servlets.AddressBookServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.AddressBookServlet</servlet-class>
     </servlet>
 
     <error-page>
