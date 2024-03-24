@@ -3,7 +3,6 @@ package controllers.filters;
 import jakarta.servlet.*;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import models.DTOs.UserDto;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
@@ -43,9 +42,9 @@ public class HeaderFilter implements Filter {
 
                 System.out.println("User found.");
 
-                UserDto userDto = userService.getUserById(Long.valueOf(claims.getSubject()));
+                String name = claims.getClaimValue("name", String.class);
 
-                httpRequest.setAttribute("user", userDto);
+                httpRequest.setAttribute("name", name);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {
 //                e.printStackTrace();
                 System.out.println("No user found.");

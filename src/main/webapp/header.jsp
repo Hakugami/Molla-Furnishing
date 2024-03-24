@@ -317,8 +317,6 @@
 
                             <button class="btn btn--icon toggle-button fas fa-shopping-bag toggle-button-shop" type="button"></button>
 
-                            <span class="total-item-round">2</span>
-
                             <!--====== Menu ======-->
                             <div class="ah-lg-mode">
 

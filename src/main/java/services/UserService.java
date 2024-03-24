@@ -1,10 +1,13 @@
 package services;
 
 import jakarta.servlet.http.HttpServletRequest;
+import mappers.OrderMapper;
 import mappers.UserMapper;
 import models.DTOs.AddressDto;
+import models.DTOs.OrderDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
+import models.entity.Order;
 import models.entity.User;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
@@ -15,17 +18,18 @@ import persistence.repositories.impl.UserRepository;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class UserService {
     private final UserRepository repository;
     private final UserMapper userMapper;
+    private final OrderMapper orderMapper;
 
     public UserService() {
         this.repository = new UserRepository();
         this.userMapper = UserMapper.INSTANCE;
+        this.orderMapper = OrderMapper.INSTANCE;
     }
 
     public UserDto getUserByEmail(String email) {
@@ -138,8 +142,25 @@ public class UserService {
         repository.removeAddress(l, userMapper.addressDtoToAddress(addressDto));
     }
 
-    public List<UserDto> getUsers(int page, int size) {
-        List<User> users = repository.getUsers(page, size);
-        return users.stream().map(userMapper::userToUserDto).toList();
+    public List<UserDto> getUsersByPaginate(int page, int size) {
+        Optional<List<User>> optionalUsers = repository.getUsersByNameAndPaginate(page, size, null);
+        return optionalUsers
+                .map(users -> users.stream().map(userMapper::userToUserDto).toList())
+                .orElseGet(ArrayList::new);
+    }
+
+    public List<UserDto> getUsersByNameAndPaginate(int page, int size, String name) {
+        Optional<List<User>> optionalUsers = repository.getUsersByNameAndPaginate(page, size, name);
+        return optionalUsers
+                .map(users -> users.stream().map(userMapper::userToUserDto).toList())
+                .orElseGet(ArrayList::new);
+    }
+
+    public List<OrderDto> getOrdersByUserId(Long userId) {
+        Optional<List<Order>> optionalOrders = repository.getOrdersByUserId(userId);
+        return optionalOrders
+                .map(orders -> orders.stream().map(orderMapper::orderToOrderDto).toList())
+                .orElseGet(Collections::emptyList);
+
     }
 }

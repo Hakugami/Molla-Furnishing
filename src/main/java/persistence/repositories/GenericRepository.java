@@ -62,7 +62,7 @@ public abstract class GenericRepository<T, ID> {
         }
     }
 
-    public boolean update(T t , EntityManager entityManager) {
+    public boolean update(T t, EntityManager entityManager) {
         try {
             entityManager.merge(t);
             return true;

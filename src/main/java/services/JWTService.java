@@ -20,8 +20,8 @@ import java.util.logging.Logger;
 public class JWTService {
 
     private static volatile JWTService instance;
+    private final Logger logger = Logger.getLogger(getClass().getName());
     private RsaJsonWebKey rsaJsonWebKey;
-    private Logger logger = Logger.getLogger(getClass().getName());
 
     private JWTService() {
         try {

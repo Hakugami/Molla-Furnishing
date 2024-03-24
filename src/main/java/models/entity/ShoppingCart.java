@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Setter
@@ -69,11 +69,11 @@ public class ShoppingCart {
             }
         }
     }
+
     public void removeAllProducts() {
         this.cartItems.clear();
         totalAmount = 0.0;
     }
-
 
 
 }

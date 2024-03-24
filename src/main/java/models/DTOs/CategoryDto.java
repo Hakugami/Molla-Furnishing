@@ -1,7 +1,9 @@
 package models.DTOs;
 
-import lombok.*;
-import models.DTOs.ProductDto;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import models.entity.Category;
 
 import java.io.Serializable;

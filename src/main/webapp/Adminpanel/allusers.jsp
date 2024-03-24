@@ -75,7 +75,7 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproduct">
+              <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproductpage">
                 <span>
                   <i class="ti ti-plus"></i>
                 </span>

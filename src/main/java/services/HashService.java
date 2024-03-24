@@ -9,8 +9,8 @@ import java.util.Base64;
 import java.util.Properties;
 
 public class HashService {
-    private final String hashAlgorithm;
     private static volatile HashService instance = null;
+    private final String hashAlgorithm;
 
     private HashService() {
         try {
