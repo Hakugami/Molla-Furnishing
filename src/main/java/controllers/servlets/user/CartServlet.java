@@ -36,14 +36,13 @@ public class CartServlet extends HttpServlet {
         try {
             JwtClaims claims = JWTService.getInstance().validateToken(cookie.getValue(), request.getRemoteAddr());
             Long userId = Long.parseLong(claims.getSubject());
-            boolean result;
+            boolean result = false;
             String action = request.getParameter("action");
             switch (action) {
                 case "addProduct":
                     Long productId = Long.parseLong(request.getParameter("productId"));
                     int quantity = Integer.parseInt(request.getParameter("quantity"));
                     result = cartService.addProductToCart(userId, productId, quantity);
-                    System.out.println(userId +" "+ productId +" "+ quantity);
                     break;
                 case "removeProduct":
                     Long removeProductId = Long.parseLong(request.getParameter("productId"));
@@ -51,7 +50,8 @@ public class CartServlet extends HttpServlet {
                     break;
                 case "decrementProductQuantity":
                     Long decrementProductId = Long.parseLong(request.getParameter("productId"));
-                    result = cartService.decrementProductQuantity(userId, decrementProductId);
+                    int newQuantity = cartService.decrementProductQuantity(userId, decrementProductId);
+                    response.getWriter().write(String.valueOf(newQuantity));
                     break;
                 case "clearCart":
                     result = cartService.clearCart(userId);
@@ -65,7 +65,6 @@ public class CartServlet extends HttpServlet {
             }
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
-            System.out.println(result);
             response.getWriter().write(String.valueOf(result));
         } catch (InvalidJwtException | MalformedClaimException e) {
             throw new RuntimeException(e);

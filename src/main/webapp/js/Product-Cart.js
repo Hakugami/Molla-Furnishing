@@ -56,12 +56,14 @@ $(document).ready(function () {
     loadProductsFromSessionStorage();
 });
 
-$(document).on('click', '.input-counter__minus', function () {
+$(document).on('click', '.input-counter__minus', function (event) {
+    event.preventDefault();
     let input = $(this).siblings('.input-counter__text');
     let count = parseInt(input.val());
     let min = parseInt(input.attr('data-min'));
-
-    let productId = input.closest('.product').data('productId');
+    let productIndex = $(this).closest('.col-lg-3').index();
+    let product = products[productIndex];
+    let productId = product.productId;
 
     if (count > min) {
         count--;
@@ -77,7 +79,8 @@ $(document).on('click', '.input-counter__minus', function () {
                 productId: productId
             },
             success: function(response) {
-                if (response === 'true') {
+                if (response >= 0) {
+                    input.val(response);
                     alert('Product quantity decremented successfully!');
                 } else {
                     alert('Failed to decrement product quantity.');
@@ -91,12 +94,15 @@ $(document).on('click', '.input-counter__minus', function () {
 });
 
 
-$(document).on('click', '.input-counter__plus', function () {
+$(document).on('click', '.input-counter__plus', function (event) {
+    event.preventDefault();
+    let productIndex = $(this).closest('.col-lg-3').index();
+    let product = products[productIndex];
+    let productId = product.productId;
     let input = $(this).siblings('.input-counter__text');
     let count = parseInt(input.val());
     let max = parseInt(input.attr('data-max'));
 
-    let productId = input.closest('.product').data('productId');
 
     if (count < max) {
         count++;
@@ -129,16 +135,31 @@ $(document).on('click', '.input-counter__plus', function () {
 
 
 
-$(document).on('click', '.table-p__delete-link', function () {
-    let productRow = $(this).closest('tr');
-    let productName = productRow.find('.table-p__name a').text();
+$(document).on('click', '.table-p__delete-link', function (event) {
+    let productName = $(this).closest('tr').find('.table-p__name a').text();
+                                                    
+    shopping_products = shopping_products.filter(product => product.name !== productName);
+    
+    let shoppingData = {
+        products: shopping_products,
+        productCounts: productCounts
+    };
+    sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+    
+    $(this).closest('tr').remove();
+    
+    updateTotalSum();
+    event.preventDefault();
+    let productIndex = $(this).closest('.col-lg-3').index();
+    let product = products[productIndex];
 
+    let productId = product.productId;
     $.ajax({
         url: 'cart',
         type: 'POST',
         data: {
             action: 'removeProduct',
-            productName: productName
+            productId: productId,
         },
         success: function(response) {
             if (response === 'true') {
@@ -185,7 +206,6 @@ function updateTotalSum() {
         document.getElementById("total").innerText = "$" + subtotal.toFixed(2);
         sessionStorage.setItem('total', subtotal.toFixed(2));
     } else {
-        // Handle the case when there are no products in the shopping cart
         document.getElementById("total").innerText = "$0.00";
         sessionStorage.setItem('total', "0.00");
     }

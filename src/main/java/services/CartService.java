@@ -21,24 +21,20 @@ public class CartService {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager).orElse(null);
             if (user == null) {
-                System.out.println("user null");
                 return false;
             }
             Product product = entityManager.find(Product.class, productId);
             if (product == null) {
-                System.out.println("product null");
                 return false; // Invalid product ID
             }
             Optional<CartItem> cartItem = user.getCart().getCartItems().stream().filter(item -> Objects.equals(item.getProduct().getProductId(), productId)).findFirst();
             if (cartItem.isPresent()) {
                 if (product.getQuantity() < cartItem.get().getQuantity() + quantity) {
-                    System.out.println("product2 null");
                     return false; // Not enough quantity in stock
                 }
                 cartItem.get().setQuantity(cartItem.get().getQuantity() + quantity);
             } else {
                 if (product.getQuantity() < quantity) {
-                    System.out.println("product3 null");
                     return false; // Not enough quantity in stock
                 }
                 user.getCart().addCartItem(product, quantity, product.getPrice() * quantity);
@@ -64,11 +60,11 @@ public class CartService {
         });
     }
 
-    public boolean decrementProductQuantity(Long id, Long productId) {
+    public int decrementProductQuantity(Long id, Long productId) {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager).orElse(null);
             if (user == null) {
-                return false;
+                return -1;
             }
             Optional<CartItem> cartItem = user.getCart().getCartItems().stream()
                     .filter(item -> Objects.equals(item.getProduct().getProductId(), productId)).findFirst();
@@ -80,9 +76,9 @@ public class CartService {
                     user.getCart().getCartItems().remove(item);
                 }
                 userRepository.update(user, entityManager);
-                return true;
+                return item.getQuantity();
             }
-            return false;
+            return -1;
         });
     }
 
