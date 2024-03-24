@@ -142,8 +142,15 @@ public class UserService {
         repository.removeAddress(l, userMapper.addressDtoToAddress(addressDto));
     }
 
-    public List<UserDto> getUsers(int page, int size) {
-        Optional<List<User>> optionalUsers = repository.getUsers(page, size);
+    public List<UserDto> getUsersByPaginate(int page, int size) {
+        Optional<List<User>> optionalUsers = repository.getUsersByNameAndPaginate(page, size, null);
+        return optionalUsers
+                .map(users -> users.stream().map(userMapper::userToUserDto).toList())
+                .orElseGet(ArrayList::new);
+    }
+
+    public List<UserDto> getUsersByNameAndPaginate(int page, int size, String name) {
+        Optional<List<User>> optionalUsers = repository.getUsersByNameAndPaginate(page, size, name);
         return optionalUsers
                 .map(users -> users.stream().map(userMapper::userToUserDto).toList())
                 .orElseGet(ArrayList::new);
