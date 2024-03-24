@@ -44,7 +44,6 @@ public class AdminViewUserServlet extends HttpServlet {
     private List<OrderDto> getOrdersDto(Long userId) {
 //        OrderService orderService = new OrderService();
 //        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
-//        orders.forEach(order -> order.getUser().setPassword(null));
 //        return orders;
 
         UserService userService = new UserService();

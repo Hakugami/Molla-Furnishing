@@ -118,7 +118,7 @@ public class UserRepository extends GenericRepository<User, Long> {
     public Optional<List<models.entity.Order>> getOrdersByUserId(Long userId) {
         return Optional.ofNullable(DatabaseSingleton.getInstance().doTransactionWithResult(entityManager ->
                 entityManager.createQuery(
-                        "SELECT o FROM User u JOIN u.orders o WHERE u.id = :userId", models.entity.Order.class)
+                        "SELECT o FROM User u JOIN u.orders o WHERE u.id = :userId ORDER BY o.id DESC", models.entity.Order.class)
                 .setParameter("userId", userId)
                 .getResultList()));
     }
