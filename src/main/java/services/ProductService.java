@@ -1,13 +1,10 @@
 package services;
 
 import mappers.ProductMapper;
-//import mappers.ProductMapperImpl;
 import models.DTOs.ProductDto;
-import models.entity.Category;
 import models.entity.Product;
 import models.entity.ProductDetails;
 import persistence.manager.DatabaseSingleton;
-import persistence.repositories.GenericRepository;
 import persistence.repositories.helpers.ProductFilter;
 import persistence.repositories.impl.CategoriesRepository;
 import persistence.repositories.impl.ProductRepository;
@@ -66,18 +63,18 @@ public class ProductService {
 
     public void updateProduct(ProductDto product) throws Exception {
 
-        DatabaseSingleton.getInstance().doTransaction((entityManager)->{
+        DatabaseSingleton.getInstance().doTransaction((entityManager) -> {
             Product updatedProduct = entityManager.find(Product.class, product.getProductId());
             if (updatedProduct != null) {
                 updatedProduct.setName(product.getName());
                 updatedProduct.setDescription(product.getDescription());
                 updatedProduct.setQuantity(product.getQuantity());
 
-                ProductDetails details= ProductMapper.INSTANCE.productDtoToProduct(product).getProductDetails();
+                ProductDetails details = ProductMapper.INSTANCE.productDtoToProduct(product).getProductDetails();
                 updatedProduct.setProductDetails(details);
 
                 updatedProduct.setCategory(new CategoriesRepository().getCategoryByName(
-                        product.getCategoryName(),entityManager).orElse(updatedProduct.getCategory()));
+                        product.getCategoryName(), entityManager).orElse(updatedProduct.getCategory()));
             }
         });
     }
@@ -92,8 +89,6 @@ public class ProductService {
         List<Product> products = productDtos.stream().map(productMapper::productDtoToProduct).toList();
         productRepository.batchInsert(products);
     }
-
-
 
 
 }

@@ -1,12 +1,8 @@
 package mappers;
 
 import models.DTOs.AddressDto;
-import models.DTOs.OrderDto;
-import models.DTOs.OrderItemDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
-import models.entity.Order;
-import models.entity.OrderItem;
 import models.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -17,8 +13,11 @@ public interface UserMapper {
     //instance of the mapper
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    public User userDtoToUser(UserDto userDto);
-    public UserDto userToUserDto(User user);
-    public Address addressDtoToAddress(AddressDto addressDto);
-    public Address addressToAddressDto(Address address);
+    User userDtoToUser(UserDto userDto);
+
+    UserDto userToUserDto(User user);
+
+    Address addressDtoToAddress(AddressDto addressDto);
+
+    Address addressToAddressDto(Address address);
 }

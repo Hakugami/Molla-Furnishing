@@ -20,6 +20,11 @@ public class CategoryDataInserter {
 
     }
 
+    public static void main(String[] args) {
+        CategoryDataInserter categoryDataInserter = new CategoryDataInserter();
+        categoryDataInserter.insertCategoriesAndSubCategories();
+    }
+
     public void insertCategoriesAndSubCategories() {
         Map<String, List<String>> categoriesAndSubCategories = new HashMap<>();
         categoriesAndSubCategories.put("Chairs", Arrays.asList("Armchairs", "Sofas", "Benches", "Stools"));
@@ -49,10 +54,5 @@ public class CategoryDataInserter {
                 }
             }
         });
-    }
-
-    public static void main(String[] args) {
-        CategoryDataInserter categoryDataInserter = new CategoryDataInserter();
-        categoryDataInserter.insertCategoriesAndSubCategories();
     }
 }

@@ -9,15 +9,12 @@ import models.DTOs.AddressDto;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
 import org.jose4j.jwt.consumer.InvalidJwtException;
-import services.AuthenticationService;
 import services.JWTService;
 import services.UserService;
 import urls.enums.UrlMapping;
 import utils.CookiesUtil;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 public class AddressServlet extends HttpServlet {

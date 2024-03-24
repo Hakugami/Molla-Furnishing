@@ -49,7 +49,7 @@ public class AuthenticationService {
         }
     }
 
-    public boolean register(UserDto userDto , String password) {
+    public boolean register(UserDto userDto, String password) {
         if (repository.findByEmail(userDto.getEmail()).isPresent() || !ValidationUtil.isValidEmailFormat(userDto.getEmail())
                 || ValidationUtil.validatePassword(password) != null || ValidationUtil.validatePhoneNumber(userDto.getPhone()) != null) {
             return false;

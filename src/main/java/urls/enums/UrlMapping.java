@@ -48,15 +48,24 @@ public enum UrlMapping {
     private final String pageName;
 
 
-    UrlMapping(String command, String url ,String servletName, String pageName) {
+    UrlMapping(String command, String url, String servletName, String pageName) {
         this.command = command;
         this.url = url;
         this.servletName = servletName;
         this.pageName = pageName;
     }
-    
+
+    public static String getServletNameForCommand(String commandName) {
+        for (UrlMapping mapping : UrlMapping.values()) {
+            if (mapping.getCommand().equals(commandName)) {
+                return mapping.getServletName();
+            }
+        }
+        throw new IllegalArgumentException("No mapping found for command: " + commandName);
+    }
+
     public String getContextEmbeddedUrl(String contextPath) {
-        return contextPath +CONTEXT_DEFAULT.getUrl() + url;
+        return contextPath + CONTEXT_DEFAULT.getUrl() + url;
     }
 
 
