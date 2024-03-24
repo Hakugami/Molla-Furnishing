@@ -235,23 +235,14 @@
                                             </tbody>
 
                                         </table>
-<!--                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add-->
-<!--                                            Address-->
-<!--                                        </button>-->
-<!--                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove-->
-<!--                                            Address-->
-<!--                                        </button>-->
+
                                         </button>
                                     </div>
                                 </div>
 
                             </fieldset>
-<!--                            <fieldset disabled class="col-md-4">-->
-<!--                                <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>-->
-<!--                                <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>-->
-<!--                            </fieldset>-->
+
                         </form>
-<!--                        <button type="button" id="editUserButton" class="btn btn-dark m-4">Edit User</button>-->
                         <hr>
                         <h2 class=" fw-semibold mb-4">Order History</h2>
                         <hr>
@@ -265,9 +256,55 @@
                                         <span class="timeline-badge border-2 border border-info flex-shrink-0 my-8"></span>
                                         <span class="timeline-badge-border d-block flex-shrink-0"></span>
                                     </div>
-                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded #${order.id}<a
-                                            href="javascript:void(0)"
-                                            class="text-primary d-block fw-normal">$${order.totalAmount}</a>
+
+                                    <div class="timeline-desc fs-3 text-dark mt-n1 fw-semibold">New Checkout recorded #${order.id}
+
+                                        <div class="container-fluid">
+                                            <div class="col-lg-8 d-flex align-items-stretch">
+                                                <div>
+                                                    <div class="table-responsive">
+                                                        <table class="table text-nowrap  align-middle">
+                                                            <thead class="text-dark fs-4">
+                                                            <tr>
+                                                                <th >
+                                                                    <h6 class="fw-semibold mb-0">Id</h6>
+                                                                </th>
+                                                                <th >
+                                                                    <h6 class="fw-semibold mb-0">Item</h6>
+                                                                </th>
+                                                                <th >
+                                                                    <h6 class="fw-semibold mb-0">Quantity</h6>
+                                                                </th>
+                                                                <th >
+                                                                    <h6 class="fw-semibold mb-0">Unit Price</h6>
+                                                                </th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+               <c:forEach items="${order.orderItems}" var="orderItem">
+                                                            <tr>
+                                                                <td >
+                                                                    <p class="mb-0 fw-normal">${orderItem.product.productId}</p>
+                                                                </td>
+                                                                <td >
+                                                                    <p class="mb-0 fw-normal">${orderItem.product.name}</p>
+                                                                </td>
+                                                                <td >
+                                                                    <p class="mb-0 fw-normal">${orderItem.quantity}</p>
+                                                                </td>
+                                                                <td >
+                                                                    <p class="mb-0 fw-normal">$${orderItem.product.price}</p>
+                                                                </td>
+                                                            </tr>
+               </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h5 class="text-primary d-block fw-normal">Total: $${order.totalAmount}</h5>
                                     </div>
                                 </li>
     </c:forEach>

@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.OrderDto;
+import models.DTOs.OrderItemDto;
 import models.DTOs.UserDto;
 import services.UserService;
 import urls.enums.UrlMapping;
