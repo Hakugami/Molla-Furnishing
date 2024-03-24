@@ -74,7 +74,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproduct">
+                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproductpage">
                 <span>
                   <i class="ti ti-plus"></i>
                 </span>
@@ -141,30 +141,27 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="row">
-                            <fieldset class="col-md-6">
+                            <fieldset class="col-md-4">
                                 <h2 class="fw-semibold mb-4">Add Product</h2>
-                                <div id="bigImagePreviewContainer">
-                                    <img id="bigImagePreview" src="" class="card-img-top">
-                                </div>
                                 <label for="imageInput" class="form-label card-title mt-3">Select Images</label>
                                 <input type="file" class="form-control" id="imageInput" accept="image/*" multiple>
                                 <div id="smallImagePreviews" class="mt-2"></div>
 
                             </fieldset>
-                            <fieldset class="col-md-6 mt-5">
+                            <fieldset class="col-md-4 mt-5">
                                 <label for="productName2" class="form-label card-title mt-5">Product name</label>
                                 <input type="text" class="form-control card-title" id="productName2"
                                        aria-describedby="productName2Help" placeholder="Enter product name" required>
                                 <div class="mb-3">
                                     <label for="categorySelect" class="form-label card-title">Category</label>
                                     <select class="form-select mt-2" id="categorySelect" aria-describedby="categorySelectHelp" required>
-                                        <option value="chairs">Chairs</option>
-                                        <option value="tables">Tables</option>
-                                        <option value="storage">Storage</option>
-                                        <option value="beds">Beds</option>
-                                        <option value="desks">Desks & Workstations</option>
-                                        <option value="dining">Dining Room</option>
-                                        <option value="children">Children's Furniture</option>
+                                        <option value="Chairs">Chairs</option>
+                                        <option value="Tables">Tables</option>
+                                        <option value="Storage">Storage</option>
+                                        <option value="Beds">Beds</option>
+                                        <option value="Desks">Desks & Workstations</option>
+                                        <option value="Dining">Dining Room</option>
+                                        <option value="Children">Children's Furniture</option>
                                     </select>
                                 </div>
 
@@ -185,7 +182,26 @@
                                        aria-describedby="descriptionInputHelp" placeholder="Enter a description" required>
 
                             </fieldset>
-                            <fieldset class="col-md-4">
+                            <fieldset class="col-md-4 mt-2">
+                                <div class="card mt-5">
+                                    <div class="card-body">
+                                        <h5 class="card-title form-label">Product Details</h5>
+                                        <label for="materialInput" class="form-label">Material</label>
+                                        <input type="text" class="form-control" id="materialInput"
+                                               aria-describedby="materialInputHelp">
+                                        <label for="dimensionsInput" class="form-label">Dimensions</label>
+                                        <input type="text" class="form-control" id="dimensionsInput"
+                                               aria-describedby="dimensionsInputHelp">
+                                        <label for="colorInput" class="form-label">Color</label>
+                                        <input type="text" class="form-control" id="colorInput"
+                                               aria-describedby="colorInputHelp">
+                                        <label for="weightInput" class="form-label">Weight</label>
+                                        <input type="text" class="form-control" id="weightInput"
+                                               aria-describedby="weightInputHelp">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="col-md-12">
                                 <input type="submit" class="btn btn-primary m-4" value="Add Product"/>
 
                             </fieldset>
@@ -196,12 +212,12 @@
         </div>
     </div>
 </div>
-<script src="assets/js/addproduct.js"></script>
 <script src="assets/libs/jquery/dist/jquery.min.js"></script>
 <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/sidebarmenu.js"></script>
 <script src="assets/js/app.min.js"></script>
 <script src="assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="assets/js/addproduct.js"></script>
 </body>
 
 </html>

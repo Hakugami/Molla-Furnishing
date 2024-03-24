@@ -33,13 +33,14 @@ public enum UrlMapping {
     ADMIN_HOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
     ADMIN_LOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
     ADMIN_ALL_PRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
-    ADMIN_VIEW_PRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
+    ADMIN_VIEW_PRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductPageServlet","/Adminpanel/viewproduct.html"),
     ADMIN_ALL_USERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.jsp"),
     ADMIN_VIEW_USER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.jsp"),
     ADMIN_ADD_USER("adminadduser","/admin/adduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
-    ADMIN_ADD_PRODUCT_PAGE("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html"),
+    ADMIN_ADD_PRODUCT_PAGE("adminaddproductpage","/admin/addproductpage","AdminAddProductPageServlet","/Adminpanel/addproduct.html"),
     //Admin Operations
-    ADMINUPDATEPRODUCT("adminupdateproduct","/admin/updateproduct","AdminUpdateProductServlet",""),;
+    ADMINUPDATEPRODUCT("adminupdateproduct","/admin/updateproduct","AdminUpdateProductServlet",""),
+    ADMIN_ADD_PRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet",""),;
 
     private final String command;
     private final String url;

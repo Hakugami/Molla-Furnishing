@@ -8,14 +8,13 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class AdminAddProductCommand extends FrontCommand {
-
+public class AdminAddProductPageCommand extends FrontCommand {
     @Override
     public void process() throws ServletException, IOException {
-        System.out.println("Admin Add Product Command: processing request");
+        System.out.println("Admin Add Product Page Command: processing request");
         ServletContext context = request.getServletContext();
-        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_ADD_PRODUCT.getServletName());
-        System.out.println("Forwarding Request to Add Product ...");
+        RequestDispatcher rd = context.getNamedDispatcher(UrlMapping.ADMIN_ADD_PRODUCT_PAGE.getServletName());
+        System.out.println("Forwarding Request to Add Product Page...");
         rd.forward(request, response);
     }
 }

@@ -1,68 +1,87 @@
-// Function to handle image preview
-function previewImages(event) {
-    var input = event.target;
-    var smallPreviewsContainer = document.getElementById('smallImagePreviews');
+$(document).ready(function() {
+    // Function to handle image preview
+    function previewImages(event) {
+        var input = event.target;
+        var smallPreviewsContainer = $('#smallImagePreviews');
 
-    var files = input.files;
-    if (files) {
-        for (var i = 0; i < files.length; i++) {
-            var reader = new FileReader();
+        var files = input.files;
+        if (files) {
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
 
-            reader.onload = function (e) {
-                var image = document.createElement('img');
-                var preview = document.createElement('div');
-                image.src = e.target.result;
-                image.classList.add('small-image-preview');
-                preview.classList.add('preview-container');
+                reader.onload = function (e) {
+                    var image = $('<img>').attr('src', e.target.result).addClass('small-image-preview');
+                    var preview = $('<div>').addClass('preview-container').append(image);
 
-                // Add event listener to display image in big preview on click
-                image.addEventListener('click', function() {
-                    document.getElementById('bigImagePreview').src = this.src;
-                });
+                    // Add close button to remove image from small previews
+                    var closeButton = $('<button>').html('&times;').addClass('close-button').on('click', function() {
+                        $(this).parent().remove();
+                    });
+                    preview.append(closeButton);
 
-                preview.appendChild(image);
+                    smallPreviewsContainer.append(preview);
+                }
 
-                // Add close button to remove image from small previews
-                var closeButton = document.createElement('button');
-                closeButton.innerHTML = '&times;';
-                closeButton.classList.add('close-button');
-                closeButton.addEventListener('click', function() {
-                    this.parentNode.remove();
-                });
-                preview.appendChild(closeButton);
-
-                smallPreviewsContainer.appendChild(preview);
+                reader.readAsDataURL(files[i]);
             }
-
-            reader.readAsDataURL(files[i]);
         }
     }
-}
 
-// Attach event listener to image input
-document.getElementById('imageInput').addEventListener('change', previewImages);
+    // Attach event listener to image input
+    $('#imageInput').on('change', previewImages);
 
+    // Handle form submission
+    $('form').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
+        // Create FormData object to handle multipart form data
+        var formData = new FormData(this);
+
+        // Append each image file to FormData
+        $('.small-image-preview').each(function() {
+            var file = $(this).attr('src');
+            formData.append('images[]', file);
+        });
+
+        // Perform AJAX request
+        $.ajax({
+            url: '/molla/view/admin/addproduct',
+            type: 'POST',
+            data: formData,
+            contentType: false, // Let jQuery handle the contentType
+            processData: false, // Prevent jQuery from processing the data
+            success: function(response) {
+                // Handle success response
+                console.log('Product added successfully:', response);
+            },
+            error: function(xhr, status, error) {
+                // Handle error response
+                console.error('Error adding product:', error);
+            }
+        });
+    });
+
+    // Populate subcategories based on selected category
     const subcategoryOptions = {
-        chairs: ["Armchairs", "Sofas", "Benches", "Stools"],
-        tables: ["Dining Tables", "Coffee Tables", "Side Tables", "Bedside Tables"],
-        storage: ["Wardrobes", "Cabinets", "Dressers", "Bookcases", "Shelving Units"],
-        beds: ["Bed Frames", "Mattresses", "Nightstands", "Bunk Beds"],
-        desks: ["Writing Desks", "Computer Desks", "Office Chairs", "Filing Cabinets"],
-        dining: ["Dining Sets", "Buffets"],
-        children: ["Cribs", "Kid Beds", "Study Desks"]
+        Chairs: ["Armchairs", "Sofas", "Benches", "Stools"],
+        Tables: ["Dining Tables", "Coffee Tables", "Side Tables", "Bedside Tables"],
+        Storage: ["Wardrobes", "Cabinets", "Dressers", "Bookcases", "Shelving Units"],
+        Beds: ["Bed Frames", "Mattresses", "Nightstands", "Bunk Beds"],
+        Desks: ["Writing Desks", "Computer Desks", "Office Chairs", "Filing Cabinets"],
+        Dining: ["Dining Sets", "Buffets"],
+        Children: ["Cribs", "Kid Beds", "Study Desks"]
     };
 
-const categorySelect = document.getElementById('categorySelect');
-const subcategorySelect = document.getElementById('subcategorySelect');
+    const categorySelect = $('#categorySelect');
+    const subcategorySelect = $('#subcategorySelect');
 
-categorySelect.addEventListener('change', function () {
-    const selectedCategory = this.value;
-    subcategorySelect.innerHTML = ''; // Clear previous options
+    categorySelect.on('change', function () {
+        const selectedCategory = $(this).val();
+        subcategorySelect.empty();
 
-    subcategoryOptions[selectedCategory].forEach(function (subcategory) {
-        const option = document.createElement('option');
-        option.textContent = subcategory;
-        subcategorySelect.appendChild(option);
+        subcategoryOptions[selectedCategory].forEach(function (subcategory) {
+            const option = $('<option>').text(subcategory);
+            subcategorySelect.append(option);
+        });
     });
 });
