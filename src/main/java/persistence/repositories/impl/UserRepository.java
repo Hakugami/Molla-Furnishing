@@ -3,10 +3,7 @@ package persistence.repositories.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Order;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.criteria.*;
 import models.entity.Address;
 import models.entity.ShoppingCart;
 import models.entity.User;
@@ -102,19 +99,37 @@ public class UserRepository extends GenericRepository<User, Long> {
         return Optional.of(entityManager.find(User.class, id, lockModeType));
     }
 
-    public List<User> getUsers(int page, int size) {
-        return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
+    public Optional<List<User>> getUsersByNameAndPaginate(int page, int size, String name) {
+        return Optional.ofNullable(DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
             CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
             Root<User> root = criteriaQuery.from(User.class);
+
             Order order = criteriaBuilder.desc(root.get("id"));
 
-            criteriaQuery.select(root).orderBy(order);
+            Predicate namePredicate = null;
+            if (name != null && !name.isEmpty()) {
+                namePredicate = criteriaBuilder.like(criteriaBuilder.lower(root.get("name")), "%" + name.toLowerCase() + "%");
+            }
+
+            criteriaQuery
+                    .select(root)
+                    .where(namePredicate != null ? namePredicate : criteriaBuilder.conjunction())
+                    .orderBy(order);
 
             return entityManager.createQuery(criteriaQuery)
                     .setFirstResult((page - 1) * size)
                     .setMaxResults(size)
                     .getResultList();
-        });
+        }));
     }
+
+    public Optional<List<models.entity.Order>> getOrdersByUserId(Long userId) {
+        return Optional.ofNullable(DatabaseSingleton.getInstance().doTransactionWithResult(entityManager ->
+                entityManager.createQuery(
+                        "SELECT o FROM User u JOIN u.orders o WHERE u.id = :userId ORDER BY o.id DESC", models.entity.Order.class)
+                .setParameter("userId", userId)
+                .getResultList()));
+    }
+
 }
