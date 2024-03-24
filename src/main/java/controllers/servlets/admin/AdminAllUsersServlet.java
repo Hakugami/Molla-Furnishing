@@ -46,7 +46,7 @@ public class AdminAllUsersServlet extends HttpServlet {
 
         UserService userService = new UserService();
 
-        List<UserDto> users = userService.getUsers(pageInt, size);
+        List<UserDto> users = userService.getUsersByPaginate(pageInt, size);
 //        users.forEach(user -> user.setPassword(null));
         return users;
     }

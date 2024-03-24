@@ -14,5 +14,5 @@ public class OrderItemDto implements Serializable {
     OrderItemId id;
     ProductDto product;
     int quantity;
-    OrderDto order;
+//    OrderDto order;
 }

@@ -35,18 +35,18 @@ public class AdminViewUserServlet extends HttpServlet {
 
         if (id != -1) {
             UserService userService = new UserService();
-            UserDto user = userService.getUserById(id);
-//            user.setPassword(null);
-            return user;
+            return userService.getUserById(id);
         }
 
         return null;
     }
 
     private List<OrderDto> getOrdersDto(Long userId) {
-        OrderService orderService = new OrderService();
-        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
-//        orders.forEach(order -> order.getUser().setPassword(null));
-        return orders;
+//        OrderService orderService = new OrderService();
+//        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
+//        return orders;
+
+        UserService userService = new UserService();
+        return userService.getOrdersByUserId(userId);
     }
 }

@@ -199,13 +199,13 @@
 
     <!--Admin View/Edit Product Page-->
     <servlet>
-        <servlet-name>AdminViewProductServlet</servlet-name>
+        <servlet-name>AdminViewProductPageServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminViewProductServlet</servlet-class>
     </servlet>
 
     <!--Admin Add Product Page-->
     <servlet>
-        <servlet-name>AdminAddProductServlet</servlet-name>
+        <servlet-name>AdminAddProductPageServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminAddProductPageServlet</servlet-class>
     </servlet>
 
@@ -232,6 +232,11 @@
     <servlet>
         <servlet-name>AdminUpdateProductServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminUpdateProductServlet</servlet-class>
+    </servlet>
+    <!--////////////////////////////////////////////Admin Add Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminAddProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
     </servlet>
 
     <!--Admin Security Constraint-->
