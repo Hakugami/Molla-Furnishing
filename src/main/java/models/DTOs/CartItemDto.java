@@ -1,6 +1,6 @@
 package models.DTOs;
 
-import lombok.Value;
+import lombok.*;
 import models.entity.CartItem;
 
 import java.io.Serializable;
@@ -8,10 +8,11 @@ import java.io.Serializable;
 /**
  * DTO for {@link CartItem}
  */
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 public class CartItemDto implements Serializable {
-    Long id;
     ProductDto product;
     int quantity;
-    ShoppingCartDto shoppingCart;
 }
