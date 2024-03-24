@@ -14,7 +14,7 @@ public class CartInserter {
 
     public void insertCart() {
         cartService = new CartService();
-        cartService.addProductToCart(1L, 10L, 50);
+        cartService.addProductToCart(1L, 13L, 2);
     }
 
     public void removeProductFromCart() {

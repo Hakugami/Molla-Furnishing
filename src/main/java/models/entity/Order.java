@@ -36,7 +36,7 @@ public class Order {
 
     @Setter
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
     public void addOrderItems(Product product, int quantity, double totalAmount) {
