@@ -19,7 +19,7 @@ public class ProductDataInserter {
 
     private final ProductRepository productRepository;
     private final CategoriesRepository categoryRepository;
-    private Set<String> generatedNames = new HashSet<>();
+    private final Set<String> generatedNames = new HashSet<>();
 
     public ProductDataInserter() {
         this.productRepository = new ProductRepository();

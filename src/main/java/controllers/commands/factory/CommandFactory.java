@@ -1,6 +1,6 @@
 package controllers.commands.factory;
 
-import controllers.commands.AddressBookCommand;
+import controllers.commands.user.AddressBookCommand;
 import controllers.commands.FrontCommand;
 import controllers.commands.admin.*;
 import controllers.commands.user.*;
