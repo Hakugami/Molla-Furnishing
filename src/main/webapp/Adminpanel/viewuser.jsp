@@ -153,7 +153,7 @@
                                 </div>
                             </fieldset>
 
-                            <fieldset disabled class="col-md-3">
+                            <fieldset disabled class="col-md-6">
                                 <h5 class="card-title mt-5">User ID</h5>
                                 <p class="card-text mt-1">${user.id}</p>
 
@@ -174,7 +174,7 @@
                                        value="${user.job}">
 
                             </fieldset>
-                            <fieldset disabled class="col-md-6">
+                            <fieldset disabled class="col-md-12">
                                 <div class="card mt-5">
                                     <div class="card-body">
                                         <h5 class="card-title mt-3">Interests</h5>
@@ -235,22 +235,23 @@
                                             </tbody>
 
                                         </table>
-                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add
-                                            Address
-                                        </button>
-                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove
-                                            Address
+<!--                                        <button type="button" class="btn btn-success mb-2" id="addAddressBtn">Add-->
+<!--                                            Address-->
+<!--                                        </button>-->
+<!--                                        <button type="button" class="btn btn-danger mb-2" id="removeAddressBtn">Remove-->
+<!--                                            Address-->
+<!--                                        </button>-->
                                         </button>
                                     </div>
                                 </div>
 
                             </fieldset>
-                            <fieldset disabled class="col-md-4">
-                                <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>
-                                <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>
-                            </fieldset>
+<!--                            <fieldset disabled class="col-md-4">-->
+<!--                                <input type="submit" class="btn btn-primary m-4" value="Apply Changes"/>-->
+<!--                                <input type="button" id="resetButton" class="btn btn-warning" value="Reset"/>-->
+<!--                            </fieldset>-->
                         </form>
-                        <button type="button" id="editUserButton" class="btn btn-dark m-4">Edit User</button>
+<!--                        <button type="button" id="editUserButton" class="btn btn-dark m-4">Edit User</button>-->
                         <hr>
                         <h2 class=" fw-semibold mb-4">Order History</h2>
                         <hr>

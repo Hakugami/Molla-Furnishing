@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.OrderDto;
 import models.DTOs.UserDto;
-import services.OrderService;
 import services.UserService;
 import urls.enums.UrlMapping;
 
@@ -44,9 +43,12 @@ public class AdminViewUserServlet extends HttpServlet {
     }
 
     private List<OrderDto> getOrdersDto(Long userId) {
-        OrderService orderService = new OrderService();
-        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
-        orders.forEach(order -> order.getUser().setPassword(null));
-        return orders;
+//        OrderService orderService = new OrderService();
+//        List<OrderDto> orders = orderService.retrieveOrdersByUserId(userId);
+//        orders.forEach(order -> order.getUser().setPassword(null));
+//        return orders;
+
+        UserService userService = new UserService();
+        return userService.getOrdersByUserId(userId);
     }
 }

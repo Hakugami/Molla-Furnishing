@@ -1,10 +1,13 @@
 package services;
 
 import jakarta.servlet.http.HttpServletRequest;
+import mappers.OrderMapper;
 import mappers.UserMapper;
 import models.DTOs.AddressDto;
+import models.DTOs.OrderDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
+import models.entity.Order;
 import models.entity.User;
 import org.jose4j.jwt.JwtClaims;
 import org.jose4j.jwt.MalformedClaimException;
@@ -15,17 +18,18 @@ import persistence.repositories.impl.UserRepository;
 import java.net.UnknownHostException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class UserService {
     private final UserRepository repository;
     private final UserMapper userMapper;
+    private final OrderMapper orderMapper;
 
     public UserService() {
         this.repository = new UserRepository();
         this.userMapper = UserMapper.INSTANCE;
+        this.orderMapper = OrderMapper.INSTANCE;
     }
 
     public UserDto getUserByEmail(String email) {
@@ -139,7 +143,17 @@ public class UserService {
     }
 
     public List<UserDto> getUsers(int page, int size) {
-        List<User> users = repository.getUsers(page, size);
-        return users.stream().map(userMapper::userToUserDto).toList();
+        Optional<List<User>> optionalUsers = repository.getUsers(page, size);
+        return optionalUsers
+                .map(users -> users.stream().map(userMapper::userToUserDto).toList())
+                .orElseGet(ArrayList::new);
+    }
+
+    public List<OrderDto> getOrdersByUserId(Long userId) {
+        Optional<List<Order>> optionalOrders = repository.getOrdersByUserId(userId);
+        return optionalOrders
+                .map(orders -> orders.stream().map(orderMapper::orderToOrderDto).toList())
+                .orElseGet(Collections::emptyList);
+
     }
 }
