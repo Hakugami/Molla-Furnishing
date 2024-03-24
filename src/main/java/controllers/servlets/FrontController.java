@@ -1,6 +1,6 @@
 package controllers.servlets;
 
-import controllers.commands.factory.CommandFactory;
+import controllers.commands.ViewCommand;
 import controllers.commands.FrontCommand;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -42,9 +42,9 @@ public class FrontController extends HttpServlet {
             if (matcher.find()) {
 
                 System.out.println("Matcher "+matcher.group(1));
-                FrontCommand commandInstance = CommandFactory.getInstance().getCommand("admin" + matcher.group(1));
+                FrontCommand commandInstance = new ViewCommand();
                 commandInstance.init(getServletContext(), req, resp);
-                commandInstance.process();
+                commandInstance.process("admin" + matcher.group(1));
             } else {
                 // Handle the case where the pathInfo does not match the expected format
                 System.out.println("Invalid pathInfo format: " + pathInfo);
@@ -58,9 +58,9 @@ public class FrontController extends HttpServlet {
             if (matcher.find()) {
                 String commandKey = matcher.group(1);
 
-                FrontCommand commandInstance = CommandFactory.getInstance().getCommand(commandKey);
+                FrontCommand commandInstance = new ViewCommand();
                 commandInstance.init(getServletContext(), req, resp);
-                commandInstance.process();
+                commandInstance.process(commandKey);
             } else {
                 // Handle the case where the pathInfo does not match the expected format
                 System.out.println("Invalid pathInfo format: " + pathInfo);
