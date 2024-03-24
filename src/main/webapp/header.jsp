@@ -46,7 +46,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="index.html">
+                        <a class="main-logo" href="home">
 
                             <img src="images/logo/logo-3.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
@@ -192,7 +192,7 @@
                                                             <span class="js-menu-toggle js-toggle-mark"></span></li>
                                                         <li>
 
-                                                            <a href="index.html"><i class="fas fa-couch u-s-m-r-6"></i>
+                                                            <a href="home"><i class="fas fa-couch u-s-m-r-6"></i>
 
                                                                 <span>Furniture 2 & Decor 2</span></a>
 
@@ -349,3 +349,15 @@
             <!--====== End - Nav 2 ======-->
         </header>
         <!--====== End - Main Header ======-->
+
+        <!--====== Custom js ======-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.main-form').submit(function(e){
+                    e.preventDefault();
+                    const search = $('#main-search').val();
+                    window.location.href = 'product?search='+search;
+                });
+            });
+        </script>

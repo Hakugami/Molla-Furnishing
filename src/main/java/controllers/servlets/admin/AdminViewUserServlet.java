@@ -5,8 +5,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import models.DTOs.OrderDto;
-import models.DTOs.OrderItemDto;
 import models.DTOs.UserDto;
+import services.OrderService;
 import services.UserService;
 import urls.enums.UrlMapping;
 
@@ -35,9 +35,7 @@ public class AdminViewUserServlet extends HttpServlet {
 
         if (id != -1) {
             UserService userService = new UserService();
-            UserDto user = userService.getUserById(id);
-            user.setPassword(null);
-            return user;
+            return userService.getUserById(id);
         }
 
         return null;

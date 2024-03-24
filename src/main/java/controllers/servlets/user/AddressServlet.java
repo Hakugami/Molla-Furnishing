@@ -12,6 +12,7 @@ import org.jose4j.jwt.consumer.InvalidJwtException;
 import services.AuthenticationService;
 import services.JWTService;
 import services.UserService;
+import urls.enums.UrlMapping;
 import utils.CookiesUtil;
 
 import java.io.IOException;
@@ -27,6 +28,11 @@ public class AddressServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         userService = new UserService();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher(UrlMapping.ADDRESSOPERATION.getPageName()).forward(req, resp);
     }
 
     @Override

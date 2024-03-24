@@ -26,4 +26,6 @@ public interface ProductMapper {
 
     @Named("discountedProductToDiscountedProductDto")
     DiscountedProductDto discountedProductToDiscountedProductDto(DiscountedProduct discountedProduct);
+
+
 }

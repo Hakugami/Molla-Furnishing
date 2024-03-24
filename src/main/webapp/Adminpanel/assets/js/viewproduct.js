@@ -112,8 +112,10 @@ $(document).ready(function() {
                 $('#priceInput').val(product.price);
                 $('#stockInput').val(product.quantity);
                 $('#productId').text(product.productId);
+                $('#rating').text(product.rating);
+                $('#dateAdded').text(product.dateAdded);
 
-                const selectedCategory = product.categoryName.toLowerCase();
+                const selectedCategory = product.categoryName;
                 populateSubcategories(selectedCategory);
 
                 if (product.productDetails) {
@@ -185,16 +187,19 @@ $(document).ready(function() {
         $('#editProductButton').prop('disabled', false);
     });
 
-    $('#applyChangesButton').click(function() {
+$('#productForm').submit(function(event) {
+    // Prevent default form submission
+    event.preventDefault();
         var editedProduct = {
             productId: originalProductDetails.productId,
             name: $('#productName2').val(),
             description: $('#descriptionInput').val(),
+            dateAdded: $('#dateAdded').val(),
             price: $('#priceInput').val(),
             quantity: $('#stockInput').val(),
             categoryName: $('#categorySelect').val(),
+            subCategoryName: $('#subcategorySelect').val(),
             productDetails: {
-                subCategoryName: $('#subcategorySelect').val(),
                 material: $('#materialInput').val(),
                 dimensions: $('#dimensionsInput').val(),
                 color: $('#colorInput').val(),
@@ -203,7 +208,7 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: '/molla/editProductServlet',
+            url: '/molla/view/admin/updateproduct',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(editedProduct),
