@@ -1,7 +1,6 @@
 package models.DTOs;
 
 import lombok.Value;
-import models.DTOs.ProductDto;
 import models.entity.OrderItem;
 import models.entity.OrderItemId;
 
@@ -15,5 +14,5 @@ public class OrderItemDto implements Serializable {
     OrderItemId id;
     ProductDto product;
     int quantity;
-    OrderDto order;
+//    OrderDto order;
 }

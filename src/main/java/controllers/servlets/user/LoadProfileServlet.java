@@ -18,8 +18,8 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 public class LoadProfileServlet extends HttpServlet {
+    private final Logger logger = Logger.getLogger(getClass().getName());
     private UserService userService;
-    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Override
     public void init() throws ServletException {

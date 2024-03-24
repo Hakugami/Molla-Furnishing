@@ -32,6 +32,8 @@ public class OrderRepository extends GenericRepository<Order, Long> {
 
             cq.where(builder.equal(userRoot.get("id"), userId));
 
+            cq.orderBy(builder.asc(joinOrder.get("id")));
+
             return entityManager.createQuery(cq).getResultList();
         });
     }

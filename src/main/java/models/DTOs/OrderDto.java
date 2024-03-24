@@ -1,8 +1,6 @@
 package models.DTOs;
 
 import lombok.*;
-import models.DTOs.OrderItemDto;
-import models.DTOs.UserDto;
 import models.entity.Order;
 
 import java.io.Serializable;

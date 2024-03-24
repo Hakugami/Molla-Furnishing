@@ -1,7 +1,9 @@
 package models.DTOs;
 
-import lombok.*;
-import models.entity.Order;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import models.entity.User;
 import models.enums.UserRole;
 
