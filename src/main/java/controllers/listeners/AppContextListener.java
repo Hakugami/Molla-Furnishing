@@ -36,6 +36,6 @@ public class AppContextListener implements ServletContextListener {
         }
 
 
-        AbandonedConnectionCleanupThread.uncheckedShutdown();;
+        AbandonedConnectionCleanupThread.uncheckedShutdown();
     }
 }

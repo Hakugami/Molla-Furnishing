@@ -11,12 +11,12 @@ import java.util.List;
 
 public class StaticResourceFilter implements Filter {
 
+    private final List<ResourceHandler> resourceHandlers = List.of(new StaticResourceHandler());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         // Initialization logic here
     }
-
-    private final List<ResourceHandler> resourceHandlers = List.of(new StaticResourceHandler());
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

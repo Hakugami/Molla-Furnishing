@@ -16,7 +16,7 @@ public class RetrieveProductCountServlet extends HttpServlet {
         System.out.println("Retrieve Product Count Servlet: Processing Request");
         String requestPath = req.getPathInfo();
 
-        if(requestPath==null|| requestPath.equals("/")){
+        if (requestPath == null || requestPath.equals("/")) {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND);
             return;
         }

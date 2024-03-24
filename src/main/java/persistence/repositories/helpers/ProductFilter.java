@@ -61,7 +61,7 @@ public class ProductFilter {
         return predicate;
     }
 
-    public  Predicate toPredicateDisjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
+    public Predicate toPredicateDisjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
         Predicate predicate = criteriaBuilder.disjunction();
 
         if (searchCategory != null) {

@@ -7,13 +7,7 @@ import models.entity.SubCategory;
 import persistence.repositories.impl.CategoriesRepository;
 import persistence.repositories.impl.ProductRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.Stack;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 
 public class ProductDataInserter {
 
@@ -24,6 +18,14 @@ public class ProductDataInserter {
     public ProductDataInserter() {
         this.productRepository = new ProductRepository();
         this.categoryRepository = new CategoriesRepository();
+    }
+
+    public static void main(String[] args) {
+        ProductDataInserter productDataInserter = new ProductDataInserter();
+        productDataInserter.insertProducts();
+        productDataInserter.addImagesToProducts();
+        productDataInserter.addProductDetailsToProducts();
+
     }
 
     //insert like 100 products
@@ -72,7 +74,7 @@ public class ProductDataInserter {
             String currentCombination = stack.pop();
 
             // Construct the product name
-            String productName = currentCombination.trim() + " " + categoryName + " " + subCategoryName + " " ;
+            String productName = currentCombination.trim() + " " + categoryName + " " + subCategoryName + " ";
 
             // Check if the generated name is unique
             if (!generatedNames.contains(productName)) {
@@ -89,8 +91,6 @@ public class ProductDataInserter {
         // If all combinations are exhausted, return a default name
         return "Product " + categoryName + " " + subCategoryName;
     }
-
-
 
     public void addProductDetailsToProducts() {
         // Create a ProductDetails object
@@ -111,11 +111,10 @@ public class ProductDataInserter {
     }
 
     private void shuffleArray(String[] array) {
-    List<String> list = Arrays.asList(array);
-    Collections.shuffle(list);
-    list.toArray(array);
-}
-
+        List<String> list = Arrays.asList(array);
+        Collections.shuffle(list);
+        list.toArray(array);
+    }
 
     public void addImagesToProducts() {
         // Retrieve all the products
@@ -127,14 +126,5 @@ public class ProductDataInserter {
 
         // Update the products in the database
         productRepository.batchUpdate(products);
-    }
-
-
-    public static void main(String[] args) {
-        ProductDataInserter productDataInserter = new ProductDataInserter();
-        productDataInserter.insertProducts();
-        productDataInserter.addImagesToProducts();
-        productDataInserter.addProductDetailsToProducts();
-
     }
 }

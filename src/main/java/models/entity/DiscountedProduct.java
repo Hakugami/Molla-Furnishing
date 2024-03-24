@@ -16,7 +16,7 @@ public class DiscountedProduct {
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id", nullable = false, referencedColumnName =  "productId")
+    @JoinColumn(name = "product_id", nullable = false, referencedColumnName = "productId")
     private Product product;
 
     @Min(0)

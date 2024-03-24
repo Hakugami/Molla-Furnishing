@@ -16,10 +16,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 public class CheckoutService {
+    private static final int MAX_RETRIES = 3;
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
     private final Logger logger = Logger.getLogger(CheckoutService.class.getName());
-    private static final int MAX_RETRIES = 3;
 
     public CheckoutService() {
         this.userRepository = new UserRepository();

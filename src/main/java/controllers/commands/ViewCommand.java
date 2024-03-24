@@ -6,7 +6,7 @@ import urls.enums.UrlMapping;
 
 import java.io.IOException;
 
-public class ViewCommand extends FrontCommand{
+public class ViewCommand extends FrontCommand {
     @Override
     public void process(String viewName) throws ServletException, IOException {
         ServletContext context = request.getServletContext();

@@ -69,11 +69,11 @@ public class ShoppingCart {
             }
         }
     }
+
     public void removeAllProducts() {
         this.cartItems.clear();
         totalAmount = 0.0;
     }
-
 
 
 }

@@ -15,9 +15,9 @@ import java.util.function.Function;
 import java.util.logging.Logger;
 
 public class DatabaseSingleton {
+    private static final ThreadLocal<EntityManager> ENTITY_MANAGER_THREAD_LOCAL = new ThreadLocal<>();
     private static volatile DatabaseSingleton instance = null;
     private static volatile EntityManagerFactory entityManagerFactory = null;
-    private static final ThreadLocal<EntityManager> ENTITY_MANAGER_THREAD_LOCAL = new ThreadLocal<>();
     private final Logger logger = Logger.getLogger(DatabaseSingleton.class.getName());
 
     private DatabaseSingleton() {
@@ -38,7 +38,8 @@ public class DatabaseSingleton {
         return instance;
     }
 
-    public void init(){}
+    public void init() {
+    }
 
 
     public AutoCloseableEntityManager getAutoClosableEntityManager() {

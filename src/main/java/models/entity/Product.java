@@ -95,14 +95,13 @@ public class Product {
     @PostLoad
     public void postLoad() {
         this.rating = getRating();
-        if(category != null) {
+        if (category != null) {
             this.categoryName = category.getName();
         }
-        if(subCategory!=null){
-            this.subCategoryName= subCategory.getName();
+        if (subCategory != null) {
+            this.subCategoryName = subCategory.getName();
         }
     }
-
 
 
     public double getRating() {

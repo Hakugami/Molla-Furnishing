@@ -2,22 +2,19 @@ package populators;
 
 import models.DTOs.AddressDto;
 import models.DTOs.UserDto;
-import models.entity.Address;
 import models.entity.User;
 import persistence.repositories.impl.UserRepository;
 import services.AuthenticationService;
 import services.UserService;
 
-import java.util.Date;
 import java.util.logging.Logger;
 
 public class UserAdder {
-    private static AuthenticationService authService;
     private static final Logger logger = Logger.getLogger(UserAdder.class.getName());
-
+    private static AuthenticationService authService;
     private static UserService userService;
 
-    public static void addUserAddressTest(){
+    public static void addUserAddressTest() {
         userService = new UserService();
         AddressDto address = new AddressDto();
         address.setCity("Gizaaaaaaaaaaa");
@@ -28,7 +25,7 @@ public class UserAdder {
         userService.addAddress(1L, address);
     }
 
-    public static void printUserAddresses(){
+    public static void printUserAddresses() {
         userService = new UserService();
         UserDto userDto = new UserDto();
         userDto.setId(1L);
@@ -38,7 +35,7 @@ public class UserAdder {
 
     }
 
-    public static void removeUserAddressTest(){
+    public static void removeUserAddressTest() {
         userService = new UserService();
         AddressDto address = new AddressDto();
         address.setId(1L);
@@ -50,7 +47,7 @@ public class UserAdder {
         userService.removeAddress(1L, address);
     }
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
         // Create an ObjectMapper instance
         for (int i = 0; i < 20; i++) {
 //            authService = new AuthenticationService();
