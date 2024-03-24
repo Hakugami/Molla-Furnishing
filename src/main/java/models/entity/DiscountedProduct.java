@@ -12,7 +12,7 @@ import java.util.Date;
 public class DiscountedProduct {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER)
