@@ -74,8 +74,13 @@ $(document).ready(function () {
             success: function (data) {
                 // Handle success
                 console.log(data);
-                sendSessionDataToServer(); // Send session data to server
-                window.location.href = 'home';
+
+                if (data.message === 'admin') {
+                    window.location.href = '/molla/view/admin/home';
+                } else {
+                    sendSessionDataToServer(); // Send session data to server
+                    window.location.href = 'home';
+                }
             },
             error: function (error) {
                 // Handle error
