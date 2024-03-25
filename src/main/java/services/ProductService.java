@@ -2,8 +2,10 @@ package services;
 
 import mappers.ProductMapper;
 import models.DTOs.ProductDto;
+import models.entity.Category;
 import models.entity.Product;
 import models.entity.ProductDetails;
+import models.entity.SubCategory;
 import persistence.manager.DatabaseSingleton;
 import persistence.repositories.helpers.ProductFilter;
 import persistence.repositories.impl.CategoriesRepository;
@@ -15,10 +17,12 @@ import java.util.Optional;
 public class ProductService {
     private static volatile ProductService instance = null;
     private final ProductRepository productRepository;
+    private final CategoriesRepository categoriesRepository;
     private final ProductMapper productMapper;
 
     public ProductService() {
         productRepository = new ProductRepository();
+        categoriesRepository = new CategoriesRepository();
         productMapper = ProductMapper.INSTANCE;
     }
 
@@ -88,6 +92,30 @@ public class ProductService {
     public void batchInsert(List<ProductDto> productDtos) {
         List<Product> products = productDtos.stream().map(productMapper::productDtoToProduct).toList();
         productRepository.batchInsert(products);
+    }
+
+    public void insertProduct(ProductDto productDto) {
+
+        DatabaseSingleton.getInstance().doTransaction((entityManager -> {
+            Category category = categoriesRepository.getCategoryByName(productDto.getCategoryName(), entityManager).orElse(null);
+
+            Optional<SubCategory> matchingSubCategory = category.getSubCategories().stream()
+                    .filter(subCat -> subCat.getName().equals(productDto.getSubCategoryName()))
+                    .findFirst();
+
+            if (matchingSubCategory.isPresent()) {
+                SubCategory subCategory = matchingSubCategory.get();
+                Product newProduct = productMapper.productDtoToProduct(productDto);
+                newProduct.setCategory(category);
+                newProduct.setSubCategory(subCategory);
+                entityManager.persist(newProduct);
+            } else {
+                return;
+            }
+
+
+        }));
+
     }
 
 
