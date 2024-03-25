@@ -237,6 +237,13 @@
     <servlet>
         <servlet-name>AdminAddProductServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>10485760000</max-file-size> <!-- 10 MB -->
+
+            <max-request-size>2009715200</max-request-size> <!-- 20 MB -->
+
+            <file-size-threshold>2009715200</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <!--Admin Security Constraint-->

@@ -37,10 +37,10 @@ public class FirebaseManager {
         return instance;
     }
 
-    public String uploadFileToStorage(byte[] fileBytes, String filename) throws IOException {
+    public String uploadFileToStorage(byte[] fileBytes, String filename, String filetype) throws IOException {
         Bucket bucket = StorageClient.getInstance(app).bucket();
         BlobId blobId = BlobId.of(bucket.getName(), filename);
-        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("image/jpeg").build();
+        BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(filetype).build();
         Blob blob = storage.create(blobInfo, fileBytes);
         URL url = blob.signUrl(100, TimeUnit.DAYS,
                 Storage.SignUrlOption.signWith((ServiceAccountSigner) GoogleCredentials.fromStream(Objects.requireNonNull(getClass().getResourceAsStream("/molla-49da9-firebase-adminsdk-hpg9v-95470780dc.json")))));

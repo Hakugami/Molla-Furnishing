@@ -37,10 +37,22 @@ $(document).ready(function() {
         // Create FormData object to handle multipart form data
         var formData = new FormData(this);
 
+        // Append other form fields to FormData
+        formData.append('productName', $('#productName2').val());
+        formData.append('category', $('#categorySelect').val());
+        formData.append('subcategory', $('#subcategorySelect').val());
+        formData.append('price', $('#priceInput').val());
+        formData.append('stock', $('#stockInput').val());
+        formData.append('description', $('#descriptionInput').val());
+        formData.append('material', $('#materialInput').val());
+        formData.append('dimensions', $('#dimensionsInput').val());
+        formData.append('color', $('#colorInput').val());
+        formData.append('weight', $('#weightInput').val());
+
         // Append each image file to FormData
-        $('.small-image-preview').each(function() {
-            var file = $(this).attr('src');
-            formData.append('images[]', file);
+        $('.small-image-preview').each(function(index, element) {
+            var file = $(element).attr('src');
+            formData.append('image' + index, file);
         });
 
         // Perform AJAX request
