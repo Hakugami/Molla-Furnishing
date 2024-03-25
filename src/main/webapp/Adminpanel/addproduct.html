@@ -8,6 +8,8 @@
     <link href="assets/images/logos/favicon.png" rel="shortcut icon" type="image/png"/>
     <link href="assets/css/styles.min.css" rel="stylesheet"/>
     <link href="assets/css/addproduct.css" rel="stylesheet">
+    <link href="assets/css/loading.css" rel="stylesheet">
+    <link href="assets/css/notification.css" rel="stylesheet">
 </head>
 
 <body>
@@ -89,7 +91,12 @@
     </aside>
     <!--  Sidebar End -->
     <!--  Main wrapper -->
+
     <div class="body-wrapper">
+          Loader Wrapper
+        <div class="loader-wrapper" id="loaderWrapper">
+            <div class="loader"></div>
+        </div>
         <!--  Header Start -->
         <header class="app-header">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -202,11 +209,12 @@
                                 </div>
                             </fieldset>
                             <fieldset class="col-md-12">
-                                <input type="submit" class="btn btn-primary m-4" value="Add Product"/>
+                                <input type="submit" class="btn btn-primary m-4" id="loadingStart" value="Add Product"/>
 
                             </fieldset>
                         </form>
                     </div>
+                    <div id="notifications"></div>
                 </div>
             </div>
         </div>
@@ -217,6 +225,9 @@
 <script src="assets/js/sidebarmenu.js"></script>
 <script src="assets/js/app.min.js"></script>
 <script src="assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="assets/js/loading.js"></script>
+<script src="assets/js/notification.js"></script>
 <script src="assets/js/addproduct.js"></script>
 </body>
 
