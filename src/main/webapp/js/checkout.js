@@ -1,17 +1,15 @@
 $(document).ready(function(){
-    $(".checkout-f__payment").on("submit", function(e){
-        e.preventDefault();
-
+    $('#checkout-form').submit(function(event){
+        event.preventDefault();
+        console.log('Checkout form submitted');
         $.ajax({
-            type: "POST",
             url: 'checkout',
+            type: 'POST',
             success: function(response){
-                if(response.ok){
-                    alert("Payment successful");
-                    window.location.href = "home";
-                }else{
-                    alert("Payment failed");
-                }
+                console.log(response);
+            },
+            error: function(xhr, status, error){
+                console.error(xhr.responseText);
             }
         });
     });
