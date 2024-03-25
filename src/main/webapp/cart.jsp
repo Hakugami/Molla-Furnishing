@@ -11,7 +11,7 @@
                                     <li class="has-separator">
                                         <a href="home">Home</a></li>
                                     <li class="is-marked">
-                                        <a href="cart.html">Cart</a></li>
+                                        <a href="cart">Cart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                         <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
                                             <span>CONTINUE SHOPPING</span></a></div>
                                     <div class="route-box__g2">
-                                        <a class="route-box__link" href="cart.html"><i class="fas fa-trash"></i>
+                                        <a class="route-box__link" href="cart"><i class="fas fa-trash"></i>
                                             <span>CLEAR CART</span></a>
                                 </div>
                             </div>

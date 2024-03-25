@@ -57,7 +57,7 @@ public class Product {
     @Setter
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "image_url")
+    @Column(name = "image_url", length = 500)
     private List<String> images;
 
     @Setter

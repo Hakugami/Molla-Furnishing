@@ -239,6 +239,11 @@
         <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.CheckoutServlet</servlet-class>
+    </servlet>
+
     <!--Admin Security Constraint-->
     <security-constraint>
         <web-resource-collection>
