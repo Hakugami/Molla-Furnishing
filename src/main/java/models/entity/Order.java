@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+import java.time.Instant;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,6 +42,12 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
+    @Transient
+    private LocalDate date;
+
+    @Transient
+    private LocalTime time;
+
     public void addOrderItems(Product product, int quantity, double totalAmount) {
         if (orderItems == null) {
             orderItems = new ArrayList<>();
@@ -54,6 +63,13 @@ public class Order {
     public void updateOrderDate() {
         orderDate = new Date();
     }
+
+    @PostLoad
+    public void setTransientFields() {
+        this.date = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.time = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+    }
+
 
     @Override
     public boolean equals(Object o) {
