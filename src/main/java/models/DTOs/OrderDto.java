@@ -4,6 +4,8 @@ import lombok.*;
 import models.entity.Order;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -20,5 +22,6 @@ public class OrderDto implements Serializable {
     UserDto user;
     List<OrderItemDto> orderItems;
     double totalAmount;
-    Date orderDate;
+    LocalDate date;
+    LocalTime time;
 }
