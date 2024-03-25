@@ -8,7 +8,7 @@ $(document).ready(function () {
         // Make sure shoppingData exists and is not empty
         if (shoppingData) {
             console.log('Session data:', shoppingData);
-            // Make an HTTP request to send the data to the server
+
             $.ajax({
                 url: 'cart', // Replace with your server endpoint
                 type: 'POST',
@@ -45,6 +45,7 @@ $(document).ready(function () {
                     console.log(data);
                     window.location.href = 'home';
                     sendSessionDataToServer(); // Send session data to server
+                    loadDataFromServer(); // Load data from server
                 },
                 error: function (error) {
                     // Handle error
@@ -79,6 +80,7 @@ $(document).ready(function () {
                     window.location.href = '/molla/view/admin/home';
                 } else {
                     sendSessionDataToServer(); // Send session data to server
+                    loadDataFromServer(); // Load data from server
                     window.location.href = 'home';
                 }
             },
@@ -89,4 +91,63 @@ $(document).ready(function () {
             }
         });
     });
+
+    function loadDataFromServer() {
+        $.ajax({
+            url: 'cart',
+            type: 'POST',
+            data: {action: 'retrieveCart'},
+            dataType: 'json',
+            success: function (data) {
+                console.log('Cart data:', data);
+
+                // Check if data is an array with length greater than 0
+                if (Array.isArray(data) && data.length > 0) {
+                    let shoppingData = {
+                        products: data.map(item => item.product), // Extract the product from each item
+                        productCounts: {}
+                    };
+
+                    data.forEach(function (item) {
+                        shoppingData.productCounts[item.product.name] = item.quantity;
+                    });
+
+                    sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+                    console.log("test: " + "------------------------");
+                    updateTotalSum();
+                } else {
+                    console.log('No data found in cart.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error retrieving cart:', error);
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
+
+    function updateTotalSum() {
+        let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
+        if (shoppingData && shoppingData.products) {
+            let shoppingProducts = shoppingData.products;
+            let productCounts = shoppingData.productCounts;
+            let totalSum = 0;
+
+            if (shoppingProducts.length > 0) {
+                shoppingProducts.forEach(function (product) {
+                    let count = productCounts[product.name] || 1;
+                    totalSum += product.price * count;
+                });
+            }
+            let subtotal = totalSum;
+            console.log('Subtotal:', subtotal);
+            sessionStorage.setItem('total', subtotal.toFixed(2));
+        } else {
+            console.log('No shopping data found.');
+            sessionStorage.setItem('total', "0.00");
+        }
+    }
+
+    updateTotalSum();
 });

@@ -45,6 +45,8 @@ public class CheckoutServlet extends HttpServlet {
                 checkoutService.checkout(Long.valueOf(jwtClaims.getSubject()));
                 cartService.clearCart(Long.valueOf(jwtClaims.getSubject()));
                 resp.setStatus(HttpServletResponse.SC_OK);
+                resp.getWriter().write("Checkout successful");
+                resp.sendRedirect(UrlMapping.HOME.getContextEmbeddedUrl(req.getContextPath()));
             } catch (InvalidJwtException e) {
                 resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 resp.sendRedirect(UrlMapping.LOGIN.getContextEmbeddedUrl(req.getContextPath()));

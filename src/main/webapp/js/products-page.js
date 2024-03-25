@@ -4,6 +4,7 @@ $(document).ready(function () {
     let minPrice = 0;
     let maxPrice = 1000;
     let category = '';
+    let subcategory = '';
     let rating = 0;
     let date = '';
     let products = [];
@@ -22,6 +23,7 @@ $(document).ready(function () {
 
     let params = new URLSearchParams(window.location.search);
     let category1 = params.get('category');
+    let subcategory1 = params.get('subcategory');
     let search = params.get('search');
 
     if (category1 != null) {
@@ -31,6 +33,11 @@ $(document).ready(function () {
     if (search != null) {
         filter.name = search;
     }
+
+    if (subcategory1 != null) {
+        filter.subcategory = subcategory1;
+    }
+
 
     $('.shop-p__collection .row').on('click', '[data-modal="modal"]', function () {
         const modalId = $(this).data('modal-id');
