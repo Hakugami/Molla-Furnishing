@@ -1,59 +1,105 @@
 package controllers.servlets.admin;
 
+import firebase.FirebaseManager;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload2.core.DiskFileItemFactory;
-import org.apache.commons.fileupload2.core.FileItem;
+import models.DTOs.ProductDetailsDto;
+import models.DTOs.ProductDto;
+import org.apache.commons.fileupload2.core.FileItemInput;
+import org.apache.commons.fileupload2.core.FileItemInputIterator;
 import org.apache.commons.fileupload2.jakarta.JakartaServletFileUpload;
-import org.apache.commons.io.IOUtils;
 import services.ProductService;
-import urls.enums.UrlMapping;
+
 
 import java.io.*;
-import java.util.Iterator;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.Date;
+
 
 
 
 public class AdminAddProductServlet extends HttpServlet {
+
+    private ProductService productService;
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        productService = ProductService.getInstance();
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // Check that we have a file upload request
         boolean isMultipart = JakartaServletFileUpload.isMultipartContent(req);
-        System.out.println("Is multipart :" + isMultipart);
-        String servletDirectory = getServletContext().getRealPath("/");
-        String imageFileName = "Image.png";
-
-// Specify the path to save the image file within the servlet directory
-        String imagePath = servletDirectory + File.separator + imageFileName;
 
         if (isMultipart) {
-            DiskFileItemFactory factory = DiskFileItemFactory.builder().get();
-            JakartaServletFileUpload upload = new JakartaServletFileUpload(factory);
 
-            List items = upload.parseRequest(req);
+            JakartaServletFileUpload upload = new JakartaServletFileUpload();
+            FileItemInputIterator iterStream = upload.getItemIterator(req);
+            ProductDto productDto = new ProductDto();
+            ProductDetailsDto productDetailsDto = new ProductDetailsDto();
+            ArrayList<String> images = new ArrayList<>();
 
-            Iterator iterator = items.iterator();
-            while (iterator.hasNext()) {
-                FileItem item = (FileItem) iterator.next();
-                if (!item.isFormField()) {
-                    try (
-                            InputStream uploadedStream = item.getInputStream();
+            while (iterStream.hasNext()) {
+                FileItemInput item = iterStream.next();
+                if (item.isFormField()) {
+                    String fieldName = item.getFieldName();
+                    String fieldValue = new String(item.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+                    // Check if the field name matches a specific field and assign its value to the corresponding string
+                    //TODO handle incorrect data
+                    if (fieldName.equals("productName")) {
+                        productDto.setName( fieldValue);
+                    } else if (fieldName.equals("category")) {
+                        productDto.setCategoryName(fieldValue);
+                    } else if (fieldName.equals("subcategory")) {
+                        productDto.setSubCategoryName(fieldValue);
+                    } else if (fieldName.equals("price")) {
+                        productDto.setPrice(Long.parseLong(fieldValue));
+                    } else if (fieldName.equals("stock")) {
+                        productDto.setQuantity(Integer.parseInt(fieldValue));
+                    } else if (fieldName.equals("description")) {
+                        productDto.setDescription(fieldValue);
+                    } else if (fieldName.equals("material")) {
+                        productDetailsDto.setMaterial(fieldValue);
+                    } else if (fieldName.equals("dimensions")) {
+                        productDetailsDto.setDimensions(fieldValue);
+                    } else if (fieldName.equals("color")) {
+                        productDetailsDto.setColor(fieldValue);
+                    } else if (fieldName.equals("weight")) {
+                        productDetailsDto.setWeight(fieldValue);
+                    } else if (fieldName.startsWith("image")) {
+                        // Extract the image format from the field name
+                        String imageFormat = fieldName.substring("image/".length());
+                        // Extract the Base64-encoded image data
+                        String base64ImageWithoutPrefix = fieldValue.replaceFirst("data:image/[^;]+;base64,", "");
+                        byte[] imageBytes = new byte[0];
+                        try {
+                            imageBytes = Base64.getDecoder().decode(base64ImageWithoutPrefix);
+                            int randomNumber = (int) (Math.random() * 1000);
 
-                            OutputStream out = new FileOutputStream(imagePath);) {
+                            // Upload the image to storage
+                            String location = FirebaseManager.getInstance().uploadFileToStorage(imageBytes, "ProductImage" + randomNumber, imageFormat);
+                            images.add(location);
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Unable to decode image. Image will not be saved");
+                        }
 
-                        out.write(uploadedStream.readAllBytes());
-
-                        IOUtils.copy(uploadedStream, out);
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
+
                 }
             }
-
+            productDto.setDateAdded(new Date());
+            productDto.setProductDetails(productDetailsDto);
+            productDto.setImages(images);
+            productService.insertProduct(productDto);
+        }else {
+            resp.setStatus(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
         }
     }
 }

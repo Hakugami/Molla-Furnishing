@@ -237,29 +237,36 @@
     <servlet>
         <servlet-name>AdminAddProductServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>10485760000</max-file-size> <!-- 10 MB -->
+
+            <max-request-size>2009715200</max-request-size> <!-- 20 MB -->
+
+            <file-size-threshold>2009715200</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <!--Admin Security Constraint-->
-<!--    <security-constraint>-->
-<!--        <web-resource-collection>-->
-<!--            <web-resource-name>Admin Section</web-resource-name>-->
-<!--            <url-pattern>/view/admin/*</url-pattern>-->
-<!--            <http-method>DELETE</http-method>-->
-<!--            <http-method>GET</http-method>-->
-<!--            <http-method>HEAD</http-method>-->
-<!--            <http-method>OPTIONS</http-method>-->
-<!--            <http-method>POST</http-method>-->
-<!--            <http-method>PUT</http-method>-->
-<!--            <http-method>TRACE</http-method>-->
-<!--        </web-resource-collection>-->
-<!--        <auth-constraint>-->
-<!--            <role-name>manager</role-name>-->
-<!--        </auth-constraint>-->
-<!--    </security-constraint>-->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin Section</web-resource-name>
+            <url-pattern>/view/admin/*</url-pattern>
+            <http-method>DELETE</http-method>
+            <http-method>GET</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>POST</http-method>
+            <http-method>PUT</http-method>
+            <http-method>TRACE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>manager</role-name>
+        </auth-constraint>
+    </security-constraint>
 
-<!--    <security-role>-->
-<!--        <role-name>manager</role-name>-->
-<!--    </security-role>-->
+    <security-role>
+        <role-name>manager</role-name>
+    </security-role>
 
     <login-config>
         <auth-method>BASIC</auth-method>
