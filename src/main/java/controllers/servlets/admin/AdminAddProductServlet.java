@@ -16,6 +16,8 @@ import java.io.*;
 import java.util.Iterator;
 import java.util.List;
 
+
+
 public class AdminAddProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
