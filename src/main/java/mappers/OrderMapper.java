@@ -1,6 +1,7 @@
 package mappers;
 
 import models.DTOs.DiscountedProductDto;
+import models.DTOs.MyProfileOrderDto;
 import models.DTOs.OrderDto;
 import models.entity.DiscountedProduct;
 import models.entity.Order;
@@ -15,6 +16,8 @@ public interface OrderMapper {
     Order orderDtoToOrder(OrderDto orderDto);
 
     OrderDto orderToOrderDto(Order order);
+
+    MyProfileOrderDto orderToMyProfileOrderDto(Order order);
 
     DiscountedProduct discountedProductDtoToDiscountedProduct(DiscountedProductDto discountedProductDto);
 

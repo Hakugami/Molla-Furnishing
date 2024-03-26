@@ -31,4 +31,5 @@ public class UserDto implements Serializable {
     UserRole role;
     private String gender;
     private String phone;
+    List<MyProfileOrderDto> orders;
 }
