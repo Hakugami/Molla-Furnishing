@@ -269,7 +269,7 @@ $(document).ready(function () {
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
 
-        let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
+        let productAlreadyInCart = shopping_products.some(item => item.productId === product.productId);
 
         let productId = product.productId;
 
@@ -289,6 +289,8 @@ $(document).ready(function () {
             products: shopping_products,
             productCounts: productCounts
         };
+
+        loadProductsToMiniCart();
 
         sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
