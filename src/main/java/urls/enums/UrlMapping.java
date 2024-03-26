@@ -29,6 +29,7 @@ public enum UrlMapping {
     ADDRESS("address", "/address", "AddressBookServlet", "/dash-address-book.jsp"),
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.jsp"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.jsp"),
+    CHECKOUT("checkout", "/checkout", "CheckoutServlet", "/checkout.html"),
     //Admin page
     ADMIN_HOME("adminhome", "/admin/home", "AdminHomeServlet", "/Adminpanel/index.html"),
     ADMIN_LOGIN("adminlogin", "/admin/login", "AdminLoginServlet", "/Adminpanel/adminlogin.html"),
