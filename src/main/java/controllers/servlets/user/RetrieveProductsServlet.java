@@ -38,6 +38,7 @@ public class RetrieveProductsServlet extends HttpServlet {
     private List<ProductDto> getProductDTO(HttpServletRequest req) {
         String name = req.getParameter("name");
         String category = req.getParameter("category");
+        String subcategory = req.getParameter("subcategory");
         String minPrice = req.getParameter("minPrice");
         String maxPrice = req.getParameter("maxPrice");
         String minRating = req.getParameter("minRating");
@@ -57,6 +58,9 @@ public class RetrieveProductsServlet extends HttpServlet {
         }
         if (category != null) {
             filter.setCategory(category);
+        }
+        if (subcategory != null) {
+            filter.setSubcategory(subcategory);
         }
         if (minPrice != null) {
             filter.setMinPrice(Double.parseDouble(minPrice));

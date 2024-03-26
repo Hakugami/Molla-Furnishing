@@ -184,21 +184,15 @@
                                                 <div class="mega-menu-list">
                                                     <ul>
                                                         <li class="js-active">
-
-                                                            <a href="shop-side-version-2.html"><i class="fas fa-couch u-s-m-r-6"></i>
-
-                                                                <span>Furniture & Decor</span></a>
-
-                                                            <span class="js-menu-toggle js-toggle-mark"></span></li>
-                                                        <li>
-
-                                                            <a href="home"><i class="fas fa-couch u-s-m-r-6"></i>
-
-                                                                <span>Furniture 2 & Decor 2</span></a>
-
-                                                            <span class="js-menu-toggle"></span></li>
+                                                            <a href="shop-side-version-2.html">
+                                                                <i class="fas fa-couch u-s-m-r-6"></i>
+                                                                <span>Molla Furniture</span>
+                                                            </a>
+                                                            <span class="js-menu-toggle js-toggle-mark"></span>
+                                                        </li>
                                                     </ul>
                                                 </div>
+
 
                                                 <!--====== Furniture & Decor ======-->
                                                 <div class="mega-menu-content js-active">
@@ -208,56 +202,133 @@
                                                         <div class="col-lg-3">
                                                             <ul>
                                                                 <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.html">Category 1</a></li>
+                                                                    <a href="product?category=Chairs"><i class="fas fa-couch u-s-m-r-6"></i>Seating</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 11</a></li>
+                                                                    <a href="product?subcategory=Armchairs">Armchairs</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 12</a></li>
+                                                                    <a href="product?subcategory=Sofas">Sofas</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Benches">Benches</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Stools">Stools</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <ul>
                                                                 <li class="mega-list-title">
 
-                                                                    <a href="shop-side-version-2.html">Category 2</a></li>
+                                                                    <a href="product?category=Tables"><i class="fas fa-desktop u-s-m-r-6"></i>Tables</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 21</a></li>
+                                                                    <a href="product?subcategory=Dining+Tables">Dining Tables</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 22</a></li>
+                                                                    <a href="product?subcategory=Coffee+Tables">Coffee Tables</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Side+Tables">Side Tables</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Bedside+Tables">Bedside Tables</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <ul>
                                                                 <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.html">Category 3</a></li>
+                                                                    <a href="product?category=Storage"><i class="fas fa-box  u-s-m-r-6"></i>Storage</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 31</a></li>
+                                                                    <a href="product?subcategory=Wardrobes">Wardrobes</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 32</a></li>
+                                                                    <a href="product?subcategory=Cabinets">Cabinets</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Dressers">Dressers</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Bookcases">Bookcases</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Shelving+Units">Shelving Units</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                         <div class="col-lg-3">
                                                             <ul>
                                                                 <li class="mega-list-title">
-
-                                                                    <a href="shop-side-version-2.html">Category 4</a></li>
+                                                                    <a href="product?category=Beds"><i class="fas fa-bed  u-s-m-r-6"></i>Beds</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">Sub Category 41</a></li>
+                                                                    <a href="product?subcategory=Bed+Frames">Bed Frames</a>
+                                                                </li>
                                                                 <li>
-
-                                                                    <a href="shop-side-version-2.html">SSub Category 42</a></li>
+                                                                    <a href="product?subcategory=Mattresses">Mattresses</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Nightstands">Nightstands</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Bunk+Beds">Bunk Beds</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <ul>
+                                                                <li class="mega-list-title">
+                                                                    <a href="product?category=Desks"><i class="fas fa-briefcase  u-s-m-r-6"></i>Desks & Workstations</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Writing+Desks">Writing Desks</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Computer+Desks">Computer Desks</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Office+Chairs">Office Chairs</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Filing+Cabinets">Filing Cabinets</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <ul>
+                                                                <li class="mega-list-title">
+                                                                    <a href="product?category=Dining"><i class="fas fa-utensils  u-s-m-r-6"></i>Dining Room</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Dining+Sets">Dining Sets</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Buffets">Buffets</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <ul>
+                                                                <li class="mega-list-title">
+                                                                    <a href="product?category=Children"><i class="fas fa-child  u-s-m-r-6"></i>Children's Furniture</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Cribs">Cribs</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Kid+Beds">Kid Beds</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="product?subcategory=Study+Desks">Study Desks</a>
+                                                                </li>
                                                             </ul>
                                                         </div>
                                                     </div>
+
                                                     <!--====== End - Mega Menu Row ======-->
                                                     <br>
 
@@ -297,13 +368,13 @@
                                 <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                                     <li>
 
-                                        <a href="home">HOME</a></li>
+                                        <a href="home"><i class="fas fa-home u-s-m-r-6"></i>HOME</a></li>
                                     <li>
 
-                                        <a href="product">PRODUCTS</a></li>
+                                        <a href="product"><i class="fas fa-box u-s-m-r-6"></i>PRODUCTS</a></li>
                                     <li>
 
-                                        <a href="about">ABOUT US</a></li>
+                                        <a href="about"><i class="fas fa-address-card u-s-m-r-6"></i>ABOUT US</a></li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
