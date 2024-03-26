@@ -26,11 +26,16 @@ public class CheckoutService {
         this.cartRepository = new CartRepository();
     }
 
-    public boolean checkout(Long id) {
+    public String checkout(Long id) {
         int retryCount = 0;
         while (retryCount < MAX_RETRIES) {
             try {
-                return processCheckout(id);
+                String result = processCheckout(id);
+                if (result == null) {
+                    return null; // Checkout successful
+                } else {
+                    return result; // Return failure type
+                }
             } catch (OptimisticLockException e) {
                 logger.severe("OptimisticLockException: " + e.getMessage());
                 retryCount++;
@@ -42,15 +47,15 @@ public class CheckoutService {
                 }
             }
         }
-        return false;
+        return "Database Error";
     }
 
 
-    private boolean processCheckout(Long id) {
+    private String processCheckout(Long id) {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager, LockModeType.PESSIMISTIC_WRITE).orElse(null);
             if (user == null || user.getCart().getCartItems().isEmpty()) {
-                return false;
+                return "Empty Cart";
             }
             Order order = new Order();
             order.setUser(user);
@@ -62,10 +67,10 @@ public class CheckoutService {
             for (CartItem cartItem : cartItemsCopy) {
                 Product product = entityManager.find(Product.class, cartItem.getProduct().getProductId(), LockModeType.PESSIMISTIC_WRITE);
                 if (product == null) {
-                    return false; // Invalid product ID
+                    return "Invalid Product";
                 }
                 if (product.getQuantity() < cartItem.getQuantity()) {
-                    return false; // Not enough quantity in stock
+                    return "Insufficient Quantity";
                 }
                 double itemTotal = product.getPrice() * cartItem.getQuantity();
                 order.addOrderItems(product, cartItem.getQuantity(), itemTotal);
@@ -75,7 +80,7 @@ public class CheckoutService {
 
             // Check if the user's credit limit is sufficient
             if (user.getCreditLimit() < totalOrderAmount) {
-                return false; // Insufficient credit limit
+                return "Insufficient Credit Limit";
             }
 
             user.getOrders().add(order);
@@ -83,7 +88,7 @@ public class CheckoutService {
             // Update the cart and user entities
             userRepository.update(user, entityManager);
 
-            return true;
+            return null; // Checkout successful
         });
     }
 

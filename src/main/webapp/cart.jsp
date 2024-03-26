@@ -76,7 +76,7 @@
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                                    <a class="btn btn--e-brand-b-2" href="checkout"> PROCEED TO CHECKOUT</a></div>
                                             </div>
                                         </div>
                                     </div>
