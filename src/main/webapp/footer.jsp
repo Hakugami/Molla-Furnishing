@@ -72,10 +72,7 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="about.html">About us</a></li>
-                                                <li>
-
-                                                    <a href="contact.html">Contact Us</a></li>
+                                                    <a href="about.jsp">About us</a></li>
                                             </ul>
                                         </div>
                                     </div>
