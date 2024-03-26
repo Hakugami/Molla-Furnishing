@@ -398,9 +398,6 @@
                                     <li>
 
                                         <a href="home"><i class="fas fa-home"></i></a></li>
-                                    <li>
-
-                                        <a href="wishlist"><i class="far fa-heart"></i></a></li>
                                     <li class="has-dropdown">
 
                                         <a href="cart" class="mini-cart-shop-link">
