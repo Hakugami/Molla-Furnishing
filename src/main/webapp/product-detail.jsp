@@ -35,22 +35,24 @@
                             <div class="pd u-s-m-b-30">
                                 <div class="slider-fouc pd-wrap">
                                     <div id="pd-o-initiate">
-                                        <div id="img-1-wrap" class="main-image pd-o-img-wrap" data-src="images/product/product-d-1.jpg">
+                                <div id="img-1-wrap" class="main-image pd-o-img-wrap" data-src="">
+                                    <img id="img-1" class="sec-image u-img-fluid" src="" data-zoom-image="" alt="">
+                                </div>
+                                <div id="img-2-wrap" class="pd-o-img-wrap" data-src="">
+                                    <img id="img-2" class="u-img-fluid" src="" data-zoom-image="" alt="">
+                                </div>
+                                <div id="img-3-wrap" class="pd-o-img-wrap" data-src="">
+                                    <img id="img-3" class="u-img-fluid" src="" data-zoom-image="" alt="">
+                                </div>
+                                <div id="img-4-wrap" class="pd-o-img-wrap" data-src="">
+                                    <img id="img-4" class="u-img-fluid" src="" data-zoom-image="" alt="">
+                                </div>
+                                <div id="img-5-wrap" class="pd-o-img-wrap" data-src="">
+                                    <img id="img-5" class="u-img-fluid" src="" data-zoom-image="" alt="">
+                                </div>
 
-                                            <img id="img-1" class="sec-image u-img-fluid" src="images/product/product-d-1.jpg" data-zoom-image="images/product/product-d-1.jpg" alt=""></div>
-                                        <div id="img-2-wrap" class="pd-o-img-wrap" data-src="images/product/product-d-2.jpg">
+                                </div>
 
-                                            <img id="img-2" class="u-img-fluid" src="images/product/product-d-2.jpg" data-zoom-image="images/product/product-d-2.jpg" alt=""></div>
-<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-3.jpg">-->
-
-<!--                                            <img class="u-img-fluid" src="images/product/product-d-3.jpg" data-zoom-image="images/product/product-d-3.jpg" alt=""></div>-->
-<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-4.jpg">-->
-
-<!--                                            <img class="u-img-fluid" src="images/product/product-d-4.jpg" data-zoom-image="images/product/product-d-4.jpg" alt=""></div>-->
-<!--                                        <div class="pd-o-img-wrap" data-src="images/product/product-d-5.jpg">-->
-
-<!--                                            <img class="u-img-fluid" src="images/product/product-d-5.jpg" data-zoom-image="images/product/product-d-5.jpg" alt=""></div>-->
-                                    </div>
 
                                     <span class="pd-text">Click for larger zoom</span>
                                 </div>
@@ -58,20 +60,19 @@
                                     <div class="slider-fouc">
                                         <div id="pd-o-thumbnail">
                                             <div>
-
-                                                <img id="thumb-1" class="thumb-image u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                                <img id="thumb-1" class="thumb-image u-img-fluid" src="" alt=""></div>
                                             <div>
 
-                                                <img id="thumb-2" class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                                <img id="thumb-2" class="u-img-fluid" src="" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
+                                                <img id="thumb-3" class="u-img-fluid" src="" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
+                                                <img id="thumb-4" class="u-img-fluid" src="" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                                <img id="thumb-5" class="u-img-fluid" src="" alt=""></div>
                                         </div>
                                     </div>
                                 </div>
