@@ -165,12 +165,12 @@
                                 <div class="promotion-o">
                                     <div class="aspect aspect--bg-grey aspect--square">
 
-                                        <img class="aspect__img" src="images/childrens.jpg" alt="">
+                                        <img class="aspect__img" src="images/children.jpg" alt="">
                                     </div>
                                     <div class="promotion-o__content">
 
                                         <a class="promotion-o__link btn--e-white-brand"
-                                            href="product?category=childrens">Childrens</a>
+                                            href="product?category=children">Childrens</a>
                                     </div>
                                 </div>
                             </div>
