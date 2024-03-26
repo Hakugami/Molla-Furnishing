@@ -254,14 +254,17 @@ $('#productForm').submit(function(event) {
         var confirmDelete = confirm("Are you sure you want to delete this product?");
         if (confirmDelete) {
             $.ajax({
-                url: '/molla/deleteProductServlet',
+                url: '/molla/view/admin/removeproduct',
                 type: 'POST',
                 data: { productId: productId },
                 success: function(response) {
                     console.log('Product deleted successfully:', response);
-                },
+                    showNotification("Product deleted Successfully","success");
+                    window.location.href = '/molla/view/admin/home';
+                    },
                 error: function(xhr, status, error) {
                     console.error('Error deleting product:', error);
+                    showNotification("Error Deleting Product","danger");
                 }
             });
         }
