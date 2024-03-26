@@ -7,6 +7,7 @@ import models.DTOs.UserDto;
 import models.entity.Address;
 import models.entity.Order;
 import models.entity.User;
+import models.enums.UserRole;
 import persistence.repositories.impl.UserRepository;
 import services.AuthenticationService;
 import services.OrderService;
@@ -77,7 +78,10 @@ public class UserAdder {
 //        removeUserAddressTest();
 //        printUserAddresses();
 
-        printOrders();
+       // printOrders();
+
+        System.out.println(UserRole.USER);
+        System.out.println(UserRole.ADMIN);
 
     }
 

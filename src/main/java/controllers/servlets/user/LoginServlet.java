@@ -48,39 +48,30 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void processUserLogin(User user, HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if (isAdmin(user)) {
-            sendAdminResponse(resp);
-        } else {
-            String jwt = authService.returnToken(user, req.getRemoteAddr());
-            if (jwt != null) {
-                sendUserResponse(jwt, resp);
-            }
+        String jwt = authService.returnToken(user, req.getRemoteAddr());
+        if (jwt != null) {
+            sendResponse(jwt, user, resp);
         }
     }
 
-    private boolean isAdmin(User user) {
-        return UserRole.ADMIN.equals(user.getRole());
-    }
-
-    private void sendAdminResponse(HttpServletResponse resp) throws IOException {
-        resp.setContentType("application/json");
-        JsonObject responseBody = new JsonObject();
-        responseBody.addProperty("message", "admin");
-        String responseBodyJson = new Gson().toJson(responseBody);
-        resp.getWriter().println(responseBodyJson);
-    }
-
-    private void sendUserResponse(String jwt, HttpServletResponse resp) throws IOException {
+    private void sendResponse(String jwt, User user, HttpServletResponse resp) throws IOException {
         resp.setContentType("application/json");
         Cookie jwtCookie = new Cookie("Authorization", jwt);
         resp.setStatus(HttpServletResponse.SC_OK);
         resp.addCookie(jwtCookie);
         JsonObject responseBody = new JsonObject();
-        responseBody.addProperty("message", "Logged in successfully");
+        responseBody.addProperty("message", getMessage(user));
         String responseBodyJson = new Gson().toJson(responseBody);
         resp.getWriter().println(responseBodyJson);
     }
 
+    private String getMessage(User user) {
+        return isAdmin(user) ? "admin" : "Logged in successfully";
+    }
+
+    private boolean isAdmin(User user) {
+        return UserRole.ADMIN.equals(user.getRole());
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
