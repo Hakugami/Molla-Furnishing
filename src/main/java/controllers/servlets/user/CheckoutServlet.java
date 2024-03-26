@@ -34,6 +34,7 @@ public class CheckoutServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("CheckoutServlet");
+        Long addressId = Long.valueOf(req.getParameter("addressId"));
         Cookie cookie = CookiesUtil.getCookie(req.getCookies(), "Authorization");
         if (cookie == null) {
             resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -42,7 +43,7 @@ public class CheckoutServlet extends HttpServlet {
             try {
                 JwtClaims jwtClaims = JWTService.getInstance().validateToken(cookie.getValue(), req.getRemoteAddr());
                 System.out.println("CheckoutServlet jwtClaims: " + jwtClaims.getSubject());
-                String result = checkoutService.checkout(Long.valueOf(jwtClaims.getSubject()));
+                String result = checkoutService.checkout(Long.valueOf(jwtClaims.getSubject()), addressId);
                 if (result != null) {
                     resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                     resp.getWriter().write(result);

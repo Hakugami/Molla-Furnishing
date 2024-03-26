@@ -26,11 +26,11 @@ public class CheckoutService {
         this.cartRepository = new CartRepository();
     }
 
-    public String checkout(Long id) {
+    public String checkout(Long userId, Long addressId) {
         int retryCount = 0;
         while (retryCount < MAX_RETRIES) {
             try {
-                String result = processCheckout(id);
+                String result = processCheckout(userId, addressId);
                 if (result == null) {
                     return null; // Checkout successful
                 } else {
@@ -51,7 +51,7 @@ public class CheckoutService {
     }
 
 
-    private String processCheckout(Long id) {
+    private String processCheckout(Long id, Long addressId) {
         return DatabaseSingleton.getInstance().doTransactionWithResult(entityManager -> {
             User user = userRepository.read(id, entityManager, LockModeType.PESSIMISTIC_WRITE).orElse(null);
             if (user == null || user.getCart().getCartItems().isEmpty()) {
@@ -82,7 +82,12 @@ public class CheckoutService {
             if (user.getCreditLimit() < totalOrderAmount) {
                 return "Insufficient Credit Limit";
             }
-
+            if (user.getAddresses().isEmpty()) {
+                return "No Address Provided";
+            }
+            order.setShippingAddress(user.getAddresses().stream().filter(address -> address.getId().equals(addressId)).findFirst().orElse(
+                    user.getAddresses().getFirst()
+            ));
             user.getOrders().add(order);
             user.setCreditLimit(user.getCreditLimit() - totalOrderAmount);
             // Update the cart and user entities

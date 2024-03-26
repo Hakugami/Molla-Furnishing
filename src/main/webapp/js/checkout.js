@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let addresses = [];
     let userData; // Variable to store user data
+    let currentSelectedAddressId = null;
 
     function getAddressData() {
         // Use AJAX to get the data
@@ -12,10 +13,12 @@ $(document).ready(function () {
                 addresses = data.addresses;
                 userData = data; // Store user data
                 populateShippingAddresses(addresses);
+                currentSelectedAddressId = addresses[0].id;
                 updateSummaryTotals(userData.creditLimit);
                 console.log(addresses);
                 console.log(userData);
                 console.log(userData.creditLimit);
+                console.log(currentSelectedAddressId);
             },
             error: function (error) {
                 console.log('Error:', error);
@@ -142,6 +145,10 @@ $(document).ready(function () {
         // Find the corresponding address object
         const selectedAddress = addresses.find(address => address.id === parseInt(selectedAddressId));
 
+        currentSelectedAddressId = selectedAddress.id;
+
+        console.log('Selected address id :', currentSelectedAddressId); // Log the selected address object
+
         // Check if the address object is found
         if (!selectedAddress) {
             console.log('Selected address not found.');
@@ -207,6 +214,7 @@ $(document).ready(function () {
         $.ajax({
             url: 'checkout',
             type: 'POST',
+            data: {addressId : currentSelectedAddressId},
             success: function (response) {
                     alert('Checkout successful!');
                     sessionStorage.removeItem('shoppingData');
