@@ -76,6 +76,19 @@ public class ProductRepository extends GenericRepository<Product, Long> {
         });
     }
 
+    public void deleteProduct(Long productId) throws Exception {
+        DatabaseSingleton.getInstance().doTransaction(entityManager -> {
+            Product product = entityManager.find(Product.class,productId);
+            if(product!=null){
+                product.setIsDeleted(true);
+                entityManager.persist(product);
+            }else{
+                throw new RuntimeException("Product Does not exist");
+            }
+
+        });
+    }
+
     public void batchInsert(List<Product> products) {
         DatabaseSingleton.getInstance().doTransaction(entityManager -> {
             products.forEach(entityManager::persist);

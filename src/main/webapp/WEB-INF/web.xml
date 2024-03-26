@@ -237,11 +237,17 @@
     </servlet>
     <!--////////////////////////////////////////////Admin Operations/////////////////////////////////-->
 
-    <!--////////////////////////////////////////////Admin Update Product/////////////////////////////-->
+
+
+    <!--///////////////////////////////Admin Update Product/////////////////////////////-->
     <servlet>
         <servlet-name>AdminUpdateProductServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminUpdateProductServlet</servlet-class>
     </servlet>
+    <!--///////////////////////////////Admin Update Product/////////////////////////////-->
+
+
+
     <!--////////////////////////////////////////////Admin Add Product/////////////////////////////-->
     <servlet>
         <servlet-name>AdminAddProductServlet</servlet-name>
@@ -254,6 +260,16 @@
             <file-size-threshold>2009715200</file-size-threshold>
         </multipart-config>
     </servlet>
+    <!--////////////////////////////////////////////Admin Add Product/////////////////////////////-->
+
+
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminRemoveProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminRemoveProductServlet</servlet-class>
+    </servlet>
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+
 
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>

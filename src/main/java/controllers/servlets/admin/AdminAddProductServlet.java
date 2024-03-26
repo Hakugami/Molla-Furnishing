@@ -37,6 +37,7 @@ public class AdminAddProductServlet extends HttpServlet {
 
         // Check that we have a file upload request
         boolean isMultipart = JakartaServletFileUpload.isMultipartContent(req);
+        System.out.println(isMultipart);
 
         if (isMultipart) {
 

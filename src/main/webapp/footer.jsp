@@ -50,16 +50,6 @@
                                                 <li>
 
                                                     <a href="profile">Account</a></li>
-
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">Finance</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">Delivery</a></li>
-                                                <li>
-
-                                                    <a href="shop-side-version-2.html">Shop</a></li>
                                             </ul>
                                         </div>
                                     </div>

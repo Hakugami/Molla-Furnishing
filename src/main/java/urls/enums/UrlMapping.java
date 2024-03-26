@@ -33,7 +33,7 @@ public enum UrlMapping {
     //Admin page
     ADMIN_HOME("adminhome", "/admin/home", "AdminHomeServlet", "/Adminpanel/index.html"),
     ADMIN_LOGIN("adminlogin", "/admin/login", "AdminLoginServlet", "/Adminpanel/adminlogin.html"),
-    ADMIN_ALL_PRODUCTS("adminallproducts", "/admin/all/products", "AdminAllProductsServlet", "/Adminpanel/allproducts.html"),
+    ADMIN_ALL_PRODUCTS("adminallproducts", "/admin/allproducts", "AdminAllProductsServlet", "/Adminpanel/allproducts.html"),
     ADMIN_VIEW_PRODUCT("adminviewproduct", "/admin/viewproduct", "AdminViewProductPageServlet", "/Adminpanel/viewproduct.html"),
     ADMIN_ALL_USERS("adminallusers", "/admin/allusers", "AdminAllUsersServlet", "/Adminpanel/allusers.jsp"),
     ADMIN_VIEW_USER("adminviewuser", "/admin/viewuser", "AdminViewUserServlet", "/Adminpanel/viewuser.jsp"),
@@ -42,6 +42,7 @@ public enum UrlMapping {
     //Admin Operations
     ADMINUPDATEPRODUCT("adminupdateproduct", "/admin/updateproduct", "AdminUpdateProductServlet", ""),
     ADMIN_ADD_PRODUCT("adminaddproduct", "/admin/addproduct", "AdminAddProductServlet", ""),
+    ADMIN_REMOVE_PRODUCT("adminremoveproduct", "/admin/removeproduct", "AdminRemoveProductServlet", ""),
     ;
 
     private final String command;
