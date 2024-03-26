@@ -80,6 +80,9 @@ public class Product {
     private int version;
 
     @Setter
+    private Boolean isDeleted;
+
+    @Setter
     @Transient
     private double rating;
 

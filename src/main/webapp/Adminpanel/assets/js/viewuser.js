@@ -1,4 +1,4 @@
-    // Function to enable or disable all fieldsets
+/*    // Function to enable or disable all fieldsets
     function toggleFieldsets(disabled) {
         var fieldsets = document.querySelectorAll('fieldset');
         fieldsets.forEach(function(fieldset) {
@@ -112,3 +112,5 @@ function removeAddressRow() {
 document.getElementById("addAddressBtn").addEventListener("click", addAddressRow);
     // Event listener for the "Remove Address" button
 document.getElementById("removeAddressBtn").addEventListener("click", removeAddressRow);
+
+*/

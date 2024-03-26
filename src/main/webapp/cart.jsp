@@ -11,7 +11,7 @@
                                     <li class="has-separator">
                                         <a href="home">Home</a></li>
                                     <li class="is-marked">
-                                        <a href="cart.html">Cart</a></li>
+                                        <a href="cart">Cart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -76,7 +76,7 @@
                                                     </table>
                                                 </div>
                                                 <div>
-                                                    <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                                    <a class="btn btn--e-brand-b-2" href="checkout"> PROCEED TO CHECKOUT</a></div>
                                             </div>
                                         </div>
                                     </div>

@@ -18,7 +18,7 @@ public class OrderInserter {
     }
 
     public void insertOrder() {
-        checkoutService.checkout(1L);
+        checkoutService.checkout(1L, 1L);
         cartService.clearCart(1L);
     }
 }
