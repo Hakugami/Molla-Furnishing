@@ -17,6 +17,7 @@ $(document).ready(function () {
         minPrice: minPrice,
         maxPrice: maxPrice,
         category: category,
+        subcategory: subcategory,
         rating: rating,
         date: date
     };
@@ -29,7 +30,9 @@ $(document).ready(function () {
     if (category1 != null) {
         filter.category = category1;
     }
-
+    if (subcategory1 != null) {
+        filter.subcategory = subcategory1;
+    }
     if (search != null) {
         filter.name = search;
     }
