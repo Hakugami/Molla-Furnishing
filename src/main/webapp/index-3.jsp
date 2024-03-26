@@ -99,8 +99,7 @@
                                 <img class="aspect__img" src="images/promo/promo-img-4.jpg" alt=""></div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Women's
-                                    Clothing</a></div>
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Chairs">Seating</a></div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -110,8 +109,7 @@
                                 <img class="aspect__img" src="images/promo/promo-img-5.jpg" alt=""></div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 2">Fashion
-                                    Accessories</a></div>
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Beds">Beds</a></div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
@@ -121,8 +119,7 @@
                                 <img class="aspect__img" src="images/promo/promo-img-6.jpg" alt=""></div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Men's
-                                    Clothing</a></div>
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Desks">Desks & Workstations</a></div>
                         </div>
                     </div>
                 </div>
@@ -170,8 +167,17 @@
                                         <ul class="product-r__action-list">
 
                                             <li>
-                                                <a data-modal="modal" data-modal-id="#add-to-cart"><i
-                                                        class="fas fa-plus-circle"></i></a></li>
+                                                <a data-modal="modal" data-modal-id="#add-to-cart"
+                                                    data-product-id="${product.productId}"
+                                                    data-product-name="${product.name}"
+                                                    data-product-quantity="${product.quantity}"
+                                                    data-product-price=${product.price}
+                                               <%-- data-product-category-name="${product.category.name}" --%>
+                                                    data-product-description="${product.description}"
+                                                    data-product-color="${product.productDetails.color}"
+                                                    data-product-image="${product.images[0]}">
+                                                    <i class="fas fa-plus-circle"></i></a>
+                                            </li>
 
                                         </ul>
                                     </div>
@@ -388,6 +394,10 @@
 
 <!--====== App ======-->
 <script src="js/app.js"></script>
+
+<!--====== Custom js ======-->
+<script src="js/sessionStorageUtils.js"></script>
+<script src="js/home.js"></script>
 
 
 <!--====== Noscript ======-->

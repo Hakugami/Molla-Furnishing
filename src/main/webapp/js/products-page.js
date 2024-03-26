@@ -8,8 +8,9 @@ $(document).ready(function () {
     let rating = 0;
     let date = '';
     let products = [];
-    let shopping_products = [];
-    let productCounts = JSON.parse(sessionStorage.getItem('productCounts')) || {};
+    let shoppingData = getShoppingData();
+    let shopping_products = shoppingData.products;
+    let productCounts = shoppingData.productCounts;
 
     let filter = {
         page: pageNumber,
@@ -284,13 +285,11 @@ $(document).ready(function () {
 
         productCounts[product.name] = (productCounts[product.name] || 0) + 1;
 
+        
         // Store updated product counts and shopping products in sessionStorage
-        let shoppingData = {
-            products: shopping_products,
-            productCounts: productCounts
-        };
+        updateShoppingData({ products: shopping_products, productCounts: productCounts });
 
-        sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+        // sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
         console.log('Product Counts:', productCounts);
