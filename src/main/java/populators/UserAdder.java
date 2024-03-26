@@ -26,11 +26,11 @@ public class UserAdder {
     public static void addUserAddressTest(){
         userService = new UserService();
         AddressDto address = new AddressDto();
-        address.setCity("Gizaaaaaaaaaaa");
-        address.setCountry("Egyptaaaaaaa");
-        address.setState("El-Haramaaaaaaaaaaaaa");
-        address.setStreet("El-Mollas St.aaaaaaaaaaaa");
-        address.setZipCode("12345aaaaaaaaaaaaaaaaaaa");
+        address.setCity("Gizaaaaaaaaaaaaaa");
+        address.setCountry("Egyptaaaaaaaaaa");
+        address.setState("El-Haramaaaaaaaaaaaaaaa");
+        address.setStreet("El-Mollas St.aaaaaaaaaaaaaa");
+        address.setZipCode("12345aaaaaaaaaaaaaaaaaaaaa");
         userService.addAddress(1L, address);
     }
 
