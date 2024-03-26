@@ -38,6 +38,11 @@ public class Order {
     private double totalAmount;
 
     @Setter
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
+    private Address shippingAddress;
+
+    @Setter
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;

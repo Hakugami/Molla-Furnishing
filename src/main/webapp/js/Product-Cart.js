@@ -273,6 +273,7 @@ function clearShoppingCart() {
     });
 }
 
+
 function clearSessionStorage() {
     sessionStorage.removeItem('shoppingData');
     sessionStorage.removeItem('total');

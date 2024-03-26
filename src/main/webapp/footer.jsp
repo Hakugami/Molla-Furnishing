@@ -46,7 +46,7 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="cart.html">Cart</a></li>
+                                                    <a href="cart">Cart</a></li>
                                                 <li>
 
                                                     <a href="profile">Account</a></li>
