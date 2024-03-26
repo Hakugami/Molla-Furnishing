@@ -62,20 +62,29 @@ $(document).ready(function () {
         success: function (data) {
             let product = data[0];
             console.log(product);
-        // Iterate over product images
-        for (let i = 0; i < Math.min(product.images.length, 5); i++) {
-            // Update main image
-            $(`#img-${i + 1}-wrap`).attr("data-src", product.images[i]);
-            $(`#img-${i + 1}`).attr("src", product.images[i]).attr("data-zoom-image", product.images[i]);
+            // Iterate over product images
+            for (let i = 0; i < Math.min(product.images.length, 5); i++) {
+                // Update main image
+                $(`#img-${i + 1}-wrap`).attr("data-src", product.images[i]);
+                $(`#img-${i + 1}`).attr("src", product.images[i]).attr("data-zoom-image", product.images[i]);
 
-            // Update thumbnail image
-            $(`#thumb-${i + 1}`).attr("src", product.images[i]);
-        }
+                // Update thumbnail image
+                $(`#thumb-${i + 1}`).attr("src", product.images[i]);
+            }
 
+            // Update category anchor tag
+            $('#productCategory').attr('href', 'product?category=' + product.categoryName).text(product.categoryName);
+
+            // Update subcategory anchor tag
+            $('#productSubcategory').attr('href', 'product?subcategory=' + product.subCategoryName).text(product.subCategoryName);
+
+            // Update product name anchor tag
+            $('#productName').text(product.name);
             $('.pd-detail__name').text(product.name);
             $('.pd-detail__price').text('$' + product.price);
             $('.product-m__category a').text(product.categoryName);
             $('.pd-tab__desc p').text(product.description);
+            $('.pd-detail__preview-desc').text(product.description);
             $('.pd-detail__stock').text(product.quantity + ' in stock');
             $('.pd-detail__discount').text('(69% OFF)');
             $('.pd-detail__del').text('$' + (product.price * 2));

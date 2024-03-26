@@ -66,9 +66,8 @@
                         <input class="input-text input-text--border-radius input-text--style-1" type="text"
                                id="main-search" placeholder="Search">
 
-                        <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button>
-                    </form>
-                    <!--====== End - Search Form ======-->
+                            <button class="btn btn--icon fas fa-search main-search-button" type="submit"></button></form>
+                        <!--====== End - Search Form ======-->
 
 
                     <!--====== Dropdown Main plugin ======-->
@@ -430,11 +429,8 @@
                             <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
                                 <li>
 
-                                    <a href="home"><i class="fas fa-home"></i></a></li>
-                                <li>
-
-                                    <a href="wishlist"><i class="far fa-heart"></i></a></li>
-                                <li class="has-dropdown">
+                                        <a href="home"><i class="fas fa-home"></i></a></li>
+                                    <li class="has-dropdown">
 
                                     <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
 
