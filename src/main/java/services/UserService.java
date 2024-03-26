@@ -104,6 +104,8 @@ public class UserService {
 
 
     public boolean addAddress(Long id, AddressDto newAddress) {
+
+        System.out.println("UserService: addAddress: id: " + id + " newAddress: " + newAddress);
         // Validate the input
         if (newAddress.getStreet() == null || newAddress.getStreet().isEmpty() ||
                 newAddress.getCity() == null || newAddress.getCity().isEmpty() ||
@@ -129,6 +131,7 @@ public class UserService {
                 throw new IllegalArgumentException("Duplicate address");
             }
         }
+
 
         // Add the address
 

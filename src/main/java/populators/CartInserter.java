@@ -7,19 +7,19 @@ public class CartInserter {
 
     public static void main(String[] args) {
         CartInserter cartInserter = new CartInserter();
-        cartInserter.insertCart();
-//        cartInserter.removeProductFromCart();
+//        cartInserter.insertCart();
+        cartInserter.removeProductFromCart();
 //        cartInserter.decrementProductQuantity();
     }
 
     public void insertCart() {
         cartService = new CartService();
-        cartService.addProductToCart(1L, 13L, 2);
+        cartService.addProductToCart(1L, 7L, 2);
     }
 
     public void removeProductFromCart() {
         cartService = new CartService();
-        cartService.removeProductFromCart(1L, 1L);
+        cartService.removeProductFromCart(1L, 7L);
     }
 
     public void decrementProductQuantity() {

@@ -69,7 +69,7 @@ public class AuthenticationService {
     }
 
     public String returnToken(User user, String audience) {
-
+        System.out.println("Returning token");
         String result = null;
         JsonWebSignature jws = JWTService.getInstance().getNewSignedToken();
         Date now = new Date();
@@ -77,11 +77,14 @@ public class AuthenticationService {
         try {
             claims.setIssuer("http://" + InetAddress.getLocalHost().getHostAddress() + ":4545/molla/api");
         } catch (UnknownHostException e) {
+            System.out.println("Error getting host address");
             logger.severe("Error getting host address: " + e.getMessage());
         }
         user.setPassword(null);
         user.setSalt(null);
+        System.out.println("inside return token");
         UserDto userDto = userMapper.userToUserDto(user);
+        System.out.println(userDto+" userDto");
         claims.setAudience(audience);
         claims.setSubject(String.valueOf(user.getId()));
         claims.setIssuedAtToNow();
@@ -99,8 +102,11 @@ public class AuthenticationService {
         jws.setPayload(claims.toJson());
 
         try {
+            System.out.println("Signing token");
             result = jws.getCompactSerialization();
+            System.out.println(result);
         } catch (Exception e) {
+            System.out.println("Error creating JWT");
             logger.severe("Error creating JWT: " + e.getMessage());
         }
         return result;

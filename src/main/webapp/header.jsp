@@ -613,4 +613,4 @@
         });
     </script>
     <script src="js/header.js"></script>
-    <script src="js/products-page.js"></script>
+

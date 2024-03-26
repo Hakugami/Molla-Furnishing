@@ -1135,7 +1135,6 @@
 <script src="js/app.js"></script>
 
 <!--====== Custom js ======-->
-<script src="js/products-page.js"></script>
 <script src="js/header.js"></script>
 
 <!--====== Noscript ======-->

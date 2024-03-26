@@ -49,6 +49,7 @@ public class CheckoutServlet extends HttpServlet {
                     resp.getWriter().write(result);
                     return;
                 }
+                cartService.clearCart(Long.valueOf(jwtClaims.getSubject()));
                 resp.setStatus(HttpServletResponse.SC_OK);
                 resp.getWriter().write("Checkout successful");
                 resp.sendRedirect(UrlMapping.HOME.getContextEmbeddedUrl(req.getContextPath()));

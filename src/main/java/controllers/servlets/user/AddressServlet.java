@@ -54,6 +54,7 @@ public class AddressServlet extends HttpServlet {
         if (claims != null) {
             switch (operation) {
                 case "add":
+                    System.out.println("AddressServlet: doPost: add");
                     String street = req.getParameter("address-street");
                     String city = req.getParameter("address-city");
                     String country = req.getParameter("country");

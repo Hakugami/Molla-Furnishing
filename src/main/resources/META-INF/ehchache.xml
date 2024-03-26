@@ -1,7 +1,0 @@
-<config xmlns='http://www.ehcache.org/v3'>
-    <cache-template name="category-cache">
-        <key-type>java.lang.Long</key-type>
-        <value-type>models.entity.Category</value-type>
-        <heap unit="entries">50</heap>
-    </cache-template>
-</config>

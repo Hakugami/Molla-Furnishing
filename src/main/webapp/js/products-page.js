@@ -193,7 +193,9 @@ $(document).ready(function () {
                 } else {
                     products = data;
                     const container = document.querySelector('.shop-p__collection .row');
-                    container.innerHTML = '';
+                    if(container){
+                        container.innerHTML = '';
+                    }
                     $.each(data, function (i, product) {
                         displayProduct(i, product);
                     });
@@ -269,7 +271,7 @@ $(document).ready(function () {
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
 
-        let productAlreadyInCart = shopping_products.some(item => item.productId === product.productId);
+        let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
 
         let productId = product.productId;
 
@@ -289,8 +291,6 @@ $(document).ready(function () {
             products: shopping_products,
             productCounts: productCounts
         };
-
-        loadProductsToMiniCart();
 
         sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);

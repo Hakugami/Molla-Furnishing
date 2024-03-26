@@ -80,9 +80,10 @@ public class UserAdder {
 
        // printOrders();
 
-        System.out.println(UserRole.USER);
-        System.out.println(UserRole.ADMIN);
+//        System.out.println(UserRole.USER);
+//        System.out.println(UserRole.ADMIN);
 
+        addUserAddressTest();
     }
 
     public static void printOrders() {
