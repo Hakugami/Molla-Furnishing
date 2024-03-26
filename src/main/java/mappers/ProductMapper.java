@@ -15,17 +15,17 @@ public interface ProductMapper {
     //instance of the mapper
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductDtoToDiscountedProduct")
+//    @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductDtoToDiscountedProduct")
     Product productDtoToProduct(ProductDto productDto);
 
-    @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductToDiscountedProductDto")
+//    @Mapping(source = "discountedProduct", target = "discountedProduct", qualifiedByName = "discountedProductToDiscountedProductDto")
     ProductDto productToProductDto(Product product);
 
-    @Named("discountedProductDtoToDiscountedProduct")
-    DiscountedProduct discountedProductDtoToDiscountedProduct(DiscountedProductDto discountedProductDto);
-
-    @Named("discountedProductToDiscountedProductDto")
-    DiscountedProductDto discountedProductToDiscountedProductDto(DiscountedProduct discountedProduct);
+//    @Named("discountedProductDtoToDiscountedProduct")
+//    DiscountedProduct discountedProductDtoToDiscountedProduct(DiscountedProductDto discountedProductDto);
+//
+//    @Named("discountedProductToDiscountedProductDto")
+//    DiscountedProductDto discountedProductToDiscountedProductDto(DiscountedProduct discountedProduct);
 
 
 }

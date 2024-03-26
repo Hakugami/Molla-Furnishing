@@ -12,16 +12,17 @@ import java.util.List;
 /**
  * DTO for {@link Order}
  */
-@Value
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
 @Builder(toBuilder = true)
 public class OrderDto implements Serializable {
     Long id;
-    UserDto user;
+//    UserDto user;
     List<OrderItemDto> orderItems;
     double totalAmount;
     LocalDate date;
     LocalTime time;
+    AddressDto address;
 }
