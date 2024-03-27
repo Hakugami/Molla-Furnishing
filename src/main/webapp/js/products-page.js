@@ -8,8 +8,9 @@ $(document).ready(function () {
     let rating = 0;
     let date = '';
     let products = [];
-    let shopping_products = [];
-    let productCounts = JSON.parse(sessionStorage.getItem('productCounts')) || {};
+    let shoppingData = getShoppingData();
+    let shopping_products = shoppingData.products;
+    let productCounts = shoppingData.productCounts;
 
     let filter = {
         page: pageNumber,
@@ -37,10 +38,18 @@ $(document).ready(function () {
         filter.name = search;
     }
 
+    if (subcategory1 != null) {
+        filter.subcategory = subcategory1;
+    }
+
+
     $('.shop-p__collection .row').on('click', '[data-modal="modal"]', function () {
         const modalId = $(this).data('modal-id');
         const productIndex = $(this).closest('.col-lg-3').index();
         const product = products[productIndex]; // Assuming 'products' is the array containing all products
+        if (product.quantity === 0) {
+            return;
+        }
         populateAddToCartModal(product);
 
         $(modalId).modal('show');
@@ -232,32 +241,59 @@ $(document).ready(function () {
 
     }
 
+    function updateTotalSumProMax() {
+        let shoppingData = JSON.parse(sessionStorage.getItem('shoppingData'));
+        if (shoppingData && shoppingData.products) {
+            let shoppingProducts = shoppingData.products;
+            let productCounts = shoppingData.productCounts;
+            let totalSum = 0;
+
+            if (shoppingProducts.length > 0) {
+                shoppingProducts.forEach(function (product) {
+                    let count = productCounts[product.name] || 1;
+                    totalSum += product.price * count;
+                });
+            }
+            let subtotal = totalSum;
+            console.log('Subtotal:', subtotal);
+            sessionStorage.setItem('total', subtotal.toFixed(2));
+        } else {
+            console.log('No shopping data found.');
+            sessionStorage.setItem('total', "0.00");
+        }
+    }
+
+    updateTotalSumProMax();
+
     $(document).on('click', '.add-to-cart-btn', function (event) {
         event.preventDefault();
         let productIndex = $(this).closest('.col-lg-3').index();
         let product = products[productIndex];
-    
+
         let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
 
         let productId = product.productId;
 
+        if (product.quantity === 0) {
+            alert("Product is out of stock");
+            return;
+        }
 
         if (!productAlreadyInCart) {
             shopping_products.push(product);
         }
-    
+
         productCounts[product.name] = (productCounts[product.name] || 0) + 1;
-    
+
+
         // Store updated product counts and shopping products in sessionStorage
-        let shoppingData = {
-            products: shopping_products,
-            productCounts: productCounts
-        };
-    
-        sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+        updateShoppingData({ products: shopping_products, productCounts: productCounts });
+
+        // sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
         console.log('Shopping Products:', shopping_products);
         console.log('Product added to cart:', product);
         console.log('Product Counts:', productCounts);
+        updateTotalSumProMax();
         $.ajax({
             url: 'cart',
             type: 'POST',
@@ -266,20 +302,19 @@ $(document).ready(function () {
                 productId: productId,
                 quantity: 1
             },
-            success: function(response) {
+            success: function (response) {
                 if (response === 'true') {
                     alert('Product quantity incremented successfully!');
                 } else {
                     alert('Failed to increment product quantity.');
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error(xhr.responseText);
             }
         });
     });
-    
-    
+
 
     $(document).on('click', '.product-m__thumb .product-link', function (event) {
         event.preventDefault();
