@@ -13,18 +13,6 @@
                         <div class="shop-p">
                             <div class="shop-p__toolbar u-s-m-b-30">
                                 <div class="shop-p__meta-wrap u-s-m-b-60">
-
-                                    <span class="shop-p__meta-text-1">FOUND 18 RESULTS</span>
-                                    <div class="shop-p__meta-text-2">
-
-                                        <span>Related Searches:</span>
-
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">men's clothing</a>
-
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">mobiles & tablets</a>
-
-                                        <a class="gl-tag btn--e-brand-shadow" href="#">books & audible</a></div>
-                                </div>
                                 <div class="shop-p__tool-style">
                                     <div class="tool-style__group u-s-m-b-8">
 

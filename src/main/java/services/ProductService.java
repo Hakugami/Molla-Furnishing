@@ -94,6 +94,10 @@ public class ProductService {
         productRepository.batchInsert(products);
     }
 
+    public void deleteProduct(long productId) throws Exception {
+        productRepository.deleteProduct(productId);
+    }
+
     public void insertProduct(ProductDto productDto) {
 
         DatabaseSingleton.getInstance().doTransaction((entityManager -> {

@@ -255,6 +255,14 @@
         </multipart-config>
     </servlet>
 
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminRemoveProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminRemoveProductServlet</servlet-class>
+    </servlet>
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+
+
     <servlet>
         <servlet-name>CheckoutServlet</servlet-name>
         <servlet-class>controllers.servlets.user.CheckoutServlet</servlet-class>

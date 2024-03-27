@@ -29,6 +29,7 @@ public class ProductDto implements Serializable {
     String categoryName;
     String subCategoryName;
     double rating;
+    boolean deleted;
     @JsonIgnore
     DiscountedProductDto discountedProduct;
     long productId;

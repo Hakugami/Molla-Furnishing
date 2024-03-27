@@ -19,7 +19,7 @@
                                     <a href="home">Home</a></li>
                                 <li class="is-marked">
 
-                                    <a href="signup.html">Signup</a></li>
+                                    <a href="register">Signup</a></li>
                             </ul>
                         </div>
                     </div>
@@ -57,13 +57,6 @@
                                     <h1 class="gl-h1">PERSONAL INFORMATION</h1>
                                     <form class="l-f-o__form" id="signup-form">
                                         <div class="gl-s-api">
-                                            <div class="u-s-m-b-15">
-
-                                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i
-                                                        class="fab fa-facebook-f"></i>
-
-                                                    <span>Signup with Facebook</span></button>
-                                            </div>
                                             <div class="u-s-m-b-30">
 
                                                 <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i

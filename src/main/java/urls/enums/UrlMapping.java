@@ -29,7 +29,7 @@ public enum UrlMapping {
     ADDRESS("address", "/address", "AddressBookServlet", "/dash-address-book.jsp"),
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.jsp"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.jsp"),
-    CHECKOUT("checkout", "/checkout", "CheckoutServlet", "/checkout.html"),
+    CHECKOUT("checkout", "/checkout", "CheckoutServlet", "/checkout.jsp"),
     GET_USER_ORDERS("getUserOrders", "/getUserOrders", "GetUserOrdersServlet", ""),
     //Admin page
     ADMIN_HOME("adminhome", "/admin/home", "AdminHomeServlet", "/Adminpanel/index.html"),
@@ -43,6 +43,8 @@ public enum UrlMapping {
     //Admin Operations
     ADMINUPDATEPRODUCT("adminupdateproduct", "/admin/updateproduct", "AdminUpdateProductServlet", ""),
     ADMIN_ADD_PRODUCT("adminaddproduct", "/admin/addproduct", "AdminAddProductServlet", ""),
+    ADMIN_REMOVE_PRODUCT("adminremoveproduct", "/admin/removeproduct", "AdminRemoveProductServlet", ""),
+
     ;
 
     private final String command;
