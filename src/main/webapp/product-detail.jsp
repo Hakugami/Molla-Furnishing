@@ -540,7 +540,9 @@
     <script src="js/app.js"></script>
 
     <!--====== Custom js ======-->
+    <script src="js/sessionStorageUtils.js"></script>
     <script src="js/product-details.js"></script>
+
 
     <!--====== Noscript ======-->
     <noscript>

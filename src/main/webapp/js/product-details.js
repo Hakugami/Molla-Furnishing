@@ -1,4 +1,9 @@
 $(document).ready(function () {
+
+    let shoppingData = getShoppingData();
+    let shopping_products = shoppingData.products;
+    let productCounts = shoppingData.productCounts;
+    let currentProduct = null;
     let params = new URLSearchParams(window.location.search);
     let name = params.get('name'); // replace 'name' with your actual parameter name
 
@@ -9,6 +14,7 @@ $(document).ready(function () {
         data: { name: name },
         success: function (data) {
             let product = data[0];
+            currentProduct = product;
             console.log(product);
             // Iterate over product images
             for (let i = 0; i < Math.min(product.images.length, 5); i++) {
@@ -48,32 +54,48 @@ $(document).ready(function () {
         }
     });
 
+    // get the product id from session storage
     $(document).on('submit', '.pd-detail__form', function (e) {
         e.preventDefault();
-        let quantity = parseInt($('#product-quantity').val());
-        if (quantity < 1) {
+        event.preventDefault();
+        let productId = currentProduct.productId;
+        let quantity =$('.input-counter__text').val();
+
+        if (quantity === '') {
             alert('Please enter a valid quantity.');
-            return;
+            return; // exit the function and do nothing else
         }
+
+        productCounts[currentProduct.name] = (productCounts[currentProduct.name] || 0) + parseInt(quantity);
+
+        updateShoppingData({ products: currentProduct, productCounts: productCounts });
+
+
 
         $.ajax({
             url: 'cart',
             type: 'POST',
             data: {
-                action: 'addToCart',
-                productId: name,
+                action: 'addProduct',
+                productId: productId,
                 quantity: quantity
             },
-            success: function (data) {
-                console.log('Product added to cart:', data);
-                alert('Product added to cart!');
+            success: function (response) {
+                if (response === 'true') {
+                    alert('Product quantity incremented successfully!');
+                } else {
+                    alert('Failed to increment product quantity.');
+                }
             },
             error: function (xhr, status, error) {
-                console.error('Error adding product to cart:', error);
                 console.error(xhr.responseText);
             }
         });
     });
+
+
+
+
 
 });
 
