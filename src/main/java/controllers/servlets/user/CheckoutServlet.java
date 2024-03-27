@@ -43,10 +43,10 @@ public class CheckoutServlet extends HttpServlet {
             try {
                 JwtClaims jwtClaims = JWTService.getInstance().validateToken(cookie.getValue(), req.getRemoteAddr());
                 System.out.println("CheckoutServlet jwtClaims: " + jwtClaims.getSubject());
-                boolean result = checkoutService.checkout(Long.valueOf(jwtClaims.getSubject()));
-                if (!result) {
+                String result = checkoutService.checkout(Long.valueOf(jwtClaims.getSubject()));
+                if (result!=null) {
                     resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-                    resp.getWriter().write("Checkout failed");
+                    resp.getWriter().write(result);
                     return;
                 }
                 cartService.clearCart(Long.valueOf(jwtClaims.getSubject()));
