@@ -1,5 +1,6 @@
 <%@page session="false" contentType="text/html" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 
 <!doctype html>
 <html lang="en">
@@ -187,8 +188,9 @@
 
                         <td >
                             <div class="d-flex align-items-center gap-2">
+        <c:set var="genderLowerCase" value="${fn:toLowerCase(user.gender)}" />
         <c:choose>
-            <c:when test="${user.gender == 'Male'}">
+            <c:when test="${genderLowerCase eq 'male'}">
                                 <span class="badge bg-primary rounded-3 fw-semibold">Male</span>
             </c:when>
             <c:otherwise>
