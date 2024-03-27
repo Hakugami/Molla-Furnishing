@@ -1094,9 +1094,9 @@
                                     <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE
                                         SHOPPING</a>
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart">VIEW CART</a>
 
-                                    <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO
+                                    <a class="s-option__link btn--e-brand-shadow" href="checkout">PROCEED TO
                                         CHECKOUT</a></div>
                             </div>
                         </div>
@@ -1133,6 +1133,7 @@
 <script src="js/app.js"></script>
 
 <!--====== Custom js ======-->
+<script src="js/sessionStorageUtils.js"></script>
 <script src="js/products-page.js"></script>
 
 <!--====== Noscript ======-->

@@ -88,7 +88,7 @@
         </div>
     </div>
     <jsp:include page="/footer.jsp" />
-</div>
+    </div>
 
 <script>
     window.ga = function() {
@@ -110,8 +110,9 @@
 <!--====== App ======-->
 <script src="js/app.js"></script>
 
-<!--====== Product-Cart ======-->
-<script src="js/Product-Cart.js"></script>
+    <!--====== Product-Cart ======-->
+    <script src="js/sessionStorageUtils.js"></script>
+    <script src="js/Product-Cart.js"></script>
 
 <!--====== Noscript ======-->
 <noscript>

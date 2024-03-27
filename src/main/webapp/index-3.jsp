@@ -1,6 +1,6 @@
 <%@page session="false" contentType="text/html" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<jsp:include page="/header.jsp" />
+<jsp:include page="/header.jsp"/>
 
 <!--====== App Content ======-->
 <div class="app-content">
@@ -8,32 +8,31 @@
     <!--====== Primary Slider ======-->
     <div class="s-skeleton s-skeleton--h-640 s-skeleton--bg-grey">
         <div class="owl-carousel primary-style-3" id="hero-slider">
-            <div class="hero-slide hero-slide--7" style="background-image: url('images/slider/slide.jpg');">
+            <div class="hero-slide hero-slide--7">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
                                 <div class="slider-content slider-content--animation">
 
-                                    <span class="content-span-1" style="color: grey;">Update Your Fashion</span>
+                                    <span class="content-span-1 u-c-white">Update Your Fashion</span>
 
-                                    <span class="content-span-2" style="color: grey;">10% Discount on Outwear</span>
+                                    <span class="content-span-2 u-c-white">10% Discount on Outwear</span>
 
-                                    <span class="content-span-3" style="color: grey;">Find outwear on best prices</span>
+                                    <span class="content-span-3 u-c-white">Find outwear on best prices</span>
 
-                                    <span class="content-span-4" style="color: grey;">Starting At
+                                    <span class="content-span-4 u-c-white">Starting At
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
-                                        NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide hero-slide--8" style="background-image: url('images/slider/slide2.png');">
+            <div class="hero-slide hero-slide--8">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
@@ -50,15 +49,14 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
-                                        NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide hero-slide--9" style="background-image: url('images/slider/slide3.png');">
+            <div class="hero-slide hero-slide--9">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
@@ -75,8 +73,7 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
-                                        NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
                                 </div>
                             </div>
                         </div>
@@ -169,6 +166,7 @@
                             </div>
                             <div class="promotion-o__content">
 
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Chairs">Seating</a></div>
                                 <a class="promotion-o__link btn--e-white-brand"
                                    href="product?category=children">Childrens</a>
                             </div>
@@ -182,6 +180,7 @@
                             </div>
                             <div class="promotion-o__content">
 
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Beds">Beds</a></div>
                                 <a class="promotion-o__link btn--e-white-brand"
                                    href="product?category=beds">Beds</a>
                             </div>
@@ -195,6 +194,7 @@
                             </div>
                             <div class="promotion-o__content">
 
+                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Desks">Desks & Workstations</a></div>
                                 <a class="promotion-o__link btn--e-white-brand"
                                    href="product?category=dining">Dining</a>
                             </div>
@@ -245,8 +245,16 @@
                                         <ul class="product-r__action-list">
 
                                             <li>
-                                                <a data-modal="modal" data-modal-id="#add-to-cart"><i
-                                                        class="fas fa-plus-circle"></i></a>
+                                                <a data-modal="modal" data-modal-id="#add-to-cart"
+                                                    data-product-id="${product.productId}"
+                                                    data-product-name="${product.name}"
+                                                    data-product-quantity="${product.quantity}"
+                                                    data-product-price=${product.price}
+                                               <%-- data-product-category-name="${product.category.name}" --%>
+                                                    data-product-description="${product.description}"
+                                                    data-product-color="${product.productDetails.color}"
+                                                    data-product-image="${product.images[0]}">
+                                                    <i class="fas fa-plus-circle"></i></a>
                                             </li>
 
                                         </ul>
@@ -402,12 +410,10 @@
                                        data-dismiss="modal">CONTINUE
                                         SHOPPING</a>
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart">VIEW
-                                        CART</a>
+                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart">VIEW CART</a>
 
                                     <a class="s-option__link btn--e-brand-shadow" href="checkout">PROCEED TO
-                                        CHECKOUT</a>
-                                </div>
+                                        CHECKOUT</a></div>
                             </div>
                         </div>
                     </div>
@@ -482,6 +488,10 @@
 
 <!--====== App ======-->
 <script src="js/app.js"></script>
+
+<!--====== Custom js ======-->
+<script src="js/sessionStorageUtils.js"></script>
+<script src="js/home.js"></script>
 
 
 <!--====== Noscript ======-->
