@@ -30,7 +30,7 @@
     <filter-mapping>
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
         <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
-        <url-pattern>/checkout</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
     <filter>
@@ -303,15 +303,15 @@
     <!--        &lt;!&ndash;        </form-login-config>&ndash;&gt;-->
     <!--    </login-config>-->
 
-    <!--    <error-page>-->
-    <!--        <error-code>404</error-code>-->
-    <!--        <location>/404.jsp</location>-->
-    <!--    </error-page>-->
+        <error-page>
+            <error-code>404</error-code>
+            <location>/404.jsp</location>
+        </error-page>
 
-    <!--    <error-page>-->
-    <!--        <exception-type>java.lang.Exception</exception-type>-->
-    <!--        <location>/404.jsp</location>-->
-    <!--    </error-page>-->
+        <error-page>
+            <exception-type>java.lang.Exception</exception-type>
+            <location>/404.jsp</location>
+        </error-page>
 
 
 </web-app>

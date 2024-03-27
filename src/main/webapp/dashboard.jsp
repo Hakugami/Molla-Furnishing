@@ -42,54 +42,11 @@
                                         <li>
 
                                             <a href="address">Address Book</a></li>
-                                        <li>
 
-                                            <a href="dash-track-order.html">Track Order</a></li>
-                                        <li>
-
-                                            <a href="dash-my-order.html">My Orders</a></li>
-                                        <li>
-
-                                            <a href="dash-payment-option.html">My Payment Options</a></li>
-                                        <li>
-
-                                            <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="dash__box dash__box--bg-white dash__box--shadow dash__box--w">
-                                <div class="dash__pad-1">
-                                    <ul class="dash__w-list">
-                                        <li>
-                                            <div class="dash__w-wrap">
 
-                                                <span class="dash__w-icon dash__w-icon-style-1"><i class="fas fa-cart-arrow-down"></i></span>
-
-                                                <span class="dash__w-text">4</span>
-
-                                                <span class="dash__w-name">Orders Placed</span></div>
-                                        </li>
-                                        <li>
-                                            <div class="dash__w-wrap">
-
-                                                <span class="dash__w-icon dash__w-icon-style-2"><i class="fas fa-times"></i></span>
-
-                                                <span class="dash__w-text">0</span>
-
-                                                <span class="dash__w-name">Cancel Orders</span></div>
-                                        </li>
-                                        <li>
-                                            <div class="dash__w-wrap">
-
-                                                <span class="dash__w-icon dash__w-icon-style-3"><i class="far fa-heart"></i></span>
-
-                                                <span class="dash__w-text">0</span>
-
-                                                <span class="dash__w-name">Wishlist</span></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
                             <!--====== End - Dashboard Features ======-->
                         </div>
                         <div class="col-lg-9 col-md-12">
@@ -105,7 +62,7 @@
                                                     <h2 class="dash__h2 u-s-m-b-8">PERSONAL PROFILE</h2>
                                                     <div class="dash__link dash__link--secondary u-s-m-b-8">
 
-                                                        <a href="dash-edit-profile.html">Edit</a></div>
+                                                        <a href="dash-edit-profile.jsp">Edit</a></div>
 
                                                     <span id="dash-name" class="dash__text"></span>
 
@@ -134,95 +91,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="dash__box dash__box--shadow dash__box--bg-white dash__box--radius">
-                                <h2 class="dash__h2 u-s-p-xy-20">RECENT ORDERS</h2>
-                                <div class="dash__table-wrap gl-scroll">
-                                    <table class="dash__table">
-                                        <thead>
-                                        <tr>
-                                            <th>Order #</th>
-                                            <th>Placed On</th>
-                                            <th>Items</th>
-                                            <th>Total</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>3054231326</td>
-                                            <td>26/13/2016</td>
-                                            <td>
-                                                <div class="dash__table-img-wrap">
 
-                                                    <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></div>
-                                            </td>
-                                            <td>
-                                                <div class="dash__table-total">
-
-                                                    <span>$126.00</span>
-                                                    <div class="dash__link dash__link--brand">
-
-                                                        <a href="dash-manage-order.html">MANAGE</a></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3054231326</td>
-                                            <td>26/13/2016</td>
-                                            <td>
-                                                <div class="dash__table-img-wrap">
-
-                                                    <img class="u-img-fluid" src="images/product/electronic/product14.jpg" alt=""></div>
-                                            </td>
-                                            <td>
-                                                <div class="dash__table-total">
-
-                                                    <span>$126.00</span>
-                                                    <div class="dash__link dash__link--brand">
-
-                                                        <a href="dash-manage-order.html">MANAGE</a></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3054231326</td>
-                                            <td>26/13/2016</td>
-                                            <td>
-                                                <div class="dash__table-img-wrap">
-
-                                                    <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></div>
-                                            </td>
-                                            <td>
-                                                <div class="dash__table-total">
-
-                                                    <span>$126.00</span>
-                                                    <div class="dash__link dash__link--brand">
-
-                                                        <a href="dash-manage-order.html">MANAGE</a></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3054231326</td>
-                                            <td>26/13/2016</td>
-                                            <td>
-                                                <div class="dash__table-img-wrap">
-
-                                                    <img class="u-img-fluid" src="images/product/women/product10.jpg" alt=""></div>
-                                            </td>
-                                            <td>
-                                                <div class="dash__table-total">
-
-                                                    <span>$126.00</span>
-                                                    <div class="dash__link dash__link--brand">
-
-                                                        <a href="dash-manage-order.html">MANAGE</a></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

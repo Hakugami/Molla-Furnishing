@@ -20,7 +20,7 @@ $(document).ready(function() {
 
                 // Construct the table row with the appropriate class
                 var row = '<tr class="' + rowClass + '">' +
-                    '<td><img alt="" class="rounded-circle" height="55" src="' + product.images[1] + '"></td>' +
+                    '<td><img alt="" class="rounded-circle" height="55" src="' + product.images[0] + '"></td>' +
                     '<td><h6 class="fw-semibold mb-0">' + product.productId + '</h6></td>' +
                     '<td><h6 class="fw-semibold mb-1">' + product.name + '</h6></td>' +
                     '<td><div class="d-flex align-items-center gap-2"><span class="badge bg-primary rounded-3 fw-semibold">' + product.categoryName + '</span></div></td>' +

@@ -240,7 +240,7 @@
                                     <a class="aspect aspect--bg-grey aspect--square u-d-block"
                                        href="ProductPage?name=${product.name}">
 
-                                        <img class="aspect__img" src="${product.images[1]}" alt=""></a>
+                                        <img class="aspect__img" src="${product.images[0]}" alt=""></a>
                                     <div class="product-r__action-wrap">
                                         <ul class="product-r__action-list">
 
