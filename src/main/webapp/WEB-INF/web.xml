@@ -260,6 +260,10 @@
         <servlet-class>controllers.servlets.user.CheckoutServlet</servlet-class>
     </servlet>
 
+    <servlet>
+        <servlet-name>GetUserOrdersServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.GetUserOrdersServlet</servlet-class>
+    </servlet>
     <!--Admin Security Constraint-->
     <!--    <security-constraint>-->
     <!--        <web-resource-collection>-->

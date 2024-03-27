@@ -1,19 +1,35 @@
 $(document).ready(function () {
     let userData = null;
+    let ordersData = null;
     $.ajax({
-        url: 'loadProfile', // replace with your API endpoint
+        url: 'getUserOrders', // replace with your API endpoint
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            userData = data;
-            console.log(userData);
-            renderOrders(userData);
-            renderProfile(userData);
+            ordersData = data;
+            console.log(data);
+            renderOrders(ordersData);
+
         },
         error: function (error) {
             console.log('Error fetching profile data:', error);
         }
     });
+});
+
+$.ajax({
+    url: 'loadProfile'
+    , type: 'GET'
+    , dataType: 'json'
+    , success: function (data) {
+        userData = data;
+        console.log(data);
+        renderProfile(userData);
+    },
+    error: function (error) {
+        console.log('Error fetching profile data:', error);
+    }
+
 });
 
 
@@ -30,12 +46,12 @@ function renderProfile(userData) {
 }
 
 
-function renderOrders(userData) {
-    if (userData && userData.orders) {
+function renderOrders(ordersData) {
+    if (ordersData && ordersData.length > 0) {
         var tbody = $('.dash__table > tbody');
         tbody.empty(); // clear the existing rows
 
-        userData.orders.forEach(function (order) {
+        ordersData.forEach(function (order) {
             var tr = $('<tr>');
             tr.append('<td> # ' + order.id + '</td>');
             tr.append('<td>' + order.orderDate + '</td>');

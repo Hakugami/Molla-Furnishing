@@ -30,6 +30,7 @@ public enum UrlMapping {
     RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.jsp"),
     RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.jsp"),
     CHECKOUT("checkout", "/checkout", "CheckoutServlet", "/checkout.html"),
+    GET_USER_ORDERS("getUserOrders", "/getUserOrders", "GetUserOrdersServlet", ""),
     //Admin page
     ADMIN_HOME("adminhome", "/admin/home", "AdminHomeServlet", "/Adminpanel/index.html"),
     ADMIN_LOGIN("adminlogin", "/admin/login", "AdminLoginServlet", "/Adminpanel/adminlogin.html"),

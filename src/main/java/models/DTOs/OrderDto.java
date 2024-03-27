@@ -22,6 +22,5 @@ public class OrderDto implements Serializable {
     UserDto user;
     List<OrderItemDto> orderItems;
     double totalAmount;
-    LocalDate date;
-    LocalTime time;
+    Date orderDate;
 }
