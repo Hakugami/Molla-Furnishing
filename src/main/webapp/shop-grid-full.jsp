@@ -48,8 +48,6 @@
                                                     id="sort-strategy">
                                                 <option selected>Sort By: Newest Items</option>
                                                 <option>Sort By: Latest Items</option>
-                                                <option>Sort By: Best Selling</option>
-                                                <option>Sort By: Best Rating</option>
                                                 <option>Sort By: Lowest Price</option>
                                                 <option>Sort By: Highest Price</option>
                                             </select></div>
@@ -849,7 +847,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
