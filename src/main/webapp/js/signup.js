@@ -97,6 +97,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             data: JSON.stringify(userDto),
             success: function() {
+                sendSessionDataToServer();
                 window.location.href = 'login';
             },
             error: function() {
@@ -106,6 +107,31 @@ $(document).ready(function() {
     });
 });
 
+function sendSessionDataToServer() {
+    console.log('Sending session data to server...');
+    // Retrieve data from session storage
+    let shoppingData = sessionStorage.getItem('shoppingData');
+
+    // Make sure shoppingData exists and is not empty
+    if (shoppingData) {
+        console.log('Session data:', shoppingData);
+
+        $.ajax({
+            url: 'cart', // Replace with your server endpoint
+            type: 'POST',
+            data: {
+                action: 'addProductsToCart', // Added action parameter to distinguish from 'addProduct' and 'removeProduct
+                shoppingData: shoppingData
+            },
+            success: function (response) {
+                console.log('Session data sent to server successfully.');
+            },
+            error: function (xhr, status, error) {
+                console.error('Failed to send session data to server:', error);
+            }
+        });
+    }
+}
 function validatePassword(password) {
     // Check the length of the password
     if (password.length < 8) {
