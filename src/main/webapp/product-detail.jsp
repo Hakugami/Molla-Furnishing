@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="u-s-m-b-15">
 
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+                                                <button id="addtoCart" class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
                                         </div>
                                     </form>
                                 </div>

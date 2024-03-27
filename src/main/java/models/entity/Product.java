@@ -80,8 +80,7 @@ public class Product {
     private int version;
 
     @Setter
-    //@Column(columnDefinition = "boolean default 'false'")
-    private Boolean isDeleted = false;
+    private boolean deleted;
 
     @Setter
     @Transient

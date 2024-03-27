@@ -80,7 +80,7 @@ public class ProductRepository extends GenericRepository<Product, Long> {
         DatabaseSingleton.getInstance().doTransaction(entityManager -> {
             Product product = entityManager.find(Product.class,productId);
             if(product!=null){
-                product.setIsDeleted(true);
+                product.setDeleted(true);
                 entityManager.persist(product);
             }else{
                 throw new RuntimeException("Product Does not exist");

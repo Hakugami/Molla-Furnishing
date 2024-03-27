@@ -103,6 +103,57 @@ $(document).ready(function () {
 
 });
 
+//NOFALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+$(document).on('click', '#addtoCart', function (event) {
+    event.preventDefault();
+    //let productIndex = $(this).closest('.col-lg-3').index();
+    let product = sessionStorage.getItem('product');
+    let productAlreadyInCart = sessionStorage.getItem('shoppingData').some(item => item.name === product.name);
+    let productId = product.productId;
+    if (product.quantity === 0) {
+        alert("Product is out of stock");
+        return;
+    }
+    if (!productAlreadyInCart) {
+        shopping_products.push(product);
+    }
+
+    productCounts[product.name] = (productCounts[product.name] || 0) + 1;
+
+
+    // Store updated product counts and shopping products in sessionStorage
+    updateShoppingData({ products: shopping_products, productCounts: productCounts });
+
+    // sessionStorage.setItem('shoppingData', JSON.stringify(shoppingData));
+    console.log('Shopping Products:', shopping_products);
+    console.log('Product added to cart:', product);
+    console.log('Product Counts:', productCounts);
+    updateTotalSumProMax();
+    $.ajax({
+        url: 'cart',
+        type: 'POST',
+        data: {
+            action: 'addProduct',
+            productId: productId,
+            quantity: 1
+        },
+        success: function (response) {
+            if (response === 'true') {
+                alert('Product quantity incremented successfully!');
+            } else {
+                alert('Failed to increment product quantity.');
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+});
+
+
+
+
+
 function generateRatingStars(rating) {
     let stars = '';
     for (let i = 0; i < 5; i++) {

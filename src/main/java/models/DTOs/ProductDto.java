@@ -28,7 +28,7 @@ public class ProductDto implements Serializable {
     List<RatingDto> ratings;
     String categoryName;
     String subCategoryName;
-    Boolean isDeleted;
+    boolean deleted;
     double rating;
 //    @JsonIgnore
 //    DiscountedProductDto discountedProduct;

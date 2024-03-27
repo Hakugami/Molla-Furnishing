@@ -96,6 +96,7 @@ public class AdminAddProductServlet extends HttpServlet {
                 }
             }
             productDto.setDateAdded(new Date());
+            productDto.setDeleted(false);
             productDto.setProductDetails(productDetailsDto);
             productDto.setImages(images);
             productService.insertProduct(productDto);
