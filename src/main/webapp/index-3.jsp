@@ -1,6 +1,6 @@
 <%@page session="false" contentType="text/html" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<jsp:include page="/header.jsp"/>
+<jsp:include page="/header.jsp" />
 
 <!--====== App Content ======-->
 <div class="app-content">
@@ -8,31 +8,32 @@
     <!--====== Primary Slider ======-->
     <div class="s-skeleton s-skeleton--h-640 s-skeleton--bg-grey">
         <div class="owl-carousel primary-style-3" id="hero-slider">
-            <div class="hero-slide hero-slide--7">
+            <div class="hero-slide hero-slide--7" style="background-image: url('images/slider/slide.jpg');">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
                             <div class="col-12">
                                 <div class="slider-content slider-content--animation">
 
-                                    <span class="content-span-1 u-c-white">Update Your Fashion</span>
+                                    <span class="content-span-1" style="color: grey;">Update Your Fashion</span>
 
-                                    <span class="content-span-2 u-c-white">10% Discount on Outwear</span>
+                                    <span class="content-span-2" style="color: grey;">10% Discount on Outwear</span>
 
-                                    <span class="content-span-3 u-c-white">Find outwear on best prices</span>
+                                    <span class="content-span-3" style="color: grey;">Find outwear on best prices</span>
 
-                                    <span class="content-span-4 u-c-white">Starting At
+                                    <span class="content-span-4" style="color: grey;">Starting At
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
+                                        NOW</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide hero-slide--8">
+            <div class="hero-slide hero-slide--8" style="background-image: url('images/slider/slide2.png');">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
@@ -49,14 +50,15 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
+                                        NOW</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide hero-slide--9">
+            <div class="hero-slide hero-slide--9" style="background-image: url('images/slider/slide3.png');">
                 <div class="primary-style-3-wrap">
                     <div class="container">
                         <div class="row">
@@ -73,7 +75,8 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                    <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a>
+                                    <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
+                                        NOW</a>
                                 </div>
                             </div>
                         </div>
@@ -91,38 +94,110 @@
         <!--====== Section Content ======-->
         <div class="section__content">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
+                <style>
+                    .horizontal-scroll-wrapper {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+                        scrollbar-width: none; /* Hides scrollbar for Firefox */
+                        -ms-overflow-style: none; /* Hides scrollbar for Internet Explorer */
+                    }
+
+                    .horizontal-scroll-wrapper::-webkit-scrollbar {
+                        display: none; /* Hides scrollbar for Chrome, Safari, and Edge */
+                    }
+                </style>
+                <div class="row horizontal-scroll-wrapper">
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
                         <div class="promotion-o">
                             <div class="aspect aspect--bg-grey aspect--square">
 
-                                <img class="aspect__img" src="images/promo/promo-img-4.jpg" alt=""></div>
+                                <img class="aspect__img" src="images/storage.webp" alt="">
+                            </div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Women's
-                                    Clothing</a></div>
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=storage">Storage</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
                         <div class="promotion-o">
                             <div class="aspect aspect--bg-grey aspect--square">
 
-                                <img class="aspect__img" src="images/promo/promo-img-5.jpg" alt=""></div>
+                                <img class="aspect__img" src="images/chairs.webp" alt="">
+                            </div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 2">Fashion
-                                    Accessories</a></div>
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=chairs">Chairs</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-6 u-s-m-b-30">
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
                         <div class="promotion-o">
                             <div class="aspect aspect--bg-grey aspect--square">
 
-                                <img class="aspect__img" src="images/promo/promo-img-6.jpg" alt=""></div>
+                                <img class="aspect__img" src="images/desks.jpg" alt="">
+                            </div>
                             <div class="promotion-o__content">
 
-                                <a class="promotion-o__link btn--e-white-brand" href="product?category=Category 1">Men's
-                                    Clothing</a></div>
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=desks">Desks</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
+                        <div class="promotion-o">
+                            <div class="aspect aspect--bg-grey aspect--square">
+
+                                <img class="aspect__img" src="images/tables.jpg" alt="">
+                            </div>
+                            <div class="promotion-o__content">
+
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=tables">Tables</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
+                        <div class="promotion-o">
+                            <div class="aspect aspect--bg-grey aspect--square">
+
+                                <img class="aspect__img" src="images/children.jpg" alt="">
+                            </div>
+                            <div class="promotion-o__content">
+
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=children">Childrens</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
+                        <div class="promotion-o">
+                            <div class="aspect aspect--bg-grey aspect--square">
+
+                                <img class="aspect__img" src="images/beds.webp" alt="">
+                            </div>
+                            <div class="promotion-o__content">
+
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=beds">Beds</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 u-s-m-b-30">
+                        <div class="promotion-o">
+                            <div class="aspect aspect--bg-grey aspect--square">
+
+                                <img class="aspect__img" src="images/dining.jpg" alt="">
+                            </div>
+                            <div class="promotion-o__content">
+
+                                <a class="promotion-o__link btn--e-white-brand"
+                                   href="product?category=dining">Dining</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -171,23 +246,27 @@
 
                                             <li>
                                                 <a data-modal="modal" data-modal-id="#add-to-cart"><i
-                                                        class="fas fa-plus-circle"></i></a></li>
+                                                        class="fas fa-plus-circle"></i></a>
+                                            </li>
 
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="product-r__info-wrap">
 
-                                           <span class="product-r__category">
+                                            <span class="product-r__category">
 
-                                               <a href="product?category=${product.categoryName}">${product.categoryName}</a></span>
+                                                <a
+                                                        href="product?category=${product.categoryName}">${product.categoryName}</a></span>
                                     <div class="product-r__n-p-wrap">
 
-                                               <span class="product-r__name">
+                                                <span class="product-r__name">
 
-                                                   <a class="product-name" href="ProductPage?name=${product.name}">${product.name}</a></span>
+                                                    <a class="product-name"
+                                                       href="ProductPage?name=${product.name}">${product.name}</a></span>
 
-                                        <span class="product-r__price">${product.price}</span></div>
+                                        <span class="product-r__price">${product.price}</span>
+                                    </div>
 
                                     <span class="product-r__description">${product.description}</span>
                                 </div>
@@ -243,7 +322,8 @@
 
                                                         <a data-modal="modal" data-modal-id="#add-to-cart"
                                                            data-tooltip="tooltip" data-placement="top"
-                                                           title="Add to Cart"><i class="fas fa-plus-circle"></i></a>
+                                                           title="Add to Cart"><i
+                                                                class="fas fa-plus-circle"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -251,11 +331,13 @@
 
                                         <span class="product-o__category">
 
-                                               <a href="product?category=${product.categoryName}">${product.categoryName}</a></span>
+                                                    <a
+                                                            href="product?category=${product.categoryName}">${product.categoryName}</a></span>
 
                                         <span class="product-o__name">
 
-                                               <a href="ProductPage?name=${product.name}">${product.name}</a></span>
+                                                    <a
+                                                            href="ProductPage?name=${product.name}">${product.name}</a></span>
                                         <div class="product-o__rating gl-rating-style">
 
                                         </div>
@@ -274,7 +356,7 @@
     </c:if>
 
 
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/footer.jsp" />
 
 
     <!--====== Modal Section ======-->
@@ -292,18 +374,22 @@
                             <div class="success u-s-m-b-30">
                                 <div class="success__text-wrap"><i class="fas fa-check"></i>
 
-                                    <span>Item is added successfully!</span></div>
+                                    <span>Item is added successfully!</span>
+                                </div>
                                 <div class="success__img-wrap">
 
-                                    <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt=""></div>
+                                    <img class="u-img-fluid" src="images/product/electronic/product1.jpg"
+                                         alt="">
+                                </div>
                                 <div class="success__info-wrap">
 
-<%--                                    get the product details and attach it in the modal via jstl--%>
+                                    <%-- get the product details and attach it in the modal via jstl--%>
                                     <span class="success__name">Beats Bomb Wireless Headphone</span>
 
                                     <span class="success__quantity">Quantity: 1</span>
 
-                                    <span class="success__price">$170.00</span></div>
+                                    <span class="success__price">$170.00</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
@@ -312,13 +398,16 @@
                                 <span class="s-option__text">1 item (s) in your cart</span>
                                 <div class="s-option__link-box">
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" data-dismiss="modal">CONTINUE
+                                    <a class="s-option__link btn--e-white-brand-shadow"
+                                       data-dismiss="modal">CONTINUE
                                         SHOPPING</a>
 
-                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart.html">VIEW CART</a>
+                                    <a class="s-option__link btn--e-white-brand-shadow" href="cart">VIEW
+                                        CART</a>
 
-                                    <a class="s-option__link btn--e-brand-shadow" href="checkout.html">PROCEED TO
-                                        CHECKOUT</a></div>
+                                    <a class="s-option__link btn--e-brand-shadow" href="checkout">PROCEED TO
+                                        CHECKOUT</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -341,7 +430,8 @@
 
                             <a class="new-l__img-wrap u-d-block" href="shop-side-version-2.html">
 
-                                <img class="u-img-fluid u-d-block" src="images/newsletter/newsletter.jpg" alt=""></a>
+                                <img class="u-img-fluid u-d-block" src="images/newsletter/newsletter.jpg"
+                                     alt=""></a>
                         </div>
                         <div class="col-lg-6 new-l__col-2">
                             <div class="new-l__section u-s-m-t-30">
@@ -349,25 +439,29 @@
                                     <h3 class="new-l__h3">Newsletter</h3>
                                 </div>
                                 <div class="u-s-m-b-30 new-l--center">
-                                    <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals, special
+                                    <p class="new-l__p1">Sign up for emails to get the scoop on new arrivals,
+                                        special
                                         sales and more.</p>
                                 </div>
                                 <form class="new-l__form">
                                     <div class="u-s-m-b-15">
 
-                                        <input class="news-l__input" type="text" placeholder="E-mail Address"></div>
+                                        <input class="news-l__input" type="text" placeholder="E-mail Address">
+                                    </div>
                                     <div class="u-s-m-b-15">
 
                                         <button class="btn btn--e-brand-b-2" type="submit">Sign up!</button>
                                     </div>
                                 </form>
                                 <div class="u-s-m-b-15 new-l--center">
-                                    <p class="new-l__p2">By Signing up, you agree to receive Reshop offers,<br/>promotions
+                                    <p class="new-l__p2">By Signing up, you agree to receive Reshop
+                                        offers,<br />promotions
                                         and other commercial messages. You may unsubscribe at any time.</p>
                                 </div>
                                 <div class="u-s-m-b-15 new-l--center">
 
-                                    <a class="new-l__link" data-dismiss="modal">No Thanks</a></div>
+                                    <a class="new-l__link" data-dismiss="modal">No Thanks</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -399,7 +493,8 @@
                     <div class="app-setting__wrap">
                         <h1 class="app-setting__h1">JavaScript is disabled in your browser.</h1>
 
-                        <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a JavaScript-capable browser.</span>
+                        <span class="app-setting__text">Please enable JavaScript in your browser or upgrade to a
+                                    JavaScript-capable browser.</span>
                     </div>
                 </div>
             </div>
@@ -407,4 +502,5 @@
     </div>
 </noscript>
 </body>
+
 </html>
