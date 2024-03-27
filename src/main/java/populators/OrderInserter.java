@@ -12,13 +12,13 @@ public class OrderInserter {
         cartService = new CartService();
     }
 
-    public void insertOrder() {
-        checkoutService.checkout(1L);
-        cartService.clearCart(1L);
-    }
-
     public static void main(String[] args) {
         OrderInserter orderInserter = new OrderInserter();
         orderInserter.insertOrder();
+    }
+
+    public void insertOrder() {
+        checkoutService.checkout(1L);
+        cartService.clearCart(1L);
     }
 }

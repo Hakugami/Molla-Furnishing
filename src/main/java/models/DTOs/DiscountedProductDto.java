@@ -2,7 +2,6 @@ package models.DTOs;
 
 import jakarta.validation.constraints.Min;
 import lombok.Value;
-import models.DTOs.ProductDto;
 import models.entity.DiscountedProduct;
 
 import java.io.Serializable;

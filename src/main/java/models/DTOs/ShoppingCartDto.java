@@ -1,8 +1,6 @@
 package models.DTOs;
 
 import lombok.Value;
-import models.DTOs.CartItemDto;
-import models.DTOs.UserDto;
 import models.entity.ShoppingCart;
 
 import java.io.Serializable;

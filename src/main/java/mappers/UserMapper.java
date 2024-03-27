@@ -13,8 +13,11 @@ public interface UserMapper {
     //instance of the mapper
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
 
-    public User userDtoToUser(UserDto userDto);
-    public UserDto userToUserDto(User user);
-    public Address addressDtoToAddress(AddressDto addressDto);
-    public Address addressToAddressDto(Address address);
+    User userDtoToUser(UserDto userDto);
+
+    UserDto userToUserDto(User user);
+
+    Address addressDtoToAddress(AddressDto addressDto);
+
+    Address addressToAddressDto(Address address);
 }

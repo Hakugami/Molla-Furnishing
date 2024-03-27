@@ -1,6 +1,9 @@
 package models.DTOs;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import models.entity.User;
 import models.enums.UserRole;
 
@@ -19,7 +22,6 @@ public class UserDto implements Serializable {
     long id;
     String name;
     Date birthday;
-    String password;
     String job;
     String interest;
     String email;

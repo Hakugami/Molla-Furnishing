@@ -20,17 +20,17 @@ public class AdminAllUsersServlet extends HttpServlet {
         List<UserDto> users = getUsersDto(req);
         req.setAttribute("users", users);
 
-        req.getRequestDispatcher(UrlMapping.ADMINALLUSERS.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMIN_ALL_USERS.getPageName()).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AdminAllUsersServlet-doPost: processing request");
 
-        List<UserDto> products = getUsersDto(req);
+        List<UserDto> usersDto = getUsersDto(req);
 
-        // Convert the list of ProductDto objects to JSON
-        String json = new Gson().toJson(products);
+        // Convert the list of usersDto objects to JSON
+        String json = new Gson().toJson(usersDto);
 
         // Write the JSON to the response
         resp.setContentType("application/json");
@@ -45,6 +45,9 @@ public class AdminAllUsersServlet extends HttpServlet {
         int size = 10;
 
         UserService userService = new UserService();
-        return userService.getUsers(pageInt, size);
+
+        List<UserDto> users = userService.getUsersByPaginate(pageInt, size);
+//        users.forEach(user -> user.setPassword(null));
+        return users;
     }
 }

@@ -1,14 +1,19 @@
 package populators;
 
 import models.DTOs.AddressDto;
+import models.DTOs.OrderDto;
+import models.DTOs.OrderItemDto;
 import models.DTOs.UserDto;
 import models.entity.Address;
+import models.entity.Order;
 import models.entity.User;
 import persistence.repositories.impl.UserRepository;
 import services.AuthenticationService;
+import services.OrderService;
 import services.UserService;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class UserAdder {
@@ -52,25 +57,45 @@ public class UserAdder {
 
     public static void main(String[] args)  {
         // Create an ObjectMapper instance
-        for (int i = 0; i < 20; i++) {
-//            authService = new AuthenticationService();
-//            UserDto userDto = new UserDto();
-//            userDto.setName("Mohamed Nofal" + i);
-//            userDto.setBirthday(new Date());
-//            userDto.setEmail("nofal" + i + "@gmail.com");
-//            userDto.setGender("Male");
-//            userDto.setPhone("1234654894894165");
-//            userDto.setPassword("12345678");
-//            userDto.setJob("SE");
-//            userDto.setInterest("molla");
-//            userDto.setCreditLimit(10000);
-//            authService.register(userDto);
+//        for (int i = 0; i < 20; i++) {
+////            authService = new AuthenticationService();
+////            UserDto userDto = new UserDto();
+////            userDto.setName("Mohamed Nofal" + i);
+////            userDto.setBirthday(new Date());
+////            userDto.setEmail("nofal" + i + "@gmail.com");
+////            userDto.setGender("Male");
+////            userDto.setPhone("1234654894894165");
+////            userDto.setPassword("12345678");
+////            userDto.setJob("SE");
+////            userDto.setInterest("molla");
+////            userDto.setCreditLimit(10000);
+////            authService.register(userDto);
+//        }
+
+
+        addUserAddressTest();
+//        removeUserAddressTest();
+//        printUserAddresses();
+
+        printOrders();
+
+    }
+
+    public static void printOrders() {
+        OrderService orderService = new OrderService();
+        List<OrderDto> orderDtos = orderService.retrieveOrdersByUserId(1L);
+        System.out.println("Number of Orders: " + orderDtos.size());
+        for(OrderDto o : orderDtos) {
+            List<OrderItemDto> orderItems = o.getOrderItems();
+            System.out.println("Number of Item in This order: " + orderItems.size());
+            for (OrderItemDto orderItem : orderItems) {
+                System.out.println(orderItem.getProduct().getProductId() + " " + orderItem.getProduct().getName()
+                                        + " "  + orderItem.getQuantity() + " " + orderItem.getProduct().getPrice());
+
+            }
 
         }
 
-//        addUserAddressTest();
-//        removeUserAddressTest();
-//        printUserAddresses();
 
     }
 }

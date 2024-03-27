@@ -3,34 +3,93 @@ package populators;
 import models.entity.Category;
 import models.entity.Product;
 import models.entity.ProductDetails;
+import models.entity.SubCategory;
 import persistence.repositories.impl.CategoriesRepository;
 import persistence.repositories.impl.ProductRepository;
 
-import java.util.List;
+import java.util.*;
 
 public class ProductDataInserter {
 
     private final ProductRepository productRepository;
     private final CategoriesRepository categoryRepository;
+    private final Set<String> generatedNames = new HashSet<>();
 
     public ProductDataInserter() {
         this.productRepository = new ProductRepository();
         this.categoryRepository = new CategoriesRepository();
     }
 
-    //insert like 10 products
+    public static void main(String[] args) {
+        ProductDataInserter productDataInserter = new ProductDataInserter();
+        productDataInserter.insertProducts();
+        productDataInserter.addImagesToProducts();
+        productDataInserter.addProductDetailsToProducts();
+
+    }
+
+    //insert like 100 products
     public void insertProducts() {
-        for (int i = 0; i < 10; i++) {
-            Product product = new Product();
-            product.setName("Product " + i);
-            product.setDescription("Description " + i);
-            product.setPrice(10.0 * i);
-            product.setQuantity(10 * i);
-            //random date for the product
-            product.setDateAdded(new java.util.Date(System.currentTimeMillis() - (long) (Math.random() * 1000000000)));
-            productRepository.create(product);
+        List<Category> categories = categoryRepository.retrieveCategories(1, Integer.MAX_VALUE);
+
+        int productCount = 0;
+
+        for (Category category : categories) {
+            List<SubCategory> subCategories = category.getSubCategories();
+
+            for (SubCategory subCategory : subCategories) {
+
+                // Generate a name for the product based on category and subcategory
+                String productName = generateRealisticProductNameDFS(category.getName(), subCategory.getName());
+
+                Product product = new Product();
+                product.setName(productName);
+                product.setDescription("Description " + productCount);
+                product.setPrice(10.0 * productCount);
+                product.setQuantity(10 * productCount);
+                product.setDateAdded(new java.util.Date(System.currentTimeMillis() - (long) (Math.random() * 1000000000)));
+
+                product.setCategory(category);
+                product.setSubCategory(subCategory);
+                productRepository.create(product);
+                productCount++;
+            }
+        }
+    }
+
+    private String generateRealisticProductNameDFS(String categoryName, String subCategoryName) {
+        // Sample adjectives and nouns for generating more realistic product names
+        String[] adjectives = {"Elegant", "Modern", "Vintage", "Luxury", "Sleek", "Rustic"};
+        String[] nouns = {"Chair", "Table", "Sofa", "Bed", "Desk", "Wardrobe"};
+
+        // Shuffle the arrays to ensure randomness in selection
+        shuffleArray(adjectives);
+        shuffleArray(nouns);
+
+        Stack<String> stack = new Stack<>();
+        stack.push("");
+
+        // Perform DFS to generate unique combinations
+        while (!stack.isEmpty()) {
+            String currentCombination = stack.pop();
+
+            // Construct the product name
+            String productName = currentCombination.trim() + " " + categoryName + " " + subCategoryName + " ";
+
+            // Check if the generated name is unique
+            if (!generatedNames.contains(productName)) {
+                generatedNames.add(productName);
+                return productName;
+            }
+
+            // Explore next level combinations
+            for (String adjective : adjectives) {
+                stack.push(currentCombination + " " + adjective);
+            }
         }
 
+        // If all combinations are exhausted, return a default name
+        return "Product " + categoryName + " " + subCategoryName;
     }
 
     public void addProductDetailsToProducts() {
@@ -51,36 +110,10 @@ public class ProductDataInserter {
         productRepository.batchUpdate(products);
     }
 
-    public void updateProductCategories() {
-        // Create the categories
-        Category category1 = new Category();
-        category1.setName("Category 1");
-
-        Category category2 = new Category();
-        category2.setName("Category 2");
-
-        // Save the categories to the database
-        categoryRepository.create(category1);
-        categoryRepository.create(category2);
-
-        // Retrieve all the products
-        System.out.println("Retrieving all products");
-        List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
-        products.forEach(product -> System.out.println(product.getName()));
-
-        // Assign the categories to the products
-        for (int i = 0; i < products.size(); i++) {
-            Product product = products.get(i);
-
-            if (i % 2 == 0) {
-                product.setCategory(category1);
-            } else {
-                product.setCategory(category2);
-            }
-        }
-
-        // Update the products in the database
-        productRepository.batchUpdate(products);
+    private void shuffleArray(String[] array) {
+        List<String> list = Arrays.asList(array);
+        Collections.shuffle(list);
+        list.toArray(array);
     }
 
     public void addImagesToProducts() {
@@ -93,31 +126,5 @@ public class ProductDataInserter {
 
         // Update the products in the database
         productRepository.batchUpdate(products);
-    }
-
-    public void updateProductNames() {
-    // Retrieve all the products
-    List<Product> products = productRepository.retrieveProducts(1, Integer.MAX_VALUE);
-
-    // For each product, check if its name contains a space
-    for (Product product : products) {
-        String name = product.getName();
-        if (name.contains(" ")) {
-            // If it does, replace all spaces with dashes
-            product.setName(name.replace(" ", "-"));
-        }
-    }
-
-    // Update the products in the database
-    productRepository.batchUpdate(products);
-}
-
-    public static void main(String[] args) {
-        ProductDataInserter productDataInserter = new ProductDataInserter();
-        productDataInserter.insertProducts();
-        productDataInserter.updateProductCategories();
-        productDataInserter.addImagesToProducts();
-        productDataInserter.addProductDetailsToProducts();
-        productDataInserter.updateProductNames();
     }
 }

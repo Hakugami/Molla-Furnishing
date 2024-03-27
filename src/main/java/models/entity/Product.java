@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "products")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
 
     @Setter
@@ -57,7 +57,7 @@ public class Product {
     @Setter
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "product_images", joinColumns = @JoinColumn(name = "product_id"))
-    @Column(name = "image_url")
+    @Column(name = "image_url",columnDefinition = "TEXT")
     private List<String> images;
 
     @Setter
@@ -87,13 +87,24 @@ public class Product {
     @Transient
     private String categoryName;
 
+    @Setter
+    @Transient
+    private String subCategoryName;
+
+    @Setter
+    private boolean deleted;
+
     @PostLoad
     public void postLoad() {
         this.rating = getRating();
-        if(category != null) {
+        if (category != null) {
             this.categoryName = category.getName();
         }
+        if (subCategory != null) {
+            this.subCategoryName = subCategory.getName();
+        }
     }
+
 
     public double getRating() {
         return ratings.stream().mapToDouble(Rating::getValue).average().orElse(0.0);

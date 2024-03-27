@@ -42,9 +42,19 @@
         <url-pattern>/view/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>controllers.filters.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/view/admin/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>controllers.servlets.FrontController</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -53,118 +63,131 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controllers.servlets.LoginServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LoginServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controllers.servlets.RegisterServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RegisterServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>RetrieveProducts</servlet-name>
-        <servlet-class>controllers.servlets.RetrieveProductsServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RetrieveProductsServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
-        <servlet-class>controllers.servlets.HomeServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.HomeServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProductsServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProductsServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProductsServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>RetrieveProductCountServlet</servlet-name>
-        <servlet-class>controllers.servlets.RetrieveProductCountServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.RetrieveProductCountServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RetrieveProductByIdServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.RetrieveProductById</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ProductPageServlet</servlet-name>
-        <servlet-class>controllers.servlets.ProductPageServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ProductPageServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ReviewServlet</servlet-name>
-        <servlet-class>controllers.servlets.ReviewServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ReviewServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AboutServlet</servlet-name>
-        <servlet-class>controllers.servlets.AboutServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.AboutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>WishlistServlet</servlet-name>
-        <servlet-class>controllers.servlets.WishlistServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.WishlistServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>CartServlet</servlet-name>
-        <servlet-class>controllers.servlets.CartServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.CartServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.EditProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.EditProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>EmailValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.EmailValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.EmailValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PasswordValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.PasswordValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.PasswordValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>PhoneNumberValidationServlet</servlet-name>
-        <servlet-class>controllers.servlets.PhoneNumberValidationServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.PhoneNumberValidationServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LoadProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.LoadProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LoadProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controllers.servlets.LogoutServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.LogoutServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>MyProfileServlet</servlet-name>
-        <servlet-class>controllers.servlets.MyProfileServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.MyProfileServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>AddressServlet</servlet-name>
-        <servlet-class>controllers.servlets.AddressServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.AddressServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>SendResetPasswordServlet</servlet-name>
-        <servlet-class>controllers.servlets.SendResetPasswordServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.SendResetPasswordServlet</servlet-class>
     </servlet>
 
     <servlet>
         <servlet-name>ResetPasswordChangeServlet</servlet-name>
-        <servlet-class>controllers.servlets.ResetPasswordChangeServlet</servlet-class>
+        <servlet-class>controllers.servlets.user.ResetPasswordChangeServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AddressBookServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.AddressBookServlet</servlet-class>
     </servlet>
 
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
-    <!--Admin Servlets-->
+    <!--///////////////////////////////////////Admin Servlets//////////////////////////////////////-->
+
+    <!---//////////////////////////////////////Admin Pages/////////////////////////////////////////-->
     <!--Admin Login Page-->
     <servlet>
         <servlet-name>AdminLoginServlet</servlet-name>
@@ -185,14 +208,14 @@
 
     <!--Admin View/Edit Product Page-->
     <servlet>
-        <servlet-name>AdminViewProductServlet</servlet-name>
+        <servlet-name>AdminViewProductPageServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminViewProductServlet</servlet-class>
     </servlet>
 
     <!--Admin Add Product Page-->
     <servlet>
-        <servlet-name>AdminAddProductServlet</servlet-name>
-        <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
+        <servlet-name>AdminAddProductPageServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAddProductPageServlet</servlet-class>
     </servlet>
 
     <!--Admin All Users Page-->
@@ -212,47 +235,83 @@
         <servlet-name>AdminAddUserServlet</servlet-name>
         <servlet-class>controllers.servlets.admin.AdminAddUserServlet</servlet-class>
     </servlet>
+    <!--////////////////////////////////////////////Admin Operations/////////////////////////////////-->
 
+    <!--////////////////////////////////////////////Admin Update Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminUpdateProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminUpdateProductServlet</servlet-class>
+    </servlet>
+    <!--////////////////////////////////////////////Admin Add Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminAddProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminAddProductServlet</servlet-class>
+        <multipart-config>
+            <max-file-size>10485760000</max-file-size> <!-- 10 MB -->
+
+            <max-request-size>2009715200</max-request-size> <!-- 20 MB -->
+
+            <file-size-threshold>2009715200</file-size-threshold>
+        </multipart-config>
+    </servlet>
+
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+    <servlet>
+        <servlet-name>AdminRemoveProductServlet</servlet-name>
+        <servlet-class>controllers.servlets.admin.AdminRemoveProductServlet</servlet-class>
+    </servlet>
+    <!--////////////////////////////////////////////Admin Remove Product/////////////////////////////-->
+
+
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.CheckoutServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>GetUserOrdersServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.GetUserOrdersServlet</servlet-class>
+    </servlet>
     <!--Admin Security Constraint-->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Admin Section</web-resource-name>
-            <url-pattern>/view/admin/*</url-pattern>
-            <http-method>DELETE</http-method>
-            <http-method>GET</http-method>
-            <http-method>HEAD</http-method>
-            <http-method>OPTIONS</http-method>
-            <http-method>POST</http-method>
-            <http-method>PUT</http-method>
-            <http-method>TRACE</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
-        </auth-constraint>
-    </security-constraint>
+    <!--    <security-constraint>-->
+    <!--        <web-resource-collection>-->
+    <!--            <web-resource-name>Admin Section</web-resource-name>-->
+    <!--            <url-pattern>/view/admin/*</url-pattern>-->
+    <!--            <http-method>DELETE</http-method>-->
+    <!--            <http-method>GET</http-method>-->
+    <!--            <http-method>HEAD</http-method>-->
+    <!--            <http-method>OPTIONS</http-method>-->
+    <!--            <http-method>POST</http-method>-->
+    <!--            <http-method>PUT</http-method>-->
+    <!--            <http-method>TRACE</http-method>-->
+    <!--        </web-resource-collection>-->
+    <!--        <auth-constraint>-->
+    <!--            <role-name>manager</role-name>-->
+    <!--        </auth-constraint>-->
+    <!--    </security-constraint>-->
 
-    <security-role>
-        <role-name>admin</role-name>
-    </security-role>
+    <!--    <security-role>-->
+    <!--        <role-name>manager</role-name>-->
+    <!--    </security-role>-->
 
-    <login-config>
-        <auth-method>BASIC</auth-method>
-        <realm-name>Admin Area Authentication</realm-name>
-        <!--        <form-login-config>-->
-        <!--            <form-login-page>/Adminpanel/adminlogin.html</form-login-page>-->
-        <!--            <form-error-page>/Adminpanel/adminlogin.html</form-error-page>-->
-        <!--        </form-login-config>-->
-    </login-config>
+    <!--    <login-config>-->
+    <!--        <auth-method>BASIC</auth-method>-->
+    <!--        <realm-name>Admin Area Authentication</realm-name>-->
+    <!--        &lt;!&ndash;        <form-login-config>&ndash;&gt;-->
+    <!--        &lt;!&ndash;            <form-login-page>/Adminpanel/adminlogin.html</form-login-page>&ndash;&gt;-->
+    <!--        &lt;!&ndash;            <form-error-page>/Adminpanel/adminlogin.html</form-error-page>&ndash;&gt;-->
+    <!--        &lt;!&ndash;        </form-login-config>&ndash;&gt;-->
+    <!--    </login-config>-->
 
-<!--    <error-page>-->
-<!--        <error-code>404</error-code>-->
-<!--        <location>/404.jsp</location>-->
-<!--    </error-page>-->
+    <!--    <error-page>-->
+    <!--        <error-code>404</error-code>-->
+    <!--        <location>/404.jsp</location>-->
+    <!--    </error-page>-->
 
-<!--    <error-page>-->
-<!--        <exception-type>java.lang.Exception</exception-type>-->
-<!--        <location>/404.jsp</location>-->
-<!--    </error-page>-->
+    <!--    <error-page>-->
+    <!--        <exception-type>java.lang.Exception</exception-type>-->
+    <!--        <location>/404.jsp</location>-->
+    <!--    </error-page>-->
 
 
 </web-app>

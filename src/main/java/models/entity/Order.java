@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
+import java.time.Instant;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +21,7 @@ import java.util.Objects;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Setter
@@ -36,8 +39,14 @@ public class Order {
 
     @Setter
     @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+
+    @Transient
+    private LocalDate date;
+
+    @Transient
+    private LocalTime time;
 
     public void addOrderItems(Product product, int quantity, double totalAmount) {
         if (orderItems == null) {
@@ -55,12 +64,17 @@ public class Order {
         orderDate = new Date();
     }
 
+    @PostLoad
+    public void setTransientFields() {
+        this.date = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.time = orderDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Order)) return false;
-
-        Order order = (Order) o;
+        if (!(o instanceof Order order)) return false;
 
         return Objects.equals(id, order.id);
     }

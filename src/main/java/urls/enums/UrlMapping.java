@@ -8,13 +8,14 @@ public enum UrlMapping {
     LOGIN("login", "/login", "LoginServlet", "/signin.jsp"),
     REGISTER("register", "/register", "RegisterServlet", "/signup.jsp"),
     RETRIEVE_PRODUCTS("RetrieveProducts", "/retrieveProducts", "RetrieveProducts", ""),
-    RETRIEVE_PRODUCT_COUNT("RetrieveProductCount", "/retrieveProductCount", "RetrieveProductCountServlet",""),
+    RETRIEVE_PRODUCT_COUNT("RetrieveProductCount", "/retrieveProductCount", "RetrieveProductCountServlet", ""),
+    RETRIEVE_PRODUCT_BY_ID("RetrieveProductById", "/retrieveProductById", "RetrieveProductByIdServlet", ""),
     HOME("home", "/home", "HomeServlet", "/index-3.jsp"),
-    PROFILE("profile", "/profile", "ProfileServlet", "/dashboard.html"),
+    PROFILE("profile", "/profile", "ProfileServlet", "/dashboard.jsp"),
     PRODUCTS("product", "/product", "ProductsServlet", "/shop-grid-full.jsp"),
-    PRODUCTPAGE("ProductPage", "/ProductPage", "ProductPageServlet", "/product-detail.html"),
-    REVIEW("Review", "/Review", "ReviewServlet", "/product-detail.html"),
-    EDITPROFILE("editProfile", "/editProfile", "EditProfileServlet", "/dash-edit-profile.html"),
+    PRODUCTPAGE("ProductPage", "/ProductPage", "ProductPageServlet", "/product-detail.jsp"),
+    REVIEW("Review", "/Review", "ReviewServlet", "/product-detail.jsp"),
+    EDITPROFILE("editProfile", "/editProfile", "EditProfileServlet", "/dash-edit-profile.jsp"),
     EMAILVALIDATION("emailValidation", "/emailValidation", "EmailValidationServlet", ""),
     PASSWORDVALIDATION("passwordValidation", "/passwordValidation", "PasswordValidationServlet", ""),
     PHONEVALIDATION("phoneValidation", "/phoneValidation", "PhoneNumberValidationServlet", ""),
@@ -23,19 +24,28 @@ public enum UrlMapping {
     CART("cart", "/cart", "CartServlet", "/cart.jsp"),
     LOGOUT("logout", "/logout", "LogoutServlet", ""),
     LOADPROFILE("loadProfile", "/loadProfile", "LoadProfileServlet", ""),
-    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.html"),
-    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", ""),
-    RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.html"),
-    RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.html"),
+    MYPROFILE("myProfile", "/myProfile", "MyProfileServlet", "/dash-my-profile.jsp"),
+    ADDRESSOPERATION("addressOperation", "/addressOperation", "AddressServlet", "/dash-address-add.jsp"),
+    ADDRESS("address", "/address", "AddressBookServlet", "/dash-address-book.jsp"),
+    RESETPASSWORD("sendResetPassword", "/sendResetPassword", "SendResetPasswordServlet", "/lost-password.jsp"),
+    RESETPASSWORDCHANGE("resetPasswordChange", "/resetPasswordChange", "ResetPasswordChangeServlet", "/lost-password-change.jsp"),
+    CHECKOUT("checkout", "/checkout", "CheckoutServlet", "/checkout.jsp"),
+    GET_USER_ORDERS("getUserOrders", "/getUserOrders", "GetUserOrdersServlet", ""),
     //Admin page
-    ADMINHOME("adminhome","/admin/home","AdminHomeServlet","/Adminpanel/index.html"),
-    ADMINLOGIN("adminlogin","/admin/login","AdminLoginServlet","/Adminpanel/adminlogin.html"),
-    ADMINALLPRODUCTS("adminallproducts","/admin/all/products","AdminAllProductsServlet","/Adminpanel/allproducts.html"),
-    ADMINVIEWPRODUCT("adminviewproduct","/admin/viewproduct","AdminViewProductServlet","/Adminpanel/viewproduct.html"),
-    ADMINALLUSERS("adminallusers","/admin/allusers","AdminAllUsersServlet","/Adminpanel/allusers.jsp"),
-    ADMINVIEWUSER("adminviewuser","/admin/viewuser","AdminViewUserServlet","/Adminpanel/viewuser.html"),
-    ADMINADDUSER("adminadduser","/adminadduser","AdminAddUserServlet","/Adminpanel/adduser.html"),
-    ADMINADDPRODUCT("adminaddproduct","/admin/addproduct","AdminAddProductServlet","/Adminpanel/addproduct.html");
+    ADMIN_HOME("adminhome", "/admin/home", "AdminHomeServlet", "/Adminpanel/index.html"),
+    ADMIN_LOGIN("adminlogin", "/admin/login", "AdminLoginServlet", "/Adminpanel/adminlogin.html"),
+    ADMIN_ALL_PRODUCTS("adminallproducts", "/admin/all/products", "AdminAllProductsServlet", "/Adminpanel/allproducts.html"),
+    ADMIN_VIEW_PRODUCT("adminviewproduct", "/admin/viewproduct", "AdminViewProductPageServlet", "/Adminpanel/viewproduct.html"),
+    ADMIN_ALL_USERS("adminallusers", "/admin/allusers", "AdminAllUsersServlet", "/Adminpanel/allusers.jsp"),
+    ADMIN_VIEW_USER("adminviewuser", "/admin/viewuser", "AdminViewUserServlet", "/Adminpanel/viewuser.jsp"),
+    ADMIN_ADD_USER("adminadduser", "/admin/adduser", "AdminAddUserServlet", "/Adminpanel/adduser.html"),
+    ADMIN_ADD_PRODUCT_PAGE("adminaddproductpage", "/admin/addproductpage", "AdminAddProductPageServlet", "/Adminpanel/addproduct.html"),
+    //Admin Operations
+    ADMINUPDATEPRODUCT("adminupdateproduct", "/admin/updateproduct", "AdminUpdateProductServlet", ""),
+    ADMIN_ADD_PRODUCT("adminaddproduct", "/admin/addproduct", "AdminAddProductServlet", ""),
+    ADMIN_REMOVE_PRODUCT("adminremoveproduct", "/admin/removeproduct", "AdminRemoveProductServlet", ""),
+
+    ;
 
     private final String command;
     private final String url;
@@ -43,15 +53,24 @@ public enum UrlMapping {
     private final String pageName;
 
 
-    UrlMapping(String command, String url ,String servletName, String pageName) {
+    UrlMapping(String command, String url, String servletName, String pageName) {
         this.command = command;
         this.url = url;
         this.servletName = servletName;
         this.pageName = pageName;
     }
-    
+
+    public static String getServletNameForCommand(String commandName) {
+        for (UrlMapping mapping : UrlMapping.values()) {
+            if (mapping.getCommand().equals(commandName)) {
+                return mapping.getServletName();
+            }
+        }
+        throw new IllegalArgumentException("No mapping found for command: " + commandName);
+    }
+
     public String getContextEmbeddedUrl(String contextPath) {
-        return contextPath +CONTEXT_DEFAULT.getUrl() + url;
+        return contextPath + CONTEXT_DEFAULT.getUrl() + url;
     }
 
 

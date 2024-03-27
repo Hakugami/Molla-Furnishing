@@ -1,6 +1,10 @@
 package models.DTOs;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import models.entity.Product;
 
 import java.io.Serializable;
@@ -15,17 +19,21 @@ import java.util.List;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class ProductDto implements Serializable {
-    long productId;
     String name;
     String description;
     double price;
     int quantity;
     List<String> images;
+    @JsonIgnore
     List<RatingDto> ratings;
     String categoryName;
+    String subCategoryName;
     double rating;
+    boolean deleted;
+    @JsonIgnore
     DiscountedProductDto discountedProduct;
-
+    long productId;
+    @JsonIgnore
     private Date dateAdded;
     private ProductDetailsDto productDetails;
 }

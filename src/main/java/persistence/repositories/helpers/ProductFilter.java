@@ -10,6 +10,7 @@ import models.entity.Product;
 @Data
 public class ProductFilter {
     private String category;
+    private String subcategory;
     private String brand;
     private String name;
     private String sortBy;
@@ -21,6 +22,7 @@ public class ProductFilter {
 
     //search fields disjunctions
     private String searchCategory;
+    private String searchSubcategory;
     private String searchName;
     private double searchMinPrice;
     private double searchMaxPrice;
@@ -31,6 +33,11 @@ public class ProductFilter {
 
         if (category != null) {
             predicate = criteriaBuilder.and(predicate, criteriaBuilder.like(root.get("category").get("name"), "%" + category + "%"));
+        }
+
+        //.equal will not return any products if subcategory is empty
+        if (subcategory!=null && !subcategory.isEmpty() ) {
+            predicate = criteriaBuilder.and(predicate, criteriaBuilder.equal(root.get("subCategory").get("name"),subcategory));
         }
 
         if (brand != null) {
@@ -61,7 +68,7 @@ public class ProductFilter {
         return predicate;
     }
 
-    public  Predicate toPredicateDisjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
+    public Predicate toPredicateDisjunction(CriteriaBuilder criteriaBuilder, Root<Product> root) {
         Predicate predicate = criteriaBuilder.disjunction();
 
         if (searchCategory != null) {

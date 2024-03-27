@@ -11,6 +11,6 @@ import java.io.IOException;
 public class AdminAddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(UrlMapping.ADMINADDUSER.getPageName()).forward(req, resp);
+        req.getRequestDispatcher(UrlMapping.ADMIN_ADD_USER.getPageName()).forward(req, resp);
     }
 }

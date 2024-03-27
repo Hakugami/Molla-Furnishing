@@ -13,22 +13,28 @@ $(document).ready(function() {
                 // Clear existing table rows
                 $('#productTable tbody').empty();
 
-                // Loop through each product in the data and append to the table
-                $.each(data, function(index, product) {
-                    var row = '<tr>' +
-                        '<td><img alt="" class="rounded-circle" height="55" src="' + product.images[1] + '"></td>' +
-                        '<td><h6 class="fw-semibold mb-0">' + product.productId + '</h6></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.name + '</h6></td>' +
-                        '<td><div class="d-flex align-items-center gap-2"><span class="badge bg-primary rounded-3 fw-semibold">' + product.categoryName + '</span></div></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.price + '</h6></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.description + '</h6></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.dateAdded + '</h6></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.rating + '</h6></td>' +
-                        '<td><h6 class="fw-semibold mb-1">' + product.quantity + '</h6></td>' +
-                        '<td><button type="button" class="btn btn-outline-secondary m-1">View</button></td>' +
-                        '</tr>';
-                    $('#productTable tbody').append(row);
-                });
+            // Loop through each product in the data and append to the table
+            $.each(data, function(index, product) {
+                // Determine the CSS class based on the value of product.isDeleted
+                var rowClass = product.deleted ? 'deleted-row' : '';
+
+                // Construct the table row with the appropriate class
+                var row = '<tr class="' + rowClass + '">' +
+                    '<td><img alt="" class="rounded-circle" height="55" src="' + product.images[1] + '"></td>' +
+                    '<td><h6 class="fw-semibold mb-0">' + product.productId + '</h6></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.name + '</h6></td>' +
+                    '<td><div class="d-flex align-items-center gap-2"><span class="badge bg-primary rounded-3 fw-semibold">' + product.categoryName + '</span></div></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.price + '</h6></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.description + '</h6></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.dateAdded + '</h6></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.rating + '</h6></td>' +
+                    '<td><h6 class="fw-semibold mb-1">' + product.quantity + '</h6></td>' +
+                    '<td><a href="/molla/view/admin/viewproduct?productId=' + product.productId + '" class="btn btn-outline-secondary m-1">View</a></td>' +   '</tr>';
+
+                // Append the constructed row to the table body
+                $('#productTable tbody').append(row);
+            });
+
 
                 // Update pagination controls
                 updatePaginationControls(page, size);

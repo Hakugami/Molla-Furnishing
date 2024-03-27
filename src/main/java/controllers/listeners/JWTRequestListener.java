@@ -2,7 +2,6 @@ package controllers.listeners;
 
 import jakarta.servlet.ServletRequestEvent;
 import jakarta.servlet.ServletRequestListener;
-import jakarta.servlet.annotation.WebListener;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import models.DTOs.UserDto;
@@ -33,7 +32,6 @@ public class JWTRequestListener implements ServletRequestListener {
 
                 System.out.println("Claims-----------------------: " + Long.valueOf(claims.getSubject()));
                 UserDto user = userService.getUserById(Long.valueOf(claims.getSubject()));
-                user.setPassword(null);
                 httpServletRequest.setAttribute("user", user);
                 System.out.println("User: " + user);
             } catch (InvalidJwtException | UnknownHostException | MalformedClaimException e) {
