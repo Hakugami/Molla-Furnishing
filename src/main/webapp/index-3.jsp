@@ -8,24 +8,24 @@
             <!--====== Primary Slider ======-->
             <div class="s-skeleton s-skeleton--h-640 s-skeleton--bg-grey">
                 <div class="owl-carousel primary-style-3" id="hero-slider">
-                    <div class="hero-slide hero-slide--7">
+                    <div class="hero-slide hero-slide--7" style="background-image: url('images/slider/slide.jpg');">
                         <div class="primary-style-3-wrap">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="slider-content slider-content--animation">
 
-                                            <span class="content-span-1 u-c-white">Update Your Fashion</span>
+                                            <span class="content-span-1" style="color: grey;">Update Your Fashion</span>
 
-                                            <span class="content-span-2 u-c-white">10% Discount on Outwear</span>
+                                            <span class="content-span-2" style="color: grey;">10% Discount on Outwear</span>
 
-                                            <span class="content-span-3 u-c-white">Find outwear on best prices</span>
+                                            <span class="content-span-3" style="color: grey;">Find outwear on best prices</span>
 
-                                            <span class="content-span-4 u-c-white">Starting At
+                                            <span class="content-span-4" style="color: grey;">Starting At
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP
+                                            <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
                                                 NOW</a>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-slide hero-slide--8">
+                    <div class="hero-slide hero-slide--8" style="background-image: url('images/slider/slide2.png');">
                         <div class="primary-style-3-wrap">
                             <div class="container">
                                 <div class="row">
@@ -50,7 +50,7 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP
+                                            <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
                                                 NOW</a>
                                         </div>
                                     </div>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-slide hero-slide--9">
+                    <div class="hero-slide hero-slide--9" style="background-image: url('images/slider/slide3.png');">
                         <div class="primary-style-3-wrap">
                             <div class="container">
                                 <div class="row">
@@ -75,7 +75,7 @@
 
                                                 <span class="u-c-brand">$100.00</span></span>
 
-                                            <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP
+                                            <a class="shop-now-link btn--e-brand" href="shop-grid-full.jsp">SHOP
                                                 NOW</a>
                                         </div>
                                     </div>
