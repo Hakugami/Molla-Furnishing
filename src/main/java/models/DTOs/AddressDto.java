@@ -16,7 +16,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class AddressDto implements Serializable {
-    long id;
+    Long id;
     String street;
     String city;
     String state;

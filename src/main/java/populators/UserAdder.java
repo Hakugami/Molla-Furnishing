@@ -73,7 +73,7 @@ public class UserAdder {
 //        }
 
 
-//        addUserAddressTest();
+        addUserAddressTest();
 //        removeUserAddressTest();
 //        printUserAddresses();
 
