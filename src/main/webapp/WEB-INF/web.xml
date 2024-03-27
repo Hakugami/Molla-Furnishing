@@ -245,6 +245,12 @@
             <file-size-threshold>2009715200</file-size-threshold>
         </multipart-config>
     </servlet>
+    
+    
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>controllers.servlets.user.CheckoutServlet</servlet-class>
+    </servlet>
 
     <!--Admin Security Constraint-->
     <security-constraint>
