@@ -4,7 +4,7 @@
     <div class="outer-footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="outer-footer__content u-s-m-b-40">
 
                         <span class="outer-footer__content-title">Contact Us</span>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <div class="outer-footer__content u-s-m-b-40">
@@ -50,16 +50,6 @@
                                         <li>
 
                                             <a href="profile">Account</a></li>
-
-                                        <li>
-
-                                            <a href="dash-payment-option.html">Finance</a></li>
-                                        <li>
-
-                                            <a href="dash-my-order.html">Delivery</a></li>
-                                        <li>
-
-                                            <a href="shop-side-version-2.html">Shop</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -77,39 +67,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12">
-                    <div class="outer-footer__content">
-
-                        <span class="outer-footer__content-title">Join our Newsletter</span>
-                        <form class="newsletter">
-                            <div class="u-s-m-b-15">
-                                <div class="radio-box newsletter__radio">
-
-                                    <input type="radio" id="male" name="gender">
-                                    <div class="radio-box__state radio-box__state--primary">
-
-                                        <label class="radio-box__label" for="male">Male</label></div>
-                                </div>
-                                <div class="radio-box newsletter__radio">
-
-                                    <input type="radio" id="female" name="gender">
-                                    <div class="radio-box__state radio-box__state--primary">
-
-                                        <label class="radio-box__label" for="female">Female</label></div>
-                                </div>
-                            </div>
-                            <div class="newsletter__group">
-
-                                <label for="newsletter"></label>
-
-                                <input class="input-text input-text--only-white" type="text" id="newsletter" placeholder="Enter your Email">
-
-                                <button class="btn btn--e-brand newsletter__btn" type="submit">SUBSCRIBE</button></div>
-
-                            <span class="newsletter__text">Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.</span>
-                        </form>
                     </div>
                 </div>
             </div>

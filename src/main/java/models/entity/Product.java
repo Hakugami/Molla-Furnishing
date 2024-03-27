@@ -91,6 +91,8 @@ public class Product {
     @Transient
     private String subCategoryName;
 
+    @Setter
+    private boolean deleted;
 
     @PostLoad
     public void postLoad() {

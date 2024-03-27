@@ -42,6 +42,8 @@ public enum UrlMapping {
     //Admin Operations
     ADMINUPDATEPRODUCT("adminupdateproduct", "/admin/updateproduct", "AdminUpdateProductServlet", ""),
     ADMIN_ADD_PRODUCT("adminaddproduct", "/admin/addproduct", "AdminAddProductServlet", ""),
+    ADMIN_REMOVE_PRODUCT("adminremoveproduct", "/admin/removeproduct", "AdminRemoveProductServlet", ""),
+
     ;
 
     private final String command;

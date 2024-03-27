@@ -31,6 +31,23 @@ function previewImages(event) {
     }
 }
 
+// Function to handle displaying images when fetching product details
+function displayProductImages(product) {
+    if (product.images && product.images.length > 0) {
+        $('#bigImagePreview').attr('src', product.images[0]);
+        $('#smallImagePreviews').empty(); // Clear existing previews
+        for (var i = 0; i < product.images.length; i++) {
+            var imageSrc = product.images[i];
+            var image = $('<img>').attr('src', imageSrc).addClass('small-image-preview');
+            image.on('click', function() {
+                $('#bigImagePreview').attr('src', $(this).attr('src'));
+            });
+            $('#smallImagePreviews').append(image);
+        }
+    }
+}
+
+
 // Attach event listener to image input
 $('#imageInput').on('change', previewImages);
 
@@ -128,17 +145,19 @@ $(document).ready(function() {
                     }
                 }
 
-                if (product.images && product.images.length > 0) {
-                    $('#bigImagePreview').attr('src', product.images[0]);
-                    for (var i = 0; i < product.images.length; i++) {
-                        var imageSrc = product.images[i];
-                        var image = $('<img>').attr('src', imageSrc).addClass('small-image-preview');
-                        image.on('click', function() {
-                            $('#bigImagePreview').attr('src', $(this).attr('src'));
-                        });
-                        $('#smallImagePreviews').append(image);
-                    }
-                }
+                displayProductImages(product); // Call the function to display images
+
+//                if (product.images && product.images.length > 0) {
+//                    $('#bigImagePreview').attr('src', product.images[0]);
+//                    for (var i = 0; i < product.images.length; i++) {
+//                        var imageSrc = product.images[i];
+//                        var image = $('<img>').attr('src', imageSrc).addClass('small-image-preview');
+//                        image.on('click', function() {
+//                            $('#bigImagePreview').attr('src', $(this).attr('src'));
+//                        });
+//                        $('#smallImagePreviews').append(image);
+//                    }
+//                }
             },
             error: function(xhr, status, error) {
                 console.error('Error fetching product data:', error);
@@ -235,14 +254,17 @@ $('#productForm').submit(function(event) {
         var confirmDelete = confirm("Are you sure you want to delete this product?");
         if (confirmDelete) {
             $.ajax({
-                url: '/molla/deleteProductServlet',
+                url: '/molla/view/admin/removeproduct',
                 type: 'POST',
                 data: { productId: productId },
                 success: function(response) {
                     console.log('Product deleted successfully:', response);
-                },
+                    showNotification("Product deleted Successfully","success");
+                    window.location.href = '/molla/view/admin/home';
+                    },
                 error: function(xhr, status, error) {
                     console.error('Error deleting product:', error);
+                    showNotification("Error Deleting Product","danger");
                 }
             });
         }
