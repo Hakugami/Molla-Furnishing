@@ -11,7 +11,7 @@ $(document).ready(function() {
 
     function loadUsers() {
         $.ajax({
-            url: '/molla/view/admin/allusers',
+            url: '/view/admin/allusers',
             type: 'POST',
             dataType: 'json',
             data: { currentPage: currentPage },

@@ -29,8 +29,9 @@
     </filter>
     <filter-mapping>
         <filter-name>JWTFilter</filter-name> <!-- placeholder-->
-        <url-pattern>/view/profile/*</url-pattern> <!-- placeholder-->
-        <url-pattern>/checkout</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/profile</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/myProfile</url-pattern> <!-- placeholder-->
+        <url-pattern>/view/checkout</url-pattern> <!-- placeholder-->
     </filter-mapping>
 
     <filter>

@@ -21,7 +21,7 @@
         <!-- Sidebar scroll-->
         <div>
             <div class="brand-logo d-flex align-items-center justify-content-between">
-                <a class="text-nowrap logo-img" href="/molla/view/admin/home">
+                <a class="text-nowrap logo-img" href="/view/admin/home">
                     <img alt="" src="assets/images/logos/mollalogotransparent.png" width="180"/>
                 </a>
                 <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -36,7 +36,7 @@
                         <span class="hide-menu">Home</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/home">
+                        <a aria-expanded="false" class="sidebar-link" href="/view/admin/home">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -48,7 +48,7 @@
                         <span class="hide-menu">Users</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allusers">
+                        <a aria-expanded="false" class="sidebar-link" href="/view/admin/allusers">
                 <span>
                   <i class="ti ti-user"></i>
                 </span>
@@ -56,7 +56,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/adduser">
+                        <a aria-expanded="false" class="sidebar-link" href="/view/admin/adduser">
                 <span>
                   <i class="ti ti-user-plus"></i>
                 </span>
@@ -68,7 +68,7 @@
                         <span class="hide-menu">Products</span>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/allproducts">
+                        <a aria-expanded="false" class="sidebar-link" href="/view/admin/allproducts">
                 <span>
                   <i class="ti ti-package"></i>
                 </span>
@@ -76,7 +76,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a aria-expanded="false" class="sidebar-link" href="/molla/view/admin/addproductpage">
+                        <a aria-expanded="false" class="sidebar-link" href="/view/admin/addproductpage">
                 <span>
                   <i class="ti ti-plus"></i>
                 </span>

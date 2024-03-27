@@ -117,7 +117,7 @@ $(document).ready(function() {
 
     function getProductDetails(productId) {
         $.ajax({
-            url: '/molla/view/RetrieveProductById',
+            url: '/view/RetrieveProductById',
             type: 'GET',
             dataType: 'json',
             data: { productId: productId },
@@ -227,7 +227,7 @@ $('#productForm').submit(function(event) {
         };
 
         $.ajax({
-            url: '/molla/view/admin/updateproduct',
+            url: '/view/admin/updateproduct',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(editedProduct),
@@ -254,13 +254,13 @@ $('#productForm').submit(function(event) {
         var confirmDelete = confirm("Are you sure you want to delete this product?");
         if (confirmDelete) {
             $.ajax({
-                url: '/molla/view/admin/removeproduct',
+                url: '/view/admin/removeproduct',
                 type: 'POST',
                 data: { productId: productId },
                 success: function(response) {
                     console.log('Product deleted successfully:', response);
                     showNotification("Product deleted Successfully","success");
-                    window.location.href = '/molla/view/admin/home';
+                    window.location.href = '/view/admin/home';
                     },
                 error: function(xhr, status, error) {
                     console.error('Error deleting product:', error);

@@ -58,7 +58,7 @@ $(document).ready(function() {
 
         // Perform AJAX request
         $.ajax({
-            url: '/molla/view/admin/addproduct',
+            url: '/view/admin/addproduct',
             type: 'POST',
             data: formData,
             contentType: false, // Let jQuery handle the contentType

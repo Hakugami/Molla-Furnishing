@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Function to populate the table with product data
     function populateTable(page, size) {
         $.ajax({
-            url: '/molla/view/RetrieveProducts', // URL of the servlet
+            url: '/view/RetrieveProducts', // URL of the servlet
             type: 'GET',
             dataType: 'json',
             data: {
@@ -29,7 +29,7 @@ $(document).ready(function() {
                     '<td><h6 class="fw-semibold mb-1">' + product.dateAdded + '</h6></td>' +
                     '<td><h6 class="fw-semibold mb-1">' + product.rating + '</h6></td>' +
                     '<td><h6 class="fw-semibold mb-1">' + product.quantity + '</h6></td>' +
-                    '<td><a href="/molla/view/admin/viewproduct?productId=' + product.productId + '" class="btn btn-outline-secondary m-1">View</a></td>' +   '</tr>';
+                    '<td><a href="/view/admin/viewproduct?productId=' + product.productId + '" class="btn btn-outline-secondary m-1">View</a></td>' +   '</tr>';
 
                 // Append the constructed row to the table body
                 $('#productTable tbody').append(row);
@@ -48,7 +48,7 @@ $(document).ready(function() {
     // Function to update pagination controls
     function updatePaginationControls(page, size) {
         $.ajax({
-            url: '/molla/view/RetrieveProductCount', // URL of the servlet to count products
+            url: '/view/RetrieveProductCount', // URL of the servlet to count products
             type: 'GET',
             dataType: 'json',
             success: function(totalProducts) {
