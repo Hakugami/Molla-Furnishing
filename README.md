@@ -55,7 +55,7 @@ This website addresses two main actors. A user who buys products, and an admin w
 ![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JSON](https://img.shields.io/badge/JSON-blue?style=for-the-badge&logo=json)&nbsp;&nbsp;&nbsp;&nbsp;
 ![HTML](https://img.shields.io/badge/HTML-blue?style=for-the-badge&logo=html5)&nbsp;&nbsp;&nbsp;&nbsp;
-![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)&nbsp;&nbsp;&nbsp;&nbsp;<br>
+![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript)&nbsp;&nbsp;&nbsp;&nbsp;
 ![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)&nbsp;&nbsp;&nbsp;&nbsp;
 ![AJAX](https://img.shields.io/badge/AJAX-blue?style=for-the-badge&logo=ajax)&nbsp;&nbsp;&nbsp;&nbsp;
