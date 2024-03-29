@@ -39,21 +39,31 @@ This website addresses two main actors. A user who buys products, and an admin w
 - Add products with multiple images
 - View a list of users
 - View user profile and order history
-- 
+
 ## Technologies ⚙️
 
-- ![Java JDK](https://img.shields.io/badge/Java%20JDK-21-blue?style=for-the-badge&logo=java)
-- ![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-9-blue?style=for-the-badge&logo=eclipse&logoColor=white)
-- ![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)
-- ![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)
-- ![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)
-- ![JSON](https://img.shields.io/badge/JSON-blue?style=for-the-badge&logo=json)
-- ![HTML](https://img.shields.io/badge/HTML-blue?style=for-the-badge&logo=html5)
-- ![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)
-- ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript)
-- ![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)
-- ![AJAX](https://img.shields.io/badge/AJAX-blue?style=for-the-badge&logo=ajax)
-- ![Maven](https://img.shields.io/badge/Maven-blue?style=for-the-badge&logo=apache)
+![Java JDK](https://img.shields.io/badge/Java%20JDK-21-blue?style=for-the-badge&logo=java)&nbsp;&nbsp;&nbsp;&nbsp;
+![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-9-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
+![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)&nbsp;&nbsp;&nbsp;&nbsp;
+![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
+![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
+![JSON](https://img.shields.io/badge/JSON-blue?style=for-the-badge&logo=json)&nbsp;&nbsp;&nbsp;&nbsp;
+![HTML](https://img.shields.io/badge/HTML-blue?style=for-the-badge&logo=html5)&nbsp;&nbsp;&nbsp;&nbsp;
+![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)&nbsp;&nbsp;&nbsp;&nbsp;<br>
+![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript)&nbsp;&nbsp;&nbsp;&nbsp;
+![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)&nbsp;&nbsp;&nbsp;&nbsp;
+![AJAX](https://img.shields.io/badge/AJAX-blue?style=for-the-badge&logo=ajax)&nbsp;&nbsp;&nbsp;&nbsp;
+![Maven](https://img.shields.io/badge/Maven-blue?style=for-the-badge&logo=apache)
 
-## Acknowlegements
+## Architecture
+
+
+## Database Schema
+
+
+## Acknowledgments
+
+- Ludus website template for the frontend.<br> [![Ludus Template](https://img.shields.io/badge/Ludus_Template-Website-blue?style=for-the-badge&logo=html5)](https://github.com/ahmadhuss/ludus-free-premium-ecommerce-template)
+- Modernize admin template for the admin panel.<br> [![Modernize Admin Template](https://img.shields.io/badge/Modernize_Admin_Template-Admin-blue?style=for-the-badge&logo=html5)](https://adminmart.com/product/modernize-free-tailwind-admin/)
+- Logo created using Canva.<br> [![Canva](https://img.shields.io/badge/Canva-Design-blue?style=for-the-badge&logo=canva)](https://www.canva.com/)
 
