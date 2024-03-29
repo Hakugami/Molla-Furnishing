@@ -13,7 +13,7 @@ An Ecommerce website built with java servlets
  
 [![Hassan Arafa](https://img.shields.io/badge/Hassan_Arafa-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/hassanarafa)
 
-[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal)
+[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal) ![GitHub followers](https://img.shields.io/github/followers/MANofal)
 
 [![Mahmoud Marwan](https://img.shields.io/badge/Mahmoud_Marwan-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/elNemrMahmoud)
 
