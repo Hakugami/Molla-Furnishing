@@ -7,13 +7,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Hakugami/Molla-Furnishing) ![GitHub License](https://img.shields.io/github/license/Hakugami/Molla-Furnishing)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Hakugami/Molla-Furnishing) ![GitHub forks](https://img.shields.io/github/forks/Hakugami/Molla-Furnishing)
 
-
-
-
-
-
-## Project Description
+## Project Description 📝
 An Ecommerce website built with java servlets
+
 ## Team
 [![Islam Ahmed](https://img.shields.io/badge/Islam_Ahmed-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/Hakugami) ![GitHub followers](https://img.shields.io/github/followers/Hakugami?style=social) 
 
@@ -25,10 +21,10 @@ An Ecommerce website built with java servlets
 
 
 
-## Main Functionalities
+# Main Functionalities
 This website addresses two main actors. A user who buys products, and an admin who can manage products.
 
-### User Functionalities
+## User Functionalities
 
 - **Signup / Sign In (with email message)** 🔐
 - **Gmail Signup/Signin** ✉️
@@ -40,7 +36,7 @@ This website addresses two main actors. A user who buys products, and an admin w
 - **Search for products** 🔎
 - **Checkout** 💳
 
-### Admin Functionalities
+## Admin Functionalities
 
 - **View a list of products** 📋
 - **Edit products** 🖊️
@@ -50,7 +46,7 @@ This website addresses two main actors. A user who buys products, and an admin w
 
 
 
-## Technologies ⚙️
+# Technologies ⚙️
 
 ![Java JDK](https://img.shields.io/badge/Java%20JDK-21-blue?style=for-the-badge&logo=java)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,13 +61,14 @@ This website addresses two main actors. A user who buys products, and an admin w
 ![AJAX](https://img.shields.io/badge/AJAX-blue?style=for-the-badge&logo=ajax)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Maven](https://img.shields.io/badge/Maven-blue?style=for-the-badge&logo=apache)
 
-## Architecture
+# Architecture
 
 
-## Database Schema
+# Database Schema
+![image](https://github.com/Hakugami/Molla-Furnishing/assets/21118424/1de5f41f-b427-415c-8cf0-2cabd89c720e)
 
 
-## Acknowledgments
+# Acknowledgments
 
 - Ludus website template for the frontend.<br> [![Ludus Template](https://img.shields.io/badge/Ludus_Template-Website-blue?style=for-the-badge&logo=html5)](https://github.com/ahmadhuss/ludus-free-premium-ecommerce-template)
 - Modernize admin template for the admin panel.<br> [![Modernize Admin Template](https://img.shields.io/badge/Modernize_Admin_Template-Admin-blue?style=for-the-badge&logo=html5)](https://adminmart.com/product/modernize-free-tailwind-admin/)
