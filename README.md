@@ -3,47 +3,57 @@
 </p>
 
 # Molla 🚪
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/elNemrMahmoud/Molla-Furnishing) ![Github Created At](https://img.shields.io/github/created-at/Hakugami/Molla-Furnishing)
+![GitHub last commit](https://img.shields.io/github/last-commit/Hakugami/Molla-Furnishing) ![GitHub License](https://img.shields.io/github/license/Hakugami/Molla-Furnishing)
+![GitHub repo size](https://img.shields.io/github/repo-size/Hakugami/Molla-Furnishing) ![GitHub forks](https://img.shields.io/github/forks/Hakugami/Molla-Furnishing)
+
+
+
 
 
 
 ## Project Description
 An Ecommerce website built with java servlets
 ## Team
-[![Islam Ahmed](https://img.shields.io/badge/Islam_Ahmed-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/Hakugami)
- 
-[![Hassan Arafa](https://img.shields.io/badge/Hassan_Arafa-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/hassanarafa)
+[![Islam Ahmed](https://img.shields.io/badge/Islam_Ahmed-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/Hakugami) ![GitHub followers](https://img.shields.io/github/followers/Hakugami?style=social) 
 
-[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal) ![GitHub followers](https://img.shields.io/github/followers/MANofal)
+[![Hassan Arafa](https://img.shields.io/badge/Hassan_Arafa-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/hassanarafa) ![GitHub followers](https://img.shields.io/github/followers/hassanarafa)
 
-[![Mahmoud Marwan](https://img.shields.io/badge/Mahmoud_Marwan-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/elNemrMahmoud)
+[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal) ![GitHub followers](https://img.shields.io/github/followers/MANofal) 
+
+[![Mahmoud Marwan](https://img.shields.io/badge/Mahmoud_Marwan-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/elNemrMahmoud) ![GitHub followers](https://img.shields.io/github/followers/elNemrMahmoud) 
+
 
 
 ## Main Functionalities
 This website addresses two main actors. A user who buys products, and an admin who can manage products.
 
-### User
+### User Functionalities
 
-- Signup / Sign In (with email message)
-- Gmail Signup/Signin
-- View & Modify Profile
-- Add multiple shipping addresses
-- View list of products (with pagination)
-- Add product to cart (Logged in or not)
-- Filter products by category or price
-- Search for products
-- Checkout
+- **Signup / Sign In (with email message)** 🔐
+- **Gmail Signup/Signin** ✉️
+- **View & Modify Profile** 👤
+- **Add multiple shipping addresses** 📦
+- **View list of products (with pagination)** 🛍️
+- **Add product to cart (Logged in or not)** 🛒
+- **Filter products by category or price** 🔍
+- **Search for products** 🔎
+- **Checkout** 💳
 
-### Admin
-- Can View a list of products
-- Can edit products
-- Add products with multiple images
-- View a list of users
-- View user profile and order history
+### Admin Functionalities
+
+- **View a list of products** 📋
+- **Edit products** 🖊️
+- **Add products with multiple images** 📷
+- **View a list of users** 👥
+- **View user profile and order history** 📝
+
+
 
 ## Technologies ⚙️
 
 ![Java JDK](https://img.shields.io/badge/Java%20JDK-21-blue?style=for-the-badge&logo=java)&nbsp;&nbsp;&nbsp;&nbsp;
-![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-9-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
+![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
