@@ -52,10 +52,11 @@ This website addresses two main actors. A user who buys products, and an admin w
 ![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Java Servlet Pages](https://img.shields.io/badge/JSP-blue?style=for-the-badge&logo=JSP)&nbsp;&nbsp;&nbsp;&nbsp;
+![Firebase](https://img.shields.io/badge/firebase-blue?style=for-the-badge&logo=firebase)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JSON](https://img.shields.io/badge/JSON-blue?style=for-the-badge&logo=json)&nbsp;&nbsp;&nbsp;&nbsp;
-![HTML](https://img.shields.io/badge/HTML-blue?style=for-the-badge&logo=html5)&nbsp;&nbsp;&nbsp;&nbsp;
+![HTML5](https://img.shields.io/badge/HTML-blue?style=for-the-badge&logo=html5)&nbsp;&nbsp;&nbsp;&nbsp;
 ![CSS](https://img.shields.io/badge/CSS-blue?style=for-the-badge&logo=css3)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JavaScript](https://img.shields.io/badge/JavaScript-blue?style=for-the-badge&logo=javascript)&nbsp;&nbsp;&nbsp;&nbsp;
 ![jQuery](https://img.shields.io/badge/jQuery-blue?style=for-the-badge&logo=jquery)&nbsp;&nbsp;&nbsp;&nbsp;
