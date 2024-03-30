@@ -51,6 +51,7 @@ This website addresses two main actors. A user who buys products, and an admin w
 ![Java JDK](https://img.shields.io/badge/Java%20JDK-21-blue?style=for-the-badge&logo=java)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-10-blue?style=for-the-badge&logo=eclipse&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JPA Hibernate](https://img.shields.io/badge/JPA%20Hibernate-blue?style=for-the-badge&logo=hibernate)&nbsp;&nbsp;&nbsp;&nbsp;
+![Java Servlet Pages](https://img.shields.io/badge/JSP-blue?style=for-the-badge&logo=JSP)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Hikari CP](https://img.shields.io/badge/Hikari%20CP-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![Mapstruct](https://img.shields.io/badge/Mapstruct-blue?style=for-the-badge&logo=java&logoColor=white)&nbsp;&nbsp;&nbsp;&nbsp;
 ![JSON](https://img.shields.io/badge/JSON-blue?style=for-the-badge&logo=json)&nbsp;&nbsp;&nbsp;&nbsp;
