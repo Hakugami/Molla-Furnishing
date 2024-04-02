@@ -3,6 +3,9 @@
 <jsp:include page="/header.jsp"/>
 
 
+<div id="spinner" class="spinner-border text-primary" role="status" style="display: none;">
+    <span class="sr-only">Loading...</span>
+</div>
     <!--====== App Content ======-->
     <div class="app-content">
 

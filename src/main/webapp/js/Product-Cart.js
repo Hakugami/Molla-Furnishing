@@ -23,7 +23,7 @@ $(document).ready(function () {
             }
         },
         error: function (xhr, status, error) {
-            console.error('Error retrieving cart:', error);
+            toastr.error('Failed to retrieve shopping cart data.');
             console.error(xhr.responseText);
         }
     });
@@ -112,9 +112,9 @@ $(document).on('click', '.input-counter__minus', function () {
             },
             success: function (response) {
                 if (response === 'true') {
-                    alert('Product quantity decremented successfully!');
+                    toastr.success('Product quantity decremented successfully!');
                 } else {
-                    alert('Failed to decrement product quantity.');
+                    toastr.error('Failed to decrement product quantity.');
                 }
             },
             error: function (xhr, status, error) {
@@ -139,6 +139,7 @@ $(document).on('click', '.input-counter__plus', function () {
         updateProductCount(input, count);
         updateTotalSum();
 
+
         $.ajax({
             url: 'cart',
             type: 'POST',
@@ -148,9 +149,9 @@ $(document).on('click', '.input-counter__plus', function () {
             },
             success: function (response) {
                 if (response === 'true') {
-                    alert('Product quantity incremented successfully!');
+                    toastr.success('Product added to the cart!');
                 } else {
-                    alert('Failed to increment product quantity.');
+                    toastr.error('Failed to add product to the cart.');
                 }
             },
             error: function (xhr, status, error) {
@@ -158,7 +159,7 @@ $(document).on('click', '.input-counter__plus', function () {
             }
         });
     } else {
-        alert('Maximum quantity reached!');
+        toastr.error('Maximum quantity reached.');
     }
 });
 
@@ -182,9 +183,9 @@ $(document).on('click', '.table-p__delete-link', function () {
         },
         success: function (response) {
             if (response === 'true') {
-                alert('Product removed from the cart!');
+                toastr.success('Product removed from the cart!');
             } else {
-                alert('Failed to remove product from the cart.');
+                toastr.error('Failed to remove product from the cart.');
             }
         },
         error: function (xhr, status, error) {
@@ -262,9 +263,9 @@ function clearShoppingCart() {
         },
         success: function (response) {
             if (response === 'true') {
-                alert('Shopping cart cleared successfully!');
+                toastr.success('Shopping cart cleared successfully!');
             } else {
-                alert('Failed to clear shopping cart.');
+                toastr.error('Failed to clear shopping cart.');
             }
         },
         error: function (xhr, status, error) {

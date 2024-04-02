@@ -37,7 +37,7 @@ $(document).ready(function () {
         let productAlreadyInCart = shopping_products.some(item => item.name === product.name);
 
         if (product.quantity === 0) {
-            alert("Product is out of stock");
+            toastr.error("Product is out of stock");
             return;
         }
 
@@ -66,12 +66,13 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'true') {
-//                    alert('Product quantity incremented successfully!');
+                   toastr.success('Product quantity incremented successfully!');
                 } else {
-//                    alert('Failed to increment product quantity.');
+                   toastr.error('Failed to increment product quantity.');
                 }
             },
             error: function (xhr, status, error) {
+                toastr.error('Failed to increment product quantity.');
                 console.error(xhr.responseText);
             }
         });

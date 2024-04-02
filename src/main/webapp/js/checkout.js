@@ -43,12 +43,15 @@ $(document).ready(function () {
             type: 'POST',
             url: 'addressOperation',
             data: formData,
-            success: function(response) {
-                // handle success
+            success: function (response) {
+                toastr.success('Address added successfully!');
                 console.log(response);
+                setTimeout(function () {
+                    window.location.reload();
+                }, 2000);
             },
-            error: function(error) {
-                // handle error
+            error: function (error) {
+                toastr.error('Error adding address!');
                 console.error(error);
             }
         });
@@ -65,6 +68,7 @@ $(document).ready(function () {
         });
         return subtotal;
     }
+
     function updateSummaryTotals(credit) {
         const subtotal = calculateSubtotal();
 
@@ -78,15 +82,11 @@ $(document).ready(function () {
         const totalPriceFromLocalStorage = parseFloat(sessionStorage.getItem('total'));
 
 
-
         // Update HTML with the calculated totals
         $('#subtotal').text('$' + subtotal.toFixed(2));
         $('#credit-before').text('$' + actualCredit.toFixed(2));
         $('#credit-after').text('$' + (actualCredit - totalPriceFromLocalStorage).toFixed(2));
     }
-
-
-
 
 
     function populateShippingAddresses(addresses) {
@@ -98,16 +98,16 @@ $(document).ready(function () {
         addressContainer.empty();
 
         // Loop through addresses and populate the container
-        let address=addresses[0];
-            // Create HTML for each address
-            const addressHtml = `
+        let address = addresses[0];
+        // Create HTML for each address
+        const addressHtml = `
                 <div class="ship-b__box u-s-m-b-10">
                     <p class="ship-b__p">${address.street}, ${address.city} ${address.state}-${address.zipCode} ${address.country} (+0) ${userData.phone}</p>
                     <a class="ship-b__edit btn--e-transparent-platinum-b-2" data-modal="modal" data-modal-id="#edit-ship-address">Edit</a>
                 </div>`;
 
-            // Append address HTML to the container
-            addressContainer.append(addressHtml);
+        // Append address HTML to the container
+        addressContainer.append(addressHtml);
 
 
     }
@@ -138,6 +138,7 @@ $(document).ready(function () {
 
         // Check if a radio button is selected
         if (!selectedAddressId) {
+            toastr.error('Please select an address.');
             console.log('No address selected.');
             return;
         }
@@ -163,8 +164,6 @@ $(document).ready(function () {
     });
 
 
-
-
     function updateDisplayedAddress(address) {
         console.log('Address:', address); // Log the address object
         const addressContainer = $('.ship-b__addresses');
@@ -178,7 +177,6 @@ $(document).ready(function () {
             </div>
         `);
     }
-
 
 
     function populateAddressModal(addresses, selectedIndex) {
@@ -214,16 +212,25 @@ $(document).ready(function () {
         $.ajax({
             url: 'checkout',
             type: 'POST',
-            data: {addressId : currentSelectedAddressId},
+            data: {addressId: currentSelectedAddressId},
             success: function (response) {
-                    alert('Checkout successful!');
-                    sessionStorage.removeItem('shoppingData');
-                    sessionStorage.removeItem('total');
+                toastr.success('Order placed successfully!');
+                sessionStorage.removeItem('shoppingData');
+                sessionStorage.removeItem('total');
+
+                $('#spinner').show(); // Show the spinner
+
+                setTimeout(function () {
                     window.location.href = 'home';
+                }, 2000); // 2000 milliseconds = 2 seconds
+
+                setTimeout(function () {
+                    $('#spinner').hide(); // Hide the spinner
+                }, 4000); // 4000 milliseconds = 4 seconds
 
             },
             error: function (xhr, status, error) {
-                alert(xhr.responseText);
+                toastr.error(xhr.responseText);
                 console.error(xhr.responseText);
             }
         });
@@ -272,9 +279,9 @@ $(document).ready(function () {
                 if (response === 'true') {
                     productCard.remove();
                     deleteProductFromSessionStorage(productId); // Remove the product from the session storage
-                    alert('Product removed from the cart!');
+                    toastr.success('Product removed from the cart!');
                 } else {
-                    alert('Failed to remove product from the cart.');
+                    toastr.error('Failed to remove product from the cart.');
                 }
             },
             error: function (xhr, status, error) {

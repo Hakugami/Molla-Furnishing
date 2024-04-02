@@ -98,10 +98,13 @@ $(document).ready(function() {
             data: JSON.stringify(userDto),
             success: function() {
                 sendSessionDataToServer();
-                window.location.href = 'login';
+                setTimeout(function() {
+                    toastr.success('Registration successful!');
+                    window.location.href = 'login';
+                }, 2000);
             },
             error: function() {
-                alert('Registration failed. Please try again.');
+                toastr.error('Registration failed. Please try again.');
             }
         });
     });
@@ -200,23 +203,23 @@ function validateForm() {
         month === undefined || month === null || month === "" ||
         phone === undefined || phone === null || phone === "" ||
         day === undefined || day === null || day === "") {
-        alert('All fields are required.');
+        toastr.error('All fields are required.');
         return false;
     }
     if(gender === 'select'){
-        alert('Please fill the gender box ');
+        toastr.error('Please fill the gender box ');
         return false;
     }
     if(creditLimit < 0){
-        alert('Please fill the credit limit box ');
+        toastr.error('Please fill the credit limit box ');
         return false;
     }
     if(phone.length < 11){
-        alert('Please fill the phone box ');
+        toastr.error('Please fill the phone box ');
         return false;
     }
     if(month ==='Month' || day ==='Day' || year ==='Year'){
-        alert('Please fill the birthday box ');
+        toastr.error('Please fill the birthday box ');
         return false;
     }
 

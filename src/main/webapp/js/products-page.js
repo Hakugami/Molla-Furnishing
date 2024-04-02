@@ -275,7 +275,7 @@ $(document).ready(function () {
         let productId = product.productId;
 
         if (product.quantity === 0) {
-            alert("Product is out of stock");
+            toastr.error('Product is out of stock.');
             return;
         }
 
@@ -304,9 +304,9 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response === 'true') {
-                    alert('Product quantity incremented successfully!');
+                    toastr.success('Product added to cart.');
                 } else {
-                    alert('Failed to increment product quantity.');
+                    toastr.error('Failed to add product to cart.');
                 }
             },
             error: function (xhr, status, error) {
