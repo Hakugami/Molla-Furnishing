@@ -10,14 +10,6 @@
 ## Project Description 📝
 An Ecommerce website built with java servlets
 
-## Team
-[![Islam Ahmed](https://img.shields.io/badge/Islam_Ahmed-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/Hakugami) ![GitHub followers](https://img.shields.io/github/followers/Hakugami?style=social) 
-
-[![Hassan Arafa](https://img.shields.io/badge/Hassan_Arafa-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/hassanarafa) ![GitHub followers](https://img.shields.io/github/followers/hassanarafa)
-
-[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal) ![GitHub followers](https://img.shields.io/github/followers/MANofal) 
-
-[![Mahmoud Marwan](https://img.shields.io/badge/Mahmoud_Marwan-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/elNemrMahmoud) ![GitHub followers](https://img.shields.io/github/followers/elNemrMahmoud) 
 
 
 
@@ -69,6 +61,46 @@ This website addresses two main actors. A user who buys products, and an admin w
 
 # Database Schema
 ![image](https://github.com/Hakugami/Molla-Furnishing/assets/21118424/1de5f41f-b427-415c-8cf0-2cabd89c720e)
+
+
+# How to Run 
+## Prerequisites
+
+- JDK 21
+- Tomcat 10
+- MySQL & Workbench
+- IntelliJ IDEA
+- Maven
+
+## Steps
+
+1. **Install the Dependencies & Compile:**
+    - Open your terminal or command prompt.
+    - Navigate to the root directory of the project.
+    - Execute the following command:
+      ```
+      mvn clean compile package
+      ```
+      
+2. **Setup IntelliJ for Automatic Deployment:**
+    - [Add steps and images here for setting up IntelliJ for automatic deployment.]
+  
+    
+3. **Runing the Project:**
+    - Start your MySQL server.
+    - Open IntelliJ IDEA.
+    - [Add steps for running the project from IntelliJ IDEA.]
+
+
+## Team
+[![Islam Ahmed](https://img.shields.io/badge/Islam_Ahmed-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/Hakugami) ![GitHub followers](https://img.shields.io/github/followers/Hakugami?style=social) 
+
+[![Hassan Arafa](https://img.shields.io/badge/Hassan_Arafa-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/hassanarafa) ![GitHub followers](https://img.shields.io/github/followers/hassanarafa)
+
+[![Mohammed Nofal](https://img.shields.io/badge/Mohammed_Nofal-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/MANofal) ![GitHub followers](https://img.shields.io/github/followers/MANofal) 
+
+[![Mahmoud Marwan](https://img.shields.io/badge/Mahmoud_Marwan-Profile-<COLOR>?style=for-the-badge&logo=github)](https://github.com/elNemrMahmoud) ![GitHub followers](https://img.shields.io/github/followers/elNemrMahmoud) 
+
 
 
 # Acknowledgments
