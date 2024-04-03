@@ -62,9 +62,8 @@ This website addresses two main actors. A user who buys products, and an admin w
 # Database Schema
 ![image](https://github.com/Hakugami/Molla-Furnishing/assets/21118424/1de5f41f-b427-415c-8cf0-2cabd89c720e)
 
-
-# How to Run 
-## Prerequisites
+# How to Run 🏃‍♂️
+## Prerequisites 🛠️
 
 - JDK 21
 - Tomcat 10
@@ -72,7 +71,7 @@ This website addresses two main actors. A user who buys products, and an admin w
 - IntelliJ IDEA
 - Maven
 
-## Steps
+## Steps 📝
 
 1. **Install the Dependencies & Compile:**
     - Open your terminal or command prompt.
@@ -86,10 +85,11 @@ This website addresses two main actors. A user who buys products, and an admin w
     - [Add steps and images here for setting up IntelliJ for automatic deployment.]
   
     
-3. **Runing the Project:**
+3. **Running the Project:**
     - Start your MySQL server.
     - Open IntelliJ IDEA.
     - [Add steps for running the project from IntelliJ IDEA.]
+
 
 
 ## Team
