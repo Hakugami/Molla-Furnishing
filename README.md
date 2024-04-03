@@ -78,7 +78,7 @@ This website addresses two main actors. A user who buys products, and an admin w
     - Navigate to the root directory of the project.
     - Execute the following command:
       ```
-      mvn clean compile package
+      mvn clean install
       ```
       
 2. **Setup IntelliJ for Automatic Deployment:**
